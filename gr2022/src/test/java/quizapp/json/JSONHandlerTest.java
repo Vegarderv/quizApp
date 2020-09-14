@@ -15,7 +15,7 @@ public class JSONHandlerTest {
 	
 	@BeforeAll
 	public static void setUp(){
-		handler = new JSONHandler("src/test/java/quizapp/json/JSONHandler.json");
+		handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
 		usernames.put("gr2022", "gitlab");
 	}
 	
