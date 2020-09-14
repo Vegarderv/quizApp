@@ -1,10 +1,6 @@
-package quizapp;
+package quizapp.core;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class Example 
 {
     public static void main( String[] args )
     {

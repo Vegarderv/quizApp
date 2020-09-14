@@ -1,7 +1,6 @@
 tasks:
   - init: sdk use java 14.0.2.j9-adpt
-    command: echo "Replace me with something that should run on every start, or just
-      remove me entirely."
+    command: cd gr2022
 image:
   file: .gitpod.Dockerfile
 
