@@ -10,28 +10,28 @@ This repo also contains testing for each layer, and is built with **maven**.
 
 This project is contained in a 2*2 folder structure, where code and resources are seperated. The folders are following:
 
-* **src/main/java**
-* **src/main/resources**
-* **test/test/java**
-* **test/test/resources**
+* **src/main/java/quizapp**
+* **src/main/java/resources**
+* **src/test/java/quizapp**
+* **src/test/java/resources**
 
 This is the standard folder structure for projects built with maven
 
-## API-layer
+## UI-layer
 
-The API layer is currently simple, and contains only a simple UI for logging in, along with java and JavaFX code
+The UI layer is currently simple, and contains only a simple UI for logging in, along with java and JavaFX code
 used to make the FXML-UI work properly. You can currently only use existing usernames and passwords.
 If you input the correct username and password, you will be taken to a blank stage.
 
-The API files are found here:
-**link to src/quizapp/API**
+The UI files are found here:
+[link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/master/gr2022%2Fsrc%2Fmain%2Fjava%2Fquizapp%2Fui)
 
 ## Presistance-layer
 
 In the presistance-layer, all classes and logic connected to saving and reading from files are located.
 
 The presistance files are found here:
-**Link to src/quizapp/presistance**
+[link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/master/gr2022%2Fsrc%2Fmain%2Fjava%2Fquizapp%2Fjson)
 
 Diagram describing the file saving:
 ![Image of JSON diagram](Images/JSONdiagram.png)
