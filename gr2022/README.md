@@ -33,9 +33,13 @@ In the presistance-layer, all classes and logic connected to saving and reading 
 The presistance files are found here:
 **Link to src/quizapp/presistance**
 
+Diagram describing the file saving:
+![Image of JSON diagram](Images/JSONdiagram.png)
+
+
 ### This project is built with maven
 Illustrative plan:
-![Image of illustrativeplan](Images/BrukerPlan.png)
+![Image of illustrative plan](Images/BrukerPlan.png)
 
 User stories:
 https://docs.google.com/document/d/1onM4Twf8udwkJ4Me4JwiqlhbbePsnBw3_q8_uEFCKUw/edit?ts=5f58a80c
