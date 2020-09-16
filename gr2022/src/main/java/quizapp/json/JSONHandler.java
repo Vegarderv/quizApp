@@ -18,19 +18,16 @@ public class JSONHandler {
 	public JSONHandler(String path) {
 		this.path = path;
 	}
-	
+    
+    //Function writes a hashmap as a JSON object to a JSON file
 	public void writeToFile(HashMap<String, String> map) {
 		JSONObject obj = new JSONObject(map);
 		try {
 
-			// Constructs a FileWriter given a file name, using the platform's default charset
 			file = new FileWriter(path);
 			file.write(obj.toJSONString());
 
-			//TODO: Create log
-			//QuizLog("Successfully Copied JSON Object to File...");
-			//QuizLog("\nJSON Object: " + obj);
-
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 
@@ -40,12 +37,12 @@ public class JSONHandler {
 				file.flush();
 				file.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-	}
-	
+    }
+    
+    //Function reads a JSON file and returns a hashmap
 	public HashMap<String,String> loadFromFile(){
 		
 		
@@ -54,12 +51,10 @@ public class JSONHandler {
 			FileReader reader = new FileReader(path);
 			Object obj = parser.parse(reader);
 
-			// A JSON object. Key value pairs are unordered. JSONObject supports java.util.Map interface.
 			JSONObject jsonObject = (JSONObject) obj;
 			HashMap<String, String> yourHashMap = new Gson().fromJson(jsonObject.toString(), HashMap.class);
 			return yourHashMap;
 
-			// A JSON array. JSONObject supports java.util.List interface.
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
