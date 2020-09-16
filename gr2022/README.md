@@ -10,10 +10,10 @@ This repo also contains testing for each layer, and is built with **maven**.
 
 This project is contained in a 2*2 folder structure, where code and resources are seperated. The folders are following:
 
-* **src/quizapp**
-* **src/resources**
-* **test/quizapp**
-* **test/resources**
+* **src/main/java**
+* **src/main/resources**
+* **test/test/java**
+* **test/test/resources**
 
 This is the standard folder structure for projects built with maven
 
