@@ -23,6 +23,13 @@ The API layer is currently simple, and contains only a simple UI for logging in,
 used to make the FXML-UI work properly. You can currently only use existing usernames and passwords.
 If you input the correct username and password, you will be taken to a blank stage.
 
+The current username and password are as follows:
+
+Username: **gr2022**
+
+Passord **gitlab**
+
+
 The API files are found here:
 **link to src/quizapp/API**
 
@@ -33,13 +40,20 @@ In the presistance-layer, all classes and logic connected to saving and reading 
 The presistance files are found here:
 **Link to src/quizapp/presistance**
 
-Diagram describing the file saving:
+**Diagram describing the file saving:**
 ![Image of JSON diagram](Images/JSONdiagram.png)
 
 
-### This project is built with maven
-Illustrative plan:
+
+**Illustrative plan:**
 ![Image of illustrative plan](Images/BrukerPlan.png)
 
-User stories:
+
+This illustrative plan is meant to represent the functunality of our app closer to its finishing stages. The red arrows point to a new 'stage' as a result of interactions with the visual representations. 
+
+
+**User stories:**
 https://docs.google.com/document/d/1onM4Twf8udwkJ4Me4JwiqlhbbePsnBw3_q8_uEFCKUw/edit?ts=5f58a80c
+
+
+### This project is built with maven
