@@ -35,7 +35,7 @@ The presistance files are found here:
 
 ### This project is built with maven
 Illustrative plan:
-![Image of illustrativeplan](src/main/resources/Images/BrukerPlan.png)
+![Image of illustrativeplan](Images/BrukerPlan.png)
 
 User stories:
 https://docs.google.com/document/d/1onM4Twf8udwkJ4Me4JwiqlhbbePsnBw3_q8_uEFCKUw/edit?ts=5f58a80c
