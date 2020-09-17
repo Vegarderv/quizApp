@@ -44,7 +44,8 @@ The presistance files are found here:
 ![Image of JSON diagram](Images/JSONdiagram.png)
 
 
-## 
+## Plan and functionality
+
 **Illustrative plan:**
 
 ![Image of illustrative plan](Images/BrukerPlan.png)
