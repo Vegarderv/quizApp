@@ -23,19 +23,14 @@ The UI layer is currently simple, and contains only a simple UI for logging in, 
 used to make the FXML-UI work properly. You can currently only use existing usernames and passwords.
 If you input the correct username and password, you will be taken to a blank stage.
 
-<<<<<<< HEAD
 The current username and password are as follows:
 
 Username: **gr2022**
 
 Passord **gitlab**
 
-
-=======
-
 The UI files are found here:
 [link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/master/gr2022%2Fsrc%2Fmain%2Fjava%2Fquizapp%2Fui)
->>>>>>> 685b0013009ff7af7e8bdb232b146dd4f07e1975
 
 ## Presistance-layer
 
