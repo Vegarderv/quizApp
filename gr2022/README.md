@@ -23,6 +23,12 @@ The UI layer is currently simple, and contains only a simple UI for logging in, 
 used to make the FXML-UI work properly. You can currently only use existing usernames and passwords.
 If you input the correct username and password, you will be taken to a blank stage.
 
+The current username and password are as follows:
+
+Username: **gr2022**
+
+Passord **gitlab**
+
 The UI files are found here:
 [link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/master/gr2022%2Fsrc%2Fmain%2Fjava%2Fquizapp%2Fui)
 
@@ -33,13 +39,23 @@ In the presistance-layer, all classes and logic connected to saving and reading 
 The presistance files are found here:
 [link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/master/gr2022%2Fsrc%2Fmain%2Fjava%2Fquizapp%2Fjson)
 
-Diagram describing the file saving:
+**Diagram describing the file saving:**
+
 ![Image of JSON diagram](Images/JSONdiagram.png)
 
 
-### This project is built with maven
-Illustrative plan:
+## Plan and functionality
+
+**Illustrative plan:**
+
 ![Image of illustrative plan](Images/BrukerPlan.png)
 
-User stories:
+
+This illustrative plan is meant to represent the functunality of our app closer to its finishing stages. The red arrows point to a new 'stage' as a result of interactions with the visual representations. 
+
+
+**User stories:**
 https://docs.google.com/document/d/1onM4Twf8udwkJ4Me4JwiqlhbbePsnBw3_q8_uEFCKUw/edit?ts=5f58a80c
+
+
+### This project is built with maven
