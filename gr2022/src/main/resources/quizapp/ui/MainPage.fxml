@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.MainPageController">
+   <children>
+      <MenuBar fx:id="menuBar" layoutX="140.0" layoutY="14.0" AnchorPane.bottomAnchor="374.4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Profile" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="0.0">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#GoToProfile" text="Show" />
+          <MenuItem mnemonicParsing="false" onAction="#LogOut" text="Log out" />
+        </items>
+      </MenuButton>
+      <ButtonBar layoutX="125.0" layoutY="130.0" prefHeight="400.0" prefWidth="600.0" translateX="-10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#GoToHistoryQuiz" prefHeight="100.0" prefWidth="400.0" text="History quiz" translateX="-95.0" translateY="-100.0">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Button>
+        </buttons>
+      </ButtonBar>
+   </children>
 </AnchorPane>
