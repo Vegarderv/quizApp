@@ -1,6 +1,8 @@
 package quizapp.core;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.Assert.assertFalse;
@@ -15,15 +17,18 @@ public class UsernameCheckTest {
     
     //Declaring variables
 	static JSONHandler handler;
-	static HashMap<String, String> usernames = new HashMap<>();
-    HashMap<String, String> loadedUsernames;
+	static List<User> usernames = new ArrayList<>();
+    List<User> loadedUsernames;
     static UsernameCheck nameCheck;
     
     //Setting up the tests
 	@BeforeAll
 	public static void setUp(){
-		handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
-        usernames.put("gr2022", "gitlab");
+        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
+        User user1 = new User();
+        user1.setPassword("gitlab");
+        user1.setUsername("gr2022");
+        usernames.add(user1);
         nameCheck = new UsernameCheck();
         handler.writeToFile(usernames);
 	}

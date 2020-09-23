@@ -1,1 +1,12 @@
-{"gr2022":["gitlab"]}
+[
+  {
+    "username": "Hallvard",
+    "password": "Trætteberg",
+    "quizzesTaken": {}
+  },
+  {
+    "username": "George",
+    "password": "Stoica",
+    "quizzesTaken": {}
+  }
+]
