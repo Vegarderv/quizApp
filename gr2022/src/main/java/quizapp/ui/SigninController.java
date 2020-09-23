@@ -29,6 +29,8 @@ public class SigninController implements Initializable {
         // TODO Auto-generated method stub
     }
 
+    //also need method that sends loginpage to signinpage in logincontroller, and a button in the ui
+
     @FXML
     public void toMainMenu(ActionEvent event) throws Exception {
         UsernameCheck chk = new UsernameCheck();
