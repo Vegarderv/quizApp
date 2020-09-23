@@ -24,11 +24,16 @@
                            <children>
                               <VBox layoutX="247.0" layoutY="46.0" prefHeight="623.0" prefWidth="538.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                  <children>
-                                    <Label text="History Quiz">
-                                       <font>
-                                          <Font size="40.0" />
-                                       </font>
-                                    </Label>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="80.0">
+                                       <children>
+                                          <Label text="History Quiz">
+                                             <font>
+                                                <Font size="40.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="score" textFill="#c60000" />
+                                       </children>
+                                    </HBox>
                                     <Label text="1. When was SceneBuilder created?" />
                                     <RadioButton fx:id="q1a1" mnemonicParsing="false" text="2008">
                                        <padding>

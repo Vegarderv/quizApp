@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import quizapp.core.Score;
 
 public class HistoryQuizController implements Initializable{
 
@@ -23,7 +24,9 @@ public class HistoryQuizController implements Initializable{
 	@FXML RadioButton q3a2;
 	@FXML RadioButton q3a3;
 	@FXML RadioButton q3a4;
-	@FXML Button submit;
+    @FXML Button submit;
+    @FXML Label score;
+    @FXML ScrollPane scroll;
 	List<RadioButton> buttons = new ArrayList<>();
 	
 	
@@ -45,7 +48,7 @@ public class HistoryQuizController implements Initializable{
 	}
 	
 	@FXML
-	public int submitAnswers() {
+	public void submitAnswers() {
 		int sum = 0;
 		if (q1a3.isSelected()) {
 			sum ++;
@@ -58,10 +61,16 @@ public class HistoryQuizController implements Initializable{
 		}
 		buttons.stream().forEach(a -> a.setDisable(true));
         submit.setDisable(true);
-        return sum;
+        scroll.setVvalue(0.0);
+        score.setText("You got this Score: " + Double.toString((double) sum / (double) 3));
+        Score scoreCard = new Score();
+        scoreCard.scoreQuiz(sum, 3);
 	}
 	
-	
+	@Override
+    public String toString() {
+        return "HistoryQuiz";
+    }
 	
 	
 	
