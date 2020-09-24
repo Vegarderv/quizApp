@@ -61,10 +61,10 @@ public class HistoryQuizController implements Initializable{
 		}
 		buttons.stream().forEach(a -> a.setDisable(true));
         submit.setDisable(true);
-        scroll.setVvalue(0.0);
-        score.setText("You got this Score: " + Double.toString((double) sum / (double) 3));
+        scroll.setVvalue(0.01);
+        score.setText("You got this Score: " + Integer.toString(Math.round(((float) sum / (float) 3)*100)) + "%");
         Score scoreCard = new Score();
-        scoreCard.scoreQuiz(sum, 3);
+        scoreCard.scoreQuiz(sum, 3, this.toString());
 	}
 	
 	@Override

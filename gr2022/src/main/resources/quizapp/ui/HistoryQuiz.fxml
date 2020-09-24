@@ -18,7 +18,7 @@
          <center>
             <VBox alignment="TOP_CENTER" prefHeight="483.0" prefWidth="553.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <ScrollPane>
+                  <ScrollPane fx:id = "scroll">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="623.0" prefWidth="538.0">
                            <children>
@@ -31,7 +31,11 @@
                                                 <Font size="40.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="score" textFill="#c60000" />
+                                          <Label fx:id="score" text = "" textFill="#c60000">
+                                            <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                            </Label>
                                        </children>
                                     </HBox>
                                     <Label text="1. When was SceneBuilder created?" />

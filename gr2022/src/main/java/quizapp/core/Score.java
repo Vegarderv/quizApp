@@ -13,12 +13,13 @@ public class Score {
 	 Needs to interact with quizapp.ui.HistoryQuizController and quizapp.json.JSONHandler
 	 */
 	
-	public void scoreQuiz(int score, int nQuestions){
-        UsernameHandler userName = new UsernameHandler("src/main/java/resources/quizapp/json/activeUser.json");
-        JSONHandler allUSers = new JSONHandler("src/main/java/resources/quizapp/json/JSONHandler.json");
+	public void scoreQuiz(int score, int nQuestions, String quiz){
+        UsernameHandler userNameHandler = new UsernameHandler("src/main/resources/quizapp/json/activeUser.json");
+        JSONHandler allUSers = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
         List<User> userList = allUSers.loadFromFile(); 
-        User user = userList.stream().filter(p -> p.getUsername().equals(userName.loadActiveUser())).findAny().get();
-        user.addQuiz(this.toString(), (score * 1.0)/(nQuestions*1.0));
+        String userName = userNameHandler.loadActiveUser();
+        User user = userList.stream().filter(p -> p.getUsername().equals(userName)).findAny().get();
+        user.addQuiz(quiz, (score * 1.0)/(nQuestions*1.0));
         allUSers.writeToFile(userList);
         
     }
