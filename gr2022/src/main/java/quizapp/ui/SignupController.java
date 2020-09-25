@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quizapp.core.User;
-import quizapp.core.UsernameCheck;
 import quizapp.json.JSONHandler;
 
 import java.net.URL;
@@ -35,8 +34,9 @@ public class SignupController implements Initializable {
 
     @FXML
     public void toMainMenu(ActionEvent event) throws Exception {
-        UsernameCheck chk = new UsernameCheck();
-        if(chk.checkUsername(username.getText(), password.getText())){
+        final JSONHandler handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
+        final List<User> user = handler.loadFromFile();
+        if(user.stream().anyMatch(a -> a.getUsername().equals(username.getText()))){
             username.clear();
             password.clear();
             errorMessage.setText("Username already taken");
@@ -52,8 +52,6 @@ public class SignupController implements Initializable {
         final User newUser = new User();
         newUser.setUsername(this.username.getText());
         newUser.setPassword(this.password.getText());
-        final JSONHandler handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
-        final List<User> user = handler.loadFromFile();
         user.add(newUser);
         handler.writeToFile(user);
         
