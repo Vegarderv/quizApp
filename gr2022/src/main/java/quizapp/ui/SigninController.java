@@ -42,6 +42,12 @@ public class SigninController implements Initializable {
             errorMessage.setText("Username already taken");
             return;
         }
+        else if (username.getText().equals("") || password.getText().equals("")) {
+            username.clear();
+            password.clear();
+            errorMessage.setText("Username and password must at least contain 1 sign");
+            return;
+        }
         //need method that saves the new username and password
         final User newUser = new User();
         newUser.setUsername(this.username.getText());
