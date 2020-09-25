@@ -2,7 +2,9 @@
   {
     "username": "Hallvard",
     "password": "Trætteberg",
-    "quizzesTaken": {}
+    "quizzesTaken": {
+      "HistoryQuiz": 1.0
+    }
   },
   {
     "username": "George",
