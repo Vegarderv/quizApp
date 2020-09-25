@@ -36,7 +36,7 @@
             </Button>
             <Label fx:id="errorMessage" />
             <Label text="Need a new account?"/>
-            <Button onAction="#toSigninPage" text="Sign up"/>
+            <Button onAction="#toSignupPage" text="Sign up"/>
          </children>
       </VBox>
    </children>

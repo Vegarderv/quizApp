@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="323.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.SigninController">
+<AnchorPane prefHeight="323.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.SignupController">
     <children>
         <VBox alignment="TOP_CENTER" layoutY="56.0" prefHeight="427.0" prefWidth="553.0" spacing="10.0">
             <children>
-                <Label text="Sign in">
+                <Label text="Sign up">
                     <font>
                         <Font size="61.0" />
                     </font>

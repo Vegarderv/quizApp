@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class SigninController implements Initializable {
+public class SignupController implements Initializable {
 
     @FXML
     TextField username;
