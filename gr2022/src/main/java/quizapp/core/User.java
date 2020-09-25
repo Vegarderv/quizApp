@@ -13,6 +13,10 @@ This class is used for easier access and saving of user data. Also much easier t
     //Keeps control of all quizzes taken
     private HashMap<String, Double> quizzesTaken = new HashMap<>();
 
+    public boolean quizTaken(String quiz){
+        return quizzesTaken.containsKey(quiz);
+    }
+
     public String getUsername(){
         return username;
     }
