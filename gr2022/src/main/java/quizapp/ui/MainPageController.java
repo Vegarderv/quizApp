@@ -30,7 +30,7 @@ public class MainPageController {
 
     @FXML
     void LogOut(ActionEvent event) {
-    	this.switchSceneWithMenuItem("LoginPage.fxml");
+    	this.switchSceneWithMenuItem("Login.fxml");
     }
     
     void switchSceneWithButton(ActionEvent event, String fxmlFile) {
