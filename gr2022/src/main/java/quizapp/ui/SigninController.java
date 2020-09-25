@@ -24,12 +24,11 @@ public class SigninController implements Initializable {
     @FXML
     Label errorMessage;
 
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
     }
-
-    //also need method that sends loginpage to signinpage in logincontroller, and a button in the ui
 
     @FXML
     public void toMainMenu(ActionEvent event) throws Exception {
