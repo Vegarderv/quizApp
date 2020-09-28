@@ -38,7 +38,7 @@ public class LoginController implements Initializable{
         }
         
         //Gets the stage information and sets the scene
-		Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+		Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 		Scene tableViewScene = new Scene(tableViewParent);
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(tableViewScene);
