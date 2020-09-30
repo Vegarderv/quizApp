@@ -25,7 +25,10 @@ public class Score {
         }
         user.addQuiz(quiz, (score * 1.0)/(nQuestions*1.0));
         allUSers.writeToFile(userList); //Writes users back to file
-        
+    }
+
+    public String getUsername(){
+        return new UsernameHandler("src/main/resources/quizapp/json/activeUser.json").loadActiveUser();
     }
 	
 	
