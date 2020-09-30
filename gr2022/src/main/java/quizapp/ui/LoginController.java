@@ -44,14 +44,4 @@ public class LoginController implements Initializable{
 		window.setScene(tableViewScene);
 		window.show();
 	}
-
-	@FXML
-	public void toSignupPage(ActionEvent event) throws Exception {
-		//Gets the stage information and sets the scene
-		Parent tableViewParent = FXMLLoader.load(getClass().getResource("Signup.fxml"));
-		Scene tableViewScene = new Scene(tableViewParent);
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(tableViewScene);
-		window.show();
-	}
 }
