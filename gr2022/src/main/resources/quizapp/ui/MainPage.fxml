@@ -11,13 +11,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.MainPageController">
    <children>
       <MenuBar fx:id="menuBar" layoutX="140.0" layoutY="14.0" maxHeight="30.0" prefHeight="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <MenuButton maxHeight="25.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Profile" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuButton fx:id="menuButton" maxHeight="25.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Profile" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <MenuItem mnemonicParsing="false" onAction="#GoToProfile" text="Show" />
-          <MenuItem mnemonicParsing="false" onAction="#LogOut" text="Log out" />
+          <MenuItem mnemonicParsing="false" fx:id = "profileButton" onAction="#goToProfile" text="Show" />
+          <MenuItem mnemonicParsing="false" fx:id = "logOutButton" onAction="#logOut" text="Log out" />
         </items>
       </MenuButton>
-      <Button layoutX="122.0" layoutY="127.0" mnemonicParsing="false" onAction="#GoToHistoryQuiz" prefHeight="100.0" prefWidth="0.0" text="History Quiz" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+      <Button layoutX="122.0" layoutY="127.0" mnemonicParsing="false" fx:id="historyQuizButton" onAction="#goToHistoryQuiz" prefHeight="100.0" prefWidth="0.0" text="History Quiz" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
          <font>
             <Font size="24.0" />
          </font>
