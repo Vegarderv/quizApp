@@ -35,6 +35,8 @@
                </VBox.margin>
             </Button>
             <Label fx:id="errorMessage" />
+            <Label text="Need a new account?"/>
+            <Button mnemonicParsing="false" onAction="#toSignup" text="Sign up"/>
          </children>
       </VBox>
    </children>
