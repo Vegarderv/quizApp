@@ -1,6 +1,6 @@
 package quizapp.ui;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
@@ -13,14 +13,12 @@ import javafx.stage.Stage;
 
 public class MainPageControllerTest extends ApplicationTest {
 
-    private MainPageController controller;
     private Stage stage;
 
     @Override
     public void start(final Stage stage) throws Exception {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
         final Parent root = loader.load();
-        this.controller = loader.getController();
         stage.setScene(new Scene(root));
         stage.show();
         this.stage = stage;
@@ -28,16 +26,30 @@ public class MainPageControllerTest extends ApplicationTest {
 
 
     @Test
-    public void test1() {
+    public void logOutTest() {
+        assertNotNull(stage.getScene().lookup("#historyQuizButton"));
+        assertNull(stage.getScene().lookup("#mainPageButton"));
         clickOn("#menuButton").clickOn("#logOutButton");
-        assertTrue(stage.getScene().lookup("#mainPageButton").isVisible());
-        assertNull(stage.getScene().lookup("#historyQuizButton"));    
+        assertNull(stage.getScene().lookup("#historyQuizButton"));   
+        assertNotNull(stage.getScene().lookup("#mainPageButton")); 
     }
+
+    //Will be implemented when profile page is finished
+    @Test
+    public void goToProfileTest() {
+        
+    }
+
+
 
     @Test
     public void goToHistoryQuizTest() {
+        assertNotNull(stage.getScene().lookup("#historyQuizButton"));
+        assertNull(stage.getScene().lookup("#scroll"));
         clickOn("#historyQuizButton");
-        assertTrue(stage.getScene().lookup("#scroll").isVisible());
+        assertNotNull(stage.getScene().lookup("#scroll"));
+        assertNull(stage.getScene().lookup("#historyQuizButton"));
+
         
     }
 

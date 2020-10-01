@@ -31,9 +31,6 @@ public class MainPageController {
     @FXML
     Button historyQuizButton;
 
-    @FXML
-    TextField textField;
-
 	
 
     @FXML
@@ -65,7 +62,6 @@ public class MainPageController {
     }
     
     public void switchSceneWithMenuItem(String fxmlFile) {
-        System.out.println("Switching scene with menu item");
     	try {
         	Stage stage = (Stage) menuBar.getScene().getWindow();
 			Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
