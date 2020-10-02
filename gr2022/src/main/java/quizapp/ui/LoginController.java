@@ -19,8 +19,10 @@ public class LoginController implements Initializable{
 	@FXML
 	TextField password;
 	@FXML
-	Label errorMessage;
-	
+    Label errorMessage;
+
+    @FXML Button mainPageButton;
+   
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
