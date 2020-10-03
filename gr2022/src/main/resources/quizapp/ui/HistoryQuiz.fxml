@@ -131,7 +131,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="400.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#GoToMainMenu" text="Main Menu" />
+                        <Button fx:id = "mainMenu" mnemonicParsing="false" onAction="#GoToMainMenu" text="Main Menu" />
                      </children>
                      <HBox.margin>
                         <Insets left="10.0" />

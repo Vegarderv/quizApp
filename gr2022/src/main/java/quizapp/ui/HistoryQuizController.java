@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import quizapp.core.Score;
+import quizapp.json.UsernameHandler;
 
 public class HistoryQuizController implements Initializable{
 
@@ -38,9 +39,10 @@ public class HistoryQuizController implements Initializable{
     @FXML MenuItem menuSignOut;
     private List<RadioButton> buttons = new ArrayList<>();
     private String userName;
-    private String jsonPath = "src/main/resources/quizapp/json/activeUser.json";
-    private String usernamePath = "src/main/resources/quizapp/json/JSONHandler.json";
+    private String usernamePath = "src/main/resources/quizapp/json/activeUser.json";
+    private String jsonPath = "src/main/resources/quizapp/json/JSONHandler.json";
     Score scoreCard = new Score(jsonPath, usernamePath);
+    UsernameHandler userHandler = new UsernameHandler(usernamePath);
 	
 	
 	
@@ -58,7 +60,7 @@ public class HistoryQuizController implements Initializable{
 		buttons.add(q3a2);
 		buttons.add(q3a3);
         buttons.add(q3a4);
-        userName = scoreCard.getUsername();
+        userName = userHandler.loadActiveUser();
         userMenu.setText(userName);
 	}
 	
@@ -78,13 +80,8 @@ public class HistoryQuizController implements Initializable{
         submit.setDisable(true);
         scroll.setVvalue(0.01);
         score.setText("You got this Score: " + Integer.toString(Math.round(((float) sum / (float) 3)*100)) + "%");
-        scoreCard.scoreQuiz(sum, 3, this.toString());
+        scoreCard.scoreQuiz(sum, 3, "HistoryQuiz");
 	}
-	
-	@Override
-    public String toString() {
-        return "HistoryQuiz";
-    }
     
     private void switchSceneWithMenuItem(String fxmlFile) {
     	try {
@@ -112,7 +109,5 @@ public class HistoryQuizController implements Initializable{
     void GoToMainMenu(ActionEvent event) {
     	this.switchSceneWithMenuItem("MainPage.fxml");
     }
-
-	
 	
 }

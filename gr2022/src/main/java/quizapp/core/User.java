@@ -43,5 +43,7 @@ This class is used for easier access and saving of user data. Also much easier t
         return quizzesTaken.values().stream().reduce(0.0, (a,b) -> a+b)/quizzesTaken.size();
     }
 
-
+    public Double getScore(String quiz){
+        return quizzesTaken.get(quiz);
+    }
 }

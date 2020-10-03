@@ -1,13 +1,10 @@
 package quizapp.json;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -20,10 +17,12 @@ public class JSONHandlerTest {
 	static JSONHandler handler;
 	static List<User> usernames = new ArrayList<>();
 	List<User> loadedUsernames;
-	
+    
+    
+    //Sets up usernames, Users and quizzes
 	@BeforeAll
 	public static void setUp(){
-        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
+        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
         User user1 = new User();
         User user2 = new User();
         user1.setUsername("Hallvard");
@@ -61,7 +60,8 @@ public class JSONHandlerTest {
     }
     
     @Test
-    public void correctQuiz() {
+    public void correctQuiz() { 
+        //Checks if correct quiz is loaded
         loadedUsernames = handler.loadFromFile();
         assertTrue(loadedUsernames.get(0).quizTaken("testquiz123"));
     }

@@ -37,10 +37,6 @@ public class Score {
         allUSers.writeToFile(userList); //Writes users back to file
     }
 
-    public String getUsername(){
-        return new UsernameHandler(usernamePath).loadActiveUser();
-    }
-
     
 	
 }
