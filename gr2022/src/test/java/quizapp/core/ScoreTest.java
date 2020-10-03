@@ -16,10 +16,12 @@ import quizapp.json.UsernameHandler;
 
 
 public class ScoreTest {
-    private UsernameHandler userHandler = new UsernameHandler("src/main/resources/quizapp/json/activeUserTest.json");
+    private String usernamePath = "src/main/resources/quizapp/json/activeUserTest.json";
+    private String jsonPath = "src/main/resources/quizapp/json/JSONHandlerTest.json";
+    private UsernameHandler userHandler = new UsernameHandler(usernamePath);
     private User user = new User();
-    private JSONHandler jsonHandler = new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
-    private Score score = new Score();
+    private JSONHandler jsonHandler = new JSONHandler(jsonPath);
+    private Score score = new Score(jsonPath, usernamePath);
     private List<User> users = Arrays.asList(user);
 
     
@@ -29,7 +31,7 @@ public class ScoreTest {
         user.setUsername("TestName");
         user.setPassword("TestPassword");
         jsonHandler.writeToFile(users);
-        userHandler.saveActiveUser("TestName", "src/main/resources/quizapp/json/JSONHandlerTest.json" );
+        userHandler.saveActiveUser("TestName", jsonPath);
         score.scoreQuiz(4, 5, "Superquiz");
     }
 

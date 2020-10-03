@@ -45,10 +45,10 @@ public class JSONHandler {
 		}
     }
     
-    //Function reads a JSON file and returns a hashmap
+    //Function reads a JSON file and returns a list of users
 	public List<User> loadFromFile(){
 		try {
-			FileReader reader = new FileReader(path);
+            FileReader reader = new FileReader(path);
 			List<User> user = new Gson().fromJson(reader, new TypeToken<List<User>>(){}.getType());
 			return user;
 

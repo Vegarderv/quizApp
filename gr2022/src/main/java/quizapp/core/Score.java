@@ -6,6 +6,16 @@ import quizapp.json.JSONHandler;
 import quizapp.json.UsernameHandler;
 
 public class Score {
+
+    private String jsonPath;
+    private String usernamePath;
+
+
+    public Score(String jsonPath, String usernamePath) {
+        this.usernamePath = usernamePath;
+        this.jsonPath = jsonPath;
+    }
+	
 	/*
 	 This is a scoring class which handles the scores from different quizzes and
 	 sends the score to the user, along with the quiz ID
@@ -15,8 +25,8 @@ public class Score {
 	
 	public void scoreQuiz(int score, int nQuestions, String quiz){
         //Send Score to user
-        UsernameHandler userNameHandler = new UsernameHandler("src/main/resources/quizapp/json/activeUser.json");
-        JSONHandler allUSers = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
+        UsernameHandler userNameHandler = new UsernameHandler(usernamePath);
+        JSONHandler allUSers = new JSONHandler(jsonPath);
         List<User> userList = allUSers.loadFromFile(); 
         String userName = userNameHandler.loadActiveUser();
         User user = userList.stream().filter(p -> p.getUsername().equals(userName)).findAny().get();
@@ -28,8 +38,9 @@ public class Score {
     }
 
     public String getUsername(){
-        return new UsernameHandler("src/main/resources/quizapp/json/activeUser.json").loadActiveUser();
+        return new UsernameHandler(usernamePath).loadActiveUser();
     }
-	
+
+    
 	
 }

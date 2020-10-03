@@ -38,7 +38,9 @@ public class HistoryQuizController implements Initializable{
     @FXML MenuItem menuSignOut;
     private List<RadioButton> buttons = new ArrayList<>();
     private String userName;
-    Score scoreCard = new Score();
+    private String jsonPath = "src/main/resources/quizapp/json/activeUser.json";
+    private String usernamePath = "src/main/resources/quizapp/json/JSONHandler.json";
+    Score scoreCard = new Score(jsonPath, usernamePath);
 	
 	
 	
