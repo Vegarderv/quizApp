@@ -19,8 +19,10 @@ public class LoginController implements Initializable{
 	@FXML
 	TextField password;
 	@FXML
-	Label errorMessage;
-	
+    Label errorMessage;
+
+    @FXML Button mainPageButton;
+   
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -39,6 +41,16 @@ public class LoginController implements Initializable{
         
         //Gets the stage information and sets the scene
 		Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+		Scene tableViewScene = new Scene(tableViewParent);
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(tableViewScene);
+		window.show();
+    }
+    
+     @FXML
+	public void toSignup(ActionEvent event) throws Exception {
+        //Gets the stage information and sets the scene
+		Parent tableViewParent = FXMLLoader.load(getClass().getResource("Signup.fxml"));
 		Scene tableViewScene = new Scene(tableViewParent);
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(tableViewScene);
