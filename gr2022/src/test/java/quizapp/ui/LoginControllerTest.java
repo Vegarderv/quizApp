@@ -50,7 +50,7 @@ public class LoginControllerTest extends ApplicationTest {
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#mainPageButton"));
         TextField usernameField = (TextField) stage.getScene().lookup("#username");
-        usernameField.setText("Halvar");
+        usernameField.setText("Halva");
         TextField passwordField = (TextField) stage.getScene().lookup("#password");
         passwordField.setText("Trætteberg");
         clickOn("#mainPageButton");
