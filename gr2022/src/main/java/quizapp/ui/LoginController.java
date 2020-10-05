@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import quizapp.core.UsernameCheck;
+import quizapp.json.UsernameHandler;
 public class LoginController implements Initializable{
 	
 	@FXML
@@ -22,6 +23,8 @@ public class LoginController implements Initializable{
     Label errorMessage;
 
     @FXML Button mainPageButton;
+
+    private UsernameHandler usernameHandler = new UsernameHandler("src/main/resources/quizapp/json/activeUser.json");
    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -39,6 +42,7 @@ public class LoginController implements Initializable{
 			return;
         }
         
+        usernameHandler.saveActiveUser(username.getText(), "src/main/resources/quizapp/json/JSONHandler.json");
         //Gets the stage information and sets the scene
 		Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 		Scene tableViewScene = new Scene(tableViewParent);
