@@ -20,7 +20,7 @@ public class UsernameHandlerTest{
         //Creates a user
         User user = new User();
         user.setUsername("gr2022");
-        new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json").writeToFile(Arrays.asList(user));   
+        new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json").writeToFile(Arrays.asList(user));   
     }
 
     @Test

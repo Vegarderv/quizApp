@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import org.testfx.framework.junit5.ApplicationTest;
 
 import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,17 +19,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quizapp.core.User;
 import quizapp.core.UsernameCheck;
-import quizapp.json.JSONHandler;
+import quizapp.json.JsonHandler;
 
 public class SignupControllerTests extends ApplicationTest {
 
-    private static JSONHandler handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
+    private static JsonHandler handler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
     private static List<User> users = handler.loadFromFile();
     private Stage stage;
 
     private void setUp() throws Exception {
         //sets up the class such that you can check if the saved data corrensponds with the code
-        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
+        handler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
         User user = new User();
         user.setUsername("Gløs");
         user.setPassword("T-town");
@@ -92,6 +92,7 @@ public class SignupControllerTests extends ApplicationTest {
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
         Label error = (Label) stage.getScene().lookup("#errorMessage");
+        try{ Thread.sleep(100); }catch(InterruptedException e){}
         assertEquals("Username and password must at least contain 1 sign", error.getText());
     }
 
@@ -99,11 +100,11 @@ public class SignupControllerTests extends ApplicationTest {
     public void checkValidFields() throws IOException {
 
         //deletes user from previous testrun
-        JSONHandler jsonHandler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
+        JsonHandler jsonHandler = new JsonHandler("src/main/resources/quizapp/json/JSONHandler.json");
         List<User> users = jsonHandler.loadFromFile();
         users.remove(users.stream()
         .filter(user -> user.getUsername().equals("Dragvoll"))
-        .findAny().get());
+        .findAny().orElse(null));
         jsonHandler.writeToFile(users);
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));

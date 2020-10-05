@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import quizapp.json.JSONHandler;
+import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
 
@@ -19,7 +19,7 @@ public class ScoreTest {
     private String jsonPath = "src/main/resources/quizapp/json/JSONHandlerTest.json";
     private UsernameHandler userHandler = new UsernameHandler(usernamePath);
     private User user = new User();
-    private JSONHandler jsonHandler = new JSONHandler(jsonPath);
+    private JsonHandler jsonHandler = new JsonHandler(jsonPath);
     private Score score = new Score(jsonPath, usernamePath);
     private List<User> users = Arrays.asList(user);
 

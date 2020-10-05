@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 public class JSONHandlerTest {
 	
-	static JSONHandler handler;
+	static JsonHandler handler;
 	static List<User> usernames = new ArrayList<>();
 	List<User> loadedUsernames;
     
@@ -22,7 +22,7 @@ public class JSONHandlerTest {
     //Sets up usernames, Users and quizzes
 	@BeforeAll
 	public static void setUp(){
-        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
+        handler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
         User user1 = new User();
         User user2 = new User();
         user1.setUsername("Hallvard");

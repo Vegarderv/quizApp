@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import quizapp.json.JSONHandler;
+import quizapp.json.JsonHandler;
 
 
 public class UsernameCheckTest {
     
     //Declaring variables
-	static JSONHandler handler;
+	static JsonHandler handler;
 	static List<User> usernames = new ArrayList<>();
     List<User> loadedUsernames;
     static UsernameCheck nameCheck;
@@ -24,7 +24,7 @@ public class UsernameCheckTest {
     //Setting up the tests
 	@BeforeAll
 	public static void setUp(){
-        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
+        handler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
         User user1 = new User();
         user1.setPassword("gitlab");
         user1.setUsername("gr2022");

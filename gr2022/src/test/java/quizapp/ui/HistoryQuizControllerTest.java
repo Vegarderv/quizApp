@@ -16,7 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import quizapp.core.User;
-import quizapp.json.JSONHandler;
+import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
 import java.awt.AWTException;
@@ -36,7 +36,7 @@ public class HistoryQuizControllerTest extends ApplicationTest {
         user.setPassword("Trætteberg");
         List<User> userList = new ArrayList<>();
         userList.add(user);
-        new JSONHandler(jsonPath).writeToFile(userList);
+        new JsonHandler(jsonPath).writeToFile(userList);
         new UsernameHandler(usernamePath).saveActiveUser(user.getUsername(), jsonPath);
         // Sets Up Stage
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("HistoryQuiz.fxml"));
