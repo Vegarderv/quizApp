@@ -51,13 +51,16 @@ public class SignupControllerTests extends ApplicationTest {
     public void checkUsernameAlreadyTaken() {
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
+        //assigns the textfields example values to test the logic
         TextField usernameField = (TextField) stage.getScene().lookup("#username");
         usernameField.setText("Gløs");
         TextField passwordField = (TextField) stage.getScene().lookup("#password");
         passwordField.setText("Heisann");
         clickOn("#signupButton");
+        //expects the scene to stay at sign in page
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
+        //fetches the string of the label and checks if this is the same as the expected string
         Label error = (Label) stage.getScene().lookup("#errorMessage");
         assertEquals("Username already taken", error.getText());
     }
@@ -101,8 +104,10 @@ public class SignupControllerTests extends ApplicationTest {
         TextField passwordField = (TextField) stage.getScene().lookup("#password");
         passwordField.setText("Hadebra");
         clickOn("#signupButton");
+        //uses username check to see if the new user is saved for later log ins
         final UsernameCheck chk = new UsernameCheck();
         assertTrue(chk.checkUsername("Dragvoll", "Hadebra"));
+        //expects now the scene to change to main page
         assertNull(stage.getScene().lookup("#signupButton"));
         assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     }
