@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -23,13 +22,13 @@ import quizapp.json.JSONHandler;
 
 public class SignupControllerTests extends ApplicationTest {
 
-    private static JSONHandler handler;
-    private static List<User> users = new ArrayList<>();
+    private static JSONHandler handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
+    private static List<User> users = handler.loadFromFile();
     private Stage stage;
 
     private void setUp() throws Exception {
         //sets up the class such that you can check if the saved data corrensponds with the code
-        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
+        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
         User user = new User();
         user.setUsername("Gløs");
         user.setPassword("T-town");
@@ -97,6 +96,14 @@ public class SignupControllerTests extends ApplicationTest {
 
     @Test
     public void checkValidFields() throws IOException {
+
+        //deletes user from previous testrun
+        JSONHandler jsonHandler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
+        List<User> users = jsonHandler.loadFromFile();
+        users.remove(users.stream()
+        .filter(user -> user.getUsername().equals("Dragvoll"))
+        .findAny().get());
+        jsonHandler.writeToFile(users);
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
         TextField usernameField = (TextField) stage.getScene().lookup("#username");
