@@ -1,5 +1,6 @@
 package quizapp.ui;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -13,20 +14,21 @@ import org.junit.jupiter.api.Test;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quizapp.core.User;
+import quizapp.core.UsernameCheck;
 import quizapp.json.JSONHandler;
 
 public class SignupControllerTests extends ApplicationTest {
 
-    private static SignupController signup;
     private static JSONHandler handler;
     private static List<User> users = new ArrayList<>();
     private Stage stage;
-    private List<User> loadedUsers;
 
     private void setUp() throws Exception {
-        signup = new SignupController();
+        //sets up the class such that you can check if the saved data corrensponds with the code
         handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
         User user = new User();
         user.setUsername("Gløs");
@@ -49,51 +51,58 @@ public class SignupControllerTests extends ApplicationTest {
     public void checkUsernameAlreadyTaken() {
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
-        this.loadedUsers = handler.loadFromFile();
-        signup.username.setText("Gløs");
-        signup.password.setText("Heisann");
+        TextField usernameField = (TextField) stage.getScene().lookup("#username");
+        usernameField.setText("Gløs");
+        TextField passwordField = (TextField) stage.getScene().lookup("#password");
+        passwordField.setText("Heisann");
         clickOn("#signupButton");
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
-        assertTrue(signup.errorMessage.getText().equals("Username already taken"));
+        Label error = (Label) stage.getScene().lookup("#errorMessage");
+        assertEquals("Username already taken", error.getText());
     }
 
     @Test
     public void checkEmptyUsername() {
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
-        signup.username.setText("");
-        signup.password.setText("Heisann");
+        TextField usernameField = (TextField) stage.getScene().lookup("#username");
+        usernameField.setText("");
+        TextField passwordField = (TextField) stage.getScene().lookup("#password");
+        passwordField.setText("Heisann");
         clickOn("#signupButton");
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
-        assertTrue(signup.errorMessage.getText().equals("Username and password must at least contain 1 sign"));
+        Label error = (Label) stage.getScene().lookup("#errorMessage");
+        assertEquals("Username and password must at least contain 1 sign", error.getText());
     }
 
     @Test
     public void checkEmptyPassword() {
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
-        signup.username.setText("Heisann");
-        signup.password.setText("");
+        TextField usernameField = (TextField) stage.getScene().lookup("#username");
+        usernameField.setText("Heisann");
+        TextField passwordField = (TextField) stage.getScene().lookup("#password");
+        passwordField.setText("");
         clickOn("#signupButton");
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
-        assertTrue(signup.errorMessage.getText().equals("Username and password must at least contain 1 sign"));
+        Label error = (Label) stage.getScene().lookup("#errorMessage");
+        assertEquals("Username and password must at least contain 1 sign", error.getText());
     }
 
     @Test
     public void checkValidFields() throws IOException {
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
-        signup.username.setText("Dragvoll");
-        signup.password.setText("Hadebra");
+        TextField usernameField = (TextField) stage.getScene().lookup("#username");
+        usernameField.setText("Dragvoll");
+        TextField passwordField = (TextField) stage.getScene().lookup("#password");
+        passwordField.setText("Hadebra");
         clickOn("#signupButton");
-        final User newUser = new User();
-        newUser.setUsername("Dragvoll");
-        newUser.setPassword("Hadebra");
-        this.loadedUsers = handler.loadFromFile();
-        assertTrue(loadedUsers.contains(newUser));
+        final UsernameCheck chk = new UsernameCheck();
+        assertTrue(chk.checkUsername("Dragvoll", "Hadebra"));
         assertNull(stage.getScene().lookup("#signupButton"));
         assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     }
