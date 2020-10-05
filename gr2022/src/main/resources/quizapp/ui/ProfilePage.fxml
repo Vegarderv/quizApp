@@ -15,11 +15,11 @@
         <MenuBar fx:id="menuBar" layoutX="140.0" layoutY="14.0" maxHeight="30.0" prefHeight="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <MenuButton maxHeight="25.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Profile" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
-                <MenuItem fx:id="MainPageID" mnemonicParsing="false" onAction="#goToMainMenu" text="Main page" />
-                <MenuItem fx:id="LogOutID" mnemonicParsing="false" onAction="#goLogOut" text="Log out" />
+                <MenuItem fx:id="MainPageId" mnemonicParsing="false" onAction="#goToMainMenu" text="Main page" />
+                <MenuItem fx:id="LogOutId" mnemonicParsing="false" onAction="#goLogOut" text="Log out" />
             </items>
         </MenuButton>
-        <Label fx:id="nameID" alignment="CENTER" contentDisplay="RIGHT" layoutX="14.0" layoutY="38.0" maxHeight="58.0" maxWidth="240.0" prefHeight="58.0" prefWidth="193.0" text="Ola Nordmann" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="393.0">
+        <Label fx:id="nameId" alignment="CENTER" contentDisplay="RIGHT" layoutX="14.0" layoutY="38.0" maxHeight="58.0" maxWidth="240.0" prefHeight="58.0" prefWidth="193.0" text="Ola Nordmann" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="393.0">
             <font>
                 <Font size="24.0" />
             </font>
@@ -38,7 +38,7 @@
                 </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Label fx:id="scoreID" text="Label">
+                        <Label fx:id="scoreId" text="Label">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>

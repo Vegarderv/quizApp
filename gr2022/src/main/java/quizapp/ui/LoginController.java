@@ -37,9 +37,9 @@ public class LoginController implements Initializable {
   }
 
   /**
-  * Checks if username and password is valid. Error message will occur if not. 
-  If valid the user will be redirected to another fxml file.
-  */
+   * Checks if username and password is valid. Error message will occur if not. If
+   * valid the user will be redirected to another fxml file.
+   */
   @FXML
   public void toMainMenu(ActionEvent event) throws Exception {
     UsernameCheck chk = new UsernameCheck();
@@ -50,23 +50,22 @@ public class LoginController implements Initializable {
       return;
     }
 
-    usernameHandler.saveActiveUser(username.getText(),
-        "src/main/resources/quizapp/json/JSONHandler.json");
-    //Gets the stage information and sets the scene
+    usernameHandler.saveActiveUser(
+        username.getText(), "src/main/resources/quizapp/json/JSONHandler.json");
+    // Gets the stage information and sets the scene
     Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
     Scene tableViewScene = new Scene(tableViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(tableViewScene);
     window.show();
   }
-  
 
   /**
-  * Goes from Login to SignUp.
-  */
+   * Goes from Login to SignUp.
+   */
   @FXML
   public void toSignup(ActionEvent event) throws Exception {
-    //Gets the stage information and sets the scene
+    // Gets the stage information and sets the scene
     Parent tableViewParent = FXMLLoader.load(getClass().getResource("Signup.fxml"));
     Scene tableViewScene = new Scene(tableViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

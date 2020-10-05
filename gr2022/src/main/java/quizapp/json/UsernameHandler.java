@@ -24,9 +24,9 @@ public class UsernameHandler {
   }
 
   /**
-  * Method for saving active user to file.
-    Use an empty string for reseting the user
-  */
+   * Method for saving active user to file. Use an empty string for reseting the
+   * user
+   */
   public void saveActiveUser(String username, String databasePath) throws IllegalArgumentException {
     JsonHandler jsonHandler = new JsonHandler(databasePath);
     List<User> users = jsonHandler.loadFromFile();
@@ -40,7 +40,6 @@ public class UsernameHandler {
       FileOutputStream fileStream = new FileOutputStream(path);
       file = new OutputStreamWriter(fileStream, "UTF-8");
       file.write(javaObjectString);
-
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -57,8 +56,8 @@ public class UsernameHandler {
   }
 
   /**
-  * Loads active user as String.
-  */
+   * Loads active user as String.
+   */
   public String loadActiveUser() {
     try {
       InputStream inputStream = new FileInputStream(path);
@@ -72,4 +71,5 @@ public class UsernameHandler {
       return null;
     }
   }
+
 }
