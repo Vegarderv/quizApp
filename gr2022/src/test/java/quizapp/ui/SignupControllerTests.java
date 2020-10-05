@@ -105,6 +105,7 @@ public class SignupControllerTests extends ApplicationTest {
         users.remove(users.stream()
         .filter(user -> user.getUsername().equals("Dragvoll"))
         .findAny().orElse(null));
+
         jsonHandler.writeToFile(users);
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
