@@ -10,5 +10,20 @@
     "quizzesTaken": {
       "HistoryQuiz": 1.0
     }
+  },
+  {
+    "username": "George",
+    "password": "Stoica",
+    "quizzesTaken": {}
+  },
+  {
+    "username": "Gløs",
+    "password": "T-town",
+    "quizzesTaken": {}
+  },
+  {
+    "username": "Dragvoll",
+    "password": "Hadebra",
+    "quizzesTaken": {}
   }
 ]
