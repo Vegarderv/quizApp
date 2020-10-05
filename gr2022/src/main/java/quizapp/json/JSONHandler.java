@@ -1,20 +1,26 @@
 package quizapp.json;
 
-
 import quizapp.core.User;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.List;
 
 public class JSONHandler {
-	private static FileWriter file;
-	private String path;
+    private String path;
+    Writer file;
 	
 	
 	public JSONHandler(String path) {
@@ -27,7 +33,8 @@ public class JSONHandler {
         String javaObjectString = gson.toJson(users); // converts to json
 		try {
 
-			file = new FileWriter(path);
+			FileOutputStream fileStream = new FileOutputStream(path);
+            file = new OutputStreamWriter(fileStream, "UTF-8");
 			file.write(javaObjectString);
 
 			
@@ -48,8 +55,9 @@ public class JSONHandler {
     //Function reads a JSON file and returns a list of users
 	public List<User> loadFromFile(){
 		try {
-            FileReader reader = new FileReader(path);
-			List<User> user = new Gson().fromJson(reader, new TypeToken<List<User>>(){}.getType());
+            InputStream inputStream = new FileInputStream(path);
+            Reader fileReader = new InputStreamReader(inputStream, "UTF-8");
+			List<User> user = new Gson().fromJson(fileReader, new TypeToken<List<User>>(){}.getType());
 			return user;
 
 		} catch (Exception e) {
