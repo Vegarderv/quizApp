@@ -6,14 +6,20 @@ import com.google.gson.reflect.TypeToken;
 
 import quizapp.core.User;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UsernameHandler{
-    private static FileWriter file;
+    private static Writer file;
     private String path;
 
     public UsernameHandler(String path){
@@ -33,7 +39,8 @@ public class UsernameHandler{
         String javaObjectString = gson.toJson(username); // converts to json
 		try {
 
-			file = new FileWriter(path);
+			FileOutputStream fileStream = new FileOutputStream(path);
+            file = new OutputStreamWriter(fileStream, "UTF-8");
 			file.write(javaObjectString);
 
 			
@@ -53,7 +60,8 @@ public class UsernameHandler{
     
     public String loadActiveUser(){
         try {
-			FileReader reader = new FileReader(path);
+			InputStream inputStream = new FileInputStream(path);
+            Reader reader = new InputStreamReader(inputStream, "UTF-8");
 			String user = new Gson().fromJson(reader, new TypeToken<String>(){}.getType());
 			return user;
 
