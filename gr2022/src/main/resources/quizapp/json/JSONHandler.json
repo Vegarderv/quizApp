@@ -1,14 +1,14 @@
 [
   {
+    "username": "gr2022",
+    "password": "gitlab",
+    "quizzesTaken": {}
+  },
+  {
     "username": "Hallvard",
     "password": "Trætteberg",
     "quizzesTaken": {
       "HistoryQuiz": 1.0
     }
-  },
-  {
-    "username": "George",
-    "password": "Stoica",
-    "quizzesTaken": {}
   }
 ]

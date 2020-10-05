@@ -24,7 +24,7 @@ public class UsernameCheckTest {
     //Setting up the tests
 	@BeforeAll
 	public static void setUp(){
-        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
+        handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
         User user1 = new User();
         user1.setPassword("gitlab");
         user1.setUsername("gr2022");
