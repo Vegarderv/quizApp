@@ -87,6 +87,7 @@ public class HistoryQuizControllerTest extends ApplicationTest {
 
     @Test
     public void runQuizwithEverythingCorrect() throws AWTException {
+        //Runs through the quiz
         Robot r = new Robot();
         clickOn("#q1a3");
         clickOn("#q2a4");
@@ -97,10 +98,11 @@ public class HistoryQuizControllerTest extends ApplicationTest {
         clickOn("#q3a3");
         clickOn("#submit");
         //Slows down to give time to submit
-        r.mouseWheel(15);
-        //Slows down the code to give the robot time to scroll
-        try{ Thread.sleep(100); }catch(InterruptedException e){}
-        assertTrue(stage.getScene().lookup("#score").isDisabled());
+        try{ Thread.sleep(1000); }catch(InterruptedException e){}
+        FxAssert.verifyThat("#score",
+                org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 100%"));
+
+        
     }
 
         

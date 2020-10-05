@@ -5,8 +5,10 @@
     "quizzesTaken": {}
   },
   {
-    "username": "ja",
-    "password": "ja",
-    "quizzesTaken": {}
+    "username": "Hallvard",
+    "password": "Trætteberg",
+    "quizzesTaken": {
+      "HistoryQuiz": 1.0
+    }
   }
 ]
