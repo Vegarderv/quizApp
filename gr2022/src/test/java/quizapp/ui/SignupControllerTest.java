@@ -27,7 +27,7 @@ public class SignupControllerTest extends ApplicationTest {
     private List<User> loadedUsers;
 
     @BeforeAll
-    public static void setUp(final Stage stage) throws Exception {
+    public void setUp(final Stage stage) throws Exception {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("Signup.fxml"));
         final Parent root = loader.load();
         stage.setScene(new Scene(root));
@@ -49,7 +49,7 @@ public class SignupControllerTest extends ApplicationTest {
         this.loadedUsers = handler.loadFromFile();
         signup.username.setText("Gløs");
         signup.password.setText("Heisann");
-        clickOn("#toMainMenu");
+        clickOn("#signupButton");
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
         assertTrue(signup.errorMessage.getText().equals("Username already taken"));
@@ -61,7 +61,7 @@ public class SignupControllerTest extends ApplicationTest {
         assertNotNull(stage.getScene().lookup("#signupButton"));
         signup.username.setText("");
         signup.password.setText("Heisann");
-        clickOn("#toMainMenu");
+        clickOn("#signupButton");
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
         assertTrue(signup.errorMessage.getText().equals("Username and password must at least contain 1 sign"));
@@ -73,7 +73,7 @@ public class SignupControllerTest extends ApplicationTest {
         assertNotNull(stage.getScene().lookup("#signupButton"));
         signup.username.setText("Heisann");
         signup.password.setText("");
-        clickOn("#toMainMenu");
+        clickOn("#signupButton");
         assertNull(stage.getScene().lookup("#historyQuizButton"));
         assertNotNull(stage.getScene().lookup("#signupButton"));
         assertTrue(signup.errorMessage.getText().equals("Username and password must at least contain 1 sign"));
@@ -85,7 +85,7 @@ public class SignupControllerTest extends ApplicationTest {
         assertNotNull(stage.getScene().lookup("#signupButton"));
         signup.username.setText("Dragvoll");
         signup.password.setText("Hadebra");
-        clickOn("#toMainMenu");
+        clickOn("#signupButton");
         final User newUser = new User();
         newUser.setUsername("Dragvoll");
         newUser.setPassword("Hadebra");
