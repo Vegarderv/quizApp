@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +17,7 @@ import javafx.stage.Stage;
 import quizapp.core.User;
 import quizapp.json.JSONHandler;
 
-public class SignupControllerTest extends ApplicationTest {
+public class SignupControllerTests extends ApplicationTest {
 
     private static SignupController signup;
     private static JSONHandler handler;
@@ -26,13 +25,7 @@ public class SignupControllerTest extends ApplicationTest {
     private Stage stage;
     private List<User> loadedUsers;
 
-    @BeforeAll
-    public void setUp(final Stage stage) throws Exception {
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("Signup.fxml"));
-        final Parent root = loader.load();
-        stage.setScene(new Scene(root));
-        stage.show();
-        this.stage = stage;
+    private void setUp() throws Exception {
         signup = new SignupController();
         handler = new JSONHandler("src/main/resources/quizapp/json/JSONHandler.json");
         User user = new User();
@@ -40,6 +33,16 @@ public class SignupControllerTest extends ApplicationTest {
         user.setPassword("T-town");
         users.add(user);
         handler.writeToFile(users);
+    }
+
+    @Override
+    public void start(final Stage stage) throws Exception {
+        setUp();
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("Signup.fxml"));
+        final Parent root = loader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
+        this.stage = stage;
     }
 
     @Test
