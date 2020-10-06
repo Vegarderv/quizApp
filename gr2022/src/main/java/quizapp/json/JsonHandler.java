@@ -12,34 +12,29 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.List;
-import java.util.stream.Collectors;
 import quizapp.core.User;
 
-public class UsernameHandler {
-  private Writer file;
+public class JsonHandler {
   private String path;
+  private Writer file;
 
-  public UsernameHandler(String path) {
+
+  public JsonHandler(String path) {
     this.path = path;
   }
 
   /**
-   * Method for saving active user to file. Use an empty string for reseting the
-   * user
-   */
-  public void saveActiveUser(String username, String databasePath) throws IllegalArgumentException {
-    JsonHandler jsonHandler = new JsonHandler(databasePath);
-    List<User> users = jsonHandler.loadFromFile();
-    if (!users.stream().map(User::getUsername).collect(Collectors.toList()).contains(username)) {
-      throw new IllegalArgumentException("username not in database");
-    }
+  * Function writes a hashmap as a JSON object to a JSON file.
+  */
+  public void writeToFile(List<User> users) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    String javaObjectString = gson.toJson(username); // converts to json
+    String javaObjectString = gson.toJson(users); // converts to json
     try {
 
       FileOutputStream fileStream = new FileOutputStream(path);
       file = new OutputStreamWriter(fileStream, "UTF-8");
       file.write(javaObjectString);
+
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -56,13 +51,13 @@ public class UsernameHandler {
   }
 
   /**
-   * Loads active user as String.
-   */
-  public String loadActiveUser() {
+  * Function reads a JSON file and returns a list of users.
+  */
+  public List<User> loadFromFile() {
     try {
       InputStream inputStream = new FileInputStream(path);
-      Reader reader = new InputStreamReader(inputStream, "UTF-8");
-      String user = new Gson().fromJson(reader, new TypeToken<String>() {
+      Reader fileReader = new InputStreamReader(inputStream, "UTF-8");
+      List<User> user = new Gson().fromJson(fileReader, new TypeToken<List<User>>() {
       }.getType());
       return user;
 
@@ -70,6 +65,8 @@ public class UsernameHandler {
       e.printStackTrace();
       return null;
     }
+
   }
+
 
 }

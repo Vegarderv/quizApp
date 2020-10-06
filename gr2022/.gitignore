@@ -1,2 +1,5 @@
 # ignore maven build folder
 target/
+gr2022/.settings
+gr2022/.classpath
+gr2022/.project
