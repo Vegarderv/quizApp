@@ -120,6 +120,10 @@ public class SignupControllerTests extends ApplicationTest {
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Hadebra");
     clickOn("#signupButton");
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+    }
     // uses username check to see if the new user is saved for later log ins
     final UsernameCheck chk = new UsernameCheck();
     assertTrue(chk.checkUsername("Dragvoll", "Hadebra"));
