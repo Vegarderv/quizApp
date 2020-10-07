@@ -23,8 +23,8 @@ import java.awt.Robot;
 public class HistoryQuizControllerTest extends ApplicationTest {
 
   private Stage stage;
-  private String usernamePath = "src/main/resources/quizapp/json/activeUserTest.json";
-  private String jsonPath = "src/main/resources/quizapp/json/JSONHandlerTest.json";
+  private String usernamePath = "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUserTest.json";
+  private String jsonPath = "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandlerTest.json";
 
   @Override
   public void start(final Stage stage) throws Exception {

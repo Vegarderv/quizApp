@@ -24,14 +24,14 @@ import quizapp.json.JsonHandler;
 
 public class SignupControllerTests extends ApplicationTest {
 
-  private static JsonHandler handler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
+  private static JsonHandler handler = new JsonHandler("/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
   private static List<User> users = handler.loadFromFile();
   private Stage stage;
 
   private void setUp() throws Exception {
     // sets up the class such that you can check if the saved data corrensponds with
     // the code
-    handler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
+    handler = new JsonHandler("/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
     User user = new User();
     user.setUsername("Gløs");
     user.setPassword("T-town");
@@ -106,7 +106,7 @@ public class SignupControllerTests extends ApplicationTest {
   public void checkValidFields() throws IOException {
 
     
-    JsonHandler jsonHandler = new JsonHandler("src/main/resources/quizapp/json/JSONHandler.json");
+    JsonHandler jsonHandler = new JsonHandler("/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
     List<User> users = jsonHandler.loadFromFile();
     // deletes user from previous testrun if it exists
     if (users.stream().map(user -> user.getUsername()).collect(Collectors.toList()).contains("Dragvoll")) {

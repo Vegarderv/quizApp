@@ -9,7 +9,7 @@ public class UsernameCheck {
   * Function checks if username and password is valid.
   */
   public boolean checkUsername(String username, String password) {
-    JsonHandler handler = new JsonHandler("src/main/resources/quizapp/json/JSONHandler.json");
+    JsonHandler handler = new JsonHandler("/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
     List<User> userPasswords = handler.loadFromFile();
     if (!userPasswords.stream().anyMatch(a -> a.getUsername().equals(username))) {
       return false;

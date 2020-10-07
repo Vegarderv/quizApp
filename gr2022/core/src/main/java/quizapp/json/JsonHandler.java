@@ -38,6 +38,7 @@ public class JsonHandler {
 
     } catch (IOException e) {
       e.printStackTrace();
+      System.out.println("Why??!?");
 
     } finally {
 
@@ -46,6 +47,7 @@ public class JsonHandler {
         file.close();
       } catch (IOException e) {
         e.printStackTrace();
+        System.out.println(e);
       }
     }
   }
