@@ -28,9 +28,14 @@ public class MainPageControllerTest extends ApplicationTest {
   public void logOutTest() {
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
-    clickOn("#menuButton").clickOn("#logOutButton");
+    clickOn("#menuButton");
     try {
-      Thread.sleep(100);
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+    }
+    clickOn("#logOutButton");
+    try {
+      Thread.sleep(1000);
     } catch (InterruptedException e) {
     }
     assertNull(stage.getScene().lookup("#historyQuizButton"));
@@ -49,7 +54,7 @@ public class MainPageControllerTest extends ApplicationTest {
     assertNull(stage.getScene().lookup("#scroll"));
     clickOn("#historyQuizButton");
     try {
-      Thread.sleep(400);
+      Thread.sleep(1000);
     } catch (InterruptedException e) {
     }
     assertNotNull(stage.getScene().lookup("#scroll"));

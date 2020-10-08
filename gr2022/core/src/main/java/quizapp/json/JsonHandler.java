@@ -38,7 +38,6 @@ public class JsonHandler {
 
     } catch (IOException e) {
       e.printStackTrace();
-
     } finally {
 
       try {
@@ -46,6 +45,7 @@ public class JsonHandler {
         file.close();
       } catch (IOException e) {
         e.printStackTrace();
+        System.out.println(e);
       }
     }
   }

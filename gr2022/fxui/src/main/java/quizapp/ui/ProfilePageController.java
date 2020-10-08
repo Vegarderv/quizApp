@@ -46,9 +46,9 @@ public class ProfilePageController implements Initializable {
 
   private User getActiveUser() {
     JsonHandler jsonHandler = new JsonHandler(
-        "src/main/resources/quizapp/json/JSONHandler.json");
+        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
     UsernameHandler usernameHandler = new UsernameHandler(
-        "src/main/resources/quizapp/json/activeUser.json");
+        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
     return jsonHandler.loadFromFile().stream()
         .filter(user -> user.getUsername()
         .equals(usernameHandler.loadActiveUser()))
@@ -74,7 +74,7 @@ public class ProfilePageController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     UsernameHandler userHandler = new UsernameHandler(
-        "src/main/resources/quizapp/json/activeUser.json");
+        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
 
     String userName = userHandler.loadActiveUser();
     String score = getActiveUser().meanScore().toString();

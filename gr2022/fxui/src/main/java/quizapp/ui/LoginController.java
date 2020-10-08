@@ -29,7 +29,7 @@ public class LoginController implements Initializable {
   Button mainPageButton;
 
   private UsernameHandler usernameHandler = new UsernameHandler(
-      "src/main/resources/quizapp/json/activeUser.json");
+      "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -51,7 +51,7 @@ public class LoginController implements Initializable {
     }
 
     usernameHandler.saveActiveUser(
-        username.getText(), "src/main/resources/quizapp/json/JSONHandler.json");
+        username.getText(), "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
     // Gets the stage information and sets the scene
     Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
     Scene tableViewScene = new Scene(tableViewParent);

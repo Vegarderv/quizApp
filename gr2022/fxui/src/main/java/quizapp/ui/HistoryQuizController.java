@@ -61,8 +61,8 @@ public class HistoryQuizController implements Initializable {
   MenuItem menuSignOut;
   private List<RadioButton> buttons = new ArrayList<>();
   private String userName;
-  private String usernamePath = "src/main/resources/quizapp/json/activeUser.json";
-  private String jsonPath = "src/main/resources/quizapp/json/JSONHandler.json";
+  private String usernamePath = "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json";
+  private String jsonPath = "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json";
   Score scoreCard = new Score(jsonPath, usernamePath);
   UsernameHandler userHandler = new UsernameHandler(usernamePath);
 
