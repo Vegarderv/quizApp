@@ -1,90 +1,75 @@
 package quizapp.ui;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import org.testfx.api.FxAssert;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import javafx.scene.control.MenuButton;
-import quizapp.core.User;
+import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
+import quizapp.core.User;
 
-public class ProfilePageController implements Initializable {
+public class ProfilePageControllerTest extends ApplicationTest {
+    private Stage stage;
+  
 
-  @FXML
-  MenuBar menuBar;
+    @Override
+    public void start(final Stage stage) throws Exception {
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfilePage.fxml"));
+        final Parent root = loader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
+        this.stage = stage;
+    }
 
-  @FXML
-  MenuButton menubutton;
+    @Test
+    public void goToMainPageTest() {
+        assertNotNull(stage.getScene().lookup("#mainPageId")); 
+        assertNull(stage.getScene().lookup("#historyQuizButton"));
+         clickOn("#menubutton").clickOn("#mainPageId");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+        }
+        assertNotNull(stage.getScene().lookup("#historyQuizButton"));
+        assertNull(stage.getScene().lookup("#mainPageId"));
 
-  @FXML
-  MenuItem mainPageId;
+    }
+    @Test
+    public void goToLogOut() {
+        assertNotNull(stage.getScene().lookup("#loginId")); 
+        assertNull(stage.getScene().lookup("#mainPageButton"));
+        clickOn("#menubutton").clickOn("#loginId");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+        }
+        assertNotNull(stage.getScene().lookup("#mainPageButton"));
+        assertNull(stage.getScene().lookup("#loginId"));
 
-  @FXML
-  MenuItem loginId;
-
-  @FXML
-  Label nameId;
-
-  @FXML
-  Label scoreId;
-
-  @FXML
-  public void goToMainMenu(ActionEvent event) {
-    this.switchScene("MainPage.fxml");
-  }
-
-  @FXML
-  public void goLogOut(ActionEvent event) {
-    this.switchScene("Login.fxml");
-  }
-
-  private User getActiveUser() {
-    JsonHandler jsonHandler = new JsonHandler(
+    }
+    @Test
+public void correctUserNameTest(){
+        UsernameHandler userHandler = new UsernameHandler("src/main/resources/quizapp/json/activeUserTest.json");
+        FxAssert.verifyThat("#nameId", org.testfx.matcher.control.LabeledMatchers.hasText(userHandler.loadActiveUser()));
+        }
+        
+        @Test
+public void correctScoreTest(){
+  JsonHandler jsonHandler = new JsonHandler(
         "src/main/resources/quizapp/json/JSONHandler.json");
     UsernameHandler usernameHandler = new UsernameHandler(
         "src/main/resources/quizapp/json/activeUser.json");
-    return jsonHandler.loadFromFile().stream()
-        .filter(user -> user.getUsername()
+    User user=jsonHandler.loadFromFile().stream()
+        .filter(u-> u.getUsername()
         .equals(usernameHandler.loadActiveUser()))
         .findFirst().get();
-  }
 
-
-  /**
-   * method for switching scene.
-   */
-  public void switchScene(String fxmlFile) {
-    try {
-      Stage stage = (Stage) menuBar.getScene().getWindow();
-      Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
-      Scene scene = new Scene(parent);
-      stage.setScene(scene);
-      stage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-    UsernameHandler userHandler = new UsernameHandler(
-        "src/main/resources/quizapp/json/activeUser.json");
-
-    String userName = userHandler.loadActiveUser();
-    String score = getActiveUser().meanScore().toString();
-    nameId.setText(userName);
-    scoreId.setText(score);
-
-  }
+  FxAssert.verifyThat("#scoreId", org.testfx.matcher.control.LabeledMatchers.hasText(user.meanScore().toString()));
 
 }
+      }
