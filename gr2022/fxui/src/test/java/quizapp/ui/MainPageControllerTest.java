@@ -27,7 +27,7 @@ public class MainPageControllerTest extends FxuiTest {
   public void logOutTest() {
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
-    clickOnMenuItem("#menuButton", "#logOutButton");
+    clickOnMenuItem("#menuButton", "#menuSignOut");
     assertNull(stage.getScene().lookup("#historyQuizButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
   }
