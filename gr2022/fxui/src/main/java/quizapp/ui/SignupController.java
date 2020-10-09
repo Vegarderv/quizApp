@@ -38,7 +38,8 @@ public class SignupController implements Initializable {
   */
   @FXML
   public void toMainMenu(ActionEvent event) throws Exception {
-    final JsonHandler handler = new JsonHandler("/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
+    final JsonHandler handler = new JsonHandler(
+        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
     final List<User> user = handler.loadFromFile();
     if (user.stream().anyMatch(a -> a.getUsername().equals(username.getText()))) {
       username.clear();

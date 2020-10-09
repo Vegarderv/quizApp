@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginControllerTest extends ApplicationTest {
+public class LoginControllerTest extends FxuiTest {
 
   private Stage stage;
 
@@ -36,7 +34,7 @@ public class LoginControllerTest extends ApplicationTest {
     usernameField.setText("Hallvard");
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Tretteberg");
-    clickOn("#mainPageButton");
+    clickOnButton("#mainPageButton");
     // expects the scene to stay at sign in page
     assertNull(stage.getScene().lookup("#historyQuizButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
@@ -57,7 +55,7 @@ public class LoginControllerTest extends ApplicationTest {
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Trætteberg");
     // clicks on log in button
-    clickOn("#mainPageButton");
+    clickOnButton("#mainPageButton");
     // checks that im still at login page
     assertNull(stage.getScene().lookup("#historyQuizButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
@@ -75,7 +73,7 @@ public class LoginControllerTest extends ApplicationTest {
     usernameField.setText("Hallvard");
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Trætteberg");
-    clickOn("#mainPageButton");
+    clickOnButton("#mainPageButton");
     // checks that scene is changed to the page menu after login button is pressed
     assertNull(stage.getScene().lookup("#mainPageButton"));
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
@@ -86,7 +84,7 @@ public class LoginControllerTest extends ApplicationTest {
   public void signUpTest() {
     assertNotNull(stage.getScene().lookup("#signUpButtonLoginPage"));
     assertNull(stage.getScene().lookup("#signupButton"));
-    clickOn("#signUpButtonLoginPage");
+    clickOnButton("#signUpButtonLoginPage");
     assertNull(stage.getScene().lookup("#signUpButtonLoginPage"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
   }
