@@ -1,9 +1,13 @@
 package quizapp.ui;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,8 +16,9 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import quizapp.json.UsernameHandler;
 
-public class MainPageController {
+public class MainPageController implements Initializable {
 
   @FXML
   MenuBar menuBar;
@@ -28,12 +33,20 @@ public class MainPageController {
   @FXML
   Button historyQuizButton;
 
+  private String usernamePath = "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json";
+  private UsernameHandler userHandler = new UsernameHandler(usernamePath);
+  private String username;
+
+  @Override
+  public void initialize(URL arg0, ResourceBundle arg1) {
+    username = userHandler.loadActiveUser();
+    menuButton.setText(username);
+  }
 
   @FXML
   public void goToHistoryQuiz(ActionEvent event) {
     this.switchSceneWithButton(event, "HistoryQuiz.fxml");
   }
-
 
   @FXML
   public void goToProfile(ActionEvent event) {
@@ -46,8 +59,8 @@ public class MainPageController {
   }
 
   /**
-  * Method for changing scene with a button.
-  */
+   * Method for changing scene with a button.
+   */
   public void switchSceneWithButton(ActionEvent event, String fxmlFile) {
     try {
       Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
@@ -61,8 +74,8 @@ public class MainPageController {
   }
 
   /**
-  * Method for changing scene with a MenuItem.
-  */
+   * Method for changing scene with a MenuItem.
+   */
   public void switchSceneWithMenuItem(String fxmlFile) {
     try {
       Stage stage = (Stage) menuBar.getScene().getWindow();
@@ -74,6 +87,5 @@ public class MainPageController {
       e.printStackTrace();
     }
   }
-
 
 }

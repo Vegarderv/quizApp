@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import quizapp.core.User;
@@ -23,6 +24,9 @@ public class ProfilePageController implements Initializable {
   MenuBar menuBar;
 
   @FXML
+  MenuButton menu;
+
+  @FXML
   MenuItem mainPageId;
 
   @FXML
@@ -33,6 +37,18 @@ public class ProfilePageController implements Initializable {
 
   @FXML
   Label scoreId;
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    UsernameHandler userHandler = new UsernameHandler(
+        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
+    String userName = userHandler.loadActiveUser();
+    String score = getActiveUser().meanScore().toString();
+    nameId.setText(userName);
+    scoreId.setText(score);
+    menu.setText(userName);
+
+  }
 
   @FXML
   public void goToMainMenu(ActionEvent event) {
@@ -50,11 +66,8 @@ public class ProfilePageController implements Initializable {
     UsernameHandler usernameHandler = new UsernameHandler(
         "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
     return jsonHandler.loadFromFile().stream()
-        .filter(user -> user.getUsername()
-        .equals(usernameHandler.loadActiveUser()))
-        .findFirst().get();
+        .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser())).findFirst().get();
   }
-
 
   /**
    * method for switching scene.
@@ -69,18 +82,6 @@ public class ProfilePageController implements Initializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  }
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-    UsernameHandler userHandler = new UsernameHandler(
-        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
-
-    String userName = userHandler.loadActiveUser();
-    String score = getActiveUser().meanScore().toString();
-    nameId.setText(userName);
-    scoreId.setText(score);
-
   }
 
 }
