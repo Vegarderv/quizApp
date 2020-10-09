@@ -4,14 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainPageControllerTest extends ApplicationTest {
+public class MainPageControllerTest extends FxuiTest {
 
   private Stage stage;
 
@@ -28,16 +27,7 @@ public class MainPageControllerTest extends ApplicationTest {
   public void logOutTest() {
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
-    clickOn("#menuButton");
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
-    clickOn("#logOutButton");
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
+    clickOnMenuItem("#menuButton", "#logOutButton");
     assertNull(stage.getScene().lookup("#historyQuizButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
   }
@@ -52,11 +42,7 @@ public class MainPageControllerTest extends ApplicationTest {
   public void goToHistoryQuizTest() {
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     assertNull(stage.getScene().lookup("#scroll"));
-    clickOn("#historyQuizButton");
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
+    clickOnButton("#historyQuizButton");
     assertNotNull(stage.getScene().lookup("#scroll"));
     assertNull(stage.getScene().lookup("#historyQuizButton"));
 

@@ -22,7 +22,7 @@ import quizapp.core.User;
 import quizapp.core.UsernameCheck;
 import quizapp.json.JsonHandler;
 
-public class SignupControllerTests extends ApplicationTest {
+public class SignupControllerTests extends FxuiTest {
 
   private static JsonHandler handler = new JsonHandler("/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
   private static List<User> users = handler.loadFromFile();
@@ -58,7 +58,7 @@ public class SignupControllerTests extends ApplicationTest {
     usernameField.setText("Gløs");
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Heisann");
-    clickOn("#signupButton");
+    clickOnButton("#signupButton");
     // expects the scene to stay at sign in page
     assertNull(stage.getScene().lookup("#historyQuizButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
@@ -76,7 +76,7 @@ public class SignupControllerTests extends ApplicationTest {
     usernameField.setText("");
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Heisann");
-    clickOn("#signupButton");
+    clickOnButton("#signupButton");
     assertNull(stage.getScene().lookup("#historyQuizButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     Label error = (Label) stage.getScene().lookup("#errorMessage");
@@ -91,14 +91,10 @@ public class SignupControllerTests extends ApplicationTest {
     usernameField.setText("Heisann");
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("");
-    clickOn("#signupButton");
+    clickOnButton("#signupButton");
     assertNull(stage.getScene().lookup("#historyQuizButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     Label error = (Label) stage.getScene().lookup("#errorMessage");
-    try {
-      Thread.sleep(100);
-    } catch (InterruptedException e) {
-    }
     assertEquals("Username and password must at least contain 1 sign", error.getText());
   }
 
@@ -119,19 +115,11 @@ public class SignupControllerTests extends ApplicationTest {
     usernameField.setText("Dragvoll");
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Hadebra");
-    clickOn("#signupButton");
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
+    clickOnButton("#signupButton");
     // uses username check to see if the new user is saved for later log ins
     final UsernameCheck chk = new UsernameCheck();
     assertTrue(chk.checkUsername("Dragvoll", "Hadebra"));
     // expects now the scene to change to main page
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
     assertNull(stage.getScene().lookup("#signupButton"));
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
   }
