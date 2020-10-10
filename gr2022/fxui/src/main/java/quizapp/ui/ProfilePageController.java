@@ -43,7 +43,8 @@ public class ProfilePageController implements Initializable {
     UsernameHandler userHandler = new UsernameHandler(
         "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
     String userName = userHandler.loadActiveUser();
-    String score = getActiveUser().meanScore().toString();
+    double percentage=getActiveUser().meanScore()*100;
+    String score = String.valueOf(percentage);
     nameId.setText(userName);
     scoreId.setText(score);
     menu.setText(userName);
