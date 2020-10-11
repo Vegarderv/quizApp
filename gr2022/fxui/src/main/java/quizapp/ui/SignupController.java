@@ -33,18 +33,15 @@ public class SignupController implements Initializable {
   public void initialize(URL arg0, ResourceBundle arg1) {
     // TODO Auto-generated method stub
   }
-  
-   @FXML
+
+  @FXML
   public void toLogin(ActionEvent event) {
     this.switchSceneWithButton(event, "Login.fxml");
   }
 
-
-
-
   /**
-  * Saves user and goes to main menu.
-  */
+   * Saves user and goes to main menu.
+   */
   @FXML
   public void toMainMenu(ActionEvent event) throws Exception {
     final JsonHandler handler = new JsonHandler(
@@ -61,22 +58,21 @@ public class SignupController implements Initializable {
       errorMessage.setText("Username and password must at least contain 1 sign");
       return;
     }
-    //need method that saves the new username and password
+    // need method that saves the new username and password
     final User newUser = new User();
     newUser.setUsername(this.username.getText());
     newUser.setPassword(this.password.getText());
     user.add(newUser);
     handler.writeToFile(user);
 
-
-    //Gets the stage information and sets the scene
+    // Gets the stage information and sets the scene
     Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
     Scene tableViewScene = new Scene(tableViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(tableViewScene);
     window.show();
   }
-   
+
   public void switchSceneWithButton(ActionEvent event, String fxmlFile) {
     try {
       Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));

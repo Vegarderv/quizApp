@@ -29,12 +29,12 @@
                     </VBox.margin>
                 </Label>
                 <TextField fx:id="password" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                <Button mnemonicParsing="false" onAction="#toMainMenu" text="Sign up">
+                <Button fx:id="signupButton" mnemonicParsing="false" onAction="#toMainMenu" text="Sign up">
                     <VBox.margin>
                         <Insets top="40.0" />
                     </VBox.margin>
                 </Button>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#toLogin" prefHeight="27.0" prefWidth="59.0" text="log in" />
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#tologin" prefHeight="27.0" prefWidth="59.0" text="log in" />
                 <Label fx:id="errorMessage" />
             </children>
         </VBox>
