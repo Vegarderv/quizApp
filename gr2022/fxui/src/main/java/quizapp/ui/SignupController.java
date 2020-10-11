@@ -73,6 +73,9 @@ public class SignupController implements Initializable {
     window.show();
   }
 
+  /**
+   * Method for changing scene with a MenuItem.
+   */
   public void switchSceneWithButton(ActionEvent event, String fxmlFile) {
     try {
       Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
