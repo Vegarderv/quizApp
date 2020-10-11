@@ -3,12 +3,7 @@ package quizapp.ui;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import java.util.*;
-
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxAssert;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,14 +13,14 @@ import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 
 public class ProfilePageControllerTest extends FxuiTest {
 
   private Stage stage;
-  private String usernamePath = "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json";
-  private String jsonPath = "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json";
+  private String usernamePath = 
+      "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json";
+  private String jsonPath = 
+      "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json";
 
   @Override
   public void start(final Stage stage) throws Exception {
@@ -77,6 +72,6 @@ public class ProfilePageControllerTest extends FxuiTest {
     JsonHandler jsonHandler = new JsonHandler(jsonPath);
     User user = jsonHandler.loadFromFile().stream()
         .filter(u -> u.getUsername().equals(userHandler.loadActiveUser())).findFirst().get();
-    assertEquals(user.meanScore().toString(), label.getText());
+    assertEquals(String.valueOf(Math.round((user.meanScore()*100))) + "  %", label.getText());
   }
 }
