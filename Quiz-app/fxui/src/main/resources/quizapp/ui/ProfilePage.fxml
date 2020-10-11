@@ -13,7 +13,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.ProfilePageController">
     <children>
         <MenuBar fx:id="menuBar" layoutX="140.0" layoutY="14.0" maxHeight="30.0" prefHeight="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-        <MenuButton fx:id = "userMenu" maxHeight="25.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Profile" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <MenuButton fx:id = "userMenuProfilePage" maxHeight="25.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Profile" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <MenuItem fx:id="menuMainMenu" mnemonicParsing="false" onAction="#goToMainMenu" text="Main page" />
                 <MenuItem fx:id="menuSignOut" mnemonicParsing="false" onAction="#goLogOut" text="Log out" />

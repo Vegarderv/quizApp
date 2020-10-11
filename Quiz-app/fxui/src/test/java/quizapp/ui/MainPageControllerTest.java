@@ -36,7 +36,11 @@ public class MainPageControllerTest extends FxuiTest {
   // Will be implemented when profile page is finished
   @Test
   public void goToProfileTest() {
-
+    assertNotNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#userMenuProfilePage"));
+    clickOnMenuItem("#menuButton", "#profileButton");
+    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNotNull(stage.getScene().lookup("#userMenuProfilePage"));
   }
 
   @Test

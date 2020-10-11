@@ -58,7 +58,11 @@ public class HistoryQuizControllerTest extends FxuiTest {
   // Will be implemented when profile page is finished
   @Test
   public void goToProfileTest() {
-
+    assertNotNull(stage.getScene().lookup("#submit"));
+    assertNull(stage.getScene().lookup("#userMenuProfilePage"));
+    clickOnMenuItem("#userMenu", "#menuProfilePage");
+    assertNull(stage.getScene().lookup("#submit"));
+    assertNotNull(stage.getScene().lookup("#userMenuProfilePage"));
   }
 
   @Test
