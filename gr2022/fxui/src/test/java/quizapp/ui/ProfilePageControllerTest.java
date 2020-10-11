@@ -72,6 +72,6 @@ public class ProfilePageControllerTest extends FxuiTest {
     JsonHandler jsonHandler = new JsonHandler(jsonPath);
     User user = jsonHandler.loadFromFile().stream()
         .filter(u -> u.getUsername().equals(userHandler.loadActiveUser())).findFirst().get();
-    assertEquals(user.meanScore().toString(), label.getText());
+    assertEquals(String.valueOf(Math.round((user.meanScore()*100))) + "  %", label.getText());
   }
 }
