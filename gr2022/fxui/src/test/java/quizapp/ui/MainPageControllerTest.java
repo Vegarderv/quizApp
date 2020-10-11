@@ -2,16 +2,13 @@ package quizapp.ui;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainPageControllerTest extends ApplicationTest {
+public class MainPageControllerTest extends FxuiTest {
 
   private Stage stage;
 
@@ -30,17 +27,8 @@ public class MainPageControllerTest extends ApplicationTest {
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
     // Changes Scene to login
-    clickOn("#menuButton");
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
-    clickOn("#logOutButton");
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
-    // Checks that scene is changed to login
+    clickOnMenuItem("#menuButton", "#menuSignOut");
+    // Checks that the scene has been changed
     assertNull(stage.getScene().lookup("#historyQuizButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
   }
@@ -56,13 +44,9 @@ public class MainPageControllerTest extends ApplicationTest {
     // Checks that we are in the main page scene
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     assertNull(stage.getScene().lookup("#scroll"));
-    // Changes Scene to history quiz
-    clickOn("#historyQuizButton");
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
-    // Checks that scene is changed to history quiz
+    // Changes scene to history quiz page
+    clickOnButton("#historyQuizButton");
+    // Checks that the scene has been changed
     assertNotNull(stage.getScene().lookup("#scroll"));
     assertNull(stage.getScene().lookup("#historyQuizButton"));
 

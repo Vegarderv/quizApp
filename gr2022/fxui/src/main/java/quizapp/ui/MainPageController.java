@@ -25,7 +25,7 @@ public class MainPageController implements Initializable {
   @FXML
   MenuButton menuButton;
   @FXML
-  MenuItem logOutButton;
+  MenuItem menuSignOut;
   @FXML
   MenuItem profileButton;
 

@@ -24,13 +24,13 @@ public class ProfilePageController implements Initializable {
   MenuBar menuBar;
 
   @FXML
-  MenuButton menu;
+  MenuButton userMenu;
+  
+  @FXML
+  MenuItem menuMainMenu;
 
   @FXML
-  MenuItem mainPageId;
-
-  @FXML
-  MenuItem loginId;
+  MenuItem menuSignOut;
 
   @FXML
   Label nameId;
@@ -47,7 +47,7 @@ public class ProfilePageController implements Initializable {
     String score = String.valueOf(Math.round((percentage))) + "  %";
     nameId.setText(userName);
     scoreId.setText(score);
-    menu.setText(userName);
+    userMenu.setText(userName);
 
   }
 
