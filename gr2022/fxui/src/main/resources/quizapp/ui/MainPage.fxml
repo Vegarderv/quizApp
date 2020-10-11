@@ -13,7 +13,7 @@
       <MenuBar fx:id="menuBar" layoutX="140.0" layoutY="14.0" maxHeight="30.0" prefHeight="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <MenuButton fx:id="menuButton" maxHeight="25.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Profile" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <MenuItem mnemonicParsing="false" fx:id = "profileButton" onAction="#goToProfile" text="Show" />
+          <MenuItem mnemonicParsing="false" fx:id = "profileButton" onAction="#goToProfile" text="Profile page" />
           <MenuItem mnemonicParsing="false" fx:id = "menuSignOut" onAction="#logOut" text="Log out" />
         </items>
       </MenuButton>

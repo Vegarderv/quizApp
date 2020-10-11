@@ -38,6 +38,19 @@ public class ProfilePageController implements Initializable {
   @FXML
   Label scoreId;
 
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    UsernameHandler userHandler = new UsernameHandler(
+        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
+    String userName = userHandler.loadActiveUser();
+    double percentage = getActiveUser().meanScore() * 100;
+    String score = String.valueOf(Math.round((percentage))) + "  %";
+    nameId.setText(userName);
+    scoreId.setText(score);
+    userMenu.setText(userName);
+
+  }
+
   @FXML
   public void goToMainMenu(ActionEvent event) {
     this.switchScene("MainPage.fxml");
@@ -54,11 +67,9 @@ public class ProfilePageController implements Initializable {
     UsernameHandler usernameHandler = new UsernameHandler(
         "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
     return jsonHandler.loadFromFile().stream()
-        .filter(user -> user.getUsername()
-        .equals(usernameHandler.loadActiveUser()))
+        .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser()))
         .findFirst().get();
   }
-
 
   /**
    * method for switching scene.
@@ -73,18 +84,6 @@ public class ProfilePageController implements Initializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  }
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-    UsernameHandler userHandler = new UsernameHandler(
-        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
-
-    String userName = userHandler.loadActiveUser();
-    String score = getActiveUser().meanScore().toString();
-    nameId.setText(userName);
-    scoreId.setText(score);
-
   }
 
 }
