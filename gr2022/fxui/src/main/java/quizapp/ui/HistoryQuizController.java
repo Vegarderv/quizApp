@@ -68,7 +68,6 @@ public class HistoryQuizController implements Initializable {
   Score scoreCard = new Score(jsonPath, usernamePath);
   UsernameHandler userHandler = new UsernameHandler(usernamePath);
 
-
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     buttons.add(q1a1);
@@ -87,9 +86,9 @@ public class HistoryQuizController implements Initializable {
     userMenu.setText(userName);
   }
 
-
   /**
-   * This is the method for submitting your quiz. It will send the score and disable the quiz
+   * This is the method for submitting your quiz. It will send the score and
+   * disable the quiz
    */
   @FXML
   public void submitAnswers() {
@@ -107,8 +106,7 @@ public class HistoryQuizController implements Initializable {
     buttons.stream().forEach(a -> a.setDisable(true));
     submit.setDisable(true);
     scroll.setVvalue(0.01);
-    score.setText(
-        "You got this Score: " 
+    score.setText("You got this Score: "  
         + Integer.toString(Math.round(((float) sum / (float) 3) * 100)) + "%");
     scoreCard.scoreQuiz(sum, 3, "HistoryQuiz");
   }

@@ -50,8 +50,7 @@ public class LoginController implements Initializable {
       return;
     }
 
-    usernameHandler.saveActiveUser(
-        username.getText(), 
+    usernameHandler.saveActiveUser(username.getText(),
         "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
     // Gets the stage information and sets the scene
     Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));

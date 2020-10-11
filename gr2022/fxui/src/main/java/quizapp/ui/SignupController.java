@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
+import quizapp.json.UsernameHandler;
 
 public class SignupController implements Initializable {
 
@@ -25,21 +26,21 @@ public class SignupController implements Initializable {
   @FXML
   Label errorMessage;
 
+  private final JsonHandler handler = new JsonHandler(
+      "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
+  private final UsernameHandler usernameHandler = new UsernameHandler(
+      "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     // TODO Auto-generated method stub
   }
 
-
-
   /**
-  * Saves user and goes to main menu.
-  */
+   * Saves user and goes to main menu.
+   */
   @FXML
   public void toMainMenu(ActionEvent event) throws Exception {
-    final JsonHandler handler = new JsonHandler(
-        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
     final List<User> user = handler.loadFromFile();
     if (user.stream().anyMatch(a -> a.getUsername().equals(username.getText()))) {
       username.clear();
@@ -52,15 +53,17 @@ public class SignupController implements Initializable {
       errorMessage.setText("Username and password must at least contain 1 sign");
       return;
     }
-    //need method that saves the new username and password
+    // New user is saved
     final User newUser = new User();
     newUser.setUsername(this.username.getText());
     newUser.setPassword(this.password.getText());
     user.add(newUser);
     handler.writeToFile(user);
 
+    usernameHandler.saveActiveUser(username.getText(),
+        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
 
-    //Gets the stage information and sets the scene
+    // Gets the stage information and sets the scene
     Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
     Scene tableViewScene = new Scene(tableViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

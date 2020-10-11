@@ -145,7 +145,7 @@
                         <MenuButton fx:id="userMenu" mnemonicParsing="false" text="#User#">
                           <items>
                             <MenuItem fx:id="menuProfilePage" mnemonicParsing="false" onAction="#goToProfile" text="Profile page" />
-                            <MenuItem fx:id="menuSignOut" mnemonicParsing="false" onAction="#goToLogIn" text="Sign out" />
+                            <MenuItem fx:id="menuSignOut" mnemonicParsing="false" onAction="#goToLogIn" text="Log out" />
                           </items>
                         </MenuButton>
                      </children>
