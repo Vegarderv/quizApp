@@ -11,8 +11,11 @@ This repo also contains testing for each layer, and is built with **maven**.
 This project is contained in a 2*2 folder structure, where code and resources are seperated. The folders are following:
 
 * **src/main/java/quizapp**
+
 * **src/main/java/resources**
+
 * **src/test/java/quizapp**
+
 * **src/test/java/resources**
 
 This is the standard folder structure for projects built with maven
@@ -38,6 +41,10 @@ In the presistance-layer, all classes and logic connected to saving and reading 
 
 The presistance files are found here:
 [link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/master/gr2022%2Fsrc%2Fmain%2Fjava%2Fquizapp%2Fjson)
+
+## Core layer
+
+This layer contains the the logic and the user class
 
 **Diagram describing the file saving:**
 
