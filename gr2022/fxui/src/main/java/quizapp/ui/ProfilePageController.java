@@ -24,7 +24,7 @@ public class ProfilePageController implements Initializable {
   MenuBar menuBar;
 
   @FXML
-  MenuButton userMenu;
+  MenuButton userMenuProfilePage;
   
   @FXML
   MenuItem menuMainMenu;
