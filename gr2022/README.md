@@ -6,11 +6,12 @@ Currently the repo contains a working quizapp
 
 This repo also contains testing for each layer, and is built with **maven**.
 
+## To run this app:
+from /workspace/gr2022/gr2022:
+>mvn install
+>mvn javafx:run -f fxui/pom.xml
+
 ## FolderStructure
-
-This project is contained in a 2*2*2 folder structure, where code and resources are seperated. The folders are following:
-
-**core/src/main/java**
 **core/src/main/resources**
 **core/src/test/java**
 
