@@ -1,5 +1,6 @@
 package quizapp.ui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -10,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -25,15 +27,17 @@ public class SignupController implements Initializable {
   TextField password;
   @FXML
   Label errorMessage;
-
-  private final JsonHandler handler = new JsonHandler(
-      "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
-  private final UsernameHandler usernameHandler = new UsernameHandler(
-      "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
+  @FXML
+  Button loginButton;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     // TODO Auto-generated method stub
+  }
+
+  @FXML
+  public void toLogin(ActionEvent event) {
+    this.switchSceneWithButton(event, "Login.fxml");
   }
 
   /**
@@ -53,15 +57,12 @@ public class SignupController implements Initializable {
       errorMessage.setText("Username and password must at least contain 1 sign");
       return;
     }
-    // New user is saved
+    // need method that saves the new username and password
     final User newUser = new User();
     newUser.setUsername(this.username.getText());
     newUser.setPassword(this.password.getText());
     user.add(newUser);
     handler.writeToFile(user);
-
-    usernameHandler.saveActiveUser(username.getText(),
-        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/JSONHandler.json");
 
     // Gets the stage information and sets the scene
     Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
@@ -70,4 +71,20 @@ public class SignupController implements Initializable {
     window.setScene(tableViewScene);
     window.show();
   }
+
+  /**
+   * Method for changing scene with a MenuItem.
+   */
+  public void switchSceneWithButton(ActionEvent event, String fxmlFile) {
+    try {
+      Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+      Scene scene = new Scene(parent);
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setScene(scene);
+      stage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
 }
