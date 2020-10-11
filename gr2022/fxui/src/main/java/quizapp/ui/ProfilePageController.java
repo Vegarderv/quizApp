@@ -43,8 +43,8 @@ public class ProfilePageController implements Initializable {
     UsernameHandler userHandler = new UsernameHandler(
         "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
     String userName = userHandler.loadActiveUser();
-    double percentage=getActiveUser().meanScore()*100;
-    String score = String.valueOf(Math.round((percentage)))+"  %";
+    double percentage = getActiveUser().meanScore() * 100;
+    String score = String.valueOf(Math.round((percentage))) + "  %";
     nameId.setText(userName);
     scoreId.setText(score);
     menu.setText(userName);
@@ -67,7 +67,8 @@ public class ProfilePageController implements Initializable {
     UsernameHandler usernameHandler = new UsernameHandler(
         "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
     return jsonHandler.loadFromFile().stream()
-        .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser())).findFirst().get();
+        .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser()))
+        .findFirst().get();
   }
 
   /**

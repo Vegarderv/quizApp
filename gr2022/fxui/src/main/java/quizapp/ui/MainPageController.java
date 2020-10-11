@@ -3,7 +3,6 @@ package quizapp.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +32,8 @@ public class MainPageController implements Initializable {
   @FXML
   Button historyQuizButton;
 
-  private String usernamePath = "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json";
+  private String usernamePath = 
+      "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json";
   private UsernameHandler userHandler = new UsernameHandler(usernamePath);
   private String username;
 
