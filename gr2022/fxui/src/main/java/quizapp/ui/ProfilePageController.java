@@ -47,7 +47,7 @@ public class ProfilePageController implements Initializable {
     String score = String.valueOf(Math.round((percentage))) + "  %";
     nameId.setText(userName);
     scoreId.setText(score);
-    userMenu.setText(userName);
+    userMenuProfilePage.setText(userName);
 
   }
 
