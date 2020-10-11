@@ -34,15 +34,13 @@ Username: **gr2022**
 
 Passord **gitlab**
 
-The UI files are found here:
-[link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/issue-38-update-readme/Quiz-app%2Ffxui)
 
-## Presistance-layer
 
 In the presistance-layer, all classes and logic connected to saving and reading from files are located.
 
-The presistance files are found here:
-[link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/issue-38-update-readme/Quiz-app%2Fcore)
+## Core
+This layer contains the logic and the user class. 
+
 
 **Diagram describing the file saving:**
 
@@ -56,7 +54,7 @@ The presistance files are found here:
 ![Image of illustrative plan](Images/UserPlan.png)
 
 
-This illustrative plan is meant to represent the functunality of our app closer to its finishing stages. The red arrows point to a new 'stage' as a result of interactions with the visual representations. 
+This illustrative plan is meant to represent the functunality of our app at its current stage. The colored arrows show how different stages occur as a result of interactions with the visual representations. As an example, with the correct password and username, the user can access the main page via the login button. 
 
 
 **User stories:**
