@@ -26,8 +26,10 @@ public class MainPageControllerTest extends ApplicationTest {
 
   @Test
   public void logOutTest() {
+    // Checks that we are in the main page scene
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
+    // Changes Scene to login
     clickOn("#menuButton");
     try {
       Thread.sleep(1000);
@@ -38,6 +40,7 @@ public class MainPageControllerTest extends ApplicationTest {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
     }
+    // Checks that scene is changed to login
     assertNull(stage.getScene().lookup("#historyQuizButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
   }
@@ -50,13 +53,16 @@ public class MainPageControllerTest extends ApplicationTest {
 
   @Test
   public void goToHistoryQuizTest() {
+    // Checks that we are in the main page scene
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
     assertNull(stage.getScene().lookup("#scroll"));
+    // Changes Scene to history quiz
     clickOn("#historyQuizButton");
     try {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
     }
+    // Checks that scene is changed to history quiz
     assertNotNull(stage.getScene().lookup("#scroll"));
     assertNull(stage.getScene().lookup("#historyQuizButton"));
 
