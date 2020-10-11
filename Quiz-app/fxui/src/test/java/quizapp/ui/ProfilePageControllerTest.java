@@ -35,7 +35,7 @@ public class ProfilePageControllerTest extends FxuiTest {
     assertNotNull(stage.getScene().lookup("#menuBar"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
     // Changes Scene to logOut
-    clickOnMenuItem("#userMenu", "#menuSignOut");
+    clickOnMenuItem("#userMenuProfilePage", "#menuSignOut");
     // Checks that scene is changed to logOut
     assertNull(stage.getScene().lookup("#submit"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
@@ -47,7 +47,7 @@ public class ProfilePageControllerTest extends FxuiTest {
     assertNotNull(stage.getScene().lookup("#menuBar"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
     // Changes Scene to Main Menu
-    clickOnMenuItem("#userMenu", "#menuMainMenu");
+    clickOnMenuItem("#userMenuProfilePage", "#menuMainMenu");
     // Checks that we are on the Main page scene
     assertNull(stage.getScene().lookup("#submit"));
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
