@@ -39,13 +39,13 @@ Passord **gitlab**
 ## Presistance layer
 In the presistance-layer, all classes and logic connected to saving and reading from files are located.
 
-## Core
-This layer contains the logic and the user class. 
-
 
 **Diagram describing the file saving:**
 
 ![Image of JSON diagram](Images/JSONdiagram.png)
+
+## Core
+This layer contains the logic and the user class. 
 
 
 ## Plan and functionality
