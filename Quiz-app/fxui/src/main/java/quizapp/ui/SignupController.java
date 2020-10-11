@@ -47,6 +47,8 @@ public class SignupController implements Initializable {
   public void toMainMenu(ActionEvent event) throws Exception {
     final JsonHandler handler = new JsonHandler(
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    final UsernameHandler userhandler = new UsernameHandler(
+        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
     final List<User> user = handler.loadFromFile();
     if (user.stream().anyMatch(a -> a.getUsername().equals(username.getText()))) {
       username.clear();
@@ -59,12 +61,14 @@ public class SignupController implements Initializable {
       errorMessage.setText("Username and password must at least contain 1 sign");
       return;
     }
-    // need method that saves the new username and password
+    // saves user
     final User newUser = new User();
     newUser.setUsername(this.username.getText());
     newUser.setPassword(this.password.getText());
     user.add(newUser);
     handler.writeToFile(user);
+    userhandler.saveActiveUser(newUser.getUsername(),
+        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
 
     // Gets the stage information and sets the scene
     Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
