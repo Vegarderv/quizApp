@@ -7,7 +7,7 @@ Currently the repo contains a working quizapp
 This repo also contains testing for each layer, and is built with **maven**.
 
 ## To run this app:
-from /workspace/gr2022/gr2022:
+from /workspace/gr2022/Quiz-app:
 >mvn install
 >mvn javafx:run -f fxui/pom.xml
 
