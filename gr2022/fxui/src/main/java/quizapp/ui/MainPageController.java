@@ -21,7 +21,7 @@ public class MainPageController {
   @FXML
   MenuButton menuButton;
   @FXML
-  MenuItem logOutButton;
+  MenuItem menuSignOut;
   @FXML
   MenuItem profileButton;
 

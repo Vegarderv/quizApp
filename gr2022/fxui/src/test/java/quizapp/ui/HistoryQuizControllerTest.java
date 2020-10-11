@@ -7,7 +7,6 @@ import java.util.*;
 
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
-import org.testfx.framework.junit5.ApplicationTest;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +19,7 @@ import quizapp.json.UsernameHandler;
 import java.awt.AWTException;
 import java.awt.Robot;
 
-public class HistoryQuizControllerTest extends ApplicationTest {
+public class HistoryQuizControllerTest extends FxuiTest {
 
   private Stage stage;
   private String usernamePath = "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUserTest.json";
@@ -50,7 +49,7 @@ public class HistoryQuizControllerTest extends ApplicationTest {
     assertNotNull(stage.getScene().lookup("#submit"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
     // Changes Scene to logOut
-    clickOn("#userMenu").clickOn("#menuSignOut");
+    clickOnMenuItem("#userMenu", "#menuSignOut");
     // Checks that scene is changed to logOut
     assertNull(stage.getScene().lookup("#submit"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
@@ -76,7 +75,7 @@ public class HistoryQuizControllerTest extends ApplicationTest {
     assertNotNull(stage.getScene().lookup("#submit"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
     // Changes Scene to Main Menu
-    clickOn("#mainMenu");
+    clickOnButton("#mainMenu");
     // Checks that we are on the Main page scene
     assertNull(stage.getScene().lookup("#submit"));
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
@@ -96,12 +95,7 @@ public class HistoryQuizControllerTest extends ApplicationTest {
     } catch (InterruptedException e) {
     }
     clickOn("#q3a3");
-    clickOn("#submit");
-    // Slows down to give time to submit
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
+    clickOnButton("#submit");
     FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 100%"));
 
   }
