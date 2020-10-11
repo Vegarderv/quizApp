@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import quizapp.core.User;
@@ -23,10 +24,13 @@ public class ProfilePageController implements Initializable {
   MenuBar menuBar;
 
   @FXML
-  MenuItem mainPageId;
+  MenuButton userMenu;
+  
+  @FXML
+  MenuItem menuMainMenu;
 
   @FXML
-  MenuItem loginId;
+  MenuItem menuSignOut;
 
   @FXML
   Label nameId;
