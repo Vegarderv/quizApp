@@ -35,14 +35,14 @@ Username: **gr2022**
 Passord **gitlab**
 
 The UI files are found here:
-[link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/master/gr2022%2Fsrc%2Fmain%2Fjava%2Fquizapp%2Fui)
+[link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/issue-38-update-readme/Quiz-app%2Ffxui)
 
 ## Presistance-layer
 
 In the presistance-layer, all classes and logic connected to saving and reading from files are located.
 
 The presistance files are found here:
-[link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/master/gr2022%2Fsrc%2Fmain%2Fjava%2Fquizapp%2Fjson)
+[link](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2022/gr2022/-/tree/issue-38-update-readme/Quiz-app%2Fcore)
 
 **Diagram describing the file saving:**
 
@@ -53,7 +53,7 @@ The presistance files are found here:
 
 **Illustrative plan:**
 
-![Image of illustrative plan](Images/BrukerPlan.png)
+![Image of illustrative plan](Images/UserPlan.png)
 
 
 This illustrative plan is meant to represent the functunality of our app closer to its finishing stages. The red arrows point to a new 'stage' as a result of interactions with the visual representations. 
