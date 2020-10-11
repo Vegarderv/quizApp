@@ -2,28 +2,31 @@
 
 This project vil contain a quiz app. 
 
-Currently, this repo will contain a simple login site, which will later be used in the quiz-app
+Currently the repo contains a working quizapp
 
 This repo also contains testing for each layer, and is built with **maven**.
 
 ## FolderStructure
 
-This project is contained in a 2*2 folder structure, where code and resources are seperated. The folders are following:
+This project is contained in a 2*2*2 folder structure, where code and resources are seperated. The folders are following:
 
-* **src/main/java/quizapp**
-* **src/main/java/resources**
-* **src/test/java/quizapp**
-* **src/test/java/resources**
+**core/src/main/java**
+**core/src/main/resources**
+**core/src/test/java**
+
+**fxui/src/main/java**
+**fxui/src/main/resources**
+**fxui/src/test/java**
+
+
 
 This is the standard folder structure for projects built with maven
 
 ## UI-layer
 
-The UI layer is currently simple, and contains only a simple UI for logging in, along with java and JavaFX code
-used to make the FXML-UI work properly. You can currently only use existing usernames and passwords.
-If you input the correct username and password, you will be taken to a blank stage.
+Currently, the UI layer conatins the following: Signin page, signup page, main menu, a history quiz and profile page.
 
-The current username and password are as follows:
+To log in, use the following:
 
 Username: **gr2022**
 
