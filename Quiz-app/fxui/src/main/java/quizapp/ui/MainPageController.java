@@ -33,7 +33,7 @@ public class MainPageController implements Initializable {
   Button historyQuizButton;
 
   private String usernamePath = 
-      "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json";
+      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
   private UsernameHandler userHandler = new UsernameHandler(usernamePath);
   private String username;
 

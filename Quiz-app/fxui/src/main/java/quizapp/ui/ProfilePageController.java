@@ -41,7 +41,7 @@ public class ProfilePageController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     UsernameHandler userHandler = new UsernameHandler(
-        "/workspace/gr2022/gr2022/core/src/main/resources/quizapp/json/activeUser.json");
+        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
     String userName = userHandler.loadActiveUser();
     double percentage = getActiveUser().meanScore() * 100;
     String score = String.valueOf(Math.round((percentage))) + "  %";
@@ -86,19 +86,4 @@ public class ProfilePageController implements Initializable {
     }
   }
 
-<<<<<<< HEAD:gr2022/fxui/src/main/java/quizapp/ui/ProfilePageController.java
-=======
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-    UsernameHandler userHandler = new UsernameHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
-
-    String userName = userHandler.loadActiveUser();
-    String score = getActiveUser().meanScore().toString();
-    nameId.setText(userName);
-    scoreId.setText(score);
-
-  }
-
->>>>>>> origin/issue-38-update-readme:Quiz-app/fxui/src/main/java/quizapp/ui/ProfilePageController.java
 }
