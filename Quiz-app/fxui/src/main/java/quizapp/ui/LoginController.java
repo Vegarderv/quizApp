@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quizapp.core.UsernameCheck;
@@ -21,7 +22,7 @@ public class LoginController implements Initializable {
   @FXML
   TextField username;
   @FXML
-  TextField password;
+  PasswordField password;
   @FXML
   Label errorMessage;
 
@@ -33,7 +34,7 @@ public class LoginController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    // TODO Auto-generated method stub
+    //something
   }
 
   /**

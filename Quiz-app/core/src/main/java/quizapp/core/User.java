@@ -46,4 +46,8 @@ public class User {
   public Double getScore(String quiz) {
     return quizzesTaken.get(quiz);
   }
+
+  public String toString() {
+    return username + " " + password;
+  }
 }
