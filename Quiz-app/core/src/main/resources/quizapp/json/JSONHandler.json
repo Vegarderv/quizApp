@@ -2,11 +2,13 @@
   {
     "username": "gr2022",
     "password": "gitlab",
+    "darkMode": true,
     "quizzesTaken": {}
   },
   {
     "username": "Hallvard",
     "password": "Trætteberg",
+    "darkMode": false,
     "quizzesTaken": {
       "HistoryQuiz": 1.0
     }
@@ -14,16 +16,19 @@
   {
     "username": "George",
     "password": "Stoica",
+    "darkMode": false,
     "quizzesTaken": {}
   },
   {
     "username": "Gløs",
     "password": "T-town",
+    "darkMode": false,
     "quizzesTaken": {}
   },
   {
     "username": "Dragvoll",
     "password": "Hadebra",
+    "darkMode": false,
     "quizzesTaken": {}
   }
 ]

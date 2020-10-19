@@ -9,9 +9,11 @@ public class User {
 
   private String username;
   private String password;
+  private Boolean darkMode = false;
 
   //Keeps control of all quizzes taken
   private HashMap<String, Double> quizzesTaken = new HashMap<>();
+
 
   public boolean quizTaken(String quiz) {
     return quizzesTaken.containsKey(quiz);
@@ -46,4 +48,14 @@ public class User {
   public Double getScore(String quiz) {
     return quizzesTaken.get(quiz);
   }
+
+  public Boolean getDarkMode() {
+    return darkMode;
+  }
+
+  public void setDarkMode(Boolean darkMode) {
+    this.darkMode = darkMode;
+  }
+
+  
 }
