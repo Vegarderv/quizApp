@@ -15,6 +15,12 @@ public class Quiz {
     this.questions.add(question2);
     this.questions.add(question3);
   }
+  /**
+   * 
+   * @param num
+   * @return the question with index num-1.
+   * Use num=1 to get question the first question.
+   */
 
   public Question getQuestion(int num) {
     if (num >= 1 && num <= 3) {
