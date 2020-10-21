@@ -5,16 +5,57 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="323.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.LoginController">
+<AnchorPane prefHeight="491.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.HistoryQuizController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="56.0" prefHeight="427.0" prefWidth="553.0" spacing="10.0">
-         <children>
-            <Label text="Highscores">
-                <font>
-                  <Font size="61.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
+      <BorderPane prefHeight="491.0" prefWidth="553.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="483.0" prefWidth="553.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="scroll">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="623.0" prefWidth="538.0">
+                           <children>
+                              <VBox layoutX="247.0" layoutY="46.0" prefHeight="623.0" prefWidth="538.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <Tableview>
+                                        
+                                    </Tableview>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <HBox prefHeight="48.0" prefWidth="553.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="400.0">
+                     <children>
+                        <Button fx:id = "mainMenu" mnemonicParsing="false" onAction="#goToMainMenu" text="Main Menu" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="400.0" spacing="20.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <MenuButton fx:id="userMenu" mnemonicParsing="false" text="#User#">
+                          <items>
+                            <MenuItem fx:id="menuProfilePage" mnemonicParsing="false" onAction="#goToProfile" text="Profile page" />
+                            <MenuItem fx:id="menuSignOut" mnemonicParsing="false" onAction="#goToLogIn" text="Log out" />
+                          </items>
+                        </MenuButton>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
    </children>
 </AnchorPane>

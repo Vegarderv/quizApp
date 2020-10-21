@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import quizapp.core.User;
@@ -21,13 +22,27 @@ public class ScoreboardController implements Initializable {
 
   private JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
   final List<User> users = handler.loadFromFile();
-  private Map<String, ArrayList> scoreMap = new HashMap<>();
+  private Map<String, ArrayList<User>> scoreMap = new HashMap<>();
 
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    // TODO Auto-generated method stub
-
+    updateBoardInfo();
+    TableView<String> tableView = new TableView<String>();
+    for (String quizname : scoreMap) {
+      tableView.getItems().add(quizname);
+      for (User user : scoreMap.get(quizname)) {
+        tableView.getItems().add(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
+        user.getUsername() + ": " + user.getScore(quizname));
+      }
+      tableView.getItems().add("  ");
+      tableView.getItems().add("**************************************");
+      tableView.getItems().add("  ");
+    }
+    VBox vbox = new VBox(tableView);
+    Scene scene = new Scene(vbox);
+    primaryStage.setScene(scene);
+    primaryStage.show();
   }
 
   public void getQuizzes() {
@@ -47,7 +62,7 @@ public class ScoreboardController implements Initializable {
     return topScorers;
   }
 
-  public Map<String, ArrayList> getBoardInfo() {
+  public Map<String, ArrayList<User>> updateBoardInfo() {
     for (QuizController quiz : this.getQuizzes()) {
       ArrayList<User> topScorers = new ArrayList<>();
       String name = quiz.getname();
@@ -60,30 +75,5 @@ public class ScoreboardController implements Initializable {
     }
     return this.scoreMap;
   }
-
-  @Override
-  public void start(Stage primaryStage) {
-    TableView<User> tableView = new TableView<User>();
-    for (String quizname : scoreMap) {
-      tableView.getItems().add(quizname);
-      for (User user : scoreMap.get(quizname)) {
-        TableColumn<User, Double> column1 = new TableColumn<>(" ");
-        column1.setCellValueFactory(new PropertyValueFactory<>(user.getScore(quizname)));
-        TableColumn<User, Double> column2 = new TableColumn<>(" ");
-        column2.setCellValueFactory(new PropertyValueFactory<>("username"));
-        tableView.getColumns().add(column1);
-        tableView.getColumns().add(column2);
-        tableView.getItems().add(user);
-      }
-    }
-    VBox vbox = new VBox(tableView);
-    Scene scene = new Scene(vbox);
-    primaryStage.setScene(scene);
-    primaryStage.show();
-  }
-
-  
-
-
 
 }

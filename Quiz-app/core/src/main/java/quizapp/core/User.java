@@ -1,5 +1,6 @@
 package quizapp.core;
 
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class User implements Comparator<User> {
