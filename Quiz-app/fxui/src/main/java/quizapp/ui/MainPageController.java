@@ -8,6 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import quizapp.core.User;
+import quizapp.json.JsonHandler;
+import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
 
 public class MainPageController extends QuizAppController {
@@ -27,6 +30,10 @@ public class MainPageController extends QuizAppController {
   private String usernamePath 
       = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
   private UsernameHandler userHandler = new UsernameHandler(usernamePath);
+  private JsonHandler jsonHandler = new JsonHandler(
+      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+  private QuizHandler quizHandler = new QuizHandler(
+      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
   private String username;
 
   @Override
@@ -37,7 +44,11 @@ public class MainPageController extends QuizAppController {
 
   @FXML
   public void goToHistoryQuiz(ActionEvent event) {
-    this.switchSceneWithNode("HistoryQuiz.fxml", historyQuizButton);
+    User currentUser = jsonHandler.loadActiveUser();
+    System.out.println(quizHandler.getQuizByName("History quiz").toString());
+    currentUser.setCurrentQuiz(quizHandler.getQuizByName("History quiz"));
+    System.out.println(currentUser.getString());
+    this.switchSceneWithNode("Quiz.fxml", historyQuizButton);
   }
 
   @FXML

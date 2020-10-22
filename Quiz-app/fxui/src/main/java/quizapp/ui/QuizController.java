@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import quizapp.core.Question;
 import quizapp.core.Quiz;
 import quizapp.core.Score;
+import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
 public class QuizController implements Initializable {
@@ -75,12 +76,14 @@ public class QuizController implements Initializable {
   private String userName;
   private String usernamePath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
   private String jsonPath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json";
+  private JsonHandler jsonHandler = new JsonHandler(jsonPath);
   Score scoreCard = new Score(jsonPath, usernamePath);
   UsernameHandler userHandler = new UsernameHandler(usernamePath);
   private Quiz currentQuiz;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
+    currentQuiz = jsonHandler.loadActiveUser().getCurrentQuiz();
     List<RadioButton> q1buttons = new ArrayList<>();
     q1buttons.add(q1a2);
     q1buttons.add(q1a2);
@@ -101,16 +104,13 @@ public class QuizController implements Initializable {
     buttons.add(q3buttons);
     userName = userHandler.loadActiveUser();
     userMenu.setText(userName);
-    // Quiz needs to be loaded
-    Question question = new Question(null, null, null, null, null, 0);
-    Quiz current_quiz = new Quiz(null, question, question, question); // Should be the quiz read from the json file.
-    quiz_name.setText(current_quiz.getName());
-    question1.setText(current_quiz.getQuestion(1).getQuestion());
-    question2.setText(current_quiz.getQuestion(2).getQuestion());
-    question3.setText(current_quiz.getQuestion(3).getQuestion());
+    quiz_name.setText(currentQuiz.getName());
+    question1.setText(currentQuiz.getQuestion(1).getQuestion());
+    question2.setText(currentQuiz.getQuestion(2).getQuestion());
+    question3.setText(currentQuiz.getQuestion(3).getQuestion());
     for (List<RadioButton> list : buttons) {
       for (RadioButton radioButton : list) {
-        radioButton.setText(current_quiz.getQuestion(list.indexOf(radioButton) + 1).getQuestion());
+        radioButton.setText(currentQuiz.getQuestion(list.indexOf(radioButton) + 1).getQuestion());
       }
     }
   }

@@ -10,6 +10,7 @@ public class User {
   private String username;
   private String password;
   private Boolean darkMode = false;
+  private Quiz currentQuiz;
 
   //Keeps control of all quizzes taken
   private HashMap<String, Double> quizzesTaken = new HashMap<>();
@@ -57,5 +58,27 @@ public class User {
     this.darkMode = darkMode;
   }
 
+  /**
+   * @return the currentQuiz
+   */
+  public Quiz getCurrentQuiz() {
+    return currentQuiz;
+  }
+
+
+  /**
+   * @param currentQuiz the currentQuiz to set
+   */
+  public void setCurrentQuiz(Quiz currentQuiz) {
+    this.currentQuiz = currentQuiz;
+  }
+
+  public String getString(){
+    return currentQuiz.getName();
+  }
+
+  public String toString() {
+    return currentQuiz.toString();
+  }
   
 }

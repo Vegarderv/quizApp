@@ -13,6 +13,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.List;
 
+import quizapp.core.Question;
 import quizapp.core.Quiz;
 
 public class QuizHandler {
@@ -66,6 +67,14 @@ public class QuizHandler {
       e.printStackTrace();
       return null;
     }
+
+  }
+
+  public Quiz getQuizByName(String name) {
+    Question q =  new Question("Hei", "", "", "alternative3", "alternative4", 3);
+    Quiz quizz = new Quiz("Funker ikke",q, q, q);
+    List<Quiz> quizzes = this.loadFromFile();
+    return quizzes.stream().filter(qu -> qu.getName().equals(name)).findFirst().orElse(quizz);
 
   }
 
