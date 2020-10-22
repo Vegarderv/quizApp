@@ -19,7 +19,7 @@
 	The "color" is your main color (in this case greenish)
 	*/
 * {
-	-color : #2ecc71;
+	-color : #2B32C2;
 	-white : #efefef;
 	-gray : #dfdfdf;
 	-darkGray : derive(-gray,-20%);
@@ -277,7 +277,7 @@
  * 
  */
 .menu-bar{
-	-fx-background-color : -gray;
+	-fx-background-color : -color;
 }
  
 
