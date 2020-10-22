@@ -73,12 +73,5 @@ public class User {
     this.currentQuiz = currentQuiz;
   }
 
-  public String getString(){
-    return currentQuiz.getName();
-  }
-
-  public String toString() {
-    return currentQuiz.toString();
-  }
   
 }

@@ -36,7 +36,4 @@ public class Quiz {
     return name;
   }
 
-  public String toString() {
-    return name;
-  }
 }
