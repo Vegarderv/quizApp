@@ -1,0 +1,107 @@
+[
+  {
+    "questions": [
+      {
+        "question": "When did the viking age start?",
+        "correct_alternative": 1,
+        "alternatives": [
+          "793 AD",
+          "815 AD",
+          "902 AD",
+          "767 AD"
+        ]
+      },
+      {
+        "question": "How many people died in World War 2?",
+        "correct_alternative": 4,
+        "alternatives": [
+          "50 million",
+          "60 million",
+          "75 million",
+          "85 million"
+        ]
+      },
+      {
+        "question": "Who was the first president of the United States?",
+        "correct_alternative": 3,
+        "alternatives": [
+          "Abraham Lincoln",
+          "Thomas Jefferson",
+          "George Washington",
+          "Barack Obama"
+        ]
+      }
+    ],
+    "name": "History Quiz"
+  },
+  {
+    "questions": [
+      {
+        "question": "If you fill a glass to the brim with ice water and the  ice melts, what will happen?",
+        "correct_alternative": 3,
+        "alternatives": [
+          "The glass will over flow as the ice turns to water.",
+          "The level of water in the glass will remain unchanged as the ice melts.",
+          "The water level will drop slightly as the ice melts",
+          "I\u0027ll never find out because I\u0027ll drink the water or walk away before anything happens."
+        ]
+      },
+      {
+        "question": "You can\u0027t live without iron. Where in the body is most of the iron located?",
+        "correct_alternative": 4,
+        "alternatives": [
+          "Your brain",
+          "Your skin",
+          "Your bones",
+          "Your blood"
+        ]
+      },
+      {
+        "question": "What do you call an atom that has more protons than electrons?",
+        "correct_alternative": 2,
+        "alternatives": [
+          "A molecule",
+          "A cation",
+          "An anion",
+          "An isotope"
+        ]
+      }
+    ],
+    "name": "Chemistry quiz"
+  },
+  {
+    "questions": [
+      {
+        "question": "What country has the longest coastline in the world?",
+        "correct_alternative": 1,
+        "alternatives": [
+          "Canada",
+          "Norway",
+          "Indonesia",
+          "Greenland"
+        ]
+      },
+      {
+        "question": "What country is the newest in the world to be recognised by the UN?",
+        "correct_alternative": 3,
+        "alternatives": [
+          "Kosovo",
+          "Serbia",
+          "South Sudan",
+          "Timor-Leste"
+        ]
+      },
+      {
+        "question": "What African country has the largest population?",
+        "correct_alternative": 2,
+        "alternatives": [
+          "Eqypt",
+          "Nigeria",
+          "South Africa",
+          "The Democratic Republic of Congo"
+        ]
+      }
+    ],
+    "name": "Geography quiz"
+  }
+]

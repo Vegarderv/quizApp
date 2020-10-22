@@ -1,13 +1,14 @@
 package quizapp.core;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Question {
 
-  private String question, alternative1, alternative2, alternative3, alternative4;
+  private String question;
   private int correct_alternative;
-  private List<String> alternatives = Arrays.asList(alternative1, alternative2, alternative3, alternative4);
+  private List<String> alternatives = new ArrayList<>();
 
 
   /** 
@@ -15,10 +16,7 @@ public class Question {
   */
   public Question(String question, String alternative1, String alternative2, String alternative3, String alternative4, int correct_alternative){
     this.question = question;
-    this.alternative1 = alternative1;
-    this.alternative2 = alternative2;
-    this.alternative3 = alternative3;
-    this.alternative4 = alternative4;
+    alternatives = Arrays.asList(alternative1, alternative2, alternative3, alternative4);
     if (correct_alternative <= 4 && correct_alternative >= 1) {
       this.correct_alternative = correct_alternative;
     }
@@ -34,11 +32,11 @@ public class Question {
     return question;
   }
 
-  /**
-   * 
-   * @param num
-   * @return alternative num 
-   */
+ /**
+  * 
+  * @param num
+  * @return
+  */
   public String getAlternative(int num) {
     if (!(num >= 1 && num <= 4)) {
       throw new IllegalArgumentException("num must be between 1 and 4");
