@@ -3,7 +3,7 @@ package quizapp.core;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class User implements Comparator<User> {
+public class User {
   /*
   This class is used for easier access and saving of user data. Also much easier to expand
   */
@@ -49,14 +49,14 @@ public class User implements Comparator<User> {
   }
 
   @Override
-  public int compare(User a, User b, QuizController quiz) {
-    if (a.getScore(quiz.getname()) > b.getScore(quiz.getname())) {
+  public int compareQuizScores(User a, User b, Quiz quiz) {
+    if (a.getScore(quiz.getName()) > b.getScore(quiz.getName())) {
       return 1;
     }
-    if (a.getScore(quiz.getname()) == b.getScore(quiz.getname())) {
+    if (a.getScore(quiz.getName()) == b.getScore(quiz.getName())) {
       return 0;
     }
-    if (a.getScore(quiz.getname()) < b.getScore(quiz.getname())) {
+    if (a.getScore(quiz.getName()) < b.getScore(quiz.getName())) {
       return -1;
     }
   }
