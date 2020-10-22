@@ -58,10 +58,15 @@ public class ScoreboardController implements Initializable {
       tableView.getItems().add("**************************************");
       tableView.getItems().add("  ");
     }
-    VBox vbox = new VBox(tableView);
-    Scene scene = new Scene(vbox);
-    primaryStage.setScene(scene);
-    primaryStage.show();
+    try {
+      Stage stage = (Stage) menuBar.getScene().getWindow();
+      Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+      Scene scene = new Scene(parent);
+      stage.setScene(scene);
+      stage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public void getQuizzes() {
