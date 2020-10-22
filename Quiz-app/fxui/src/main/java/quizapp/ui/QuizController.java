@@ -85,7 +85,7 @@ public class QuizController implements Initializable {
   public void initialize(URL arg0, ResourceBundle arg1) {
     currentQuiz = jsonHandler.loadActiveUser().getCurrentQuiz();
     List<RadioButton> q1buttons = new ArrayList<>();
-    q1buttons.add(q1a2);
+    q1buttons.add(q1a1);
     q1buttons.add(q1a2);
     q1buttons.add(q1a3);
     q1buttons.add(q1a4);
