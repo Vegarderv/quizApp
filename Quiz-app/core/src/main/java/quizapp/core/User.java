@@ -52,6 +52,7 @@ public class User {
   public String toString() {
     return username + " " + password;
   }
+  
   public Boolean getDarkMode() {
     return darkMode;
   }
