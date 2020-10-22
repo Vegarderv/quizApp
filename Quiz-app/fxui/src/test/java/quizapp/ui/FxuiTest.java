@@ -26,7 +26,7 @@ public class FxuiTest extends ApplicationTest {
   protected void clickOnMenuItem(String menuButtonId, String menuItemId) {
     try {
       WaitForAsyncUtils.waitFor(500, TimeUnit.MILLISECONDS, () -> {
-        clickOn(menuButtonId).clickOn(menuItemId);
+        clickOn(menuButtonId).sleep(10).clickOn(menuItemId);
         Thread.sleep(100);
         return true;
       });
