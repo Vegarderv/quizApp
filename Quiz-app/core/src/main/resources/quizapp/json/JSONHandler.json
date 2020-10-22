@@ -2,11 +2,13 @@
   {
     "username": "gr2022",
     "password": "hi/wc2QsFdbNJK/j6aL+JA\u003d\u003d",
+    "darkMode": true,
     "quizzesTaken": {}
   },
   {
     "username": "Hallvard",
     "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
+    "darkMode": false,
     "quizzesTaken": {
       "HistoryQuiz": 1.0
     }
@@ -14,18 +16,14 @@
   {
     "username": "George",
     "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
+    "darkMode": false,
     "quizzesTaken": {}
   },
   {
     "username": "Gløs",
     "password": "lega25jRHZqQKp2DKatRDQ\u003d\u003d",
+    "password": "T-town",
+    "darkMode": false,
     "quizzesTaken": {}
-  },
-  {
-    "username": "Dragvoll",
-    "password": "NeQsmOmddsFh0CFAZ5/XGQ\u003d\u003d",
-    "quizzesTaken": {
-      "HistoryQuiz": 1.0
-    }
   }
 ]
