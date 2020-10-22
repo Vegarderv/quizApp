@@ -110,7 +110,8 @@ public class QuizController implements Initializable {
     question3.setText(currentQuiz.getQuestion(3).getQuestion());
     for (List<RadioButton> list : buttons) {
       for (RadioButton radioButton : list) {
-        radioButton.setText(currentQuiz.getQuestion(list.indexOf(radioButton) + 1).getQuestion());
+        radioButton.setText(currentQuiz.getQuestion(buttons.indexOf(list)+1).getAlternative(list.indexOf(radioButton)+1));
+        //radioButton.setText(currentQuiz.getQuestion(list.indexOf(radioButton) + 1).getQuestion());
       }
     }
   }

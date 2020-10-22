@@ -74,7 +74,15 @@ public class JsonHandler {
     return this.loadFromFile().stream()
         .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser()))
         .findFirst().get();
-    
+  }
+
+  public void updateUser(User user){
+    List<User> users = loadFromFile();
+    User user2 = users.stream().filter(u -> u.getUsername().equals(user.getUsername())).findAny().get();
+    users.remove(user2);
+    users.add(user);
+    writeToFile(users);
+
   }
 
 

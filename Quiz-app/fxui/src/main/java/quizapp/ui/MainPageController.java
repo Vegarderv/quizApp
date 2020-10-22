@@ -45,9 +45,8 @@ public class MainPageController extends QuizAppController {
   @FXML
   public void goToHistoryQuiz(ActionEvent event) {
     User currentUser = jsonHandler.loadActiveUser();
-    System.out.println(quizHandler.getQuizByName("History quiz").toString());
     currentUser.setCurrentQuiz(quizHandler.getQuizByName("History quiz"));
-    System.out.println(currentUser.getString());
+    jsonHandler.updateUser(currentUser);
     this.switchSceneWithNode("Quiz.fxml", historyQuizButton);
   }
 
