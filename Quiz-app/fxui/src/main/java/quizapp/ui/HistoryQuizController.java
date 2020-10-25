@@ -17,6 +17,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import quizapp.core.Score;
 import quizapp.json.UsernameHandler;
@@ -47,6 +49,8 @@ public class HistoryQuizController implements Initializable {
   RadioButton q3a3;
   @FXML
   RadioButton q3a4;
+  @FXML
+  ImageView mainMenu;
   @FXML
   Button submit;
   @FXML
@@ -134,7 +138,7 @@ public class HistoryQuizController implements Initializable {
   }
 
   @FXML
-  void goToMainMenu(ActionEvent event) {
+  void goToMainMenu(MouseEvent event) {
     this.switchSceneWithMenuItem("MainPage.fxml");
   }
 
