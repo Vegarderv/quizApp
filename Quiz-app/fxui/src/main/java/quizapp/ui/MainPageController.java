@@ -17,7 +17,6 @@ public class MainPageController extends QuizAppController {
 
   @FXML
   MenuBar menuBar;
-
   @FXML
   MenuButton menuButton;
   @FXML
@@ -26,6 +25,10 @@ public class MainPageController extends QuizAppController {
   MenuItem profileButton;
   @FXML
   Button historyQuizButton;
+  @FXML
+  Button chemistryQuizButton;
+  @FXML
+  Button geographyQuizButton;
 
   private String usernamePath 
       = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
@@ -43,9 +46,9 @@ public class MainPageController extends QuizAppController {
   }
 
   @FXML
-  public void goToHistoryQuiz(ActionEvent event) {
+  public void goToQuiz(ActionEvent event) {
     User currentUser = jsonHandler.loadActiveUser();
-    currentUser.setCurrentQuiz(quizHandler.getQuizByName("History quiz"));
+    currentUser.setCurrentQuiz(quizHandler.getQuizByName(((Button)event.getSource()).getId()));
     jsonHandler.updateUser(currentUser);
     this.switchSceneWithNode("Quiz.fxml", historyQuizButton);
   }
