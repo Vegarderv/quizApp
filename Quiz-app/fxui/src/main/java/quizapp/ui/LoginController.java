@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import quizapp.core.UsernameCheck;
 import quizapp.json.UsernameHandler;
@@ -15,7 +16,7 @@ public class LoginController extends QuizAppController {
   @FXML
   TextField username;
   @FXML
-  TextField password;
+  PasswordField password;
   @FXML
   Label errorMessage;
 
@@ -27,7 +28,7 @@ public class LoginController extends QuizAppController {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-
+    //something
   }
 
   /**
