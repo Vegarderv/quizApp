@@ -12,23 +12,23 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.List;
-import quizapp.core.User;
+import quizapp.core.Quiz;
 
-public class JsonHandler {
+public class QuizHandler {
   private String path;
   private Writer file;
 
 
-  public JsonHandler(String path) {
+  public QuizHandler(String path) {
     this.path = path;
   }
 
   /**
   * Function writes a hashmap as a JSON object to a JSON file.
   */
-  public void writeToFile(List<User> users) {
+  public void writeToFile(List<Quiz> quizzes) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    String javaObjectString = gson.toJson(users); // converts to json
+    String javaObjectString = gson.toJson(quizzes); // converts to json
     try {
 
       FileOutputStream fileStream = new FileOutputStream(path);
@@ -51,15 +51,15 @@ public class JsonHandler {
   }
 
   /**
-  * Function reads a JSON file and returns a list of users.
+  * Function reads a JSON file and returns a list of quizzes.
   */
-  public List<User> loadFromFile() {
+  public List<Quiz> loadFromFile() {
     try {
       InputStream inputStream = new FileInputStream(path);
       Reader fileReader = new InputStreamReader(inputStream, "UTF-8");
-      List<User> user = new Gson().fromJson(fileReader, new TypeToken<List<User>>() {
+      List<Quiz> quizzes = new Gson().fromJson(fileReader, new TypeToken<List<Quiz>>() {
       }.getType());
-      return user;
+      return quizzes;
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -68,20 +68,9 @@ public class JsonHandler {
 
   }
 
-  public User loadActiveUser() {
-    UsernameHandler usernameHandler = new UsernameHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
-    return this.loadFromFile().stream()
-        .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser()))
-        .findFirst().get();
-  }
-
-  public void updateUser(User user){
-    List<User> users = loadFromFile();
-    User user2 = users.stream().filter(u -> u.getUsername().equals(user.getUsername())).findAny().get();
-    users.remove(user2);
-    users.add(user);
-    writeToFile(users);
+  public Quiz getQuizByName(String name) {
+    List<Quiz> quizzes = this.loadFromFile();
+    return quizzes.stream().filter(q -> q.getName().equals(name)).findFirst().orElse(null);
 
   }
 
