@@ -12,21 +12,30 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.List;
+import quizapp.core.CryptoUtil;
 import quizapp.core.User;
 
 public class JsonHandler {
   private String path;
   private Writer file;
-
+  private String secretKey = "ssshhhhhhhhhhh!!!!";
 
   public JsonHandler(String path) {
     this.path = path;
   }
 
   /**
-  * Function writes a hashmap as a JSON object to a JSON file.
-  */
+   * Function writes a hashmap as a JSON object to a JSON file.
+   */
   public void writeToFile(List<User> users) {
+    CryptoUtil crypto = new CryptoUtil();
+    users.stream().forEach(user -> {
+      try {
+        user.setPassword(crypto.encrypt(user.getPassword(), secretKey));
+      } catch (Exception e1) {
+        e1.printStackTrace();
+      }
+    });
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String javaObjectString = gson.toJson(users); // converts to json
     try {
@@ -55,11 +64,21 @@ public class JsonHandler {
   */
   public List<User> loadFromFile() {
     try {
+      CryptoUtil cryptoUtil = new CryptoUtil();
       InputStream inputStream = new FileInputStream(path);
       Reader fileReader = new InputStreamReader(inputStream, "UTF-8");
-      List<User> user = new Gson().fromJson(fileReader, new TypeToken<List<User>>() {
+      List<User> users = new Gson().fromJson(fileReader, new TypeToken<List<User>>() {
       }.getType());
-      return user;
+      users 
+          .stream()
+          .forEach(user -> {
+            try {
+              user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey));
+            } catch (Exception e) {
+              e.printStackTrace();
+            } 
+          });
+      return users;
 
     } catch (Exception e) {
       e.printStackTrace();
