@@ -11,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
@@ -19,8 +18,7 @@ import quizapp.json.UsernameHandler;
 
 public class MainPageController implements Initializable {
 
-  @FXML
-  MenuBar menuBar;
+
 
   @FXML
   MenuButton menuButton;
@@ -78,7 +76,7 @@ public class MainPageController implements Initializable {
    */
   public void switchSceneWithMenuItem(String fxmlFile) {
     try {
-      Stage stage = (Stage) menuBar.getScene().getWindow();
+      Stage stage = (Stage) menuButton.getScene().getWindow();
       Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
       Scene scene = new Scene(parent);
       stage.setScene(scene);
