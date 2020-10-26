@@ -43,7 +43,7 @@
          <right>
             <VBox alignment="TOP_CENTER" prefHeight="483.0" prefWidth="553.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="scoreTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
                       <TableColumn prefWidth="552.0" text="HIGHSCORES" />
                     </columns>

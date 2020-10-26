@@ -25,12 +25,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
+import quizapp.json.UsernameHandler;
 
 public class ScoreboardController implements Initializable {
 
   @FXML
   MenuBar menuBar;
-
+  @FXML
+  TableView scoreTable;
   @FXML
   MenuButton menuButton;
   @FXML
@@ -42,10 +44,16 @@ public class ScoreboardController implements Initializable {
   final List<User> users = handler.loadFromFile();
   private Map<String, ArrayList<User>> scoreMap = new HashMap<>();
   private Quiz quizCore = new Quiz();
+  private String usernamePath = 
+      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
+  private UsernameHandler userHandler = new UsernameHandler(usernamePath);
+  private String username;
 
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
+    username = userHandler.loadActiveUser();
+    menuButton.setText(username);
     updateBoardInfo();
     TableView<String> tableView = new TableView<String>();
     for (String quizname : scoreMap) {

@@ -8,15 +8,13 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="491.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.HistoryQuizController">
+<AnchorPane prefHeight="491.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.QuizController">
    <children>
       <BorderPane prefHeight="491.0" prefWidth="553.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -30,7 +28,7 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="80.0">
                                        <children>
-                                          <Label text="History Quiz">
+                                          <Label fx:id="quiz_name" text="Quiz name">
                                              <font>
                                                 <Font size="40.0" />
                                              </font>
@@ -42,8 +40,11 @@
                                             </Label>
                                        </children>
                                     </HBox>
-                                    <Label text="1. When was SceneBuilder created?" />
-                                    <RadioButton fx:id="q1a1" mnemonicParsing="false" text="2008">
+                                    <Label fx:id="question1" text="Question 1">
+                                       <graphic>
+                                          <Label text="1." />
+                                       </graphic></Label>
+                                    <RadioButton fx:id="q1a1" mnemonicParsing="false" text="Alt 1">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -51,23 +52,26 @@
                                           <ToggleGroup fx:id="Q1" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="q1a2" mnemonicParsing="false" text="2010" toggleGroup="$Q1">
+                                    <RadioButton fx:id="q1a2" mnemonicParsing="false" text="Alt 2" toggleGroup="$Q1">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </RadioButton>
-                                    <RadioButton fx:id="q1a3" mnemonicParsing="false" text="2012" toggleGroup="$Q1">
+                                    <RadioButton fx:id="q1a3" mnemonicParsing="false" text="Alt 3" toggleGroup="$Q1">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </RadioButton>
-                                    <RadioButton fx:id="q1a4" mnemonicParsing="false" text="2014" toggleGroup="$Q1">
+                                    <RadioButton fx:id="q1a4" mnemonicParsing="false" text="Alt 4" toggleGroup="$Q1">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </RadioButton>
-                                    <Label text="2. When was Java created?" />
-                                    <RadioButton fx:id="q2a1" mnemonicParsing="false" text="1982">
+                                    <Label fx:id="question2" text="Question 2">
+                                       <graphic>
+                                          <Label text="2." />
+                                       </graphic></Label>
+                                    <RadioButton fx:id="q2a1" mnemonicParsing="false" text="Alt 1">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -75,23 +79,26 @@
                                           <ToggleGroup fx:id="Q2" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="q2a2" mnemonicParsing="false" text="1987" toggleGroup="$Q2">
+                                    <RadioButton fx:id="q2a2" mnemonicParsing="false" text="Alt 2" toggleGroup="$Q2">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </RadioButton>
-                                    <RadioButton fx:id="q2a3" mnemonicParsing="false" text="1992" toggleGroup="$Q2">
+                                    <RadioButton fx:id="q2a3" mnemonicParsing="false" text="Alt 3" toggleGroup="$Q2">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </RadioButton>
-                                    <RadioButton fx:id="q2a4" mnemonicParsing="false" text="1996" toggleGroup="$Q2">
+                                    <RadioButton fx:id="q2a4" mnemonicParsing="false" text="Alt  4" toggleGroup="$Q2">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </RadioButton>
-                                    <Label text="3. When was gitlab created?" />
-                                    <RadioButton fx:id="q3a1" mnemonicParsing="false" text="2012">
+                                    <Label fx:id="question3" text="Question 3">
+                                       <graphic>
+                                          <Label text="3." />
+                                       </graphic></Label>
+                                    <RadioButton fx:id="q3a1" mnemonicParsing="false" text="Alt 1">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -99,17 +106,17 @@
                                           <ToggleGroup fx:id="Q3" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="q3a2" mnemonicParsing="false" text="2013" toggleGroup="$Q3">
+                                    <RadioButton fx:id="q3a2" mnemonicParsing="false" text="Alt 2" toggleGroup="$Q3">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </RadioButton>
-                                    <RadioButton fx:id="q3a3" mnemonicParsing="false" text="2014" toggleGroup="$Q3">
+                                    <RadioButton fx:id="q3a3" mnemonicParsing="false" text="Alt 3" toggleGroup="$Q3">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </RadioButton>
-                                    <RadioButton fx:id="q3a4" mnemonicParsing="false" text="2015" toggleGroup="$Q3">
+                                    <RadioButton fx:id="q3a4" mnemonicParsing="false" text="Alt 4" toggleGroup="$Q3">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -133,11 +140,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="400.0">
                      <children>
-                        <ImageView fx:id="mainMenu" fitHeight="55.0" fitWidth="177.0" onMouseClicked="#goToMainMenu" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/QuizLogo.png" />
-                           </image>
-                        </ImageView>
+                        <Button fx:id="mainMenu" mnemonicParsing="false" onAction="#goToMainMenu" text="Main Menu" />
                      </children>
                      <HBox.margin>
                         <Insets left="10.0" />

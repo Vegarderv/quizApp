@@ -20,6 +20,7 @@ public class UsernameHandlerTest {
     // Creates a user
     User user = new User();
     user.setUsername("gr2022");
+    user.setPassword("password");
     new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json").writeToFile(Arrays.asList(user));
   }
 
