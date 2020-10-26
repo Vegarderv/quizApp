@@ -1,9 +1,11 @@
 package quizapp.ui;
 
+import java.awt.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -19,16 +21,13 @@ public class ProfilePageController extends QuizAppController {
   MenuButton userMenuProfilePage;
   
   @FXML
-  MenuItem menuMainMenu;
-
-  @FXML
   MenuItem menuSignOut;
 
   @FXML
-  Label nameId;
+  Button DMButton;
 
   @FXML
-  Label scoreId;
+  Label nameId, scoreId;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,9 +43,24 @@ public class ProfilePageController extends QuizAppController {
   }
 
   @FXML
+  public void changeToDarkMode(ActionEvent event){
+  }
+ /* public String changeTypeDarkMode(){
+    JsonHandler jsonHandler = new JsonHandler(
+        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+       Boolean DMcheck= jsonHandler.loadActiveUser().getDarkMode();
+       jsonHandler.loadActiveUser().setDarkMode(!DMcheck);
+       if(DMcheck){
+         return "Darkmode";
+       }
+       return "Lightmode";
+       }*/
+ 
+  @FXML
   public void goToMainMenu(MouseEvent event) {
     this.switchSceneWithNode("MainPage.fxml", userMenuProfilePage);
   }
+  
 
   @FXML
   public void goLogOut(ActionEvent event) {
