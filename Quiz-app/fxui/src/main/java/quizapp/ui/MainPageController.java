@@ -2,9 +2,7 @@ package quizapp.ui;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Observable;
 import java.util.ResourceBundle;
-
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -73,6 +71,10 @@ public class MainPageController extends QuizAppController {
     this.switchSceneWithNode("Login.fxml", menuButton);
   }
 
+
+  /**
+   * Method for adding buttons for extra quizzes created
+   */
   private void addButtons() {
     List<Quiz> quizzes = new QuizHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json")
         .loadFromFile();
@@ -80,8 +82,8 @@ public class MainPageController extends QuizAppController {
       ObservableList<Node> children = hBox.getChildren();
       for (int i = 3; i < quizzes.size(); i++) {
         Button button = new Button(quizzes.get(i).getName());
-        button.setPrefSize(812.0, 180.0);
-        button.setMinWidth(812.0);
+        button.setPrefSize(436.0, 180.0);
+        button.setMinWidth(436.0);
         button.setId(quizzes.get(i).getName());
         button.setOnAction(new EventHandler<ActionEvent>(){
         

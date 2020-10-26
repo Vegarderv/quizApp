@@ -29,6 +29,8 @@
     "username": "Dragvoll",
     "password": "Hadebra",
     "darkMode": false,
-    "quizzesTaken": {}
+    "quizzesTaken": {
+      "HistoryQuiz": 1.0
+    }
   }
 ]

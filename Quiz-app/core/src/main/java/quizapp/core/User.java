@@ -59,7 +59,7 @@ public class User {
   }
 
   /**
-   * @return the currentQuiz
+   * return the currentQuiz.
    */
   public Quiz getCurrentQuiz() {
     return currentQuiz;
@@ -67,7 +67,7 @@ public class User {
 
 
   /**
-   * @param currentQuiz the currentQuiz to set
+   * currentQuiz the currentQuiz to set.
    */
   public void setCurrentQuiz(Quiz currentQuiz) {
     this.currentQuiz = currentQuiz;

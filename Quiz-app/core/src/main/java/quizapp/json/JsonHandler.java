@@ -68,6 +68,9 @@ public class JsonHandler {
 
   }
 
+  /**
+   * Loads user that currently is active.
+   */
   public User loadActiveUser() {
     UsernameHandler usernameHandler = new UsernameHandler(
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
@@ -76,9 +79,17 @@ public class JsonHandler {
         .findFirst().get();
   }
 
-  public void updateUser(User user){
+
+  /**
+   * Adds User to database.
+   */
+  public void updateUser(User user) {
     List<User> users = loadFromFile();
-    User user2 = users.stream().filter(u -> u.getUsername().equals(user.getUsername())).findAny().get();
+    User user2 = users
+        .stream()
+        .filter(u -> u.getUsername().equals(user.getUsername()))
+        .findAny()
+        .get();
     users.remove(user2);
     users.add(user);
     writeToFile(users);
