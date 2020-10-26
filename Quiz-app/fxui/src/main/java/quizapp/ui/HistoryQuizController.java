@@ -122,7 +122,7 @@ public class HistoryQuizController extends QuizAppController {
   }
 
   @FXML
-  void goToMainMenu(ActionEvent event) {
+  void goToMainMenu(MouseEvent event) {
     this.switchSceneWithNode("MainPage.fxml", userMenu);
   }
 
