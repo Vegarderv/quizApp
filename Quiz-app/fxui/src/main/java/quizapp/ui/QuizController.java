@@ -165,4 +165,8 @@ public class QuizController implements Initializable {
     this.switchSceneWithMenuItem("MainPage.fxml");
   }
 
+  public String getName() {
+    return quiz_name.getText();
+  }
+
 }

@@ -21,6 +21,7 @@
                     <items>
                         <MenuItem mnemonicParsing="false" fx:id="profileButton" onAction="#goToProfile" text="Profile page" />
                         <MenuItem mnemonicParsing="false" fx:id="menuSignOut" onAction="#logOut" text="Log out" />
+                        <MenuItem mnemonicParsing="false" fx:id="scoreboardButton" onAction="#goToScoreboard" text="Scoreboard" />
                     </items>
                 </MenuButton>
                 <ScrollPane layoutX="6.0" layoutY="169.0" prefHeight="231.0" prefWidth="585.0">
