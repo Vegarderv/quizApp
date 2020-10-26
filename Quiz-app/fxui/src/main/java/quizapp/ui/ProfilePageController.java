@@ -5,17 +5,15 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
 public class ProfilePageController extends QuizAppController {
 
-  @FXML
-  MenuBar menuBar;
 
   @FXML
   MenuButton userMenuProfilePage;
@@ -46,13 +44,13 @@ public class ProfilePageController extends QuizAppController {
   }
 
   @FXML
-  public void goToMainMenu(ActionEvent event) {
-    this.switchSceneWithNode("MainPage.fxml", menuBar);
+  public void goToMainMenu(MouseEvent event) {
+    this.switchSceneWithNode("MainPage.fxml", userMenuProfilePage);
   }
 
   @FXML
   public void goLogOut(ActionEvent event) {
-    this.switchSceneWithNode("Login.fxml", menuBar);
+    this.switchSceneWithNode("Login.fxml", userMenuProfilePage);
   }
 
   private User getActiveUser() {

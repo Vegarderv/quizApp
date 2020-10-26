@@ -1,34 +1,69 @@
 [
   {
     "username": "gr2022",
-    "password": "gitlab",
+    "password": "hi/wc2QsFdbNJK/j6aL+JA\u003d\u003d",
     "darkMode": true,
     "quizzesTaken": {}
   },
   {
-    "username": "Hallvard",
-    "password": "Trætteberg",
+    "username": "George",
+    "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
+    "darkMode": false,
+    "quizzesTaken": {}
+  },
+  {
+    "username": "Gløs",
+    "password": "lega25jRHZqQKp2DKatRDQ\u003d\u003d",
+    "darkMode": false,
+    "quizzesTaken": {}
+  },
+  {
+    "username": "Dragvoll",
+    "password": "NeQsmOmddsFh0CFAZ5/XGQ\u003d\u003d",
     "darkMode": false,
     "quizzesTaken": {
       "HistoryQuiz": 1.0
     }
   },
   {
-    "username": "George",
-    "password": "Stoica",
+    "username": "Hallvard",
+    "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
     "darkMode": false,
-    "quizzesTaken": {}
-  },
-  {
-    "username": "Gløs",
-    "password": "T-town",
-    "darkMode": false,
-    "quizzesTaken": {}
-  },
-  {
-    "username": "Dragvoll",
-    "password": "Hadebra",
-    "darkMode": false,
+    "currentQuiz": {
+      "questions": [
+        {
+          "question": "What country has the longest coastline in the world?",
+          "correct_alternative": 1,
+          "alternatives": [
+            "Canada",
+            "Norway",
+            "Indonesia",
+            "Greenland"
+          ]
+        },
+        {
+          "question": "What country is the newest in the world to be recognised by the UN?",
+          "correct_alternative": 3,
+          "alternatives": [
+            "Kosovo",
+            "Serbia",
+            "South Sudan",
+            "Timor-Leste"
+          ]
+        },
+        {
+          "question": "What African country has the largest population?",
+          "correct_alternative": 2,
+          "alternatives": [
+            "Eqypt",
+            "Nigeria",
+            "South Africa",
+            "The Democratic Republic of Congo"
+          ]
+        }
+      ],
+      "name": "Geography quiz"
+    },
     "quizzesTaken": {
       "HistoryQuiz": 1.0
     }

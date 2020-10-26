@@ -9,7 +9,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
@@ -21,8 +20,6 @@ import quizapp.json.UsernameHandler;
 
 public class MainPageController extends QuizAppController {
 
-  @FXML
-  MenuBar menuBar;
   @FXML
   MenuButton menuButton;
   @FXML

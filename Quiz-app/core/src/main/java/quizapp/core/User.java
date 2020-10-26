@@ -50,6 +50,10 @@ public class User {
     return quizzesTaken.get(quiz);
   }
 
+  public String toString() {
+    return username + " " + password;
+  }
+  
   public Boolean getDarkMode() {
     return darkMode;
   }
