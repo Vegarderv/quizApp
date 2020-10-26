@@ -3,7 +3,6 @@ package quizapp.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -20,10 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import quizapp.core.Quiz;
 import quizapp.core.User;
@@ -33,10 +30,12 @@ import quizapp.json.UsernameHandler;
 
 public class ScoreboardController implements Initializable {
 
+  //mvn javafx:run -f fxui/pom.xml
+
   @FXML
   MenuBar menuBar;
   @FXML
-  TableView scoreTable;
+  TextFlow textFlow;
   @FXML
   MenuButton menuButton;
   @FXML
@@ -62,16 +61,16 @@ public class ScoreboardController implements Initializable {
     username = userHandler.loadActiveUser();
     menuButton.setText(username);
     updateBoardInfo();
-    TableView<String> tableView = new TableView<String>();
+    //need to update from tableview to to textflow
     for (String quizname : this.scoreMap.keySet()) {
-      tableView.getItems().add(quizname);
+      scoreTable.getItems().add(quizname);
       for (User user : scoreMap.get(quizname)) {
-        tableView.getItems().add(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
+        scoreTable.getItems().add(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
         user.getUsername() + ": " + user.getScore(quizname));
       }
-      tableView.getItems().add("  ");
-      tableView.getItems().add("**************************************");
-      tableView.getItems().add("  ");
+      scoreTable.getItems().add("  ");
+      scoreTable.getItems().add("**************************************");
+      scoreTable.getItems().add("  ");
     }
   }
 

@@ -1,6 +1,6 @@
 package quizapp.core;
 
-import java.util.Comparator;
+
 import java.util.HashMap;
 
 public class User {
@@ -53,14 +53,16 @@ public class User {
 
   
   public int compareQuizScores(User a, User b, String quiz) {
-    if (a.getScore(quiz) > b.getScore(quiz)) {
-      return 1;
-    }
-    if (a.getScore(quiz) == b.getScore(quiz)) {
-      return 0;
-    }
-    if (a.getScore(quiz) < b.getScore(quiz)) {
-      return -1;
+    try {
+      if (a.getScore(quiz) > b.getScore(quiz)) {
+        return 1;
+      }
+      if (a.getScore(quiz) == b.getScore(quiz)) {
+        return 0;
+      }
+      if (a.getScore(quiz) < b.getScore(quiz)) {
+        return -1;
+      }
     }
     throw new IllegalArgumentException("The users must have taken the given quiz.");
   }
