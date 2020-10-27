@@ -16,10 +16,9 @@ import quizapp.json.UsernameHandler;
 
 public class ProfilePageController extends QuizAppController {
 
-
   @FXML
   MenuButton userMenuProfilePage;
-  
+
   @FXML
   MenuItem menuSignOut;
 
@@ -27,44 +26,53 @@ public class ProfilePageController extends QuizAppController {
   Button DMButton;
 
   @FXML
-  Label nameId, scoreId;
+  Label nameId, scoreId, DarkmodeLabel;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     UsernameHandler userHandler = new UsernameHandler(
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+   
     String userName = userHandler.loadActiveUser();
     double percentage = getActiveUser().meanScore() * 100;
     String score = String.valueOf(Math.round((percentage))) + "  %";
+    Boolean DM = this.getActiveUser().getDarkMode();
     nameId.setText(userName);
-    scoreId.setText(score);
     userMenuProfilePage.setText(userName);
+    DarkmodeLabel.setText(typeDarkMode());
 
   }
 
-  @FXML
-  public void changeToDarkMode(ActionEvent event){
+  public String typeDarkMode() {
+    Boolean check = this.getActiveUser().getDarkMode();
+    if (check == true) {
+      return ("ON");
+    }
+    return ("OFF");
   }
- /* public String changeTypeDarkMode(){
-    JsonHandler jsonHandler = new JsonHandler(
+
+  public void changeDarkMode() {
+     JsonHandler jsonHandler = new JsonHandler(
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-       Boolean DMcheck= jsonHandler.loadActiveUser().getDarkMode();
-       jsonHandler.loadActiveUser().setDarkMode(!DMcheck);
-       if(DMcheck){
-         return "Darkmode";
-       }
-       return "Lightmode";
-       }*/
- 
+      getActiveUser().setDarkMode(!getActiveUser().getDarkMode());
+      jsonHandler.updateUser(getActiveUser());
+  }
+
   @FXML
   public void goToMainMenu(MouseEvent event) {
+
     this.switchSceneWithNode("MainPage.fxml", userMenuProfilePage);
   }
-  
 
   @FXML
   public void goLogOut(ActionEvent event) {
     this.switchSceneWithNode("Login.fxml", userMenuProfilePage);
+  }
+
+  @FXML
+  public void changeTextDarkMode(ActionEvent event) {
+    changeDarkMode();
+    DarkmodeLabel.setText(typeDarkMode());
   }
 
   private User getActiveUser() {
@@ -73,8 +81,7 @@ public class ProfilePageController extends QuizAppController {
     UsernameHandler usernameHandler = new UsernameHandler(
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
     return jsonHandler.loadFromFile().stream()
-        .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser()))
-        .findFirst().get();
+        .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser())).findFirst().get();
   }
 
 }
