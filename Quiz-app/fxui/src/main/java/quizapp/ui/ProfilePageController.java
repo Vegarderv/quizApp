@@ -1,10 +1,14 @@
 package quizapp.ui;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -32,30 +36,60 @@ public class ProfilePageController extends QuizAppController {
   public void initialize(URL url, ResourceBundle resourceBundle) {
     UsernameHandler userHandler = new UsernameHandler(
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
-   
+
     String userName = userHandler.loadActiveUser();
     double percentage = getActiveUser().meanScore() * 100;
     String score = String.valueOf(Math.round((percentage))) + "  %";
     Boolean DM = this.getActiveUser().getDarkMode();
     nameId.setText(userName);
     userMenuProfilePage.setText(userName);
-    DarkmodeLabel.setText(typeDarkMode());
+    DarkmodeLabel.setText(initDarkMode());
 
   }
 
-  public String typeDarkMode() {
-    Boolean check = this.getActiveUser().getDarkMode();
-    if (check == true) {
+  public String initDarkMode() {
+    Boolean check = getActiveUser().getDarkMode();
+    if (check) {
       return ("ON");
     }
     return ("OFF");
   }
 
+  public String typeDarkMode() {
+    try {
+      Boolean check = getActiveUser().getDarkMode();
+      Parent parent = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));
+      Scene scene = new Scene(parent);
+      if (check) {
+        try {
+          scene.getStylesheets().remove("lightmode.css");
+        } catch (Exception e) {
+          //TODO: handle exception
+        }
+        try {
+          scene.getStylesheets().remove("darkmode.css");
+        } catch (Exception e) {
+          //TODO: handle exception
+        }
+        scene.getStylesheets().add(getClass().getResource("darkmode.css").toExternalForm());
+        
+        return ("ON");
+      }
+      scene.getStylesheets().add(getClass().getResource("lightmode.css").toExternalForm());
+      return ("OFF");
+    } catch (IOException e) {
+      e.printStackTrace();
+      return null;
+    }
+
+  }
+
   public void changeDarkMode() {
-     JsonHandler jsonHandler = new JsonHandler(
+    User user = getActiveUser();
+    JsonHandler jsonHandler = new JsonHandler(
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-      getActiveUser().setDarkMode(!getActiveUser().getDarkMode());
-      jsonHandler.updateUser(getActiveUser());
+    user.setDarkMode(!user.getDarkMode());
+    jsonHandler.updateUser(user);
   }
 
   @FXML
