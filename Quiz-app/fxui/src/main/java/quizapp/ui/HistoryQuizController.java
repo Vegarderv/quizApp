@@ -14,7 +14,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import quizapp.core.Score;
 import quizapp.json.UsernameHandler;
 
@@ -122,7 +121,7 @@ public class HistoryQuizController extends QuizAppController {
   }
 
   @FXML
-  void goToMainMenu(ActionEvent event) {
+  void goToMainMenu(MouseEvent event) {
     this.switchSceneWithNode("MainPage.fxml", userMenu);
   }
 
