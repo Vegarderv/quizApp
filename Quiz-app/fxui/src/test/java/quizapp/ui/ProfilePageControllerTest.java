@@ -1,8 +1,11 @@
-/*package quizapp.ui;
+package quizapp.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.concurrent.TimeUnit;
+
 import org.junit.jupiter.api.Test;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,25 +35,25 @@ public class ProfilePageControllerTest extends FxuiTest {
   @Test
   public void logOutTest() {
     // Checks that we are in the history quiz scene
-    assertNotNull(stage.getScene().lookup("#menuBar"));
+    assertNotNull(stage.getScene().lookup("#userMenuProfilePage"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
     // Changes Scene to logOut
     clickOnMenuItem("#userMenuProfilePage", "#menuSignOut");
     // Checks that scene is changed to logOut
-    assertNull(stage.getScene().lookup("#submit"));
+    assertNull(stage.getScene().lookup("#userMenuProfilePage"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
   }
 
   @Test
   public void goToMainMenuTest() {
     // Checks that we are in the history quiz stage
-    assertNotNull(stage.getScene().lookup("#menuBar"));
-    assertNull(stage.getScene().lookup("#mainPageButton"));
+    assertNotNull(stage.getScene().lookup("#userMenuProfilePage"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     // Changes Scene to Main Menu
-    clickOnMenuItem("#userMenuProfilePage", "#menuMainMenu");
+    clickOnButton("#mainMenu");
     // Checks that we are on the Main page scene
-    assertNull(stage.getScene().lookup("#submit"));
-    assertNotNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#userMenuProfilePage"));
+    assertNotNull(stage.getScene().lookup("#menuButton"));
   }
 
   @Test
@@ -72,4 +75,3 @@ public class ProfilePageControllerTest extends FxuiTest {
     assertEquals(String.valueOf(Math.round((user.meanScore()*100))) + "  %", label.getText());
   }
 }
-*/
