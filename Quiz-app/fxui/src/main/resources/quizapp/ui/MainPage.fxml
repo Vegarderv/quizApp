@@ -20,7 +20,7 @@
                <content>
                   <AnchorPane prefHeight="117.0" prefWidth="599.0">
                      <children>
-                        <Button layoutX="172.0" layoutY="21.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="256.0" text="Make your own Quiz!">
+                        <Button onAction="#goToNewQuiz" layoutX="172.0" layoutY="21.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="256.0" text="Make your own Quiz!">
                            <font>
                               <Font name="Calibri" size="20.0" />
                            </font>

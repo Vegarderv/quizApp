@@ -43,6 +43,12 @@ public class MainPageController extends QuizAppController {
       "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
   private String username;
 
+
+  @FXML
+  public void goToNewQuiz() {
+    this.switchSceneWithNode("AddQuiz.fxml", menuButton);
+  }
+  
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     username = userHandler.loadActiveUser();

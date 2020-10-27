@@ -8,11 +8,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import quizapp.core.Question;
 import quizapp.core.Quiz;
 import quizapp.json.QuizHandler;
+import quizapp.json.UsernameHandler;
 
 public class AddQuizController extends QuizAppController {
 
@@ -22,6 +24,9 @@ public class AddQuizController extends QuizAppController {
   TextField q1an1, q1an2, q1an3, q1an4, q2an1, q2an2, q2an3, q2an4, q3an1, q3an2, q3an3, q3an4, title, q1, q2, q3;
   @FXML
   Label score;
+  @FXML
+  MenuButton userMenu;
+
   private List<RadioButton> radioButtonGroup1 = new ArrayList<>();
   private List<RadioButton> radioButtonGroup2 = new ArrayList<>();
   private List<RadioButton> radioButtonGroup3 = new ArrayList<>();
@@ -35,9 +40,12 @@ public class AddQuizController extends QuizAppController {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     addElemsToLists();
+    userMenu
+        .setText(new UsernameHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json")
+            .loadActiveUser());
 
   }
-  
+
   @FXML
   void goToProfile(ActionEvent event) {
     this.switchSceneWithNode("ProfilePage.fxml", title);
@@ -52,7 +60,7 @@ public class AddQuizController extends QuizAppController {
   void goToMainMenu(ActionEvent event) {
     this.switchSceneWithNode("MainPage.fxml", title);
   }
-  
+
   public void submitQuiz() {
     if (!checkIfQuizIsFilled()) {
       score.setText("Invalid Quiz. Check that all fields are filled and correct answers are chosen");
@@ -61,11 +69,11 @@ public class AddQuizController extends QuizAppController {
     QuizHandler quizHandler = new QuizHandler(
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
     Question question1 = new Question(q1.getText(), q1an1.getText(), q1an2.getText(), q1an3.getText(), q1an4.getText(),
-        radioButtonGroup1.indexOf(radioButtonGroup1.stream().filter(p -> p.isSelected()).findAny().get())+1);
+        radioButtonGroup1.indexOf(radioButtonGroup1.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
     Question question2 = new Question(q2.getText(), q2an1.getText(), q2an2.getText(), q2an3.getText(), q2an4.getText(),
-        radioButtonGroup2.indexOf(radioButtonGroup2.stream().filter(p -> p.isSelected()).findAny().get())+1);
+        radioButtonGroup2.indexOf(radioButtonGroup2.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
     Question question3 = new Question(q3.getText(), q3an1.getText(), q3an2.getText(), q3an3.getText(), q3an4.getText(),
-        radioButtonGroup3.indexOf(radioButtonGroup3.stream().filter(p -> p.isSelected()).findAny().get())+1);
+        radioButtonGroup3.indexOf(radioButtonGroup3.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
     List<Quiz> quizzes = quizHandler.loadFromFile();
     quizzes.add(new Quiz(title.getText(), question1, question2, question3));
     quizHandler.writeToFile(quizzes);
