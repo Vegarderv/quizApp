@@ -103,5 +103,40 @@
       }
     ],
     "name": "Geography quiz"
+  },
+  {
+    "questions": [
+      {
+        "question": "Malin",
+        "correct_alternative": 1,
+        "alternatives": [
+          "Ja",
+          "Nei",
+          "Finnes hun",
+          "Nei"
+        ]
+      },
+      {
+        "question": "Havregrøt?",
+        "correct_alternative": 1,
+        "alternatives": [
+          "Absolutt",
+          "Kanskje",
+          "aldri",
+          "hvorfor"
+        ]
+      },
+      {
+        "question": "Beste spill",
+        "correct_alternative": 4,
+        "alternatives": [
+          "Zelda",
+          "Mario",
+          "Smash",
+          "Quiz-app"
+        ]
+      }
+    ],
+    "name": "Malin Quiz"
   }
 ]

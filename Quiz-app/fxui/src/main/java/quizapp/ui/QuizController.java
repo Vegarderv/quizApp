@@ -20,7 +20,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import quizapp.core.Question;
 import quizapp.core.Quiz;
 import quizapp.core.Score;
 import quizapp.json.JsonHandler;
