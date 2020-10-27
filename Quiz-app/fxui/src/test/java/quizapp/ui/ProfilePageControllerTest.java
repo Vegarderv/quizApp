@@ -31,7 +31,7 @@ public class ProfilePageControllerTest extends FxuiTest {
 
   @Test
   public void logOutTest() {
-    // Checks that we are in the history quiz scene
+    // Checks that we on profile page
     assertNotNull(stage.getScene().lookup("#userMenuProfilePage"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
     // Changes Scene to logOut
@@ -43,7 +43,7 @@ public class ProfilePageControllerTest extends FxuiTest {
 
   @Test
   public void goToMainMenuTest() {
-    // Checks that we are in the history quiz stage
+    // Checks that we on profile page
     assertNotNull(stage.getScene().lookup("#userMenuProfilePage"));
     assertNull(stage.getScene().lookup("#menuButton"));
     // Changes Scene to Main Menu
