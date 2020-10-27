@@ -19,7 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import quizapp.core.Quiz;
@@ -61,16 +61,15 @@ public class ScoreboardController implements Initializable {
     username = userHandler.loadActiveUser();
     menuButton.setText(username);
     updateBoardInfo();
-    //need to update from tableview to to textflow
     for (String quizname : this.scoreMap.keySet()) {
-      scoreTable.getItems().add(quizname);
+      textFlow.getChildren().add(new Text(quizname));
       for (User user : scoreMap.get(quizname)) {
-        scoreTable.getItems().add(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
-        user.getUsername() + ": " + user.getScore(quizname));
+        textFlow.getChildren().add(new Text(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
+        user.getUsername() + ": " + user.getScore(quizname)));
       }
-      scoreTable.getItems().add("  ");
-      scoreTable.getItems().add("**************************************");
-      scoreTable.getItems().add("  ");
+      textFlow.getChildren().add(new Text(" "));
+      textFlow.getChildren().add(new Text("**************************************"));
+      textFlow.getChildren().add(new Text(" "));
     }
   }
 
@@ -79,20 +78,36 @@ public class ScoreboardController implements Initializable {
     return quizzes;
   }
 
+  public int compareQuizScores(User a, User b, String quiz) {
+    //compares quizscores of two users
+    if (a.getScore(quiz) > b.getScore(quiz)) {
+      return 1;
+    }
+    if (a.getScore(quiz) == b.getScore(quiz)) {
+      return 0;
+    }
+    if (a.getScore(quiz) < b.getScore(quiz)) {
+      return -1;
+    }
+    throw new IllegalArgumentException("The users must have taken the given quiz.");
+  }
+
 
   public ArrayList<User> mergeUser(User user, ArrayList<User> topScorers, String quiz) {
+    //this function checks if a new user schould be in the top three users in the relevant quiz
     if (topScorers.size() < 3) { 
         topScorers.add(user);
-        Collections.sort(topScorers, (a, b) -> a.compareQuizScores(a,b,quiz));
+        Collections.sort(topScorers, (a, b) -> compareQuizScores(a,b,quiz));
         return topScorers;
     }
     topScorers.add(user);
-    Collections.sort(topScorers, (a, b) -> a.compareQuizScores(a,b,quiz));
+    Collections.sort(topScorers, (a, b) -> compareQuizScores(a,b,quiz));
     topScorers.remove(3);
     return topScorers;
   }
 
   public Map<String, ArrayList<User>> updateBoardInfo() {
+    //makes the score map that is used in the scoreboard
     for (Quiz quiz : this.getQuizzes()) {
       ArrayList<User> topScorers = new ArrayList<>();
       String name = quiz.getName();

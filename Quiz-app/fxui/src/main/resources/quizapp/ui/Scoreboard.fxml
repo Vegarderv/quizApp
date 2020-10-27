@@ -26,7 +26,7 @@
                      <children>
                         <Label layoutX="181.0" layoutY="14.0" prefHeight="40.0" prefWidth="238.0" text="HIGHSCORES">
                            <font>
-                              <Font size="40.0" />
+                              <Font size="34.0" />
                            </font>
                         </Label>
                         <TextFlow fx:id="textFlow" layoutY="72.0" prefHeight="288.0" prefWidth="586.0" />
