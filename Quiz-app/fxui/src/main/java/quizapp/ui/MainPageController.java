@@ -79,6 +79,7 @@ public class MainPageController extends QuizAppController {
   @FXML
   public void goToScoreboard(ActionEvent event) {
     this.switchSceneWithNode("Scoreboard.fxml", menuButton);
+  }
 
   /**
    * Method for adding buttons for extra quizzes created

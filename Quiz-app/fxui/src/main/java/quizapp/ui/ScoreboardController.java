@@ -22,13 +22,16 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import jdk.internal.org.jline.terminal.MouseEvent;
 import quizapp.core.Quiz;
 import quizapp.core.User;
+import javafx.scene.text.Font;
+import javafx.scene.input.MouseEvent;
 import quizapp.json.JsonHandler;
 import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
 
-public class ScoreboardController implements Initializable {
+public class ScoreboardController extends QuizAppController {
 
   //mvn javafx:run -f fxui/pom.xml
 
@@ -62,14 +65,12 @@ public class ScoreboardController implements Initializable {
     menuButton.setText(username);
     updateBoardInfo();
     for (String quizname : this.scoreMap.keySet()) {
-      textFlow.getChildren().add(new Text(quizname));
+      Text text = new Text(quizname);
+      textFlow.getChildren().add(text);
       for (User user : scoreMap.get(quizname)) {
         textFlow.getChildren().add(new Text(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
         user.getUsername() + ": " + user.getScore(quizname)));
       }
-      textFlow.getChildren().add(new Text(" "));
-      textFlow.getChildren().add(new Text("**************************************"));
-      textFlow.getChildren().add(new Text(" "));
     }
   }
 
@@ -121,46 +122,19 @@ public class ScoreboardController implements Initializable {
     return this.scoreMap;
   }
 
-  public void switchSceneWithButton(ActionEvent event, String fxmlFile) {
-    try {
-      Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
-      Scene scene = new Scene(parent);
-      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      stage.setScene(scene);
-      stage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * Method for changing scene with a MenuItem.
-   */
-  public void switchSceneWithMenuItem(String fxmlFile) {
-    try {
-      Stage stage = (Stage) menuBar.getScene().getWindow();
-      Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
-      Scene scene = new Scene(parent);
-      stage.setScene(scene);
-      stage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
    @FXML
-  public void goToProfile(ActionEvent event) {
-    this.switchSceneWithMenuItem("ProfilePage.fxml");
+  public void goToProfilePage(ActionEvent event) {
+    this.switchSceneWithNode("ProfilePage.fxml", userMenu);
   }
 
   @FXML
-  public void logOut(ActionEvent event) {
-    this.switchSceneWithMenuItem("Login.fxml");
+  public void goLogOut(ActionEvent event) {
+    this.switchSceneWithNode("Login.fxml", userMenu);
   }
   
   @FXML
-  void goToMainMenu(ActionEvent event) {
-    this.switchSceneWithMenuItem("MainPage.fxml");
+  void goToMainMenu(MouseEvent event) {
+    this.switchSceneWithNode("MainPage.fxml", userMenu);
   }
 
 }
