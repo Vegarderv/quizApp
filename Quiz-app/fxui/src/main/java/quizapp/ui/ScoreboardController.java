@@ -30,7 +30,7 @@ import quizapp.json.JsonHandler;
 import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
 
-public class ScoreboardController extends QuizAppController {
+public class ScoreboardController extends QuizAppController implements Initializable {
 
   //mvn javafx:run -f fxui/pom.xml
 
@@ -47,38 +47,33 @@ public class ScoreboardController extends QuizAppController {
 
   private JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
   final List<User> users = handler.loadFromFile();
-  private Map<String, ArrayList<User>> scoreMap;
   private String usernamePath = 
       "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
   private UsernameHandler userHandler = new UsernameHandler(usernamePath);
-  private String username;
+  private String username = userHandler.loadActiveUser();
   private String quizPath = 
       "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json";
   private QuizHandler quizHandler = new QuizHandler(quizPath);
+  private List<Quiz> quizzes = quizHandler.loadFromFile();
 
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    this.scoreMap = new HashMap<>();
-    username = userHandler.loadActiveUser();
     userMenu.setText(username);
-    updateBoardInfo();
-    for (String quizname : this.scoreMap.keySet()) {
+    Map<String, ArrayList<User>> scoreMap = getBoardInfo();
+    for (String quizname : scoreMap.keySet()) {
       Text text = new Text(quizname);
       text.setFont(new Font(34.0));
       textFlow.getChildren().add(text);
       textFlow.getChildren().add(new Text(System.lineSeparator()));
       for (User user : scoreMap.get(quizname)) {
-        textFlow.getChildren().add(new Text(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
-        user.getUsername() + ": " + user.getScore(quizname)));
+        Text text1 = new Text(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
+        user.getUsername() + ": " + user.getScore(quizname)*100 + "%");
+        text1.setFont(new Font(24.0));
+        textFlow.getChildren().add(text1);
         textFlow.getChildren().add(new Text(System.lineSeparator()));
       }
     }
-  }
-
-  public List<Quiz> getQuizzes() {
-    List<Quiz> quizzes = quizHandler.loadFromFile();
-    return quizzes;
   }
 
   public int compareQuizScores(User a, User b, String quiz) {
@@ -98,20 +93,24 @@ public class ScoreboardController extends QuizAppController {
 
   public ArrayList<User> mergeUser(User user, ArrayList<User> topScorers, String quiz) {
     //this function checks if a new user schould be in the top three users in the relevant quiz
-    if (topScorers.size() < 3) { 
-        topScorers.add(user);
-        Collections.sort(topScorers, (a, b) -> compareQuizScores(a,b,quiz));
-        return topScorers;
-    }
     topScorers.add(user);
+    if (topScorers.size() == 1) {
+      return topScorers;
+    }
     Collections.sort(topScorers, (a, b) -> compareQuizScores(a,b,quiz));
-    topScorers.remove(3);
-    return topScorers;
+    if (topScorers.size() < 3) { 
+      return topScorers;
+    }
+    else {
+      topScorers.remove(3);
+      return topScorers;
+    }
   }
 
-  public Map<String, ArrayList<User>> updateBoardInfo() {
+  public Map<String, ArrayList<User>> getBoardInfo() {
     //makes the score map that is used in the scoreboard
-    for (Quiz quiz : this.getQuizzes()) {
+    Map<String, ArrayList<User>> scoreMap = new HashMap<>();
+    for (Quiz quiz : this.quizzes) {
       ArrayList<User> topScorers = new ArrayList<>();
       String name = quiz.getName();
       for (User user : this.users) {
@@ -119,9 +118,9 @@ public class ScoreboardController extends QuizAppController {
         topScorers.clear();
         topScorers = mergeUser(user, topScorers, name);
       }
-      this.scoreMap.put(name, topScorers);
+      scoreMap.put(name, topScorers);
     }
-    return this.scoreMap;
+    return scoreMap;
   }
 
    @FXML

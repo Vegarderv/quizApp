@@ -40,8 +40,8 @@
                 <MenuButton fx:id="menuButton" layoutX="486.0" layoutY="14.0" maxHeight="25.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Profile" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                     <items>
                         <MenuItem mnemonicParsing="false" fx:id="profileButton" onAction="#goToProfile" text="Profile page" />
-                        <MenuItem mnemonicParsing="false" fx:id="menuSignOut" onAction="#logOut" text="Log out" />
                         <MenuItem mnemonicParsing="false" fx:id="scoreboardButton" onAction="#goToScoreboard" text="Scoreboard" />
+                        <MenuItem mnemonicParsing="false" fx:id="menuSignOut" onAction="#logOut" text="Log out" />
                     </items>
                 </MenuButton>
                 <ScrollPane layoutX="6.0" layoutY="185.0" prefHeight="215.0" prefWidth="585.0">
