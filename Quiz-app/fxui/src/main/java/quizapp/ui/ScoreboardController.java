@@ -22,11 +22,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import jdk.internal.org.jline.terminal.MouseEvent;
+import javafx.scene.input.MouseEvent;
 import quizapp.core.Quiz;
 import quizapp.core.User;
 import javafx.scene.text.Font;
-import javafx.scene.input.MouseEvent;
 import quizapp.json.JsonHandler;
 import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
@@ -40,7 +39,7 @@ public class ScoreboardController extends QuizAppController {
   @FXML
   TextFlow textFlow;
   @FXML
-  MenuButton menuButton;
+  MenuButton userMenu;
   @FXML
   MenuItem menuSignOut;
   @FXML
@@ -62,14 +61,17 @@ public class ScoreboardController extends QuizAppController {
   public void initialize(URL arg0, ResourceBundle arg1) {
     this.scoreMap = new HashMap<>();
     username = userHandler.loadActiveUser();
-    menuButton.setText(username);
+    userMenu.setText(username);
     updateBoardInfo();
     for (String quizname : this.scoreMap.keySet()) {
       Text text = new Text(quizname);
+      text.setFont(new Font(34.0));
       textFlow.getChildren().add(text);
+      textFlow.getChildren().add(new Text(System.lineSeparator()));
       for (User user : scoreMap.get(quizname)) {
         textFlow.getChildren().add(new Text(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
         user.getUsername() + ": " + user.getScore(quizname)));
+        textFlow.getChildren().add(new Text(System.lineSeparator()));
       }
     }
   }
