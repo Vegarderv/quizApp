@@ -1,8 +1,5 @@
 package quizapp.ui;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,6 +14,10 @@ import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
+
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class MainPageController extends QuizAppController {
 

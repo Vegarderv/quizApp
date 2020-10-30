@@ -1,7 +1,5 @@
 package quizapp.ui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,6 +9,9 @@ import javafx.scene.input.MouseEvent;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ProfilePageController extends QuizAppController {
 

@@ -1,14 +1,13 @@
 package quizapp.json;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import quizapp.core.User;
 
 import java.util.Arrays;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import quizapp.core.User;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class UsernameHandlerTest {
   private UsernameHandler handler = new UsernameHandler("src/main/resources/quizapp/json/activeUserTest.json");

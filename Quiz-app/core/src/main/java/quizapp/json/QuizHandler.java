@@ -3,16 +3,10 @@ package quizapp.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.io.Writer;
-import java.util.List;
 import quizapp.core.Quiz;
+
+import java.io.*;
+import java.util.List;
 
 public class QuizHandler {
   private String path;

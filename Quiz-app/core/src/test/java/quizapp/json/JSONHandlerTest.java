@@ -1,15 +1,14 @@
 package quizapp.json;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import quizapp.core.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import quizapp.core.User;
-import org.junit.jupiter.api.Test;
 
 public class JSONHandlerTest {
 

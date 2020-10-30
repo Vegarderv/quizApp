@@ -1,8 +1,5 @@
 package quizapp.ui;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +8,10 @@ import javafx.scene.control.TextField;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
+
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class SignupController extends QuizAppController {
 

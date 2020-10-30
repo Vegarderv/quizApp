@@ -1,7 +1,8 @@
 package quizapp.core;
 
-import java.util.List;
 import quizapp.json.JsonHandler;
+
+import java.util.List;
 
 public class UsernameCheck {
 

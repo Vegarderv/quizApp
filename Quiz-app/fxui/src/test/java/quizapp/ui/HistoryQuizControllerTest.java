@@ -1,23 +1,21 @@
 package quizapp.ui;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-import java.util.*;
-
-import org.junit.jupiter.api.Test;
-import org.testfx.api.FxAssert;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Test;
+import org.testfx.api.FxAssert;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
-import java.awt.AWTException;
-import java.awt.Robot;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class HistoryQuizControllerTest extends FxuiTest {
 
