@@ -1,11 +1,5 @@
 [
   {
-    "username": "gr2022",
-    "password": "hi/wc2QsFdbNJK/j6aL+JA\u003d\u003d",
-    "darkMode": true,
-    "quizzesTaken": {}
-  },
-  {
     "username": "George",
     "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
     "darkMode": false,
@@ -33,7 +27,7 @@
       "questions": [
         {
           "question": "What country has the longest coastline in the world?",
-          "correct_alternative": 1,
+          "correctAlternative": 0,
           "alternatives": [
             "Canada",
             "Norway",
@@ -43,7 +37,7 @@
         },
         {
           "question": "What country is the newest in the world to be recognised by the UN?",
-          "correct_alternative": 3,
+          "correctAlternative": 0,
           "alternatives": [
             "Kosovo",
             "Serbia",
@@ -53,7 +47,7 @@
         },
         {
           "question": "What African country has the largest population?",
-          "correct_alternative": 2,
+          "correctAlternative": 0,
           "alternatives": [
             "Eqypt",
             "Nigeria",
@@ -65,7 +59,53 @@
       "name": "Geography quiz"
     },
     "quizzesTaken": {
-      "HistoryQuiz": 1.0
+      "Geography quiz": 0.3333333333333333,
+      "HistoryQuiz": 1.0,
+      "Chemistry quiz": 0.0
+    }
+  },
+  {
+    "username": "gr2022",
+    "password": "hi/wc2QsFdbNJK/j6aL+JA\u003d\u003d",
+    "darkMode": true,
+    "currentQuiz": {
+      "questions": [
+        {
+          "question": "Malin",
+          "correctAlternative": 0,
+          "alternatives": [
+            "Ja",
+            "Nei",
+            "Finnes hun",
+            "Nei"
+          ]
+        },
+        {
+          "question": "Havregrøt?",
+          "correctAlternative": 0,
+          "alternatives": [
+            "Absolutt",
+            "Kanskje",
+            "aldri",
+            "hvorfor"
+          ]
+        },
+        {
+          "question": "Beste spill",
+          "correctAlternative": 0,
+          "alternatives": [
+            "Zelda",
+            "Mario",
+            "Smash",
+            "Quiz-app"
+          ]
+        }
+      ],
+      "name": "Malin Quiz"
+    },
+    "quizzesTaken": {
+      "Malin Quiz": 0.6666666666666666,
+      "Chemistry quiz": 0.3333333333333333
     }
   }
 ]

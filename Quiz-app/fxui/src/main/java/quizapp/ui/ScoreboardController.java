@@ -78,9 +78,9 @@ public class ScoreboardController extends QuizAppController implements Initializ
         text1.setFont(new Font(24.0));
         textFlow.getChildren().add(text1);
         textFlow.getChildren().add(new Text(System.lineSeparator()));
-        textFlow.getChildren().add(new Text(System.lineSeparator()));
-        textFlow.getChildren().add(new Text(System.lineSeparator()));
       }
+      textFlow.getChildren().add(new Text(System.lineSeparator()));
+      textFlow.getChildren().add(new Text(System.lineSeparator()));
     }
   }
 
