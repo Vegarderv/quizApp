@@ -20,6 +20,7 @@ public class UserController {
 
   @GetMapping("/user")
   public User getUser(@RequestParam String name) {
-    return new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json").loadUserFromString(name);
+    return new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json").loadUserFromString(
+        name);
   }
 }

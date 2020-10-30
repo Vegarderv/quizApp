@@ -91,7 +91,8 @@ public class JsonHandler {
         .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser()))
         .findFirst().get();
   }
-  public User loadUserfromString(String name) {
+  
+  public User loadUserFromString(String name) {
     return this.loadFromFile().stream()
         .filter(user -> user.getUsername().equals(name))
         .findFirst().get();
