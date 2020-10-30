@@ -30,6 +30,7 @@ import javafx.scene.text.Font;
 import quizapp.json.JsonHandler;
 import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
+import javafx.scene.paint.Color;
 
 public class ScoreboardController extends QuizAppController implements Initializable {
 
@@ -67,13 +68,17 @@ public class ScoreboardController extends QuizAppController implements Initializ
     for (String quizname : scoreMap.keySet()) {
       Text text = new Text(quizname);
       text.setFont(new Font(34.0));
+      //text.setFill(Color.WHEAT);
+      //text.setStyle("-fx-background-color: red");
       textFlow.getChildren().add(text);
       textFlow.getChildren().add(new Text(System.lineSeparator()));
       for (User user : scoreMap.get(quizname)) {
         Text text1 = new Text(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
-        user.getUsername() + ": " + user.getScore(quizname)*100 + "%");
+        user.getUsername() + ": " + Math.round(user.getScore(quizname)*100) + "%");
         text1.setFont(new Font(24.0));
         textFlow.getChildren().add(text1);
+        textFlow.getChildren().add(new Text(System.lineSeparator()));
+        textFlow.getChildren().add(new Text(System.lineSeparator()));
         textFlow.getChildren().add(new Text(System.lineSeparator()));
       }
     }
@@ -105,9 +110,9 @@ public class ScoreboardController extends QuizAppController implements Initializ
     for (Quiz quiz : this.quizzes) {
       ArrayList<User> topScorers = new ArrayList<>();
       String name = quiz.getName();
-      for (User user : this.users) {
-        if (user.quizTaken(name)) {
-          topScorers = mergeUser(user, topScorers, name);
+      for (User userHey : this.users) {
+        if (userHey.quizTaken(name)) {
+          topScorers = mergeUser(userHey, topScorers, name);
         }
       }
       scoreMap.put(name, topScorers);
