@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class HistoryQuizControllerTest extends FxuiTest {
-
+/*
   private Stage stage;
   private String usernamePath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUserTest.json";
   private String jsonPath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json";
@@ -63,14 +63,14 @@ public class HistoryQuizControllerTest extends FxuiTest {
     assertNotNull(stage.getScene().lookup("#userMenuProfilePage"));
   }
 
-  /*
+  
   @Test
   public void checkUserMenuText() {
     // Checks active user and makes sure it matches username displayed in the
     // MenuButton top right
     UsernameHandler userHandler = new UsernameHandler(usernamePath);
     FxAssert.verifyThat("#userMenu", org.testfx.matcher.control.LabeledMatchers.hasText(userHandler.loadActiveUser()));
-  } */
+  } 
 
   @Test
   public void goToMainMenuTest() {
@@ -102,5 +102,5 @@ public class HistoryQuizControllerTest extends FxuiTest {
     FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 100%"));
 
   }
-
+*/
 }

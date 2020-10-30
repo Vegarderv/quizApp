@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class LoginControllerTest extends FxuiTest {
-
+/*
   private Stage stage;
 
   @Override
@@ -87,5 +87,5 @@ public class LoginControllerTest extends FxuiTest {
     clickOnButton("#signUpButtonLoginPage");
     assertNull(stage.getScene().lookup("#signUpButtonLoginPage"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
-  }
+  } */
 }

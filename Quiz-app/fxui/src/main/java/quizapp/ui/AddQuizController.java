@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddQuizController extends QuizAppController {
-
+/*
   @FXML
   RadioButton q1a1, q1a2, q1a3, q1a4, q2a1, q2a2, q2a3, q2a4, q3a1, q3a2, q3a3, q3a4;
   @FXML
@@ -125,5 +125,5 @@ public class AddQuizController extends QuizAppController {
     return correctAnswer && allFieldsAreFilled;
 
   }
-
+*/
 }

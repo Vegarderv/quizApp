@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class SignupControllerTests extends FxuiTest {
-
+/*
   private static JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
   private static List<User> users = handler.loadFromFile();
   private Stage stage;
@@ -121,5 +121,5 @@ public class SignupControllerTests extends FxuiTest {
     assertNull(stage.getScene().lookup("#signupButton"));
     assertNotNull(stage.getScene().lookup("#historyQuizButton"));
   }
-
+*/
 }
