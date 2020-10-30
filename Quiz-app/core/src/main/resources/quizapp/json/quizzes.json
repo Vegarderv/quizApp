@@ -3,7 +3,7 @@
     "questions": [
       {
         "question": "When did the viking age start?",
-        "correct_alternative": 0,
+        "correctAlternative": 0,
         "alternatives": [
           "793 AD",
           "815 AD",
@@ -13,7 +13,7 @@
       },
       {
         "question": "How many people died in World War 2?",
-        "correct_alternative": 3,
+        "correctAlternative": 3,
         "alternatives": [
           "50 million",
           "60 million",
@@ -23,7 +23,7 @@
       },
       {
         "question": "Who was the first president of the United States?",
-        "correct_alternative": 2,
+        "correctAlternative": 2,
         "alternatives": [
           "Abraham Lincoln",
           "Thomas Jefferson",
@@ -38,7 +38,7 @@
     "questions": [
       {
         "question": "If you fill a glass to the brim with ice water and the  ice melts, what will happen?",
-        "correct_alternative": 2,
+        "correctAlternative": 2,
         "alternatives": [
           "The glass will over flow as the ice turns to water.",
           "The level of water in the glass will remain unchanged as the ice melts.",
@@ -48,7 +48,7 @@
       },
       {
         "question": "You can\u0027t live without iron. Where in the body is most of the iron located?",
-        "correct_alternative": 3,
+        "correctAlternative": 3,
         "alternatives": [
           "Your brain",
           "Your skin",
@@ -58,7 +58,7 @@
       },
       {
         "question": "What do you call an atom that has more protons than electrons?",
-        "correct_alternative": 1,
+        "correctAlternative": 1,
         "alternatives": [
           "A molecule",
           "A cation",
@@ -73,7 +73,7 @@
     "questions": [
       {
         "question": "What country has the longest coastline in the world?",
-        "correct_alternative": 0,
+        "correctAlternative": 0,
         "alternatives": [
           "Canada",
           "Norway",
@@ -83,7 +83,7 @@
       },
       {
         "question": "What country is the newest in the world to be recognised by the UN?",
-        "correct_alternative": 2,
+        "correctAlternative": 2,
         "alternatives": [
           "Kosovo",
           "Serbia",
@@ -93,7 +93,7 @@
       },
       {
         "question": "What African country has the largest population?",
-        "correct_alternative": 2,
+        "correctAlternative": 2,
         "alternatives": [
           "Eqypt",
           "Nigeria",
@@ -108,7 +108,7 @@
     "questions": [
       {
         "question": "Malin",
-        "correct_alternative": 0,
+        "correctAlternative": 0,
         "alternatives": [
           "Ja",
           "Nei",
@@ -118,7 +118,7 @@
       },
       {
         "question": "Havregrøt?",
-        "correct_alternative": 0,
+        "correctAlternative": 0,
         "alternatives": [
           "Absolutt",
           "Kanskje",
@@ -128,7 +128,7 @@
       },
       {
         "question": "Beste spill",
-        "correct_alternative": 3,
+        "correctAlternative": 3,
         "alternatives": [
           "Zelda",
           "Mario",

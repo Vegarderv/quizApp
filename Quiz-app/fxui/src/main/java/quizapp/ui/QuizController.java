@@ -25,7 +25,7 @@ import quizapp.core.Score;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
-public class QuizController implements Initializable {
+public class QuizController extends QuizAppController {
 
   @FXML
   RadioButton q0a0;
@@ -138,31 +138,21 @@ public class QuizController implements Initializable {
     scoreCard.scoreQuiz(sum, 3, currentQuiz.getName());
   }
 
-  private void switchSceneWithMenuItem(String fxmlFile) {
-    try {
-      Stage stage = (Stage) userMenu.getScene().getWindow();
-      Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
-      Scene scene = new Scene(parent);
-      stage.setScene(scene);
-      stage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+
 
   @FXML
   void goToProfile(ActionEvent event) {
-    this.switchSceneWithMenuItem("ProfilePage.fxml");
+    switchSceneWithNode("ProfilePage.fxml", userMenu);
   }
 
   @FXML
   void goToLogIn(ActionEvent event) {
-    this.switchSceneWithMenuItem("Login.fxml");
+    switchSceneWithNode("Login.fxml", userMenu);
   }
 
   @FXML
   void goToMainMenu(MouseEvent event) {
-    this.switchSceneWithMenuItem("MainPage.fxml");
+    switchSceneWithNode("MainPage.fxml", userMenu);
   }
 
 }
