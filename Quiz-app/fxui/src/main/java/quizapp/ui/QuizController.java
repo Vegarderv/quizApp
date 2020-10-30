@@ -122,13 +122,13 @@ public class QuizController implements Initializable {
   @FXML
   public void submitAnswers() {
     int sum = 0;
-    if (buttons.get(0).get(currentQuiz.getQuestion(1).getCorrect_alternative() - 1).isSelected()) {
+    if (buttons.get(0).get(currentQuiz.getQuestion(1).getCorrect_alternative()).isSelected()) {
       sum++;
     }
-    if (buttons.get(1).get(currentQuiz.getQuestion(2).getCorrect_alternative() - 1).isSelected()) {
+    if (buttons.get(1).get(currentQuiz.getQuestion(2).getCorrect_alternative()).isSelected()) {
       sum++;
     }
-    if (buttons.get(2).get(currentQuiz.getQuestion(3).getCorrect_alternative() - 1).isSelected()) {
+    if (buttons.get(2).get(currentQuiz.getQuestion(3).getCorrect_alternative()).isSelected()) {
       sum++;
     }
     buttons.stream().forEach(l -> l.stream().forEach(a -> a.setDisable(true)));
