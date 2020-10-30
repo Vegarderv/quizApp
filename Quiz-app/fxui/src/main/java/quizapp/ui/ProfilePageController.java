@@ -52,7 +52,7 @@ public class ProfilePageController extends QuizAppController {
   }
 
   @FXML
-  public void goToScoreboard(MouseEvent event) {
+  public void goToScoreboard(ActionEvent event) {
     this.switchSceneWithNode("Scoreboard.fxml", userMenuProfilePage);
   }
 

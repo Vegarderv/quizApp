@@ -170,7 +170,7 @@ public class QuizController implements Initializable {
   }
 
   @FXML
-  void goToScoreboard(MouseEvent event) {
+  void goToScoreboard(ActionEvent event) {
     this.switchSceneWithMenuItem("Scoreboard.fxml");
   }
 
