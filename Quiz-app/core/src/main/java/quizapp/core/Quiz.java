@@ -40,7 +40,7 @@ public class Quiz {
     if (num >= 1 && num <= 3) {
       return questions.get(num - 1);
     }
-    throw new IllegalArgumentException("Number must be between 1 and 4");
+    throw new IllegalArgumentException("Number must be between 1 and 3");
   }
 
   /**

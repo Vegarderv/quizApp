@@ -71,6 +71,8 @@ public class QuizController implements Initializable {
   Label question2;
   @FXML
   Label question3;
+  @FXML
+  MenuItem ScoreboardButton;
 
   private List<List<RadioButton>> buttons = new ArrayList<>();
   private String userName;
@@ -123,6 +125,8 @@ public class QuizController implements Initializable {
   public void submitAnswers() {
     int sum = 0;
     if (buttons.get(0).get(currentQuiz.getQuestion(1).getCorrect_alternative()).isSelected()) {
+      System.out.println("quiz 1");
+      System.out.println(currentQuiz.getQuestion(1).getCorrect_alternative()-1);
       sum++;
     }
     if (buttons.get(1).get(currentQuiz.getQuestion(2).getCorrect_alternative()).isSelected()) {
@@ -163,6 +167,11 @@ public class QuizController implements Initializable {
   @FXML
   void goToMainMenu(MouseEvent event) {
     this.switchSceneWithMenuItem("MainPage.fxml");
+  }
+
+  @FXML
+  void goToScoreboard(MouseEvent event) {
+    this.switchSceneWithMenuItem("Scoreboard.fxml");
   }
 
   public String getName() {

@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.MenuItem;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -44,6 +45,8 @@ public class ScoreboardController extends QuizAppController implements Initializ
   MenuItem menuSignOut;
   @FXML
   MenuItem profileButton;
+  @FXML
+  ScrollPane scroll;
 
   private JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
   final List<User> users = handler.loadFromFile();
@@ -76,35 +79,24 @@ public class ScoreboardController extends QuizAppController implements Initializ
     }
   }
 
-  public int compareQuizScores(User a, User b, String quiz) {
-    //compares quizscores of two users
-    if (a.getScore(quiz) > b.getScore(quiz)) {
-      return 1;
-    }
-    if (a.getScore(quiz) == b.getScore(quiz)) {
-      return 0;
-    }
-    if (a.getScore(quiz) < b.getScore(quiz)) {
-      return -1;
-    }
-    throw new IllegalArgumentException("The users must have taken the given quiz.");
-  }
-
-
   public ArrayList<User> mergeUser(User user, ArrayList<User> topScorers, String quiz) {
-    //this function checks if a new user schould be in the top three users in the relevant quiz
-    topScorers.add(user);
-    if (topScorers.size() == 1) {
+    //this function checks if a new user should be in the top three users in the relevant quiz
+    if (topScorers.isEmpty()) {
+      topScorers.add(user);
       return topScorers;
     }
-    Collections.sort(topScorers, (a, b) -> compareQuizScores(a,b,quiz));
-    if (topScorers.size() < 3) { 
-      return topScorers;
+    int index = 0;
+    while (index < 3) {
+      if (user.getScore(quiz) > topScorers.get(index).getScore(quiz)) {
+        topScorers.add(index, user);
+        break;
+      }
+      index++;
     }
-    else {
+    if (topScorers.size() > 3) {
       topScorers.remove(3);
-      return topScorers;
     }
+    return topScorers;
   }
 
   public Map<String, ArrayList<User>> getBoardInfo() {
@@ -114,9 +106,9 @@ public class ScoreboardController extends QuizAppController implements Initializ
       ArrayList<User> topScorers = new ArrayList<>();
       String name = quiz.getName();
       for (User user : this.users) {
-        if (!user.quizTaken(name)) { break; }
-        topScorers.clear();
-        topScorers = mergeUser(user, topScorers, name);
+        if (user.quizTaken(name)) {
+          topScorers = mergeUser(user, topScorers, name);
+        }
       }
       scoreMap.put(name, topScorers);
     }
