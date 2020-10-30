@@ -90,6 +90,7 @@ public class ProfilePageController extends QuizAppController {
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
     user.setDarkMode(!user.getDarkMode());
     jsonHandler.updateUser(user);
+    this.switchSceneWithNode("ProfilePage.fxml", userMenuProfilePage);
   }
 
   @FXML
