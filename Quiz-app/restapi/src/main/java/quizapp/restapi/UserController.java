@@ -40,4 +40,16 @@ public class UserController {
         .newUser(user);
   }
 
+  @GetMapping("/active")
+  public User getActiveUser(){
+    return new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
+        .loadActiveUser();
+  }
+
+  @PutMapping("/updateActive")
+  public void updateUsername(String name) {
+    new UsernameHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json", "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
+        .saveActiveUser(name);
+  }
+
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/quiz")
-public class QuizController {
+public class QuizRestController {
 
   @GetMapping("/quizzes")
   public List<Quiz> quizzz() {

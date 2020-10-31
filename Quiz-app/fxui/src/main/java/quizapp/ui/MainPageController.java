@@ -62,13 +62,14 @@ public class MainPageController extends QuizAppController {
   @FXML
   public void goToQuiz(ActionEvent event) {
     User currentUser = jsonHandler.loadActiveUser();
-    currentUser.setCurrentQuiz(quizHandler.getQuizByName(((Button) event.getSource()).getId()));
+    currentUser.setCurrentQuiz(quizHandler.getQuizById(((Button) event.getSource()).getId()));
     jsonHandler.updateUser(currentUser);
     this.switchSceneWithNode("Quiz.fxml", historyQuizButton);
   }
 
   @FXML
   public void goToProfile(ActionEvent event) {
+    new DirectUserAccess()
     this.switchSceneWithNode("ProfilePage.fxml", menuButton);
   }
 
