@@ -85,7 +85,6 @@ public class QuizController extends QuizAppController {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    System.out.println("nå initialiseres quiz");
     currentQuiz = jsonHandler.loadActiveUser().getCurrentQuiz();
     List<RadioButton> q0buttons = new ArrayList<>();
     q0buttons.add(q0a0);
