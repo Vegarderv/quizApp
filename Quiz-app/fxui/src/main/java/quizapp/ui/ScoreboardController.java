@@ -92,11 +92,11 @@ public class ScoreboardController extends QuizAppController implements Initializ
     }
     int index = 0;
     while (index < 3) {
-      if (topScorers.get(index) == null) {
+      if (topScorers.size() < index + 1) {
         topScorers.add(index, user);
         break;
       }
-      if (user.getScore(quiz) > topScorers.get(index).getScore(quiz)) {
+      else if (user.getScore(quiz) > topScorers.get(index).getScore(quiz)) {
         topScorers.add(index, user);
         break;
       }

@@ -12,54 +12,61 @@
     "quizzesTaken": {}
   },
   {
-    "username": "Hallvard",
-    "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
+    "username": "Dragvoll",
+    "password": "NeQsmOmddsFh0CFAZ5/XGQ\u003d\u003d",
     "darkMode": false,
-    "currentQuiz": {
-      "questions": [
-        {
-          "question": "What country has the longest coastline in the world?",
-          "correctAlternative": 0,
-          "alternatives": [
-            "Canada",
-            "Norway",
-            "Indonesia",
-            "Greenland"
-          ]
-        },
-        {
-          "question": "What country is the newest in the world to be recognised by the UN?",
-          "correctAlternative": 0,
-          "alternatives": [
-            "Kosovo",
-            "Serbia",
-            "South Sudan",
-            "Timor-Leste"
-          ]
-        },
-        {
-          "question": "What African country has the largest population?",
-          "correctAlternative": 0,
-          "alternatives": [
-            "Eqypt",
-            "Nigeria",
-            "South Africa",
-            "The Democratic Republic of Congo"
-          ]
-        }
-      ],
-      "name": "Geography quiz"
-    },
-    "quizzesTaken": {
-      "Geography quiz": 0.3333333333333333,
-      "HistoryQuiz": 1.0,
-      "Chemistry quiz": 0.0
-    }
+    "quizzesTaken": {}
   },
   {
     "username": "gr2022",
     "password": "hi/wc2QsFdbNJK/j6aL+JA\u003d\u003d",
     "darkMode": true,
+    "currentQuiz": {
+      "questions": [
+        {
+          "question": "If you fill a glass to the brim with ice water and the  ice melts, what will happen?",
+          "correctAlternative": 2,
+          "alternatives": [
+            "The glass will over flow as the ice turns to water.",
+            "The level of water in the glass will remain unchanged as the ice melts.",
+            "The water level will drop slightly as the ice melts",
+            "I\u0027ll never find out because I\u0027ll drink the water or walk away before anything happens."
+          ]
+        },
+        {
+          "question": "You can\u0027t live without iron. Where in the body is most of the iron located?",
+          "correctAlternative": 3,
+          "alternatives": [
+            "Your brain",
+            "Your skin",
+            "Your bones",
+            "Your blood"
+          ]
+        },
+        {
+          "question": "What do you call an atom that has more protons than electrons?",
+          "correctAlternative": 1,
+          "alternatives": [
+            "A molecule",
+            "A cation",
+            "An anion",
+            "An isotope"
+          ]
+        }
+      ],
+      "name": "Chemistry quiz"
+    },
+    "quizzesTaken": {
+      "Geography quiz": 0.3333333333333333,
+      "Malin Quiz": 0.6666666666666666,
+      "Chemistry quiz": 0.3333333333333333,
+      "History quiz": 0.3333333333333333
+    }
+  },
+  {
+    "username": "Hallvard",
+    "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
+    "darkMode": false,
     "currentQuiz": {
       "questions": [
         {
@@ -84,7 +91,7 @@
         },
         {
           "question": "Beste spill",
-          "correctAlternative": 0,
+          "correctAlternative": 3,
           "alternatives": [
             "Zelda",
             "Mario",
@@ -96,14 +103,10 @@
       "name": "Malin Quiz"
     },
     "quizzesTaken": {
-      "Malin Quiz": 0.6666666666666666,
-      "Chemistry quiz": 0.3333333333333333
+      "Geography quiz": 0.3333333333333333,
+      "Malin Quiz": 1.0,
+      "HistoryQuiz": 1.0,
+      "Chemistry quiz": 0.0
     }
-  },
-  {
-    "username": "Dragvoll",
-    "password": "NeQsmOmddsFh0CFAZ5/XGQ\u003d\u003d",
-    "darkMode": false,
-    "quizzesTaken": {}
   }
 ]
