@@ -25,7 +25,6 @@ public class Score {
   * Send Score to user.
   */
   public void scoreQuiz(int score, int n, String quiz) {
-    System.out.println("nå er vi ved scorequiz");
     UsernameHandler userNameHandler = new UsernameHandler(usernamePath);
     JsonHandler allUsers = new JsonHandler(jsonPath);
     List<User> userList = allUsers.loadFromFile();

@@ -39,13 +39,10 @@ public class User {
 
   public void addQuiz(String quiz, double score) {
     //Add quiz to user when finished with said quiz, or updates score to latest result
-    System.out.println("trinn1");
     if (quizzesTaken.containsKey(quiz)) {
-      System.out.println("heyhoeee");
       quizzesTaken.replace(quiz, score);
     }
     else {
-      System.out.println("hallo?");
       quizzesTaken.put(quiz, score);
     }
   }
