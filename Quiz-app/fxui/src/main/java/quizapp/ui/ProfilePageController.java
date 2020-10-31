@@ -26,6 +26,9 @@ public class ProfilePageController extends QuizAppController {
   MenuItem menuSignOut;
 
   @FXML
+  MenuItem scoreboardButton;
+
+  @FXML
   Label nameId;
 
   @FXML
@@ -47,6 +50,11 @@ public class ProfilePageController extends QuizAppController {
   @FXML
   public void goToMainMenu(MouseEvent event) {
     this.switchSceneWithNode("MainPage.fxml", userMenuProfilePage);
+  }
+
+  @FXML
+  public void goToScoreboard(ActionEvent event) {
+    this.switchSceneWithNode("Scoreboard.fxml", userMenuProfilePage);
   }
 
   @FXML

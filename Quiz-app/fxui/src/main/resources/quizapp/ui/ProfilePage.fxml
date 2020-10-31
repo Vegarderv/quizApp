@@ -31,6 +31,7 @@
                             <children>
                                 <MenuButton fx:id="userMenuProfilePage" mnemonicParsing="false" text="#User#">
                                     <items>
+                                        <MenuItem mnemonicParsing="false" fx:id="scoreboardButton" onAction="#goToScoreboard" text="Scoreboard" />
                                         <MenuItem fx:id="menuSignOut" mnemonicParsing="false" onAction="#goLogOut" text="Log out" />
                                     </items>
                                 </MenuButton>

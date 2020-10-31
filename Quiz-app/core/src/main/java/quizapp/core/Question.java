@@ -18,11 +18,11 @@ public class Question {
       String alternative4, int correctAlternative) {
     this.question = question;
     alternatives = Arrays.asList(alternative1, alternative2, alternative3, alternative4);
-    if (correctAlternative <= 4 && correctAlternative >= 1) {
+    if (correctAlternative <= 3 && correctAlternative >= 0) {
       this.correctAlternative = correctAlternative;
     } else {
       throw new IllegalArgumentException(
-          "The correct alternative must be a number between 1 and 4.");
+          "The correct alternative must be a number between 0 and 3.");
     }
   }
 
@@ -37,10 +37,10 @@ public class Question {
    * Returns the alternative.
    */
   public String getAlternative(int num) {
-    if (!(num >= 1 && num <= 4)) {
-      throw new IllegalArgumentException("num must be between 1 and 4");
+    if (!(num >= 0 && num <= 3)) {
+      throw new IllegalArgumentException("num must be between 0 and 3");
     }
-    return alternatives.get(num - 1);
+    return alternatives.get(num);
   }
 
   /**

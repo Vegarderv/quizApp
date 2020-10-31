@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<?import javafx.geometry.Insets ?>
+<?import javafx.scene.control.Label ?>
+<?import javafx.scene.control.MenuButton ?>
+<?import javafx.scene.control.MenuItem ?>
+<?import javafx.scene.control.ScrollPane ?>
+<?import javafx.scene.image.Image ?>
+<?import javafx.scene.image.ImageView ?>
+<?import javafx.scene.layout.AnchorPane ?>
+<?import javafx.scene.layout.BorderPane ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.layout.VBox ?>
+<?import javafx.scene.text.Font ?>
+<?import javafx.scene.text.TextFlow ?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.ScoreboardController">
+    <children>
+        <BorderPane prefHeight="491.0" prefWidth="553.0">
+            <top>
+                <HBox prefHeight="48.0" prefWidth="553.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="400.0">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                            <children>
+                                <ImageView fx:id="mainMenu" fitHeight="55.0" fitWidth="177.0" onMouseClicked="#goToMainMenu" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Images/QuizLogo.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="400.0" spacing="20.0">
+                            <children>
+                                <MenuButton fx:id="userMenu" mnemonicParsing="false" text="#User#">
+                                    <items>
+                                        <MenuItem fx:id="profilePage" mnemonicParsing="false" onAction="#goToProfilePage" text="Profile Page" />
+                                        <MenuItem fx:id="menuSignOut" mnemonicParsing="false" onAction="#goLogOut" text="Log out" />
+                                    </items>
+                                </MenuButton>
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+            </top>
+            <bottom>
+                <VBox prefHeight="447.0" prefWidth="504.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ScrollPane fx:id="scroll" prefHeight="294.0" prefWidth="553.0">
+                            <content>
+                                <TextFlow fx:id="textFlow" prefHeight="373.0" prefWidth="509.0" />
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </VBox>
+            </bottom>
+            <center>
+                <Label alignment="TOP_CENTER" prefHeight="50.0" prefWidth="522.0" text="HIGHSCORES" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font size="34.0" />
+                    </font>
+                </Label>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

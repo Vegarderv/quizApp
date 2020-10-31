@@ -39,7 +39,6 @@ public class QuizHandler {
         file.close();
       } catch (IOException e) {
         e.printStackTrace();
-        System.out.println(e);
       }
     }
   }

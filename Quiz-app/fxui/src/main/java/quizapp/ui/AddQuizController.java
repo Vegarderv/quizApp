@@ -52,6 +52,11 @@ public class AddQuizController extends QuizAppController {
   }
 
   @FXML
+  void goToScoreboard(ActionEvent event) {
+    this.switchSceneWithNode("Scoreboard.fxml", title);
+  }
+
+  @FXML
   void goToLogIn(ActionEvent event) {
     this.switchSceneWithNode("Login.fxml", title);
   }
