@@ -45,7 +45,6 @@ public class QuizHandler {
         file.close();
       } catch (IOException e) {
         e.printStackTrace();
-        System.out.println(e);
       }
     }
   }
@@ -68,6 +67,12 @@ public class QuizHandler {
 
   }
 
+  /**
+   * Method for getting Quiz by name.
+
+   * @param name name of the quiz you want
+   * @return returns Quiz with name
+   */
   public Quiz getQuizByName(String name) {
     List<Quiz> quizzes = this.loadFromFile();
     return quizzes.stream().filter(q -> q.getName().equals(name)).findFirst().orElse(null);

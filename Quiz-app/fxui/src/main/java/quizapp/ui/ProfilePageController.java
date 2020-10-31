@@ -30,6 +30,9 @@ public class ProfilePageController extends QuizAppController {
   Button DMButton;
 
   @FXML
+  MenuItem scoreboardButton;
+
+  @FXML
   Label nameId, scoreId, DarkmodeLabel;
 
   @Override
@@ -97,6 +100,11 @@ public class ProfilePageController extends QuizAppController {
   public void goToMainMenu(MouseEvent event) {
 
     this.switchSceneWithNode("MainPage.fxml", userMenuProfilePage);
+  }
+
+  @FXML
+  public void goToScoreboard(ActionEvent event) {
+    this.switchSceneWithNode("Scoreboard.fxml", userMenuProfilePage);
   }
 
   @FXML
