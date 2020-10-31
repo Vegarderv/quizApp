@@ -33,9 +33,6 @@
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="400.0" spacing="20.0">
-                            <HBox.margin>
-                                <Insets right="10.0" />
-                            </HBox.margin>
                             <children>
                                 <MenuButton fx:id="userMenu" mnemonicParsing="false" text="#User#">
                                     <items>
