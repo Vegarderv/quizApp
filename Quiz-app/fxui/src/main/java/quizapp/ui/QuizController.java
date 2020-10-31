@@ -85,6 +85,7 @@ public class QuizController extends QuizAppController {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
+    System.out.println("nå initialiseres quiz");
     currentQuiz = jsonHandler.loadActiveUser().getCurrentQuiz();
     List<RadioButton> q0buttons = new ArrayList<>();
     q0buttons.add(q0a0);
@@ -123,6 +124,7 @@ public class QuizController extends QuizAppController {
    */
   @FXML
   public void submitAnswers() {
+    System.out.println("nå submitter vi");
     int sum = 0;
     if (buttons.get(0).get(currentQuiz.getQuestion(0).getCorrect_alternative()).isSelected()) {
       sum++;
@@ -137,6 +139,7 @@ public class QuizController extends QuizAppController {
     submit.setDisable(true);
     scroll.setVvalue(0.01);
     score.setText("You got this Score: " + Integer.toString(Math.round(((float) sum / (float) 3) * 100)) + "%");
+    System.out.println("neste scorequiz");
     scoreCard.scoreQuiz(sum, 3, currentQuiz.getName());
   }
 

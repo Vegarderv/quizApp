@@ -25,14 +25,12 @@ public class Score {
   * Send Score to user.
   */
   public void scoreQuiz(int score, int n, String quiz) {
+    System.out.println("nå er vi ved scorequiz");
     UsernameHandler userNameHandler = new UsernameHandler(usernamePath);
     JsonHandler allUsers = new JsonHandler(jsonPath);
     List<User> userList = allUsers.loadFromFile();
     String userName = userNameHandler.loadActiveUser();
     User user = userList.stream().filter(p -> p.getUsername().equals(userName)).findAny().get();
-    if (user.quizTaken(quiz)) {
-      return; //stops method if quiz is already taken
-    }
     user.addQuiz(quiz, (score * 1.0) / (n * 1.0));
     allUsers.writeToFile(userList); //Writes users back to file
   }
