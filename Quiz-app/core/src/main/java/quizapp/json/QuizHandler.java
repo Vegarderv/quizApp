@@ -62,16 +62,17 @@ public class QuizHandler {
   }
 
   /**
-   * Method for getting Quiz by name.
+   * Method for getting Quiz by id.
 
-   * @param name name of the quiz you want
-   * @return returns Quiz with name
+   * @param id id of the quiz you want
+   * @return returns Quiz with id
    */
-  public Quiz getQuizById(String name) {
+  public Quiz getQuizById(String id) {
+    String name = id.replace("-", " ");
     List<Quiz> quizzes = this.loadFromFile();
     return quizzes.stream().filter(q -> q.getName().equals(name)).findFirst().orElse(null);
-
   }
+
 
   public void addQuiz(Quiz quiz) {
     List<Quiz> quizzes = loadFromFile();

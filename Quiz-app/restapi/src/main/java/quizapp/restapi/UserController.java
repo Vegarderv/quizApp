@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.List;
 
@@ -17,40 +19,42 @@ import java.util.List;
 @RequestMapping("/api/user")
 public class UserController {
 
+  @Autowired
+  private UserService userService;
+
+  @GetMapping
+  public List<User> getUsers() {
+    return userService.getUsers();
+  }
+
   @GetMapping("/users")
   public List<User> users() {
-    return new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
-        .loadFromFile();
+    return getUsers();
   }
 
   @GetMapping("/user")
   public User getUser(@RequestParam String name) {
-    return new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
-        .loadUserFromString(name);
+    return getUsers().stream().filter(u -> u.getUsername().equals(name)).findFirst().orElse(null);
   }
 
   @PutMapping("/update")
   public void updateUser(@RequestBody User user) {
-    new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
-        .updateUser(user);
+    userService.updateUser(user);
   }
 
   @PostMapping("/new")
   public void newUser(@RequestBody User user) {
-    new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
-        .newUser(user);
+    userService.addUser(user);
   }
 
   @GetMapping("/active")
   public User getActiveUser(){
-    return new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
-        .loadActiveUser();
+    return userService.getActiveUser();
   }
 
   @PutMapping("/updateActive")
   public void updateUsername(String name) {
-    new UsernameHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json", "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
-        .saveActiveUser(name);
+    userService.updateActiveUser(name);
   }
 
 }

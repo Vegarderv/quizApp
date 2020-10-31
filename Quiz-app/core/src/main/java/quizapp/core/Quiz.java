@@ -7,6 +7,7 @@ public class Quiz {
 
   private List<Question> questions;
   private String name;
+  private String id;
 
   /**
    * Quiz Constructor.
@@ -19,6 +20,7 @@ public class Quiz {
    */
   public Quiz(String name, Question question0, Question question1, Question question2) {
     this.name = name;
+    setId();
     this.questions = new ArrayList<>();
     this.questions.add(question0);
     this.questions.add(question1);
@@ -60,4 +62,18 @@ public class Quiz {
   public void setQuestions(List<Question> questions) {
     this.questions = questions;
   }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public void setId() {
+    this.id = getName().replace(" ", "-");
+  }
+
+  
 }

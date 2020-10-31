@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import quizapp.core.Quiz;
 import quizapp.json.QuizHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 
 import java.util.List;
 
@@ -16,23 +19,29 @@ import java.util.List;
 @RequestMapping("/api/quiz")
 public class QuizRestController {
 
+  @Autowired
+  private QuizService quizService;
+
+  @GetMapping
+  public List<Quiz> getQuizzes() {
+    return quizService.getQuizzes();
+  }
+
+
   @GetMapping("/quizzes")
   public List<Quiz> quizzz() {
-    return new QuizHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json")
-        .loadFromFile();
+    return getQuizzes();
   }
 
   @GetMapping("/quiz")
   public Quiz getQuiz(@RequestParam String Id) {
-    return new QuizHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json")
-        .getQuizById(Id);
+    return getQuizzes().stream().filter(q -> q.getId().equals(Id)).findFirst().orElse(null);
   }
 
 
   @PostMapping("/new")
   public void newQuiz(@RequestBody Quiz quiz) {
-    new QuizHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json")
-        .addQuiz(quiz);
+    quizService.addQuiz(quiz);
   }
 
 }

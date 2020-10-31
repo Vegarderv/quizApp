@@ -11,14 +11,14 @@ import com.google.gson.reflect.TypeToken;
 
 import quizapp.core.User;
 
-public class DirectUserAccess {
+public class RemoteUserAccess {
 
   User user;
 
   private final URI endpointBaseUri;
   
 
-  public DirectUserAccess(URI endpointBaseUri) {
+  public RemoteUserAccess(URI endpointBaseUri) {
     this.endpointBaseUri = endpointBaseUri;
   }
 
