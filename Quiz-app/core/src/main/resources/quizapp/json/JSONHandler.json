@@ -12,14 +12,6 @@
     "quizzesTaken": {}
   },
   {
-    "username": "Dragvoll",
-    "password": "NeQsmOmddsFh0CFAZ5/XGQ\u003d\u003d",
-    "darkMode": false,
-    "quizzesTaken": {
-      "HistoryQuiz": 1.0
-    }
-  },
-  {
     "username": "Hallvard",
     "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
     "darkMode": false,
@@ -107,5 +99,11 @@
       "Malin Quiz": 0.6666666666666666,
       "Chemistry quiz": 0.3333333333333333
     }
+  },
+  {
+    "username": "Dragvoll",
+    "password": "NeQsmOmddsFh0CFAZ5/XGQ\u003d\u003d",
+    "darkMode": false,
+    "quizzesTaken": {}
   }
 ]
