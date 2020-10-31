@@ -5,13 +5,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 
 import java.util.List;
 
 @RestController
-@GetMapping("/user");
+@RequestMapping("/api/user")
 public class UserController {
 
   @GetMapping("/users")
@@ -30,6 +32,12 @@ public class UserController {
   public void updateUser(@RequestBody User user) {
     new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
         .updateUser(user);
+  }
+
+  @PostMapping("/new")
+  public void newUser(@RequestBody User user) {
+    new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json")
+        .newUser(user);
   }
 
 }

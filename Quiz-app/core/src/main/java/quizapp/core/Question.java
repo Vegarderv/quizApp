@@ -50,4 +50,20 @@ public class Question {
     return correctAlternative;
   }
 
+  public List<String> getAlternatives() {
+    return alternatives;
+  }
+
+  public void setAlternatives(List<String> alternatives) {
+    this.alternatives = alternatives;
+  }
+
+  public void setCorrectAlternative(int correctAlternative) {
+    this.correctAlternative = correctAlternative;
+  }
+
+  public void setQuestion(String question) {
+    this.question = question;
+  }
+
 }

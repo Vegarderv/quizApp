@@ -68,10 +68,16 @@ public class QuizHandler {
    * @param name name of the quiz you want
    * @return returns Quiz with name
    */
-  public Quiz getQuizByName(String name) {
+  public Quiz getQuizById(String name) {
     List<Quiz> quizzes = this.loadFromFile();
     return quizzes.stream().filter(q -> q.getName().equals(name)).findFirst().orElse(null);
 
+  }
+
+  public void addQuiz(Quiz quiz) {
+    List<Quiz> quizzes = loadFromFile();
+    quizzes.add(quiz);
+    writeToFile(quizzes);
   }
 
 

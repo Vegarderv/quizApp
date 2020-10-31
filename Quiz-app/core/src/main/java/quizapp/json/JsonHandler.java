@@ -114,6 +114,10 @@ public class JsonHandler {
     writeToFile(users);
 
   }
-
+  public void newUser(User user) {
+    List<User> users = loadFromFile();
+    users.add(user);
+    writeToFile(users);
+  }
 
 }
