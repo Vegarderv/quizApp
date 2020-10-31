@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
+import quizapp.json.UsernameHandler;
 
 import java.util.List;
 

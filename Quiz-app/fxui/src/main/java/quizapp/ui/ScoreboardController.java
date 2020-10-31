@@ -65,16 +65,16 @@ public class ScoreboardController extends QuizAppController implements Initializ
   public void initialize(URL arg0, ResourceBundle arg1) {
     userMenu.setText(username);
     Map<String, ArrayList<User>> scoreMap = getBoardInfo();
-    for (String quizname : scoreMap.keySet()) {
-      Text text = new Text(quizname);
+    for (Map.Entry< String, ArrayList<User> > quizname : scoreMap.entrySet()) {
+      Text text = new Text(quizname.getKey());
       text.setFont(new Font(34.0));
       //text.setFill(Color.WHEAT);
       //text.setStyle("-fx-background-color: red");
       textFlow.getChildren().add(text);
       textFlow.getChildren().add(new Text(System.lineSeparator()));
-      for (User user : scoreMap.get(quizname)) {
-        Text text1 = new Text(scoreMap.get(quizname).indexOf(user)+1 + ". " + 
-        user.getUsername() + ": " + Math.round(user.getScore(quizname)*100) + "%");
+      for (User user : scoreMap.get(quizname.getKey())) {
+        Text text1 = new Text(scoreMap.get(quizname.getKey()).indexOf(user)+1 + ". " + 
+        user.getUsername() + ": " + Math.round(user.getScore(quizname.getKey())*100) + "%");
         text1.setFont(new Font(24.0));
         textFlow.getChildren().add(text1);
         textFlow.getChildren().add(new Text(System.lineSeparator()));

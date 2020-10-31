@@ -69,7 +69,6 @@ public class MainPageController extends QuizAppController {
 
   @FXML
   public void goToProfile(ActionEvent event) {
-    new DirectUserAccess()
     this.switchSceneWithNode("ProfilePage.fxml", menuButton);
   }
 

@@ -14,8 +14,13 @@ import quizapp.core.User;
 public class DirectUserAccess {
 
   User user;
-  URI endpointBaseUri;
+
+  private final URI endpointBaseUri;
   
+
+  public DirectUserAccess(URI endpointBaseUri) {
+    this.endpointBaseUri = endpointBaseUri;
+  }
 
   private User getUser(String name) {
     if (user == null) {
