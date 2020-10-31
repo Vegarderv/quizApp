@@ -11,7 +11,10 @@ public class App extends Application {
   @Override
   public void start(final Stage primaryStage) throws Exception {
     final Parent parent = FXMLLoader.load(getClass().getResource("Login.fxml"));
-    primaryStage.setScene(new Scene(parent));
+    Scene scene = new Scene(parent);
+    scene.getStylesheets().add(App.class.getResource("lightmode.css")
+            .toExternalForm());
+    primaryStage.setScene(scene);
     primaryStage.show();
   }
 
