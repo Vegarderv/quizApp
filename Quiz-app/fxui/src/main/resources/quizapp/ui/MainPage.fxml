@@ -76,7 +76,7 @@
                                         <Font size="24.0" />
                                     </font>
                                     <graphic>
-                                        <ImageView fitHeight="55.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="180.0" fitWidth="812.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@Images/HistoryQuizImage.JPG" />
                                             </image>
