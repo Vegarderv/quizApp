@@ -141,9 +141,6 @@
             <HBox prefHeight="48.0" prefWidth="553.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="400.0">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
                      <children>
                         <ImageView fitHeight="55.0" fitWidth="177.0" onMouseClicked="#goToMainMenu" pickOnBounds="true" preserveRatio="true">
                            <image>
