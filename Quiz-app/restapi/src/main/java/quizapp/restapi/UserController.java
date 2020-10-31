@@ -11,6 +11,7 @@ import quizapp.json.JsonHandler;
 import java.util.List;
 
 @RestController
+@GetMapping("/user");
 public class UserController {
 
   @GetMapping("/users")
