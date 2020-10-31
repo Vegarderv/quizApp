@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.swing.plaf.metal.MenuItemArrowIcon;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -126,13 +124,7 @@ public class QuizController extends QuizAppController {
   @FXML
   public void submitAnswers() {
     int sum = 0;
-<<<<<<< HEAD
-    if (buttons.get(0).get(currentQuiz.getQuestion(1).getCorrect_alternative()).isSelected()) {
-      System.out.println("quiz 1");
-      System.out.println(currentQuiz.getQuestion(1).getCorrect_alternative()-1);
-=======
     if (buttons.get(0).get(currentQuiz.getQuestion(0).getCorrect_alternative()).isSelected()) {
->>>>>>> origin/master
       sum++;
     }
     if (buttons.get(1).get(currentQuiz.getQuestion(1).getCorrect_alternative()).isSelected()) {
@@ -167,7 +159,7 @@ public class QuizController extends QuizAppController {
 
   @FXML
   void goToScoreboard(ActionEvent event) {
-    this.switchSceneWithMenuItem("Scoreboard.fxml");
+    this.switchSceneWithNode("Scoreboard.fxml", userMenu);
   }
 
   public String getName() {
