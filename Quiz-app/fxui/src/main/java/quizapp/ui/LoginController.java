@@ -1,5 +1,6 @@
 package quizapp.ui;
 
+import java.net.URI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,9 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import quizapp.core.UsernameCheck;
+import quizapp.core.User;
 import quizapp.json.UsernameHandler;
+import quizapp.json.JsonHandler;
+
 
 import java.net.URL;
+import java.rmi.Remote;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoginController extends QuizAppController {
@@ -20,7 +26,7 @@ public class LoginController extends QuizAppController {
   PasswordField password;
   @FXML
   Label errorMessage;
-
+  RemoteUserAccess remoteUserAccess;
   @FXML
   Button mainPageButton;
 
@@ -29,7 +35,19 @@ public class LoginController extends QuizAppController {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    //something
+    
+    try {
+      JsonHandler jsonHandler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+      User user = jsonHandler.loadActiveUser();
+      System.out.println(user.getUsername());
+      remoteUserAccess = new RemoteUserAccess(new URI("https://8080-d1673a51-0dab-49ce-bedb-928fe09147c3.ws.gitpod.idi.ntnu.no/api/user/update/"));
+      user.setDarkMode(!user.getDarkMode());
+      remoteUserAccess.putUser(user);
+      } catch (Exception e) {
+      e.printStackTrace();
+    }
+   
+    
   }
 
   /**

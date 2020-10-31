@@ -37,8 +37,8 @@ public class UserController {
     return getUsers().stream().filter(u -> u.getUsername().equals(name)).findFirst().orElse(null);
   }
 
-  @PutMapping("/update")
-  public void updateUser(@RequestBody User user) {
+  @PutMapping("/update/{name}")
+  public void updateUser(@PathVariable("name") String name, @RequestBody User user) {
     userService.updateUser(user);
   }
 
