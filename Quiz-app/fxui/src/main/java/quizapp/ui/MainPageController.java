@@ -27,6 +27,8 @@ public class MainPageController extends QuizAppController {
   @FXML
   MenuItem profileButton;
   @FXML
+  MenuItem scoreboardButton;
+  @FXML
   Button historyQuizButton;
   @FXML
   Button chemistryQuizButton;
@@ -74,6 +76,10 @@ public class MainPageController extends QuizAppController {
     this.switchSceneWithNode("Login.fxml", menuButton);
   }
 
+  @FXML
+  public void goToScoreboard(ActionEvent event) {
+    this.switchSceneWithNode("Scoreboard.fxml", menuButton);
+  }
 
   /**
    * Method for adding buttons for extra quizzes created

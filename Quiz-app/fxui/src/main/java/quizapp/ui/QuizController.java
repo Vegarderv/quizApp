@@ -71,6 +71,8 @@ public class QuizController extends QuizAppController {
   Label question1;
   @FXML
   Label question2;
+  @FXML
+  MenuItem scoreboardButton;
 
   private List<List<RadioButton>> buttons = new ArrayList<>();
   private String userName;
@@ -153,6 +155,15 @@ public class QuizController extends QuizAppController {
   @FXML
   void goToMainMenu(MouseEvent event) {
     switchSceneWithNode("MainPage.fxml", userMenu);
+  }
+
+  @FXML
+  void goToScoreboard(ActionEvent event) {
+    this.switchSceneWithNode("Scoreboard.fxml", userMenu);
+  }
+
+  public String getName() {
+    return quiz_name.getText();
   }
 
 }
