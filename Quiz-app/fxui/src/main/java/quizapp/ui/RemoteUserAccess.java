@@ -60,12 +60,14 @@ public class RemoteUserAccess {
     try {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String json = gson.toJson(user);
+      System.out.println(json);
       System.out.println(user.getUsername());
       HttpRequest request = HttpRequest.newBuilder(userUri(user.getUsername()))
           .header("Accept", "application/json")
           .header("Content-Type", "application/json")
           .PUT(BodyPublishers.ofString(json))
           .build();
+      System.out.println(request);
       final HttpResponse<String> response =
           HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
       

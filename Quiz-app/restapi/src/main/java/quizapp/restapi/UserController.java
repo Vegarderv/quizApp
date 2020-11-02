@@ -40,6 +40,7 @@ public class UserController {
 
   @PutMapping("/update/{name}")
   public void updateUser(@PathVariable("name") String name, @RequestBody User user) {
+    System.out.println("heipådeg");
     userService.updateUser(user);
   }
 

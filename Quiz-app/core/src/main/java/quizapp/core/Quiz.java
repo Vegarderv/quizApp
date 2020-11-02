@@ -18,6 +18,10 @@ public class Quiz {
    * @param question1 Second Question
    * @param question2 Third Question
    */
+  public Quiz() {
+
+  }
+
   public Quiz(String name, Question question0, Question question1, Question question2) {
     this.name = name;
     setId();

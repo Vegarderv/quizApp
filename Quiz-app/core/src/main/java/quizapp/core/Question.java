@@ -26,6 +26,9 @@ public class Question {
     }
   }
 
+  public Question() {
+    
+  }
   /**
    * Returns quiestion as string.
    */
