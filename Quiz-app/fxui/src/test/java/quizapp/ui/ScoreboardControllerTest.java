@@ -53,6 +53,7 @@ public class ScoreboardControllerTest extends FxuiTest {
     textFlow2 = new TextFlow();
     textFlow.getChildren().add(text);
     textFlow2.getChildren().add(new Text(System.lineSeparator()));
+    this.sbc = new ScoreboardController();
   }
 
 
@@ -99,17 +100,22 @@ public class ScoreboardControllerTest extends FxuiTest {
   @Test
   public void getBoardInfoTest() {
     Map<String, ArrayList<User>> scoreMap = sbc.getBoardInfo();
-    String quizPath = 
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json";
-    QuizHandler quizHandler = new QuizHandler(quizPath);
+    QuizHandler quizHandler = new QuizHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
     List<Quiz> quizzes = quizHandler.loadFromFile();
     JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
     List<User> users = handler.loadFromFile();
     for (Quiz quiz : quizzes) {
       assertTrue(scoreMap.containsKey(quiz.getName()));
-      for (User u : scoreMap.get(quiz.getName())) {
-        assertFalse(users.stream().anyMatch(us -> us.getScore(quiz.getName()) > u.getScore(quiz.getName()
-          && !scoreMap.get(quiz.getName()).contains(us))));
+      for (User u : users) {
+        if (scoreMap.get(quiz.getName()).contains(u)) {
+          assertTrue(u.quizTaken(quiz.getName()));
+        }
+        else {
+          if (u.quizTaken(quiz.getName())) {
+            assertTrue(scoreMap.get(quiz.getName()).stream()
+            .anyMatch(us -> us.getScore(quiz.getName()) >= u.getScore(quiz.getName())));
+          }
+        }
       }
     }
   }
