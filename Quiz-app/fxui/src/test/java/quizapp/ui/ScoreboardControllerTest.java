@@ -7,11 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 import javafx.scene.text.Text;
+import java.util.Map;
+import quizapp.json.QuizHandler;
+import quizapp.json.UsernameHandler;
+import java.util.List;
+import quizapp.core.Quiz;
+import java.util.HashMap;
 import javafx.scene.text.TextFlow;
 import javafx.scene.Node;
 import javafx.scene.text.Font;
 import java.util.ArrayList;
-
 import java.beans.Transient;
 import java.util.Objects;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +25,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
-import quizapp.json.UsernameHandler;
+import quizapp.json.QuizHandler;
 
 public class ScoreboardControllerTest extends FxuiTest {
 
@@ -29,6 +34,7 @@ public class ScoreboardControllerTest extends FxuiTest {
   private TextFlow textFlow2;
   private Text text;
   private ScoreboardController sbc;
+  private ArrayList<User> users;
 
   @Override
   public void start(final Stage stage) throws Exception {
@@ -92,7 +98,20 @@ public class ScoreboardControllerTest extends FxuiTest {
 
   @Test
   public void getBoardInfoTest() {
-    //need to implement this method
+    Map<String, ArrayList<User>> scoreMap = sbc.getBoardInfo();
+    String quizPath = 
+      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json";
+    QuizHandler quizHandler = new QuizHandler(quizPath);
+    List<Quiz> quizzes = quizHandler.loadFromFile();
+    JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    List<User> users = handler.loadFromFile();
+    for (Quiz quiz : quizzes) {
+      assertTrue(scoreMap.containsKey(quiz.getName()));
+      for (User u : scoreMap.get(quiz.getName())) {
+        assertFalse(users.stream().anyMatch(us -> us.getScore(quiz.getName()) > u.getScore(quiz.getName()
+          && !scoreMap.get(quiz.getName()).contains(us))));
+      }
+    }
   }
 
   @Test
