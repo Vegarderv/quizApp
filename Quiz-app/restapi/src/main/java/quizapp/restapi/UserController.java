@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
@@ -41,6 +42,8 @@ public class UserController {
   public void updateUser(@PathVariable("name") String name, @RequestBody User user) {
     userService.updateUser(user);
   }
+
+
 
   @PostMapping("/new")
   public void newUser(@RequestBody User user) {
