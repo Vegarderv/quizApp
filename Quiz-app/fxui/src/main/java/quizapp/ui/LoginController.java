@@ -37,12 +37,8 @@ public class LoginController extends QuizAppController {
   public void initialize(URL arg0, ResourceBundle arg1) {
     
     try {
-      JsonHandler jsonHandler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-      User user = jsonHandler.loadActiveUser();
-      System.out.println(user.getUsername());
-      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/update/"));
-      user.setDarkMode(!user.getDarkMode());
-      remoteUserAccess.putUser(user);
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
+      remoteUserAccess.putActiveUser("gr2022");
       } catch (Exception e) {
       e.printStackTrace();
     }

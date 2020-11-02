@@ -33,14 +33,13 @@ public class UserController {
     return getUsers();
   }
 
-  @GetMapping("/user")
-  public User getUser(@RequestParam String name) {
+  @GetMapping("/{name}")
+  public User getUser(@PathVariable("name") String name) {
     return getUsers().stream().filter(u -> u.getUsername().equals(name)).findFirst().orElse(null);
   }
 
   @PutMapping("/update/{name}")
   public void updateUser(@PathVariable("name") String name, @RequestBody User user) {
-    System.out.println("heipådeg");
     userService.updateUser(user);
   }
 
@@ -56,8 +55,8 @@ public class UserController {
     return userService.getActiveUser();
   }
 
-  @PutMapping("/updateActive")
-  public void updateUsername(String name) {
+  @PutMapping("/updateActive/{name1}")
+  public void updateUsername(@PathVariable("name") String name1, @RequestBody String name) {
     userService.updateActiveUser(name);
   }
 

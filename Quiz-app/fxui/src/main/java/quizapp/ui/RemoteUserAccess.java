@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.GsonBuilder;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import quizapp.core.User;
+import java.util.List;
 
 public class RemoteUserAccess {
 
@@ -35,12 +36,14 @@ public class RemoteUserAccess {
 
 
 
-  private User getUser(String name) {
-    if (user == null) {
-      HttpRequest request = HttpRequest.newBuilder(endpointBaseUri)
+  public User getUser(String name) {
+    try {
+      if (user == null) {
+      HttpRequest request = HttpRequest.newBuilder(userUri(name))
           .header("Accept", "application/json")
           .GET()
           .build();
+      System.out.println(request);
       try {
         final HttpResponse<String> response =
             HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
@@ -51,6 +54,10 @@ public class RemoteUserAccess {
         throw new RuntimeException(e);
       }
     }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
     return this.user;
   }
 
@@ -82,6 +89,89 @@ public class RemoteUserAccess {
       throw new RuntimeException(e);
     }
   }
+
+  public List<User> getUsers() {
+    List<User> users = null;
+    try {
+      if (user == null) {
+      HttpRequest request = HttpRequest.newBuilder(userUri("users"))
+          .header("Accept", "application/json")
+          .GET()
+          .build();
+      System.out.println(request);
+      try {
+        final HttpResponse<String> response =
+            HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
+        final String responseString = response.body();
+        users =  new Gson().fromJson(responseString, new TypeToken<List<User>>(){}.getType());
+        System.out.println("Users: " + users);
+      } catch (IOException | InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+    }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
+    return users;
+  }
+
+  public User getActiveUser() {
+    try {
+      if (user == null) {
+      HttpRequest request = HttpRequest.newBuilder(userUri("active"))
+          .header("Accept", "application/json")
+          .GET()
+          .build();
+      System.out.println(request);
+      try {
+        final HttpResponse<String> response =
+            HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
+        final String responseString = response.body();
+        this.user =  new Gson().fromJson(responseString, new TypeToken<User>(){}.getType());
+        System.out.println("User: " + this.user);
+      } catch (IOException | InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+    }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return this.user;
+  }
+
+
+  @SuppressFBWarnings("DLS_DEAD_LOCAL_STORE")
+  public void putActiveUser(String name) {
+  
+    try {
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String json = gson.toJson(name);
+      System.out.println(json);
+      HttpRequest request = HttpRequest.newBuilder(userUri(name))
+          .header("Accept", "application/json")
+          .header("Content-Type", "application/json")
+          .PUT(BodyPublishers.ofString(json))
+          .build();
+      System.out.println(request);
+      final HttpResponse<String> response =
+          HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
+      
+      String responseString = response.body();
+      System.out.println(responseString);
+      //Boolean added = new Gson().fromJson(responseString, new TypeToken<Boolean>(){}.getType());
+      //if (added != null) {
+      //  System.out.println("Was not added, sad");
+      //}
+  
+    } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+  }
+  
+
+  
+
 
 
   
