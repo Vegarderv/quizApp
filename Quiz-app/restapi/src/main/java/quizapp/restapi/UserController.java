@@ -56,8 +56,8 @@ public class UserController {
   }
 
   @PutMapping("/updateActive/{name1}")
-  public void updateUsername(@PathVariable("name") String name1, @RequestBody String name) {
-    userService.updateActiveUser(name);
+  public void updateUsername(@PathVariable("name1") String name1, @RequestBody String name) {
+    userService.updateActiveUser(name1);
   }
 
 }

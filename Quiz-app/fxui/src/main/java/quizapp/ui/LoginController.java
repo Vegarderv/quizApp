@@ -29,9 +29,7 @@ public class LoginController extends QuizAppController {
   Label errorMessage;
   @FXML
   Button mainPageButton;
-
-  private UsernameHandler usernameHandler = new UsernameHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+  private RemoteUserAccess remoteUserAccess;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -53,9 +51,8 @@ public class LoginController extends QuizAppController {
       return;
     }
 
-    usernameHandler.saveActiveUser(
-        username.getText(), 
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
+    remoteUserAccess.putActiveUser(username.getText());
     // Gets the stage information and sets the scene
     switchSceneWithNode("MainPage.fxml", mainPageButton);
   }

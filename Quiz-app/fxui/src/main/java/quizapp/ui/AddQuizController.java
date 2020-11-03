@@ -85,11 +85,11 @@ public class AddQuizController extends QuizAppController {
     }
     
     Question question1 = new Question(q1.getText(), q1an1.getText(), q1an2.getText(), q1an3.getText(), q1an4.getText(),
-        radioButtonGroup1.indexOf(radioButtonGroup1.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
+        radioButtonGroup1.indexOf(radioButtonGroup1.stream().filter(p -> p.isSelected()).findAny().get()));
     Question question2 = new Question(q2.getText(), q2an1.getText(), q2an2.getText(), q2an3.getText(), q2an4.getText(),
-        radioButtonGroup2.indexOf(radioButtonGroup2.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
+        radioButtonGroup2.indexOf(radioButtonGroup2.stream().filter(p -> p.isSelected()).findAny().get()));
     Question question3 = new Question(q3.getText(), q3an1.getText(), q3an2.getText(), q3an3.getText(), q3an4.getText(),
-        radioButtonGroup3.indexOf(radioButtonGroup3.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
+        radioButtonGroup3.indexOf(radioButtonGroup3.stream().filter(p -> p.isSelected()).findAny().get()));
     Quiz quiz = new Quiz(title.getText(), question1, question2, question3);
     remoteQuizAccess.postQuiz(quiz);
     switchSceneWithNode("MainPage.fxml", title);

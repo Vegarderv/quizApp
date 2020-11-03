@@ -46,11 +46,11 @@ public class ProfilePageController extends QuizAppController {
     String userName = userHandler.loadActiveUser();
     double percentage = getActiveUser().meanScore() * 100;
     String score = String.valueOf(Math.round((percentage))) + "  %";
-    Boolean DM = this.getActiveUser().getDarkMode();
+    //Boolean DM = this.getActiveUser().getDarkMode();
     nameId.setText(userName);
     userMenuProfilePage.setText(userName);
     DarkmodeLabel.setText(initDarkMode());
-
+    scoreId.setText(score);
   }
 
   public String initDarkMode() {
