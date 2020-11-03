@@ -110,9 +110,11 @@
  */
 .button {
 	-fx-background-color : -gray,-gray,-gray,-gray;
+    -fx-text-fill: -black;
 }
 .button:default{
 	-fx-background-color : -color;
+    -fx-text-fill: -black;
 }
 .button:cancel{
 	-fx-background-color : -abort;
@@ -130,7 +132,7 @@
 }
 
 .button:armed {
-    -fx-color: -white;
+    -fx-color: -darkGray;
 }
 
 
@@ -247,7 +249,7 @@
  }
 .tab-pane>*.tab-header-area>*.headers-region>*.tab:selected:top{
 	-fx-padding : 6,6,6,6;
-	-fx-text-fill : -white;
+	-fx-text-fill : -black;
 	-fx-background-color : -color;
 }
 .tab-pane>*.tab-header-area>*.headers-region>*.tab:selected>*.tab-container>*.tab-label{
@@ -257,7 +259,7 @@
 
 .tab-pane>*.tab-header-area>*.headers-region>*.tab:top{
 	-fx-padding : 4,4,4,4;
-	-fx-text-fill : -white;
+	-fx-text-fill : -black;
 	-fx-background-color : -white;
 }
 
@@ -321,12 +323,12 @@
  */
 .text-field{
 	-fx-highlight-fill : -color;
-	-fx-highlight-text-fill : -white;
+	-fx-highlight-text-fill : -black;
 }
 
 .text-area{
 	-fx-highlight-fill : -color;
-	-fx-highlight-text-fill : -white;
+	-fx-highlight-text-fill : -black;
 }
  
 .spinner>*.increment-arrow-button{
