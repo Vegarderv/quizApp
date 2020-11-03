@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import quizapp.core.UsernameCheck;
 import quizapp.core.User;
+import quizapp.core.Quiz;
 import quizapp.json.UsernameHandler;
 import quizapp.json.JsonHandler;
 
@@ -26,7 +27,6 @@ public class LoginController extends QuizAppController {
   PasswordField password;
   @FXML
   Label errorMessage;
-  RemoteUserAccess remoteUserAccess;
   @FXML
   Button mainPageButton;
 
@@ -35,13 +35,6 @@ public class LoginController extends QuizAppController {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
-    try {
-      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
-      remoteUserAccess.putActiveUser("gr2022");
-      } catch (Exception e) {
-      e.printStackTrace();
-    }
    
     
   }

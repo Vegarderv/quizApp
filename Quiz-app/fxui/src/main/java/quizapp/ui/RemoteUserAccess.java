@@ -169,7 +169,34 @@ public class RemoteUserAccess {
     }
   }
   
-
+  @SuppressFBWarnings("DLS_DEAD_LOCAL_STORE")
+  public void postUser(User user) {
+  
+    try {
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String json = gson.toJson(user);
+      System.out.println(json);
+      System.out.println(user.getUsername());
+      HttpRequest request = HttpRequest.newBuilder(userUri(user.getUsername()))
+          .header("Accept", "application/json")
+          .header("Content-Type", "application/json")
+          .PUT(BodyPublishers.ofString(json))
+          .build();
+      System.out.println(request);
+      final HttpResponse<String> response =
+          HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
+      
+      String responseString = response.body();
+      System.out.println(responseString);
+      //Boolean added = new Gson().fromJson(responseString, new TypeToken<Boolean>(){}.getType());
+      //if (added != null) {
+      //  System.out.println("Was not added, sad");
+      //}
+  
+    } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+  }
   
 
 

@@ -11,13 +11,14 @@ import quizapp.core.Quiz;
 import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
 
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddQuizController extends QuizAppController {
-/*
+
   @FXML
   RadioButton q1a1, q1a2, q1a3, q1a4, q2a1, q2a2, q2a3, q2a4, q3a1, q3a2, q3a3, q3a4;
   @FXML
@@ -26,6 +27,8 @@ public class AddQuizController extends QuizAppController {
   Label score;
   @FXML
   MenuButton userMenu;
+  private RemoteUserAccess remoteUserAccess;
+  private RemoteQuizAccess remoteQuizAccess;
 
   private List<RadioButton> radioButtonGroup1 = new ArrayList<>();
   private List<RadioButton> radioButtonGroup2 = new ArrayList<>();
@@ -40,9 +43,13 @@ public class AddQuizController extends QuizAppController {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     addElemsToLists();
+    try {
+    remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     userMenu
-        .setText(new UsernameHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json")
-            .loadActiveUser());
+        .setText(remoteUserAccess.getActiveUser().getUsername());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
   }
 
@@ -71,17 +78,20 @@ public class AddQuizController extends QuizAppController {
       score.setText("Invalid Quiz. Check that all fields are filled and correct answers are chosen");
       return;
     }
-    QuizHandler quizHandler = new QuizHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
+    try {
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/new/"));
+    } catch (Exception e) {
+      //TODO: handle exception
+    }
+    
     Question question1 = new Question(q1.getText(), q1an1.getText(), q1an2.getText(), q1an3.getText(), q1an4.getText(),
         radioButtonGroup1.indexOf(radioButtonGroup1.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
     Question question2 = new Question(q2.getText(), q2an1.getText(), q2an2.getText(), q2an3.getText(), q2an4.getText(),
         radioButtonGroup2.indexOf(radioButtonGroup2.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
     Question question3 = new Question(q3.getText(), q3an1.getText(), q3an2.getText(), q3an3.getText(), q3an4.getText(),
         radioButtonGroup3.indexOf(radioButtonGroup3.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
-    List<Quiz> quizzes = quizHandler.loadFromFile();
-    quizzes.add(new Quiz(title.getText(), question1, question2, question3));
-    quizHandler.writeToFile(quizzes);
+    Quiz quiz = new Quiz(title.getText(), question1, question2, question3);
+    remoteQuizAccess.postQuiz(quiz);
     switchSceneWithNode("MainPage.fxml", title);
   }
 
@@ -130,5 +140,5 @@ public class AddQuizController extends QuizAppController {
     return correctAnswer && allFieldsAreFilled;
 
   }
-*/
+
 }
