@@ -73,7 +73,8 @@ public class QuizHandler {
    * @param name name of the quiz you want
    * @return returns Quiz with name
    */
-  public Quiz getQuizByName(String name) {
+  public Quiz getQuizById(String id) {
+    String name = id.replace("-", " ");
     List<Quiz> quizzes = this.loadFromFile();
     return quizzes.stream().filter(q -> q.getName().equals(name)).findFirst().orElse(null);
 

@@ -142,7 +142,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="400.0">
                      <children>
-                        <ImageView fitHeight="55.0" fitWidth="177.0" onMouseClicked="#goToMainMenu" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="mainMenu" fitHeight="55.0" fitWidth="177.0" onMouseClicked="#goToMainMenu" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/QuizLogo.png" />
                            </image>

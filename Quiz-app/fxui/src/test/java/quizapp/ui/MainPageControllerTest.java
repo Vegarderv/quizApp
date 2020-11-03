@@ -1,11 +1,13 @@
 package quizapp.ui;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class MainPageControllerTest extends FxuiTest {
@@ -24,36 +26,54 @@ public class MainPageControllerTest extends FxuiTest {
   @Test
   public void logOutTest() {
     // Checks that we are in the main page scene
-    assertNotNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNotNull(stage.getScene().lookup("#menuButton"));
     assertNull(stage.getScene().lookup("#mainPageButton"));
     // Changes Scene to login
     clickOnMenuItem("#menuButton", "#menuSignOut");
     // Checks that the scene has been changed
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
   }
 
   // Will be implemented when profile page is finished
   @Test
   public void goToProfileTest() {
-    assertNotNull(stage.getScene().lookup("#historyQuizButton"));
+    // Checks that we are in the main page scene
+    assertNotNull(stage.getScene().lookup("#menuButton"));
     assertNull(stage.getScene().lookup("#userMenuProfilePage"));
+    // Changes Scene to profile page
     clickOnMenuItem("#menuButton", "#profileButton");
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    // Checks that the scene has been changed
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#userMenuProfilePage"));
   }
 
   @Test
-  public void goToHistoryQuizTest() {
+  public void goToQuizTest() {
     // Checks that we are in the main page scene
-    assertNotNull(stage.getScene().lookup("#historyQuizButton"));
-    assertNull(stage.getScene().lookup("#scroll"));
-    // Changes scene to history quiz page
-    clickOnButton("#historyQuizButton");
+    assertNotNull(stage.getScene().lookup("#menuButton"));
+    assertNull(stage.getScene().lookup("#userMenu"));
+    // Changes scene to quiz page
+    clickOnButton("#Chemistry-quiz");
     // Checks that the scene has been changed
-    assertNotNull(stage.getScene().lookup("#scroll"));
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNotNull(stage.getScene().lookup("#userMenu"));
+    assertNull(stage.getScene().lookup("#menuButton"));
+    //Checks that the correct quiz has been loaded
+    assertEquals(((Label) stage.getScene().lookup("#quiz_name")).getText(), "Chemistry quiz");
+
 
   }
+
+  @Test
+  public void goToAddQuiz() {
+    // Checks that we are in the main page scene
+    assertNotNull(stage.getScene().lookup("#menuButton"));
+    assertNull(stage.getScene().lookup("#userMenu"));
+    clickOnButton("#newQuiz");
+    // Checks that the scene has been changed
+    assertNotNull(stage.getScene().lookup("#userMenu"));
+    assertNull(stage.getScene().lookup("#menuButton"));
+  }
+  
 
 }
