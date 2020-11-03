@@ -15,6 +15,7 @@ import quizapp.core.Question;
 import quizapp.core.Quiz;
 import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
+import javafx.scene.control.ScrollPane;
 
 public class AddQuizController extends QuizAppController {
 
@@ -26,6 +27,8 @@ public class AddQuizController extends QuizAppController {
   Label score;
   @FXML
   MenuButton userMenu;
+  @FXML
+  ScrollPane scroll;
 
   private List<RadioButton> radioButtonGroup1 = new ArrayList<>();
   private List<RadioButton> radioButtonGroup2 = new ArrayList<>();
@@ -69,17 +72,24 @@ public class AddQuizController extends QuizAppController {
   public void submitQuiz() {
     if (!checkIfQuizIsFilled()) {
       score.setText("Invalid Quiz. Check that all fields are filled and correct answers are chosen");
+      scroll.setVvalue(0.01);
       return;
     }
     QuizHandler quizHandler = new QuizHandler(
         "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
+    List<Quiz> quizzes = quizHandler.loadFromFile();
+    if (quizzes.stream().anyMatch(q -> q.getName().equals(title.getText()))) {
+      score.setText("Invalid Quizname. The title must be unique, there is already a quiz named " + title.getText());
+      scroll.setVvalue(0.01);
+      return;
+    }
+
     Question question1 = new Question(q1.getText(), q1an1.getText(), q1an2.getText(), q1an3.getText(), q1an4.getText(),
         radioButtonGroup1.indexOf(radioButtonGroup1.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
     Question question2 = new Question(q2.getText(), q2an1.getText(), q2an2.getText(), q2an3.getText(), q2an4.getText(),
         radioButtonGroup2.indexOf(radioButtonGroup2.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
     Question question3 = new Question(q3.getText(), q3an1.getText(), q3an2.getText(), q3an3.getText(), q3an4.getText(),
         radioButtonGroup3.indexOf(radioButtonGroup3.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
-    List<Quiz> quizzes = quizHandler.loadFromFile();
     quizzes.add(new Quiz(title.getText(), question1, question2, question3));
     quizHandler.writeToFile(quizzes);
     switchSceneWithNode("MainPage.fxml", title);
