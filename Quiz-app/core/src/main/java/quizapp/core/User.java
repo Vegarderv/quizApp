@@ -1,5 +1,6 @@
 package quizapp.core;
 
+
 import java.util.HashMap;
 
 public class User {
@@ -37,8 +38,13 @@ public class User {
   }
 
   public void addQuiz(String quiz, double score) {
-    //Add quiz to user when finished with said quiz
-    quizzesTaken.put(quiz, score);
+    //Add quiz to user when finished with said quiz, or updates score to latest result
+    if (quizzesTaken.containsKey(quiz)) {
+      quizzesTaken.replace(quiz, score);
+    }
+    else {
+      quizzesTaken.put(quiz, score);
+    }
   }
 
   public Double meanScore() {
@@ -49,6 +55,7 @@ public class User {
   public Double getScore(String quiz) {
     return quizzesTaken.get(quiz);
   }
+  
 
   public String toString() {
     return username + " " + password;
