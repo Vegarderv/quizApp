@@ -180,7 +180,7 @@ public class RemoteUserAccess {
       HttpRequest request = HttpRequest.newBuilder(userUri(user.getUsername()))
           .header("Accept", "application/json")
           .header("Content-Type", "application/json")
-          .PUT(BodyPublishers.ofString(json))
+          .POST(BodyPublishers.ofString(json))
           .build();
       System.out.println(request);
       final HttpResponse<String> response =

@@ -15,10 +15,10 @@ public class UsernameCheck {
     try {
         remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
-      //TODO: handle exception
     }
     List<User> userPasswords = remoteUserAccess.getUsers();
     if (!userPasswords.stream().anyMatch(a -> a.getUsername().equals(username))) {
+      System.out.println("Can't find user");
       return false;
     } else if (!userPasswords.stream().filter(p -> p.getUsername().equals(username))
         .findFirst().get().getPassword().equals(password)) { // Chekcs if passwords match
