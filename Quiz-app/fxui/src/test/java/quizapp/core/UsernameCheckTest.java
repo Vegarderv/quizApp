@@ -47,4 +47,5 @@ public class UsernameCheckTest {
   public void correct() {
     assertTrue(nameCheck.checkUsername("gr2022", "gitlab"));
   }
+  
 }
