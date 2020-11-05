@@ -29,6 +29,7 @@ public class LoginController extends QuizAppController {
   Label errorMessage;
   @FXML
   Button mainPageButton;
+  
   private RemoteUserAccess remoteUserAccess;
 
   @Override
@@ -51,8 +52,13 @@ public class LoginController extends QuizAppController {
       return;
     }
 
-    remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
+    try {
+        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive"));
+    } catch (Exception e) {
+      //TODO: handle exception
+    }
     remoteUserAccess.putActiveUser(username.getText());
+    System.out.println(username.getText());
     // Gets the stage information and sets the scene
     switchSceneWithNode("MainPage.fxml", mainPageButton);
   }
