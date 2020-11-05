@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class SignupControllerTests extends FxuiTest {
-/*
+
   private static JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
   private static List<User> users = handler.loadFromFile();
   private Stage stage;
@@ -105,6 +105,7 @@ public class SignupControllerTests extends FxuiTest {
       users.remove(users.stream().filter(user -> user.getUsername().equals("Dragvoll")).findAny().orElse(null));
     }
     jsonHandler.writeToFile(users);
+    System.out.println(jsonHandler.loadFromFile());
     assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     TextField usernameField = (TextField) stage.getScene().lookup("#username");
@@ -112,6 +113,7 @@ public class SignupControllerTests extends FxuiTest {
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Hadebra");
     clickOnButton("#signupButton");
+    
     // uses username check to see if the new user is saved for later log ins
     final UsernameCheck chk = new UsernameCheck();
     assertTrue(chk.checkUsername("Dragvoll", "Hadebra"));
@@ -119,5 +121,5 @@ public class SignupControllerTests extends FxuiTest {
     assertNull(stage.getScene().lookup("#signupButton"));
     assertNotNull(stage.getScene().lookup("#menuButton"));
   }
-*/
+
 }
