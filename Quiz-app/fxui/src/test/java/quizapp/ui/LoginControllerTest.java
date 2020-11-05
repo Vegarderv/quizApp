@@ -1,5 +1,12 @@
 package quizapp.ui;
 
+<<<<<<< HEAD
+=======
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.jupiter.api.Test;
+>>>>>>> origin/master
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,7 +34,7 @@ public class LoginControllerTest extends FxuiTest {
 
   @Test
   public void checkWrongPassword() {
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
     // assigns the textfields example values to test the logic
     TextField usernameField = (TextField) stage.getScene().lookup("#username");
@@ -36,7 +43,7 @@ public class LoginControllerTest extends FxuiTest {
     passwordField.setText("Tretteberg");
     clickOnButton("#mainPageButton");
     // expects the scene to stay at sign in page
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
     // fetches the string of the label and checks if this is the same as the
     // expected string
@@ -47,7 +54,7 @@ public class LoginControllerTest extends FxuiTest {
   @Test
   public void checkWrongUsername() {
     // checks that login page is at right stage
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
     // assiging invalid values as password and username
     TextField usernameField = (TextField) stage.getScene().lookup("#username");
@@ -57,7 +64,7 @@ public class LoginControllerTest extends FxuiTest {
     // clicks on log in button
     clickOnButton("#mainPageButton");
     // checks that im still at login page
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
     // checks that the error label shows the right error message
     Label error = (Label) stage.getScene().lookup("#errorMessage");
@@ -66,7 +73,7 @@ public class LoginControllerTest extends FxuiTest {
 
   @Test
   public void checkValidFields() {
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
     // assiging valid values for the username and password field
     TextField usernameField = (TextField) stage.getScene().lookup("#username");
@@ -76,7 +83,7 @@ public class LoginControllerTest extends FxuiTest {
     clickOnButton("#mainPageButton");
     // checks that scene is changed to the page menu after login button is pressed
     assertNull(stage.getScene().lookup("#mainPageButton"));
-    assertNotNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNotNull(stage.getScene().lookup("#menuButton"));
   }
 
   // need to check sign up button

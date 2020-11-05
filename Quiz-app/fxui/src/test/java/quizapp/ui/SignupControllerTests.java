@@ -49,7 +49,7 @@ public class SignupControllerTests extends FxuiTest {
 
   @Test
   public void checkUsernameAlreadyTaken() {
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     // assigns the textfields example values to test the logic
     TextField usernameField = (TextField) stage.getScene().lookup("#username");
@@ -58,7 +58,7 @@ public class SignupControllerTests extends FxuiTest {
     passwordField.setText("Heisann");
     clickOnButton("#signupButton");
     // expects the scene to stay at sign in page
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     // fetches the string of the label and checks if this is the same as the
     // expected string
@@ -68,14 +68,14 @@ public class SignupControllerTests extends FxuiTest {
 
   @Test
   public void checkEmptyUsername() {
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     TextField usernameField = (TextField) stage.getScene().lookup("#username");
     usernameField.setText("");
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Heisann");
     clickOnButton("#signupButton");
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     Label error = (Label) stage.getScene().lookup("#errorMessage");
     assertEquals("Username and password must at least contain 1 sign", error.getText());
@@ -83,14 +83,14 @@ public class SignupControllerTests extends FxuiTest {
 
   @Test
   public void checkEmptyPassword() {
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     TextField usernameField = (TextField) stage.getScene().lookup("#username");
     usernameField.setText("Heisann");
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("");
     clickOnButton("#signupButton");
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     Label error = (Label) stage.getScene().lookup("#errorMessage");
     assertEquals("Username and password must at least contain 1 sign", error.getText());
@@ -98,8 +98,6 @@ public class SignupControllerTests extends FxuiTest {
 
   @Test
   public void checkValidFields() throws IOException {
-
-    
     JsonHandler jsonHandler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
     List<User> users = jsonHandler.loadFromFile();
     // deletes user from previous testrun if it exists
@@ -107,7 +105,7 @@ public class SignupControllerTests extends FxuiTest {
       users.remove(users.stream().filter(user -> user.getUsername().equals("Dragvoll")).findAny().orElse(null));
     }
     jsonHandler.writeToFile(users);
-    assertNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNull(stage.getScene().lookup("#menuButton"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
     TextField usernameField = (TextField) stage.getScene().lookup("#username");
     usernameField.setText("Dragvoll");
@@ -119,7 +117,7 @@ public class SignupControllerTests extends FxuiTest {
     assertTrue(chk.checkUsername("Dragvoll", "Hadebra"));
     // expects now the scene to change to main page
     assertNull(stage.getScene().lookup("#signupButton"));
-    assertNotNull(stage.getScene().lookup("#historyQuizButton"));
+    assertNotNull(stage.getScene().lookup("#menuButton"));
   }
 */
 }

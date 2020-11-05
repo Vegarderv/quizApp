@@ -94,7 +94,7 @@ public class MainPageController extends QuizAppController {
         Button button = new Button(quizzes.get(i).getName());
         button.setPrefSize(436.0, 180.0);
         button.setMinWidth(436.0);
-        button.setId(quizzes.get(i).getName());
+        button.setId(quizzes.get(i).getId());
         button.setOnAction(new EventHandler<ActionEvent>(){
         
           @Override
