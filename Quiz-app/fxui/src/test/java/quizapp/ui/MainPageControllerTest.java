@@ -1,12 +1,9 @@
 package quizapp.ui;
 
-<<<<<<< HEAD
-=======
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
->>>>>>> origin/master
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -81,10 +78,5 @@ public class MainPageControllerTest extends FxuiTest {
     assertNotNull(stage.getScene().lookup("#userMenu"));
     assertNull(stage.getScene().lookup("#menuButton"));
   }
-<<<<<<< HEAD
 */
-=======
-  
-
->>>>>>> origin/master
 }

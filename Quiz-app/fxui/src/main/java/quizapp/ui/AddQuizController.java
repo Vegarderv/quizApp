@@ -83,38 +83,26 @@ public class AddQuizController extends QuizAppController {
       scroll.setVvalue(0.01);
       return;
     }
-<<<<<<< HEAD
     try {
       remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/new/"));
     } catch (Exception e) {
       //TODO: handle exception
     }
-    
-=======
-    QuizHandler quizHandler = new QuizHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
-    List<Quiz> quizzes = quizHandler.loadFromFile();
+    List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.stream().anyMatch(q -> q.getName().equals(title.getText()))) {
       score.setText("Invalid Quizname. The title must be unique, there is already a quiz named " + title.getText());
       scroll.setVvalue(0.01);
       return;
     }
 
->>>>>>> origin/master
     Question question1 = new Question(q1.getText(), q1an1.getText(), q1an2.getText(), q1an3.getText(), q1an4.getText(),
         radioButtonGroup1.indexOf(radioButtonGroup1.stream().filter(p -> p.isSelected()).findAny().get()));
     Question question2 = new Question(q2.getText(), q2an1.getText(), q2an2.getText(), q2an3.getText(), q2an4.getText(),
         radioButtonGroup2.indexOf(radioButtonGroup2.stream().filter(p -> p.isSelected()).findAny().get()));
     Question question3 = new Question(q3.getText(), q3an1.getText(), q3an2.getText(), q3an3.getText(), q3an4.getText(),
-<<<<<<< HEAD
         radioButtonGroup3.indexOf(radioButtonGroup3.stream().filter(p -> p.isSelected()).findAny().get()));
     Quiz quiz = new Quiz(title.getText(), question1, question2, question3);
     remoteQuizAccess.postQuiz(quiz);
-=======
-        radioButtonGroup3.indexOf(radioButtonGroup3.stream().filter(p -> p.isSelected()).findAny().get()) + 1);
-    quizzes.add(new Quiz(title.getText(), question1, question2, question3));
-    quizHandler.writeToFile(quizzes);
->>>>>>> origin/master
     switchSceneWithNode("MainPage.fxml", title);
   }
 

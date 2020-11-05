@@ -70,9 +70,5 @@ public class ProfilePageControllerTest extends FxuiTest {
         .filter(u -> u.getUsername().equals(userHandler.loadActiveUser())).findFirst().get();
     assertEquals(String.valueOf(Math.round((user.meanScore()*100))) + "  %", label.getText());
   }
-<<<<<<< HEAD
   */
 }
-=======
-}
->>>>>>> origin/master
