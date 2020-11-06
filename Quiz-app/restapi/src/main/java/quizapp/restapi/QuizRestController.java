@@ -34,9 +34,10 @@ public class QuizRestController {
     return getQuizzes();
   }
 
-  @GetMapping("/{Id}")
-  public Quiz getQuiz(@RequestParam String Id) {
-    return getQuizzes().stream().filter(q -> q.getId().equals(Id)).findFirst().orElse(null);
+  @GetMapping("/{id1}")
+  public Quiz getQuiz(@PathVariable("id1") String id1, @RequestParam String id) {
+    System.out.println("Url id: " + id);
+    return getQuizzes().stream().filter(q -> q.getId().equals(id)).findFirst().orElse(null);
   }
 
 

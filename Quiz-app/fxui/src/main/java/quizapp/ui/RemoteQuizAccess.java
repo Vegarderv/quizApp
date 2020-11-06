@@ -34,6 +34,7 @@ public class RemoteQuizAccess {
   }
   
   public Quiz getQuiz(String id) {
+    System.out.println("remote: " + id);
     try {
       if (quiz == null) {
       HttpRequest request = HttpRequest.newBuilder(quizUri(id))
@@ -45,6 +46,7 @@ public class RemoteQuizAccess {
         final HttpResponse<String> response =
             HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
         final String responseString = response.body();
+        System.out.println(responseString);
         this.quiz =  new Gson().fromJson(responseString, new TypeToken<Quiz>(){}.getType());
         System.out.println("Quiz: " + this.quiz);
       } catch (IOException | InterruptedException e) {

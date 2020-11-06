@@ -60,10 +60,14 @@ public class MainPageController extends QuizAppController {
   public void initialize(URL arg0, ResourceBundle arg1) {
     try {
         remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
-    } catch (Exception e) {}
+    } catch (Exception e) {
+
+    }
     try {
         remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
-    } catch (Exception e) {}
+    } catch (Exception e) {
+
+    }
     currentUser = remoteUserAccess.getActiveUser();
     //username = userHandler.loadActiveUser();
     menuButton.setText(currentUser.getUsername());
@@ -74,9 +78,14 @@ public class MainPageController extends QuizAppController {
   public void goToQuiz(ActionEvent event) {
     
     //User currentUser = jsonHandler.loadActiveUser();
+    System.out.println((((Button) event.getSource()).getId()));
     Quiz quiz = remoteQuizAccess.getQuiz((((Button) event.getSource()).getId()));
-    System.out.println();
     currentUser.setCurrentQuiz(quiz);
+    try {
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/update"));
+    } catch (Exception e) {
+      //TODO: handle exception
+    }
     remoteUserAccess.putUser(currentUser);
     //currentUser.setCurrentQuiz(quizHandler.getQuizById(((Button) event.getSource()).getId()));
     //jsonHandler.updateUser(currentUser);

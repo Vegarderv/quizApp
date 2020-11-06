@@ -79,5 +79,9 @@ public class Quiz {
     this.id = getName().replace(" ", "-");
   }
 
+  public String toString(){
+    return this.getName();
+  }
+
   
 }
