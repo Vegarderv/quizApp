@@ -38,9 +38,9 @@ public class UserService{
     return activeUser;
   }
 
-  public void setActiveUser(User activeUser) {
-    this.activeUser = activeUser;
-  }
+  //public void setActiveUser(User activeUser) {
+  //  this.activeUser = activeUser;
+  //}
 
   public void addUser(User user) {
     jsonHandler.addUser(user);

@@ -53,7 +53,7 @@ public class LoginController extends QuizAppController {
     }
 
     try {
-        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive"));
+        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
     } catch (Exception e) {
       //TODO: handle exception
     }
