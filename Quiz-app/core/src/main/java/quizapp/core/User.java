@@ -38,6 +38,7 @@ public class User {
   }
 
   public void addQuiz(String quiz, double score) {
+    
     //Add quiz to user when finished with said quiz, or updates score to latest result
     if (quizzesTaken.containsKey(quiz)) {
       quizzesTaken.replace(quiz, score);
@@ -83,6 +84,12 @@ public class User {
   public void setCurrentQuiz(Quiz currentQuiz) {
     this.currentQuiz = currentQuiz;
   }
-
   
+  public void setQuizzesTaken(HashMap<String, Double> quizzesTaken) {
+    this.quizzesTaken = quizzesTaken;
+  }
+  
+  public HashMap<String, Double> getQuizzesTaken(){
+    return this.quizzesTaken;
+  }
 }

@@ -2,6 +2,7 @@ package quizapp.ui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,13 +28,11 @@ import javafx.scene.input.MouseEvent;
 import quizapp.core.Quiz;
 import quizapp.core.User;
 import javafx.scene.text.Font;
-import quizapp.json.JsonHandler;
-import quizapp.json.QuizHandler;
-import quizapp.json.UsernameHandler;
+
 import javafx.scene.paint.Color;
 
 public class ScoreboardController extends QuizAppController implements Initializable {
-
+  
   //mvn javafx:run -f fxui/pom.xml
 
   @FXML
@@ -48,23 +47,32 @@ public class ScoreboardController extends QuizAppController implements Initializ
   MenuItem profileButton;
   @FXML
   ScrollPane scroll;
-
-  private JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-  final List<User> users = handler.loadFromFile();
-  private String usernamePath = 
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
-  private UsernameHandler userHandler = new UsernameHandler(usernamePath);
-  private String username = userHandler.loadActiveUser();
-  private String quizPath = 
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json";
-  private QuizHandler quizHandler = new QuizHandler(quizPath);
-  private List<Quiz> quizzes = quizHandler.loadFromFile();
+  private RemoteUserAccess remoteUserAccess;
+  private RemoteQuizAccess remoteQuizAccess;
+  private List<User> users;
+  private String username;
+  private List<Quiz> quizzes;
+ 
 
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
+    try {
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    users = remoteUserAccess.getUsers();
+    username = remoteUserAccess.getActiveUser().getUsername();
+    try {
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    quizzes = remoteQuizAccess.getQuizzes();
     userMenu.setText(username);
     Map<String, ArrayList<User>> scoreMap = getBoardInfo();
+    System.out.println(scoreMap);
     for (Map.Entry< String, ArrayList<User> > quizname : scoreMap.entrySet()) {
       Text text = new Text(quizname.getKey());
       text.setFont(new Font(34.0));
@@ -109,11 +117,13 @@ public class ScoreboardController extends QuizAppController implements Initializ
   }
 
   public Map<String, ArrayList<User>> getBoardInfo() {
-    //makes the score map that is used in the scoreboard
+     try {
+        //makes the score map that is used in the scoreboard
     Map<String, ArrayList<User>> scoreMap = new HashMap<>();
     for (Quiz quiz : this.quizzes) {
       ArrayList<User> topScorers = new ArrayList<>();
       String name = quiz.getName();
+      System.out.println(name);
       for (User userHey : this.users) {
         if (userHey.quizTaken(name)) {
           topScorers = mergeUser(userHey, topScorers, name);
@@ -122,6 +132,12 @@ public class ScoreboardController extends QuizAppController implements Initializ
       scoreMap.put(name, topScorers);
     }
     return scoreMap;
+      } catch (Exception e) {
+        System.out.println(this.quizzes);
+        e.printStackTrace();
+        return null;
+      }
+    
   }
 
    @FXML
