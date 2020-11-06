@@ -14,6 +14,7 @@ public class QuizService{
 
   
   public List<Quiz> getQuizzes() {
+    quizzes = quizHandler.loadFromFile();
     return quizzes;
   }
 

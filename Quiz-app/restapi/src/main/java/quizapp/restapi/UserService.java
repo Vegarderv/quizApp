@@ -25,6 +25,7 @@ public class UserService{
 
 
   public List<User> getUsers() {
+    users = jsonHandler.loadFromFile();
     return users;
   }
 
@@ -33,6 +34,7 @@ public class UserService{
   }
 
   public User getActiveUser() {
+    activeUser = jsonHandler.loadActiveUser();
     return activeUser;
   }
 
