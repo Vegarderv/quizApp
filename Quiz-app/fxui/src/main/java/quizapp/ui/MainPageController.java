@@ -79,6 +79,7 @@ public class MainPageController extends QuizAppController {
     
     //User currentUser = jsonHandler.loadActiveUser();
     System.out.println((((Button) event.getSource()).getId()));
+    
     Quiz quiz = remoteQuizAccess.getQuiz((((Button) event.getSource()).getId()));
     currentUser.setCurrentQuiz(quiz);
     try {
