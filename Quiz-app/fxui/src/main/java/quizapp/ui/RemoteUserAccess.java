@@ -1,12 +1,15 @@
 package quizapp.ui;
 
 import java.io.IOException;
+import java.lang.InterruptedException; 
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
+import java.net.URISyntaxException;
+import java.net.ConnectException;
 import java.nio.charset.StandardCharsets;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,14 +18,32 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import quizapp.core.User;
 import java.util.List;
 
-public class RemoteUserAccess {
+public class RemoteUserAccess implements UserAccess {
 
   User user;
 
   private final URI endpointBaseUri;
   
 
-  public RemoteUserAccess(URI endpointBaseUri) {
+  public RemoteUserAccess(URI endpointBaseUri) throws IOException {
+    //Checks if server is running
+    try {
+      HttpRequest request = HttpRequest.newBuilder(new URI("http://localhost:8080").resolve(""))
+          .header("Accept", "application/json")
+          .GET()
+          .build();
+      System.out.println(request);
+        final HttpResponse<String> response =
+            HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
+        final String responseString = response.body();
+        if (!responseString.equals("OK")){
+          throw new IOException("Server Not Running");
+        }
+    } catch (URISyntaxException | IOException | InterruptedException e) {
+      System.out.println(e);
+      throw new IOException("Server Not Running");
+    }
+
     this.endpointBaseUri = endpointBaseUri;
   }
 

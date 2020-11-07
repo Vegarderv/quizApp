@@ -30,7 +30,7 @@ public class LoginController extends QuizAppController {
   @FXML
   Button mainPageButton;
   
-  private RemoteUserAccess remoteUserAccess;
+  private UserAccess remoteUserAccess;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -55,7 +55,7 @@ public class LoginController extends QuizAppController {
     try {
         remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
     } catch (Exception e) {
-      //TODO: handle exception
+      remoteUserAccess = new DirectUserAccess();
     }
     remoteUserAccess.putActiveUser(username.getText());
     System.out.println(username.getText());

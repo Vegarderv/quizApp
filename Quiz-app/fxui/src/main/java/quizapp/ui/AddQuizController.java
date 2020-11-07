@@ -31,7 +31,7 @@ public class AddQuizController extends QuizAppController {
   @FXML
   ScrollPane scroll;
 
-  private RemoteUserAccess remoteUserAccess;
+  private UserAccess remoteUserAccess;
   private RemoteQuizAccess remoteQuizAccess;
 
   private List<RadioButton> radioButtonGroup1 = new ArrayList<>();
@@ -52,6 +52,7 @@ public class AddQuizController extends QuizAppController {
     userMenu
         .setText(remoteUserAccess.getActiveUser().getUsername());
     } catch (Exception e) {
+      remoteUserAccess = new DirectUserAccess();
       e.printStackTrace();
     }
 

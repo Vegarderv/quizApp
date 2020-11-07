@@ -23,7 +23,7 @@ public class SignupController extends QuizAppController {
   Label errorMessage;
   @FXML
   Button loginButton;
-  private RemoteUserAccess remoteUserAccess;
+  private UserAccess remoteUserAccess;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -42,6 +42,7 @@ public class SignupController extends QuizAppController {
     try {
        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
+      remoteUserAccess = new DirectUserAccess();
     }
     final List<User> users = remoteUserAccess.getUsers();
     if (users.stream().anyMatch(a -> a.getUsername().equals(username.getText()))) {

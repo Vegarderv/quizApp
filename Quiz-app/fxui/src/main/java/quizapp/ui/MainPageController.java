@@ -46,8 +46,8 @@ public class MainPageController extends QuizAppController {
   //private QuizHandler quizHandler = new QuizHandler(
   //    "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
   private User currentUser;
-  private RemoteUserAccess remoteUserAccess;
-  private RemoteQuizAccess remoteQuizAccess;
+  private UserAccess remoteUserAccess;
+  private QuizAccess remoteQuizAccess;
 
 
 
@@ -61,12 +61,12 @@ public class MainPageController extends QuizAppController {
     try {
         remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
-
+        remoteUserAccess = new DirectUserAccess();
     }
     try {
         remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
     } catch (Exception e) {
-
+      remoteQuizAccess = new DirectQuizAccess();
     }
     currentUser = remoteUserAccess.getActiveUser();
     //username = userHandler.loadActiveUser();

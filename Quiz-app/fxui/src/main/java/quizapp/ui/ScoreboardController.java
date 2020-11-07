@@ -47,8 +47,8 @@ public class ScoreboardController extends QuizAppController implements Initializ
   MenuItem profileButton;
   @FXML
   ScrollPane scroll;
-  private RemoteUserAccess remoteUserAccess;
-  private RemoteQuizAccess remoteQuizAccess;
+  private UserAccess remoteUserAccess;
+  private QuizAccess remoteQuizAccess;
   private List<User> users;
   private String username;
   private List<Quiz> quizzes;
@@ -60,14 +60,14 @@ public class ScoreboardController extends QuizAppController implements Initializ
     try {
       remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
-      e.printStackTrace();
+      remoteUserAccess = new DirectUserAccess();
     }
     users = remoteUserAccess.getUsers();
     username = remoteUserAccess.getActiveUser().getUsername();
     try {
       remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
     } catch (Exception e) {
-      e.printStackTrace();
+      remoteQuizAccess = new DirectQuizAccess();
     }
     quizzes = remoteQuizAccess.getQuizzes();
     userMenu.setText(username);

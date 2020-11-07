@@ -115,12 +115,12 @@ public class SignupControllerTest extends FxuiTest {
     System.out.println(jsonHandler.loadFromFile());
     // uses username check to see if the new user is saved for later log ins
     final UsernameCheck chk = new UsernameCheck();
-    try {
+    assertTrue(chk.checkUsername("Dragvoll", "Hadebra"));
+     try {
       Thread.sleep(1000); //Gives restAPI time to work
     } catch (Exception e) {
       //TODO: handle exception
     }
-    assertTrue(chk.checkUsername("Dragvoll", "Hadebra"));
     // expects now the scene to change to main page
     assertNull(stage.getScene().lookup("#signupButton"));
     assertNotNull(stage.getScene().lookup("#menuButton"));
