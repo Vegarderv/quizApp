@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class QuizAppController implements Initializable {
 
-  private RemoteUserAccess remoteUserAccess;
+  private UserAccess remoteUserAccess;
   private User currentUser;
 
   @Override
@@ -32,6 +32,7 @@ public class QuizAppController implements Initializable {
       try {
         remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
       } catch (Exception e) {
+        remoteUserAccess = new DirectUserAccess();
       }
       currentUser = remoteUserAccess.getActiveUser();
       if (currentUser.getDarkMode()) {

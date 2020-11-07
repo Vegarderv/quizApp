@@ -39,7 +39,7 @@ public class ProfilePageController extends QuizAppController {
   @FXML
   Label nameId, scoreId, DarkmodeLabel;
 
-  private RemoteUserAccess remoteUserAccess;
+  private UserAccess remoteUserAccess;
   private User currentUser;
 
   @Override
@@ -49,7 +49,7 @@ public class ProfilePageController extends QuizAppController {
     try {
         remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
-
+        remoteUserAccess = new DirectUserAccess();
     }
     currentUser = remoteUserAccess.getActiveUser();
     double percentage = currentUser.meanScore() * 100;

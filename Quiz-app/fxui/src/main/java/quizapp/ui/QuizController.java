@@ -80,14 +80,14 @@ public class QuizController extends QuizAppController {
   //UsernameHandler userHandler = new UsernameHandler(usernamePath);
   private Quiz currentQuiz;
   private User currentUser;
-  private RemoteUserAccess remoteUserAccess;
+  private UserAccess remoteUserAccess;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     try {
         remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
-
+      remoteUserAccess = new DirectUserAccess();
     }
     currentUser = remoteUserAccess.getActiveUser();
     currentQuiz = currentUser.getCurrentQuiz();
