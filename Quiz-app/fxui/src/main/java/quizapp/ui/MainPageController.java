@@ -39,12 +39,6 @@ public class MainPageController extends QuizAppController {
   @FXML
   HBox hBox;
 
-  //private String usernamePath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
-  //private UsernameHandler userHandler = new UsernameHandler(usernamePath);
-  //private JsonHandler jsonHandler = new JsonHandler(
-  //    "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-  //private QuizHandler quizHandler = new QuizHandler(
-  //    "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
   private User currentUser;
   private UserAccess remoteUserAccess;
   private QuizAccess remoteQuizAccess;
@@ -69,15 +63,12 @@ public class MainPageController extends QuizAppController {
       remoteQuizAccess = new DirectQuizAccess();
     }
     currentUser = remoteUserAccess.getActiveUser();
-    //username = userHandler.loadActiveUser();
     menuButton.setText(currentUser.getUsername());
     addButtons();
   }
 
   @FXML
   public void goToQuiz(ActionEvent event) {
-    
-    //User currentUser = jsonHandler.loadActiveUser();
     System.out.println((((Button) event.getSource()).getId()));
     
     Quiz quiz = remoteQuizAccess.getQuiz((((Button) event.getSource()).getId()));
@@ -85,11 +76,8 @@ public class MainPageController extends QuizAppController {
     try {
       remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/update"));
     } catch (Exception e) {
-      //TODO: handle exception
     }
     remoteUserAccess.putUser(currentUser);
-    //currentUser.setCurrentQuiz(quizHandler.getQuizById(((Button) event.getSource()).getId()));
-    //jsonHandler.updateUser(currentUser);
     this.switchSceneWithNode("Quiz.fxml", historyQuizButton);
   }
 
@@ -113,8 +101,6 @@ public class MainPageController extends QuizAppController {
    */
   private void addButtons() {
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
-    //List<Quiz> quizzes = new QuizHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json")
-    //    .loadFromFile();
     if (quizzes.size() > 3) {
       ObservableList<Node> children = hBox.getChildren();
       for (int i = 3; i < quizzes.size(); i++) {

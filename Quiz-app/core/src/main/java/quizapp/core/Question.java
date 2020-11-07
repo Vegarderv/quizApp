@@ -49,7 +49,7 @@ public class Question {
   /**
    * returns Correct Alternative.
    */
-  public int getCorrect_alternative() {
+  public int getCorrectAlternative() {
     return correctAlternative;
   }
 
