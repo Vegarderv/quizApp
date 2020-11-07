@@ -48,13 +48,12 @@ public class AddQuizController extends QuizAppController {
   public void initialize(URL arg0, ResourceBundle arg1) {
     addElemsToLists();
     try {
-    remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
-    userMenu
-        .setText(remoteUserAccess.getActiveUser().getUsername());
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
       remoteUserAccess = new DirectUserAccess();
-      e.printStackTrace();
     }
+    userMenu
+        .setText(remoteUserAccess.getActiveUser().getUsername());
 
   }
 
