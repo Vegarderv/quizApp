@@ -55,7 +55,6 @@ public class LoginController extends QuizAppController {
     try {
         remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
     } catch (Exception e) {
-      //TODO: handle exception
     }
     remoteUserAccess.putActiveUser(username.getText());
     System.out.println(username.getText());
