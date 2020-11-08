@@ -1,7 +1,6 @@
 package quizapp.ui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.net.URI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +8,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import quizapp.core.UsernameCheck;
+import quizapp.core.User;
+import quizapp.core.Quiz;
 import quizapp.json.UsernameHandler;
+import quizapp.json.JsonHandler;
+
+
+import java.net.URL;
+import java.rmi.Remote;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class LoginController extends QuizAppController {
 
@@ -19,16 +27,15 @@ public class LoginController extends QuizAppController {
   PasswordField password;
   @FXML
   Label errorMessage;
-
   @FXML
   Button mainPageButton;
-
-  private UsernameHandler usernameHandler = new UsernameHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+  
+  private UserAccess remoteUserAccess;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    //something
+   
+    
   }
 
   /**
@@ -45,9 +52,13 @@ public class LoginController extends QuizAppController {
       return;
     }
 
-    usernameHandler.saveActiveUser(
-        username.getText(), 
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    try {
+        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
+    } catch (Exception e) {
+      remoteUserAccess = new DirectUserAccess();
+    }
+    remoteUserAccess.putActiveUser(username.getText());
+    System.out.println(username.getText());
     // Gets the stage information and sets the scene
     switchSceneWithNode("MainPage.fxml", mainPageButton);
   }

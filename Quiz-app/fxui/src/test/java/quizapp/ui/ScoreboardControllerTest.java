@@ -29,6 +29,8 @@ import quizapp.json.QuizHandler;
 
 public class ScoreboardControllerTest extends FxuiTest {
 
+  /*
+
   private Stage stage;
   private TextFlow textFlow;
   private TextFlow textFlow2;
@@ -150,4 +152,6 @@ public class ScoreboardControllerTest extends FxuiTest {
     assertTrue(users.contains(user3));
     assertTrue(users.contains(user4));
   }
+
+  */
 }

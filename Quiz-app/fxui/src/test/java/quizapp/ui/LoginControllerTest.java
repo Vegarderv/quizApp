@@ -10,6 +10,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class LoginControllerTest extends FxuiTest {
 
@@ -86,5 +91,5 @@ public class LoginControllerTest extends FxuiTest {
     clickOnButton("#signUpButtonLoginPage");
     assertNull(stage.getScene().lookup("#signUpButtonLoginPage"));
     assertNotNull(stage.getScene().lookup("#signupButton"));
-  }
+  } 
 }

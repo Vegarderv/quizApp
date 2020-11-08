@@ -35,5 +35,5 @@ public class QuizControllerTest extends FxuiTest {
     assertNull(stage.getScene().lookup("#userMenu"));
     assertNotNull(stage.getScene().lookup("#menuButton"));
   }
-
+  
 }

@@ -1,29 +1,26 @@
 package quizapp.ui;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
+import java.net.URI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import quizapp.core.Quiz;
 import quizapp.core.Score;
+import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class QuizController extends QuizAppController {
 
@@ -75,17 +72,25 @@ public class QuizController extends QuizAppController {
   MenuItem scoreboardButton;
 
   private List<List<RadioButton>> buttons = new ArrayList<>();
-  private String userName;
-  private String usernamePath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
-  private String jsonPath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json";
-  private JsonHandler jsonHandler = new JsonHandler(jsonPath);
-  Score scoreCard = new Score(jsonPath, usernamePath);
-  UsernameHandler userHandler = new UsernameHandler(usernamePath);
+  //private String userName;
+  //private String usernamePath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
+  //private String jsonPath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json";
+  //private JsonHandler jsonHandler = new JsonHandler(jsonPath);
+  //Score scoreCard = new Score(jsonPath, usernamePath);
+  //UsernameHandler userHandler = new UsernameHandler(usernamePath);
   private Quiz currentQuiz;
+  private User currentUser;
+  private UserAccess remoteUserAccess;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    currentQuiz = jsonHandler.loadActiveUser().getCurrentQuiz();
+    try {
+        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
+    } catch (Exception e) {
+      remoteUserAccess = new DirectUserAccess();
+    }
+    currentUser = remoteUserAccess.getActiveUser();
+    currentQuiz = currentUser.getCurrentQuiz();
     List<RadioButton> q0buttons = new ArrayList<>();
     q0buttons.add(q0a0);
     q0buttons.add(q0a1);
@@ -104,8 +109,8 @@ public class QuizController extends QuizAppController {
     buttons.add(q0buttons);
     buttons.add(q1buttons);
     buttons.add(q2buttons);
-    userName = userHandler.loadActiveUser();
-    userMenu.setText(userName);
+    //userName = userHandler.loadActiveUser();
+    userMenu.setText(currentUser.getUsername());
     quiz_name.setText(currentQuiz.getName());
     question0.setText(currentQuiz.getQuestion(0).getQuestion());
     question1.setText(currentQuiz.getQuestion(1).getQuestion());
@@ -124,20 +129,22 @@ public class QuizController extends QuizAppController {
   @FXML
   public void submitAnswers() {
     int sum = 0;
-    if (buttons.get(0).get(currentQuiz.getQuestion(0).getCorrect_alternative()).isSelected()) {
+    if (buttons.get(0).get(currentQuiz.getQuestion(0).getCorrectAlternative()).isSelected()) {
       sum++;
     }
-    if (buttons.get(1).get(currentQuiz.getQuestion(1).getCorrect_alternative()).isSelected()) {
+    if (buttons.get(1).get(currentQuiz.getQuestion(1).getCorrectAlternative()).isSelected()) {
       sum++;
     }
-    if (buttons.get(2).get(currentQuiz.getQuestion(2).getCorrect_alternative()).isSelected()) {
+    if (buttons.get(2).get(currentQuiz.getQuestion(2).getCorrectAlternative()).isSelected()) {
       sum++;
     }
     buttons.stream().forEach(l -> l.stream().forEach(a -> a.setDisable(true)));
     submit.setDisable(true);
     scroll.setVvalue(0.01);
     score.setText("You got this Score: " + Integer.toString(Math.round(((float) sum / (float) 3) * 100)) + "%");
-    scoreCard.scoreQuiz(sum, 3, currentQuiz.getName());
+    //scoreCard.scoreQuiz(sum, 3, currentQuiz.getName());
+    currentUser.addQuiz(currentQuiz.getName(), (sum * 1.0) / (3 * 1.0));
+    remoteUserAccess.putUser(currentUser);
   }
 
 

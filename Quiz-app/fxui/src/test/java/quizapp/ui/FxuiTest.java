@@ -1,10 +1,12 @@
 package quizapp.ui;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import static org.junit.jupiter.api.Assertions.fail;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
+
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Every FXUI test extends this class for consitend running of Async Tests

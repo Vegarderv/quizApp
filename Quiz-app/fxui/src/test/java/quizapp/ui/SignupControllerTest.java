@@ -1,27 +1,26 @@
 package quizapp.ui;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.junit.jupiter.api.Test;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Test;
 import quizapp.core.User;
 import quizapp.core.UsernameCheck;
 import quizapp.json.JsonHandler;
 
-public class SignupControllerTests extends FxuiTest {
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+public class SignupControllerTest extends FxuiTest {
 
   private static JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
   private static List<User> users = handler.loadFromFile();
@@ -113,9 +112,15 @@ public class SignupControllerTests extends FxuiTest {
     TextField passwordField = (TextField) stage.getScene().lookup("#password");
     passwordField.setText("Hadebra");
     clickOnButton("#signupButton");
+    System.out.println(jsonHandler.loadFromFile());
     // uses username check to see if the new user is saved for later log ins
     final UsernameCheck chk = new UsernameCheck();
     assertTrue(chk.checkUsername("Dragvoll", "Hadebra"));
+     try {
+      Thread.sleep(1000); //Gives restAPI time to work
+    } catch (Exception e) {
+      //TODO: handle exception
+    }
     // expects now the scene to change to main page
     assertNull(stage.getScene().lookup("#signupButton"));
     assertNotNull(stage.getScene().lookup("#menuButton"));

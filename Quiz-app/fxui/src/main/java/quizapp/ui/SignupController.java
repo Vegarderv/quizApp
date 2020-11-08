@@ -1,8 +1,5 @@
 package quizapp.ui;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +8,10 @@ import javafx.scene.control.TextField;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
+import java.net.URL;
+import java.net.URI;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class SignupController extends QuizAppController {
 
@@ -22,6 +23,7 @@ public class SignupController extends QuizAppController {
   Label errorMessage;
   @FXML
   Button loginButton;
+  private UserAccess remoteUserAccess;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -37,12 +39,13 @@ public class SignupController extends QuizAppController {
    */
   @FXML
   public void toMainMenu(ActionEvent event) throws Exception {
-    final JsonHandler handler = new JsonHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-    final UsernameHandler userhandler = new UsernameHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
-    final List<User> user = handler.loadFromFile();
-    if (user.stream().anyMatch(a -> a.getUsername().equals(username.getText()))) {
+    try {
+       remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
+    } catch (Exception e) {
+      remoteUserAccess = new DirectUserAccess();
+    }
+    final List<User> users = remoteUserAccess.getUsers();
+    if (users.stream().anyMatch(a -> a.getUsername().equals(username.getText()))) {
       username.clear();
       password.clear();
       errorMessage.setText("Username already taken");
@@ -53,15 +56,15 @@ public class SignupController extends QuizAppController {
       errorMessage.setText("Username and password must at least contain 1 sign");
       return;
     }
+    try {
+       remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/new/"));
+    } catch (Exception e) {
+    }
     // saves user
     final User newUser = new User();
     newUser.setUsername(this.username.getText());
     newUser.setPassword(this.password.getText());
-    user.add(newUser);
-    handler.writeToFile(user);
-    userhandler.saveActiveUser(newUser.getUsername(),
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-
+    remoteUserAccess.postUser(newUser);
     this.switchSceneWithNode("MainPage.fxml", loginButton);
   }
 

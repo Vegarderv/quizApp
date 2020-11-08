@@ -18,9 +18,13 @@ public class Quiz {
    * @param question1 Second Question
    * @param question2 Third Question
    */
+  public Quiz() {
+
+  }
+
   public Quiz(String name, Question question0, Question question1, Question question2) {
     this.name = name;
-    this.id = getName().replace(" ", "-");
+    setId();
     this.questions = new ArrayList<>();
     this.questions.add(question0);
     this.questions.add(question1);
@@ -52,10 +56,32 @@ public class Quiz {
     return name;
   }
 
-  /**
-   * @return the id
-   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public List<Question> getQuestions(){
+    return this.questions;
+  }
+  public void setQuestions(List<Question> questions) {
+    this.questions = questions;
+  }
+
   public String getId() {
     return id;
   }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public void setId() {
+    this.id = getName().replace(" ", "-");
+  }
+
+  public String toString(){
+    return this.getName();
+  }
+
+  
 }

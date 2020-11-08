@@ -9,6 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class MainPageControllerTest extends FxuiTest {
 
@@ -74,6 +78,5 @@ public class MainPageControllerTest extends FxuiTest {
     assertNotNull(stage.getScene().lookup("#userMenu"));
     assertNull(stage.getScene().lookup("#menuButton"));
   }
-  
 
 }

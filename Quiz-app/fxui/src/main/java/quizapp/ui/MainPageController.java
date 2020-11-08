@@ -1,8 +1,6 @@
 package quizapp.ui;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.net.URI;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,6 +15,10 @@ import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
+
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class MainPageController extends QuizAppController {
 
@@ -37,13 +39,10 @@ public class MainPageController extends QuizAppController {
   @FXML
   HBox hBox;
 
-  private String usernamePath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
-  private UsernameHandler userHandler = new UsernameHandler(usernamePath);
-  private JsonHandler jsonHandler = new JsonHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-  private QuizHandler quizHandler = new QuizHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
-  private String username;
+  private User currentUser;
+  private UserAccess remoteUserAccess;
+  private QuizAccess remoteQuizAccess;
+
 
 
   @FXML
@@ -53,16 +52,32 @@ public class MainPageController extends QuizAppController {
   
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    username = userHandler.loadActiveUser();
-    menuButton.setText(username);
+    try {
+        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
+    } catch (Exception e) {
+        remoteUserAccess = new DirectUserAccess();
+    }
+    try {
+        remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
+    } catch (Exception e) {
+      remoteQuizAccess = new DirectQuizAccess();
+    }
+    currentUser = remoteUserAccess.getActiveUser();
+    menuButton.setText(currentUser.getUsername());
     addButtons();
   }
 
   @FXML
   public void goToQuiz(ActionEvent event) {
-    User currentUser = jsonHandler.loadActiveUser();
-    currentUser.setCurrentQuiz(quizHandler.getQuizById(((Button) event.getSource()).getId()));
-    jsonHandler.updateUser(currentUser);
+    System.out.println((((Button) event.getSource()).getId()));
+    
+    Quiz quiz = remoteQuizAccess.getQuiz((((Button) event.getSource()).getId()));
+    currentUser.setCurrentQuiz(quiz);
+    try {
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/update"));
+    } catch (Exception e) {
+    }
+    remoteUserAccess.putUser(currentUser);
     this.switchSceneWithNode("Quiz.fxml", historyQuizButton);
   }
 
@@ -85,8 +100,7 @@ public class MainPageController extends QuizAppController {
    * Method for adding buttons for extra quizzes created
    */
   private void addButtons() {
-    List<Quiz> quizzes = new QuizHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json")
-        .loadFromFile();
+    List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.size() > 3) {
       ObservableList<Node> children = hBox.getChildren();
       for (int i = 3; i < quizzes.size(); i++) {

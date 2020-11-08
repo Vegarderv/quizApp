@@ -1,17 +1,16 @@
 package quizapp.ui;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import org.junit.jupiter.api.Test;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Test;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ProfilePageControllerTest extends FxuiTest {
 
@@ -71,4 +70,5 @@ public class ProfilePageControllerTest extends FxuiTest {
         .filter(u -> u.getUsername().equals(userHandler.loadActiveUser())).findFirst().get();
     assertEquals(String.valueOf(Math.round((user.meanScore()*100))) + "  %", label.getText());
   }
+  
 }

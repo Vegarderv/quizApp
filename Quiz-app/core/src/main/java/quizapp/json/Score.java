@@ -1,8 +1,9 @@
 package quizapp.core;
 
-import java.util.List;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
+
+import java.util.List;
 
 /**
 * This is a scoring class which handles the scores from different quizzes and

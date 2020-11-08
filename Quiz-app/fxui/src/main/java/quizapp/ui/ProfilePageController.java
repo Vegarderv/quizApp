@@ -1,5 +1,6 @@
 package quizapp.ui;
 
+import java.net.URI;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +19,9 @@ import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class ProfilePageController extends QuizAppController {
 
   @FXML
@@ -35,23 +39,30 @@ public class ProfilePageController extends QuizAppController {
   @FXML
   Label nameId, scoreId, DarkmodeLabel;
 
+  private UserAccess remoteUserAccess;
+  private User currentUser;
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    UsernameHandler userHandler = new UsernameHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
-
-    String userName = userHandler.loadActiveUser();
-    double percentage = getActiveUser().meanScore() * 100;
+    //UsernameHandler userHandler = new UsernameHandler(
+    //    "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+    try {
+        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
+    } catch (Exception e) {
+        remoteUserAccess = new DirectUserAccess();
+    }
+    currentUser = remoteUserAccess.getActiveUser();
+    double percentage = currentUser.meanScore() * 100;
     String score = String.valueOf(Math.round((percentage))) + "  %";
-    Boolean DM = this.getActiveUser().getDarkMode();
-    nameId.setText(userName);
-    userMenuProfilePage.setText(userName);
+    //Boolean DM = this.getActiveUser().getDarkMode();
+    nameId.setText(currentUser.getUsername());
+    userMenuProfilePage.setText(currentUser.getUsername());
     DarkmodeLabel.setText(initDarkMode());
-
+    scoreId.setText(score);
   }
 
   public String initDarkMode() {
-    Boolean check = getActiveUser().getDarkMode();
+    Boolean check = currentUser.getDarkMode();
     if (check) {
       return ("ON");
     }
@@ -60,7 +71,7 @@ public class ProfilePageController extends QuizAppController {
 
   public String typeDarkMode() {
     try {
-      Boolean check = getActiveUser().getDarkMode();
+      Boolean check = currentUser.getDarkMode();
       Parent parent = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));
       Scene scene = new Scene(parent);
       if (check) {
@@ -88,11 +99,12 @@ public class ProfilePageController extends QuizAppController {
   }
 
   public void changeDarkMode() {
-    User user = getActiveUser();
-    JsonHandler jsonHandler = new JsonHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-    user.setDarkMode(!user.getDarkMode());
-    jsonHandler.updateUser(user);
+    //User user = getActiveUser();
+    //JsonHandler jsonHandler = new JsonHandler(
+    //    "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    currentUser.setDarkMode(!currentUser.getDarkMode());
+    //jsonHandler.updateUser(user);
+    remoteUserAccess.putUser(currentUser);
     this.switchSceneWithNode("ProfilePage.fxml", userMenuProfilePage);
   }
 
@@ -118,13 +130,13 @@ public class ProfilePageController extends QuizAppController {
     DarkmodeLabel.setText(typeDarkMode());
   }
 
-  private User getActiveUser() {
-    JsonHandler jsonHandler = new JsonHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-    UsernameHandler usernameHandler = new UsernameHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
-    return jsonHandler.loadFromFile().stream()
-        .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser())).findFirst().get();
-  }
+  //private User getActiveUser() {
+  //  JsonHandler jsonHandler = new JsonHandler(
+  //      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+  //  UsernameHandler usernameHandler = new UsernameHandler(
+  //      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+  //  return jsonHandler.loadFromFile().stream()
+  //      .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser())).findFirst().get();
+  //}
 
 }
