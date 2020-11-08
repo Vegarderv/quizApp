@@ -3,17 +3,20 @@ package quizapp.ui;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuButton;
 import javafx.stage.Stage;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-
 public class QuizControllerTest extends FxuiTest {
 
   private Stage stage;
+  private UserAccess directUserAccess;
+
 
   @Override
   public void start(final Stage stage) throws Exception {
@@ -22,6 +25,7 @@ public class QuizControllerTest extends FxuiTest {
     stage.setScene(new Scene(root));
     stage.show();
     this.stage = stage;
+    directUserAccess = new DirectUserAccess();
   }
 
   @Test
@@ -35,5 +39,12 @@ public class QuizControllerTest extends FxuiTest {
     assertNull(stage.getScene().lookup("#userMenu"));
     assertNotNull(stage.getScene().lookup("#menuButton"));
   }
-  
+
+  @Test
+  public void checkCorrectUserDisplayed() {
+    // Checks active user and makes sure it matches username displayed on menu button
+    String activeUser = ((MenuButton)stage.getScene().lookup("#userMenu")).getText();
+    assertEquals(directUserAccess.getActiveUser().getUsername(), activeUser);
+  }
+
 }

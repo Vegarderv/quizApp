@@ -3,19 +3,11 @@ package quizapp.ui;
 import java.net.URI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import quizapp.core.Quiz;
 import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.UsernameHandler;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,12 +63,6 @@ public class QuizController extends QuizAppController {
   MenuItem scoreboardButton;
 
   private List<List<RadioButton>> buttons = new ArrayList<>();
-  //private String userName;
-  //private String usernamePath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
-  //private String jsonPath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json";
-  //private JsonHandler jsonHandler = new JsonHandler(jsonPath);
-  //Score scoreCard = new Score(jsonPath, usernamePath);
-  //UsernameHandler userHandler = new UsernameHandler(usernamePath);
   private Quiz currentQuiz;
   private User currentUser;
   private UserAccess remoteUserAccess;
