@@ -3,11 +3,11 @@ package quizapp.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import quizapp.core.CryptoUtil;
 import quizapp.core.User;
 
 import java.io.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JsonHandler {
   private String path;
@@ -117,6 +117,12 @@ public class JsonHandler {
   public void addUser(User user) {
     List<User> users = loadFromFile();
     users.add(user);
+    writeToFile(users);
+  }
+
+  public void deleteUser(String username) {
+    List<User> users = loadFromFile();
+    users = users.stream().filter(u -> !u.getUsername().equals(username)).collect(Collectors.toList());
     writeToFile(users);
   }
 
