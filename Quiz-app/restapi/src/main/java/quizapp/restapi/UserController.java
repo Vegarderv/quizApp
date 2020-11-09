@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,7 +48,7 @@ public class UserController {
 
 
 
-  @PostMapping("/new/{name}")
+  @PostMapping("/{name}")
   public void newUser(@PathVariable("name") String name, @RequestBody User user) {
     userService.addUser(user);
   }
@@ -58,6 +61,10 @@ public class UserController {
   @PutMapping("/updateActive/{name1}")
   public void updateUsername(@PathVariable("name1") String name1) {
     userService.updateActiveUser(name1);
+  }
+
+  public void setUserService(UserService userService) {
+    this.userService = userService;
   }
 
 }

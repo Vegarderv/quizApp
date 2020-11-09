@@ -29,10 +29,6 @@ public class UserService{
     return users;
   }
 
-  public void setUsers(List<User> users) {
-    this.users = users;
-  }
-
   public User getActiveUser() {
     activeUser = jsonHandler.loadActiveUser();
     return activeUser;
