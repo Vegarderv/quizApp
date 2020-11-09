@@ -124,9 +124,9 @@
                 "correctAlternative": 2,
                 "alternatives": [
                     "Bamble",
-                    "Washington DC",
+                    "Los Angeles",
                     "Bethlehem",
-                    "Morocco"
+                    "Granca"
                 ]
             },
             {
@@ -140,7 +140,7 @@
                 ]
             }
         ],
-        "name": "Christmas Quiz",
+        "name": "Christmas quiz",
         "id": "Christmas-quiz"
     },
     {
@@ -176,7 +176,7 @@
                 ]
             }
         ],
-        "name": "Malin Quiz",
-        "id": "Malin-Quiz"
+        "name": "Malin quiz",
+        "id": "Malin-quiz"
     }
 ]
