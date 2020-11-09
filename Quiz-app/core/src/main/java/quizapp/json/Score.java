@@ -1,5 +1,6 @@
-package quizapp.core;
+package quizapp.json;
 
+import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 

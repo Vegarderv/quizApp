@@ -1,4 +1,4 @@
-package quizapp.core;
+package quizapp.json;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;

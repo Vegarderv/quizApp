@@ -3,7 +3,7 @@ package quizapp.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import quizapp.core.CryptoUtil;
+import quizapp.json.CryptoUtil;
 import quizapp.core.User;
 
 import java.io.*;
