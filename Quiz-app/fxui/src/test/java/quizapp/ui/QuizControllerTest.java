@@ -13,14 +13,14 @@ import quizapp.core.User;
 import quizapp.core.Quiz;
 import org.testfx.api.FxAssert;
 import java.awt.*;
-
+import java.beans.Transient;
 
 import org.junit.jupiter.api.Test;
 
 public class QuizControllerTest extends FxuiTest {
 
   private Stage stage;
-  private UserAccess directUserAccess;
+  private DirectUserAccess directUserAccess;
   private QuizAccess directQuizAccess;
 
 
@@ -28,9 +28,12 @@ public class QuizControllerTest extends FxuiTest {
   public void start(final Stage stage) throws Exception {
     directUserAccess = new DirectUserAccess();
     directQuizAccess = new DirectQuizAccess();
+    //deletes user if it exists from previous tests
+    directUserAccess.deleteUser("Test1");
     Quiz quiz = directQuizAccess.getQuiz("Chemistry-quiz");
     User user = new User();
     user.setUsername("Test1");
+    user.setPassword("password");
     user.setCurrentQuiz(quiz);
     directUserAccess.postUser(user);
     directUserAccess.putActiveUser("Test1");
@@ -79,5 +82,33 @@ public class QuizControllerTest extends FxuiTest {
     clickOn("#q2a1");
     clickOnButton("#submit");
     FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 100%"));
+    assertEquals((double) directUserAccess.getUser("Test1").getScore("Chemistry quiz"), 1.0, 0);
   }
+
+  @Test
+  public void testRetakeAQuiz() throws AWTException {
+    // Sets up user so it has taken the quiz before
+    User user = directUserAccess.getUser("Test1");
+    user.addQuiz("Chemistry quiz", (2 * 1.0) / (3 * 1.0));
+    directUserAccess.putUser(user);
+    //Takes quiz again
+    Robot r = new Robot();
+    clickOn("#q0a0"); //Clicks wrong alternative
+    clickOn("#q1a0"); //Clicks wrong alternative
+    // Scrolls to bottom of screen
+    r.mouseWheel(15);
+    // Slows down the code to give the robot time to scroll
+    try {
+      Thread.sleep(100);
+    } catch (InterruptedException e) {
+    }
+    clickOn("#q2a0"); //Clicks wrong alternative
+    clickOnButton("#submit");
+    FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 0%"));
+    assertEquals((double) directUserAccess.getUser("Test1").getScore("Chemistry quiz"), 0, 0);
+  }
+
+
+
+  
 }
