@@ -9,6 +9,11 @@ import javafx.stage.Stage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import quizapp.core.User;
+import quizapp.core.Quiz;
+import org.testfx.api.FxAssert;
+import java.awt.*;
+
 
 import org.junit.jupiter.api.Test;
 
@@ -16,16 +21,24 @@ public class QuizControllerTest extends FxuiTest {
 
   private Stage stage;
   private UserAccess directUserAccess;
+  private QuizAccess directQuizAccess;
 
 
   @Override
   public void start(final Stage stage) throws Exception {
+    directUserAccess = new DirectUserAccess();
+    directQuizAccess = new DirectQuizAccess();
+    Quiz quiz = directQuizAccess.getQuiz("Chemistry-quiz");
+    User user = new User();
+    user.setUsername("Test1");
+    user.setCurrentQuiz(quiz);
+    directUserAccess.postUser(user);
+    directUserAccess.putActiveUser("Test1");
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
     final Parent root = loader.load();
     stage.setScene(new Scene(root));
     stage.show();
     this.stage = stage;
-    directUserAccess = new DirectUserAccess();
   }
 
   @Test
@@ -47,4 +60,24 @@ public class QuizControllerTest extends FxuiTest {
     assertEquals(directUserAccess.getActiveUser().getUsername(), activeUser);
   }
 
+
+  
+
+  @Test
+  public void runQuizwithEverythingCorrect() throws AWTException {
+    // Runs through the quiz
+    Robot r = new Robot();
+    clickOn("#q0a2");
+    clickOn("#q1a3");
+    // Scrolls to bottom of screen
+    r.mouseWheel(15);
+    // Slows down the code to give the robot time to scroll
+    try {
+      Thread.sleep(100);
+    } catch (InterruptedException e) {
+    }
+    clickOn("#q2a1");
+    clickOnButton("#submit");
+    FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 100%"));
+  }
 }
