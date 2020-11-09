@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import quizapp.core.Quiz;
-import quizapp.core.Score;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
@@ -141,7 +140,7 @@ public class QuizController extends QuizAppController {
     buttons.stream().forEach(l -> l.stream().forEach(a -> a.setDisable(true)));
     submit.setDisable(true);
     scroll.setVvalue(0.01);
-    score.setText("You got this Score: " + Integer.toString(Math.round(((float) sum / (float) 3) * 100)) + "%");
+    //score.setText("You got this Score: " + Integer.toString(Math.round(((float) sum / (float) 3) * 100)) + "%");
     //scoreCard.scoreQuiz(sum, 3, currentQuiz.getName());
     currentUser.addQuiz(currentQuiz.getName(), (sum * 1.0) / (3 * 1.0));
     remoteUserAccess.putUser(currentUser);
