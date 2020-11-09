@@ -1,6 +1,8 @@
 package quizapp.restapi;
 
 import org.junit.After;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
@@ -52,17 +54,27 @@ public class UserControllerTest {
   MockMvc mockMvc;
 
   private User user1 = new User("Test", "Testville");
+  private User user2 = new User("Post", "User");
   private JsonHandler jsonHandler = new JsonHandler(
       "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+
+  @BeforeAll
+  public static void setUp() {
+    JsonHandler jsonHandler = new JsonHandler(
+      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    jsonHandler.addUser(new User("Test", "Testville"));
+  }
 
   @Test
   public void postUser() {
     try {
-      testPostUser(user1);
+      testPostUser(user2);
+      jsonHandler.loadUserFromString("Post");
     } catch (Exception e) {
-      fail("Couldn't put user");
+      fail("Couldn't post user");
       e.printStackTrace();
     }
+
   }
  
  
@@ -78,7 +90,6 @@ public class UserControllerTest {
 
   @Test
   public void putChangedTestUser() {
-    user1.setPassword("NewPassword");
     try {
       testPutUser(user1);
     } catch (Exception e) {
@@ -119,10 +130,16 @@ public class UserControllerTest {
     verify(service).getActiveUser();
   }
 
-  @After
-  public void deleteTestUser() {
+  @AfterAll
+  public static void deleteTestUser() {
+    JsonHandler jsonHandler = new JsonHandler(
+      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    User user1 = new User("Test", "Testville");
+    User user2 = new User("Post", "User");
     List<User> users = jsonHandler.loadFromFile();
     users.remove(users.stream().filter(user -> user.equals(user1)).findAny().orElse(null));
+    users.remove(users.stream().filter(user -> user.equals(user2)).findAny().orElse(null));
+    System.out.println(users);
     jsonHandler.writeToFile(users);
   }
 
