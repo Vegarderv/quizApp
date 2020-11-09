@@ -12,6 +12,7 @@ import quizapp.core.UsernameCheck;
 import quizapp.json.JsonHandler;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,14 +23,17 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class SignupControllerTest extends FxuiTest {
 
-  private static JsonHandler handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
+  private static String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private static String jsonTestPath = Paths.get(pathStarter + "JSONHandlerTest.json").toString();
+  private static JsonHandler handler = new JsonHandler(jsonTestPath);
+  private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
   private static List<User> users = handler.loadFromFile();
   private Stage stage;
 
   private void setUp() throws Exception {
     // sets up the class such that you can check if the saved data corrensponds with
     // the code
-    handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
+    handler = new JsonHandler(jsonTestPath);
     User user = new User();
     user.setUsername("Gløs");
     user.setPassword("T-town");
@@ -98,7 +102,7 @@ public class SignupControllerTest extends FxuiTest {
 
   @Test
   public void checkValidFields() throws IOException {
-    JsonHandler jsonHandler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    JsonHandler jsonHandler = new JsonHandler(this.jsonPath);
     List<User> users = jsonHandler.loadFromFile();
     // deletes user from previous testrun if it exists
     if (users.stream().map(user -> user.getUsername()).collect(Collectors.toList()).contains("Dragvoll")) {
