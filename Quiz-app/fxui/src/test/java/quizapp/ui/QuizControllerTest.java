@@ -63,6 +63,18 @@ public class QuizControllerTest extends FxuiTest {
     assertEquals(directUserAccess.getActiveUser().getUsername(), activeUser);
   }
 
+  @Test
+  public void logOutTest() {
+    // Checks that we are on the quiz page
+    assertNotNull(stage.getScene().lookup("#userMenu"));
+    assertNull(stage.getScene().lookup("#mainPageButton"));
+    // Changes Scene to login
+    clickOnMenuItem("#userMenu", "#menuSignOut");
+    // Checks that the scene has been changed
+    assertNull(stage.getScene().lookup("#userMenu"));
+    assertNotNull(stage.getScene().lookup("#mainPageButton"));
+  }
+
 
   
 
