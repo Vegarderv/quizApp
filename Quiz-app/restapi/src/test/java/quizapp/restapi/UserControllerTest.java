@@ -2,7 +2,9 @@ package quizapp.restapi;
 
 import org.junit.After;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
@@ -57,12 +59,14 @@ public class UserControllerTest {
   private User user2 = new User("Post", "User");
   private JsonHandler jsonHandler = new JsonHandler(
       "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+  private UsernameHandler usernameHandler = new UsernameHandler(
+      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
 
-  @BeforeAll
-  public static void setUp() {
-    JsonHandler jsonHandler = new JsonHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-    jsonHandler.addUser(new User("Test", "Testville"));
+  // Adds User before each test to ensure independent testing
+  @BeforeEach
+  public void setUp() {
+    user1 = new User("Test", "Testville");
+    jsonHandler.addUser(user1);
   }
 
   @Test
@@ -75,9 +79,13 @@ public class UserControllerTest {
       e.printStackTrace();
     }
 
+    // Removing the user
+    List<User> users = jsonHandler.loadFromFile();
+    users.remove(users.stream().filter(user -> user.equals(user2)).findAny().orElse(null));
+    jsonHandler.writeToFile(users);
+
   }
- 
- 
+
   @Test
   public void correctUserIsRetrieved() {
     try {
@@ -98,6 +106,25 @@ public class UserControllerTest {
   }
 
   @Test
+  public void getAllUsers() {
+    try {
+      assertEquals(testGetUsers(), jsonHandler.loadFromFile());
+    } catch (Exception e) {
+      fail("Could not change User");
+    }
+  }
+
+  @Test
+  public void putNewActiveUsername() {
+    try {
+      testPutUsername(user1.getUsername());
+    } catch (Exception e) {
+      fail("could not put username");
+    }
+
+  }
+
+  @Test
   public void serviceIsCalledAtGetUsers() {
 
     List<User> list = Arrays.asList(user1);
@@ -105,6 +132,7 @@ public class UserControllerTest {
     service.getUsers();
     verify(service).getUsers();
   }
+
 
   @Test
   public void serviceIsCalledAtAddUser() {
@@ -130,16 +158,11 @@ public class UserControllerTest {
     verify(service).getActiveUser();
   }
 
-  @AfterAll
-  public static void deleteTestUser() {
-    JsonHandler jsonHandler = new JsonHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-    User user1 = new User("Test", "Testville");
-    User user2 = new User("Post", "User");
+  //Removes user created before each test
+  @AfterEach
+  public void deleteTestUser() {
     List<User> users = jsonHandler.loadFromFile();
-    users.remove(users.stream().filter(user -> user.equals(user1)).findAny().orElse(null));
-    users.remove(users.stream().filter(user -> user.equals(user2)).findAny().orElse(null));
-    System.out.println(users);
+    users.remove(users.stream().filter(user -> user.getUsername().equals(user1.getUsername())).findAny().orElse(null));
     jsonHandler.writeToFile(users);
   }
 
@@ -157,6 +180,22 @@ public class UserControllerTest {
     String resultUser = new String(resultUserByte, StandardCharsets.UTF_8);
     assertNotNull(resultUser);
     assertEquals(user, gson.fromJson(resultUser, new TypeToken<User>(){}.getType()));
+  }
+
+  private List<User> testGetUsers() throws Exception {
+    Gson gson = new Gson();
+    MvcResult result = mockMvc
+        .perform(MockMvcRequestBuilders
+        .get("/api/user/users")
+        .with(user(TEST_USER_ID))
+        .with(csrf())
+        .content("users").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk()).andReturn();
+
+    byte[] resultUserByte = result.getResponse().getContentAsByteArray();
+    String resultUser = new String(resultUserByte, StandardCharsets.UTF_8);
+    assertNotNull(resultUser);
+    return gson.fromJson(resultUser, new TypeToken<List<User>>(){}.getType());
   }
 
   private void testPostUser(User user) throws Exception {
@@ -184,5 +223,15 @@ public class UserControllerTest {
 
   }
   
+  private void testPutUsername(String username) throws Exception {
+    MvcResult result = mockMvc
+        .perform(MockMvcRequestBuilders
+        .put("/api/user/updateActive/" + username)
+        .with(user(TEST_USER_ID))
+        .with(csrf())
+        .content(username).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk()).andReturn();
+    System.out.println("RESULT:"+ result.toString());
+  }
 
 }

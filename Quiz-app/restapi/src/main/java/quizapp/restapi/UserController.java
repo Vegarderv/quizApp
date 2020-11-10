@@ -63,8 +63,4 @@ public class UserController {
     userService.updateActiveUser(name1);
   }
 
-  public void setUserService(UserService userService) {
-    this.userService = userService;
-  }
-
 }

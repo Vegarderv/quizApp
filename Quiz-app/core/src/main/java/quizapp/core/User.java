@@ -19,7 +19,14 @@ public class User {
   private HashMap<String, Double> quizzesTaken = new HashMap<>();
 
   public User() {
+  }
 
+  public User(User user) {
+    this.username = user.username;
+    this.password = user.password;
+    this.darkMode = user.darkMode;
+    this.currentQuiz = user.currentQuiz;
+    this.quizzesTaken = user.quizzesTaken;
   }
 
   public User(String username, String password) {
