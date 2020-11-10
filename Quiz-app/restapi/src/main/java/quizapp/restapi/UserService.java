@@ -3,6 +3,7 @@ package quizapp.restapi;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
+import java.nio.file.Paths;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,13 @@ public class UserService{
 
   private JsonHandler jsonHandler;
   private UsernameHandler usernameHandler;
+  private final String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
+  private final String activeUserPath = Paths.get(pathStarter + "activeUser.json").toString();
 
   public UserService(){
-    jsonHandler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-    usernameHandler = new UsernameHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+    jsonHandler = new JsonHandler(this.jsonPath);
+    usernameHandler = new UsernameHandler(this.activeUserPath);
     users = jsonHandler.loadFromFile();
     activeUser = jsonHandler.loadActiveUser();
   }
@@ -51,7 +55,7 @@ public class UserService{
   }
 
   public void updateActiveUser(String name) {
-    usernameHandler.saveActiveUser(name, "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    usernameHandler.saveActiveUser(name, this.jsonPath);
   }
 
 

@@ -4,6 +4,7 @@ import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
+import quizapp.core.User;
 import java.util.List;
 
 /**
