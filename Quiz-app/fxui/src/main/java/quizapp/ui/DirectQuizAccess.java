@@ -7,7 +7,7 @@ import quizapp.json.QuizHandler;
 
 public class DirectQuizAccess implements QuizAccess {
 
-  private final String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
   private final String pathQuizzes = Paths.get(pathStarter + "quizzes.json").toString();
   private QuizHandler quizHandler = new QuizHandler(this.pathQuizzes);
 
