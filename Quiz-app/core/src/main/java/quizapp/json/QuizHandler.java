@@ -80,5 +80,11 @@ public class QuizHandler {
     writeToFile(quizzes);
   }
 
+  public void deleteQuiz(Quiz quiz) {
+    List<Quiz> quizzes = loadFromFile();
+    quizzes.remove(quiz);
+    writeToFile(quizzes);
+  }
+
 
 }

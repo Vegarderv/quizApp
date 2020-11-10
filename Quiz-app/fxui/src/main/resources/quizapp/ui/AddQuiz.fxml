@@ -32,11 +32,11 @@
                                        </children>
                                     </HBox>
                                     <Label text="Question 1: " />
-                                    <TextField fx:id="q1" promptText="Question 1" />
+                                    <TextField fx:id="q0" promptText="Question 1" />
                                     <HBox prefHeight="11.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q1an1" promptText="Alternative 1" />
-                                          <RadioButton fx:id="q1a1" mnemonicParsing="false" text="Choose correct answe">
+                                          <TextField fx:id="q0an0" promptText="Alternative 1" />
+                                          <RadioButton fx:id="q0a0" mnemonicParsing="false" text="Choose correct answe">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -48,8 +48,8 @@
                                     </HBox>
                                     <HBox prefHeight="9.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q1an2" promptText="Alternative 2" />
-                                          <RadioButton fx:id="q1a2" mnemonicParsing="false" text="Choose correct Answer" toggleGroup="$Q1">
+                                          <TextField fx:id="q0an1" promptText="Alternative 2" />
+                                          <RadioButton fx:id="q0a1" mnemonicParsing="false" text="Choose correct Answer" toggleGroup="$Q1">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -58,8 +58,8 @@
                                     </HBox>
                                     <HBox prefHeight="8.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q1an3" promptText="Alternative 3" />
-                                          <RadioButton fx:id="q1a3" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q1">
+                                          <TextField fx:id="q0an2" promptText="Alternative 3" />
+                                          <RadioButton fx:id="q0a2" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q1">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -68,8 +68,8 @@
                                     </HBox>
                                     <HBox prefHeight="3.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q1an4" promptText="Alternative 4" />
-                                          <RadioButton fx:id="q1a4" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q1">
+                                          <TextField fx:id="q0an3" promptText="Alternative 4" />
+                                          <RadioButton fx:id="q0a3" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q1">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -77,11 +77,11 @@
                                        </children>
                                     </HBox>
                                     <Label text="Question 2: " />
-                                    <TextField fx:id="q2" promptText="Question 2" />
+                                    <TextField fx:id="q1" promptText="Question 2" />
                                     <HBox prefHeight="11.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q2an1" promptText="Alternative 1" />
-                                          <RadioButton fx:id="q2a1" mnemonicParsing="false" text="Choose Correct Answer">
+                                          <TextField fx:id="q1an0" promptText="Alternative 1" />
+                                          <RadioButton fx:id="q1a0" mnemonicParsing="false" text="Choose Correct Answer">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -93,8 +93,8 @@
                                     </HBox>
                                     <HBox prefHeight="9.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q2an2" promptText="Alternative 2" />
-                                          <RadioButton fx:id="q2a2" mnemonicParsing="false" text="Choose correct Answer" toggleGroup="$Q2">
+                                          <TextField fx:id="q1an1" promptText="Alternative 2" />
+                                          <RadioButton fx:id="q1a1" mnemonicParsing="false" text="Choose correct Answer" toggleGroup="$Q2">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -103,8 +103,8 @@
                                     </HBox>
                                     <HBox prefHeight="8.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q2an3" promptText="Alternative 3" />
-                                          <RadioButton fx:id="q2a3" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q2">
+                                          <TextField fx:id="q1an2" promptText="Alternative 3" />
+                                          <RadioButton fx:id="q1a2" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q2">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -113,8 +113,8 @@
                                     </HBox>
                                     <HBox prefHeight="3.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q2an4" promptText="Alternative 4" />
-                                          <RadioButton fx:id="q2a4" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q2">
+                                          <TextField fx:id="q1an3" promptText="Alternative 4" />
+                                          <RadioButton fx:id="q1a3" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q2">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -122,11 +122,11 @@
                                        </children>
                                     </HBox>
                                     <Label text="Question 3: " />
-                                    <TextField fx:id="q3" promptText="Question 1" />
+                                    <TextField fx:id="q2" promptText="Question 1" />
                                     <HBox prefHeight="11.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q3an1" promptText="Alternative 1" />
-                                          <RadioButton fx:id="q3a1" mnemonicParsing="false" text="Choose correct answe">
+                                          <TextField fx:id="q2an0" promptText="Alternative 1" />
+                                          <RadioButton fx:id="q2a0" mnemonicParsing="false" text="Choose correct answe">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -138,8 +138,8 @@
                                     </HBox>
                                     <HBox prefHeight="9.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q3an2" promptText="Alternative 2" />
-                                          <RadioButton fx:id="q3a2" mnemonicParsing="false" text="Choose correct Answer" toggleGroup="$Q3">
+                                          <TextField fx:id="q2an1" promptText="Alternative 2" />
+                                          <RadioButton fx:id="q2a1" mnemonicParsing="false" text="Choose correct Answer" toggleGroup="$Q3">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -148,8 +148,8 @@
                                     </HBox>
                                     <HBox prefHeight="8.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q3an3" promptText="Alternative 3" />
-                                          <RadioButton fx:id="q3a3" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q3">
+                                          <TextField fx:id="q2an2" promptText="Alternative 3" />
+                                          <RadioButton fx:id="q2a2" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q3">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
@@ -158,8 +158,8 @@
                                     </HBox>
                                     <HBox prefHeight="8.0" prefWidth="518.0">
                                        <children>
-                                          <TextField fx:id="q3an4" promptText="Alternative 3" />
-                                          <RadioButton fx:id="q3a4" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q3">
+                                          <TextField fx:id="q2an3" promptText="Alternative 3" />
+                                          <RadioButton fx:id="q2a3" mnemonicParsing="false" text="Choose Correct Answer" toggleGroup="$Q3">
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
