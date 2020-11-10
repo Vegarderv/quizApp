@@ -16,7 +16,7 @@ public class UserService{
 
   private JsonHandler jsonHandler;
   private UsernameHandler usernameHandler;
-  private final String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
   private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
   private final String activeUserPath = Paths.get(pathStarter + "activeUser.json").toString();
 

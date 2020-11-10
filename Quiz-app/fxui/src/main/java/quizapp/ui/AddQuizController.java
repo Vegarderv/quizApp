@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import quizapp.core.Question;
 import quizapp.core.Quiz;
 import quizapp.json.QuizHandler;
@@ -73,7 +74,7 @@ public class AddQuizController extends QuizAppController {
   }
 
   @FXML
-  void goToMainMenu(ActionEvent event) {
+  void goToMainMenu(MouseEvent event) {
     this.switchSceneWithNode("MainPage.fxml", title);
   }
 

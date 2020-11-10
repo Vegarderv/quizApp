@@ -101,7 +101,7 @@ public class MainPageController extends QuizAppController {
    */
   private void addButtons() {
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
-    if (quizzes.size() > 3) {
+    if (quizzes.size() > 5) {
       ObservableList<Node> children = hBox.getChildren();
       for (int i = 3; i < quizzes.size(); i++) {
         Button button = new Button(quizzes.get(i).getName());
