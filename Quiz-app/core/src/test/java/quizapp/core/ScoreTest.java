@@ -2,8 +2,8 @@ package quizapp.core;
 
 import org.junit.jupiter.api.Test;
 import quizapp.json.JsonHandler;
+import quizapp.json.Score;
 import quizapp.json.UsernameHandler;
-
 import java.util.Arrays;
 import java.util.List;
 
