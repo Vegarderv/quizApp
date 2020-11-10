@@ -50,7 +50,7 @@ public class User {
 
   public Double meanScore() {
     //Returns mean score of all quizzes taken
-    return quizzesTaken.values().stream().reduce(0.0, (a, b) -> a + b) / quizzesTaken.size();
+    return quizzesTaken.values().stream().mapToDouble(d->d).sum() / quizzesTaken.size();
   }
 
   public Double getScore(String quiz) {
