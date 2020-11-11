@@ -85,7 +85,7 @@ public class AddQuizController extends QuizAppController {
       return;
     }
     try {
-      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/new/"));
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
     } catch (Exception e) {
       //TODO: handle exception
     }

@@ -22,6 +22,12 @@ public class Quiz {
 
   }
 
+  public Quiz(Quiz other) {
+    this.questions = other.questions;
+    this.name = other.name;
+    setId();
+  }
+
   public Quiz(String name, Question question0, Question question1, Question question2) {
     this.name = name;
     setId();

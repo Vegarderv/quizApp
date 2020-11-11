@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import quizapp.json.CryptoUtil;
 import quizapp.core.User;
 import java.io.*;
+import java.util.ArrayList;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -21,7 +22,8 @@ public class JsonHandler {
   /**
    * Function writes a hashmap as a JSON object to a JSON file.
    */
-  public void writeToFile(List<User> users) {
+  public void writeToFile(List<User> userList) {
+    List<User> users = new ArrayList<>(userList);
     CryptoUtil crypto = new CryptoUtil();
     users.stream().forEach(user -> {
       try {
@@ -116,8 +118,9 @@ public class JsonHandler {
 
   }
   public void addUser(User user) {
+    User newUser = new User(user);
     List<User> users = loadFromFile();
-    users.add(user);
+    users.add(newUser);
     writeToFile(users);
   }
 
