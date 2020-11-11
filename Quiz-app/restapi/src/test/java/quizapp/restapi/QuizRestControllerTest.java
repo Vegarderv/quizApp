@@ -44,7 +44,7 @@ public class QuizRestControllerTest {
 
   @BeforeEach
   public void setUp() {
-    quiz.setId("test-quiz");
+    quiz.setId("Test-Quiz");
     quiz.setName("Test Quiz");
     quizHandler.addQuiz(quiz);
   }
@@ -67,7 +67,9 @@ public class QuizRestControllerTest {
   @Test
   public void getQuizzes() {
     try {
-      assertEquals(testGetQuizzes(), quizHandler.loadFromFile());
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      //Testing with JsonStrings as assertEquals would not accept two identical objects
+      assertEquals(gson.toJson(testGetQuizzes()), gson.toJson(quizHandler.loadFromFile()));
     } catch (Exception e) {
       fail("Could not load all quizzes");
       e.printStackTrace();
@@ -130,7 +132,7 @@ public class QuizRestControllerTest {
     String resultQuiz = new String(resultQuizByte, StandardCharsets.UTF_8);
     assertNotNull(resultQuiz);
     System.out.println(resultQuiz);
-    assertEquals(quiz, gson.fromJson(resultQuiz, new TypeToken<Quiz>() {
-    }.getType()));
+    assertEquals(quiz.getId() , ((Quiz) gson.fromJson(resultQuiz, new TypeToken<Quiz>() {
+    }.getType())).getId());
   }
 }
