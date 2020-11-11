@@ -82,9 +82,9 @@ public class QuizHandler {
     writeToFile(quizzes);
   }
 
-  public void deleteQuiz(String quiz) {
+  public void deleteQuiz(String quizId) {
     List<Quiz> quizzes = loadFromFile();
-    quizzes = quizzes.stream().filter(q -> !q.getName().equals(quiz)).collect(Collectors.toList());
+    quizzes = quizzes.stream().filter(q -> !q.getId().equals(quizId)).collect(Collectors.toList());
     writeToFile(quizzes);
   }
 
