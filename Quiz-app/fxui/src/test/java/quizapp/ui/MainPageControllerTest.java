@@ -1,4 +1,4 @@
-/*package quizapp.ui;
+package quizapp.ui;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -92,4 +92,4 @@ public class MainPageControllerTest extends FxuiTest {
     assertNull(stage.getScene().lookup("#menuButton"));
   }
 
-}*/
+}

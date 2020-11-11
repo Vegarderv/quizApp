@@ -1,4 +1,4 @@
-/*package quizapp.ui;
+package quizapp.ui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -123,4 +123,4 @@ public class QuizControllerTest extends FxuiTest {
 
 
   
-}*/
+}

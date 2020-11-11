@@ -22,7 +22,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
 @TestMethodOrder(OrderAnnotation.class)
-public class AddQuizTest extends FxuiTest {
+public class AddQuizControllerTest extends FxuiTest {
 
   private Stage stage;
   private DirectQuizAccess directQuizAccess;
