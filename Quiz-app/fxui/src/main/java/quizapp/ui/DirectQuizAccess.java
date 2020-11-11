@@ -20,7 +20,7 @@ public class DirectQuizAccess implements QuizAccess {
     quizHandler.addQuiz(quiz);
   }
 
-  public void deleteQuiz(Quiz quiz) {
+  public void deleteQuiz(String quiz) {
     quizHandler.deleteQuiz(quiz);
   }
 }

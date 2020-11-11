@@ -39,11 +39,11 @@ public class AddQuizControllerTest extends FxuiTest {
     r = new Robot();
   }
 
-  @Test
+  /*@Test
   public void check() throws AWTException {
     Robot r1 = new Robot();
     r1.mouseWheel(15);
-  }
+  }*/
 
   /*@Test
   public void TestMakeAQuiz() throws AWTException {

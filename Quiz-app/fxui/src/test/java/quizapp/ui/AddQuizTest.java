@@ -31,8 +31,11 @@ public class AddQuizTest extends FxuiTest {
     directQuizAccess = new DirectQuizAccess();
     //Deletes quiz if it already exists
     Quiz quiz = directQuizAccess.getQuiz("Color-quiz");
-    directQuizAccess.deleteQuiz(quiz);
-    assertNull(directQuizAccess.getQuiz("Color-quiz"));
+    System.out.println(quiz);
+    System.out.println(directQuizAccess.getQuizzes());
+    directQuizAccess.deleteQuiz("Color quiz");
+    System.out.println(directQuizAccess.getQuizzes());
+    //assertNull(directQuizAccess.getQuiz("Color-quiz"));
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("AddQuiz.fxml"));
     final Parent root = loader.load();
     stage.setScene(new Scene(root));
@@ -45,18 +48,47 @@ public class AddQuizTest extends FxuiTest {
   public void runQuizwithEverythingCorrect() throws AWTException {
     // Runs through the quiz
     Robot r = new Robot();
-    clickOn("#q0a2");
     findTextField("#title").setText("Color quiz");
+    findTextField("#q0").setText("What color do you get if you mix blue and yellow?");
+    findTextField("#q0an0").setText("Blue");
+    findTextField("#q0an1").setText("Green");
+    findTextField("#q0an2").setText("Purple");
+    findTextField("#q0an3").setText("Red");
+    clickOnButton("#q0a2");
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+    }
     r.mouseWheel(15);
-    clickOn("#q1a3");
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+    }
+    findTextField("#q1").setText("What color do you get if you mix red and yellow?");
+    findTextField("#q1an0").setText("Green");
+    findTextField("#q1an1").setText("Yellow");
+    findTextField("#q1an2").setText("Blue");
+    findTextField("#q1an3").setText("Orange");
+    clickOnButton("#q1a3");
     // Scrolls to bottom of screen
     // Slows down the code to give the robot time to scroll
     try {
-      Thread.sleep(100);
+      Thread.sleep(1000);
     } catch (InterruptedException e) {
     }
-    clickOn("#q2a1");
-    //Robot r = new Robot();
+    r.mouseWheel(15);
+    findTextField("#q2").setText("What color do you get if you mix blue and red?");
+    findTextField("#q2an0").setText("Black");
+    findTextField("#q2an1").setText("White");
+    findTextField("#q2an2").setText("Purple");
+    findTextField("#q2an3").setText("Green");
+    clickOnButton("#q2a2");
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+    }
+    clickOnButton("#submit");
+    
   }
     
   private TextField findTextField(String node) {
