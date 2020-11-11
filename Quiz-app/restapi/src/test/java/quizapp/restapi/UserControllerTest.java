@@ -1,9 +1,6 @@
 package quizapp.restapi;
 
-import org.junit.After;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import quizapp.core.User;
@@ -13,12 +10,9 @@ import quizapp.json.UsernameHandler;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -27,17 +21,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.List;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -49,8 +35,6 @@ public class UserControllerTest {
 
   private final static String TEST_USER_ID = "user-id-123";
 
-  @Mock
-  UserService service = mock(UserService.class);
 
   @Autowired
   MockMvc mockMvc;
@@ -121,44 +105,23 @@ public class UserControllerTest {
     } catch (Exception e) {
       fail("could not put username");
     }
-
+    usernameHandler.saveActiveUser("Hallvard",
+        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
   }
 
   @Test
-  public void serviceIsCalledAtGetUsers() {
-
-    List<User> list = Arrays.asList(user1);
-    when(service.getUsers()).thenReturn(list);
-    service.getUsers();
-    verify(service).getUsers();
+  public void getActiveUser() {
+    try {
+      testGetActiveUser();
+    } catch (Exception e) {
+      fail("Could not retrive active user");
+      e.printStackTrace();
+    }
   }
 
+  
 
-  @Test
-  public void serviceIsCalledAtAddUser() {
-    service.addUser(user1);
-    verify(service).addUser(user1);
-  }
-
-  @Test
-  public void serviceIsCalledAtUpdateUser() {
-    service.updateUser(user1);
-    verify(service).updateUser(user1);
-  }
-
-  @Test
-  public void serviceIsCalledAtUpdateActiveUser() {
-    service.updateActiveUser("test");
-    verify(service).updateActiveUser("test");
-  }
-
-  @Test
-  public void serviceIsCalledAtGetActiveUser() {
-    service.getActiveUser();
-    verify(service).getActiveUser();
-  }
-
-  //Removes user created before each test
+  // Removes user created before each test
   @AfterEach
   public void deleteTestUser() {
     List<User> users = jsonHandler.loadFromFile();
@@ -169,69 +132,70 @@ public class UserControllerTest {
   private void testGetUser(User user, String username) throws Exception {
     Gson gson = new Gson();
     MvcResult result = mockMvc
-        .perform(MockMvcRequestBuilders
-        .get("/api/user/" + username)
-        .with(user(TEST_USER_ID))
-        .with(csrf())
-        .content(username).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        .perform(MockMvcRequestBuilders.get("/api/user/" + username).with(user(TEST_USER_ID)).with(csrf())
+            .content(username).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk()).andReturn();
 
     byte[] resultUserByte = result.getResponse().getContentAsByteArray();
     String resultUser = new String(resultUserByte, StandardCharsets.UTF_8);
     assertNotNull(resultUser);
-    assertEquals(user, gson.fromJson(resultUser, new TypeToken<User>(){}.getType()));
+    assertEquals(user, gson.fromJson(resultUser, new TypeToken<User>() {
+    }.getType()));
+  }
+
+  private void testGetActiveUser() throws Exception {
+    Gson gson = new Gson();
+    MvcResult result = mockMvc
+        .perform(MockMvcRequestBuilders.get("/api/user/active").with(user(TEST_USER_ID)).with(csrf())
+            .content("").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk()).andReturn();
+
+    byte[] resultUserByte = result.getResponse().getContentAsByteArray();
+    String resultUser = new String(resultUserByte, StandardCharsets.UTF_8);
+    assertNotNull(resultUser);
+    assertEquals(jsonHandler.loadActiveUser(), gson.fromJson(resultUser, new TypeToken<User>() {
+    }.getType()));
   }
 
   private List<User> testGetUsers() throws Exception {
     Gson gson = new Gson();
     MvcResult result = mockMvc
-        .perform(MockMvcRequestBuilders
-        .get("/api/user/users")
-        .with(user(TEST_USER_ID))
-        .with(csrf())
-        .content("users").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        .perform(MockMvcRequestBuilders.get("/api/user/users").with(user(TEST_USER_ID)).with(csrf()).content("users")
+            .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk()).andReturn();
 
     byte[] resultUserByte = result.getResponse().getContentAsByteArray();
     String resultUser = new String(resultUserByte, StandardCharsets.UTF_8);
     assertNotNull(resultUser);
-    return gson.fromJson(resultUser, new TypeToken<List<User>>(){}.getType());
+    return gson.fromJson(resultUser, new TypeToken<List<User>>() {
+    }.getType());
   }
 
   private void testPostUser(User user) throws Exception {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     MvcResult result = mockMvc
-        .perform(MockMvcRequestBuilders
-        .post("/api/user/" + user.getUsername())
-        .with(user(TEST_USER_ID))
-        .with(csrf())
-        .content(gson.toJson(user)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        .perform(MockMvcRequestBuilders.post("/api/user/" + user.getUsername()).with(user(TEST_USER_ID)).with(csrf())
+            .content(gson.toJson(user)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk()).andReturn();
-
+    System.out.println(result);
   }
 
   private void testPutUser(User user) throws Exception {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     MvcResult result = mockMvc
-        .perform(MockMvcRequestBuilders
-        .put("/api/user/" + user.getUsername())
-        .with(user(TEST_USER_ID))
-        .with(csrf())
-        .content(gson.toJson(user)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        .perform(MockMvcRequestBuilders.put("/api/user/" + user.getUsername()).with(user(TEST_USER_ID)).with(csrf())
+            .content(gson.toJson(user)).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk()).andReturn();
-    System.out.println("RESULT:"+ result.toString());
+    System.out.println("RESULT:" + result.toString());
 
   }
-  
+
   private void testPutUsername(String username) throws Exception {
     MvcResult result = mockMvc
-        .perform(MockMvcRequestBuilders
-        .put("/api/user/updateActive/" + username)
-        .with(user(TEST_USER_ID))
-        .with(csrf())
-        .content(username).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        .perform(MockMvcRequestBuilders.put("/api/user/updateActive/" + username).with(user(TEST_USER_ID)).with(csrf())
+            .content(username).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk()).andReturn();
-    System.out.println("RESULT:"+ result.toString());
+    System.out.println("RESULT:" + result.toString());
   }
 
 }

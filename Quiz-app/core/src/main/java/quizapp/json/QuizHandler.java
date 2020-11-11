@@ -76,7 +76,7 @@ public class QuizHandler {
 
   public void addQuiz(Quiz quiz) {
     List<Quiz> quizzes = loadFromFile();
-    quizzes.add(quiz);
+    quizzes.add(new Quiz(quiz));
     writeToFile(quizzes);
   }
 
