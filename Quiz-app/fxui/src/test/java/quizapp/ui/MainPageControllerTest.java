@@ -63,7 +63,7 @@ public class MainPageControllerTest extends FxuiTest {
     assertNotNull(stage.getScene().lookup("#userMenu"));
     assertNull(stage.getScene().lookup("#menuButton"));
     //Checks that the correct quiz has been loaded
-    assertEquals(((Label) stage.getScene().lookup("#quiz_name")).getText(), "Chemistry quiz");
+    assertEquals(((Label) stage.getScene().lookup("#quizName")).getText(), "Chemistry quiz");
 
 
   }

@@ -37,20 +37,25 @@ public class User {
     this.password = password;
   }
 
+  /**
+   * Adds the quiz to quizzesTaken with the score they got most recently.
+
+   * @param quiz name of the quiz taken
+   * @param score score the user got when taking the quiz
+   */
   public void addQuiz(String quiz, double score) {
     
     //Add quiz to user when finished with said quiz, or updates score to latest result
     if (quizzesTaken.containsKey(quiz)) {
       quizzesTaken.replace(quiz, score);
-    }
-    else {
+    } else {
       quizzesTaken.put(quiz, score);
     }
   }
 
   public Double meanScore() {
     //Returns mean score of all quizzes taken
-    return quizzesTaken.values().stream().mapToDouble(d->d).sum() / quizzesTaken.size();
+    return quizzesTaken.values().stream().mapToDouble(d -> d).sum() / quizzesTaken.size();
   }
 
   public Double getScore(String quiz) {
@@ -89,7 +94,7 @@ public class User {
     this.quizzesTaken = quizzesTaken;
   }
   
-  public HashMap<String, Double> getQuizzesTaken(){
+  public HashMap<String, Double> getQuizzesTaken() {
     return this.quizzesTaken;
   }
 }

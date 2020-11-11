@@ -1,26 +1,28 @@
 package quizapp.restapi;
 
-import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.UsernameHandler;
 import java.nio.file.Paths;
 import java.util.List;
 import org.springframework.stereotype.Service;
-
+import quizapp.core.User;
+import quizapp.json.JsonHandler;
+import quizapp.json.UsernameHandler;
 
 @Service
-public class UserService{
+public class UserService {
 
   private List<User> users;
   private User activeUser;
 
   private JsonHandler jsonHandler;
   private UsernameHandler usernameHandler;
-  private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private static String pathStarter = "../core/src/main/resources/quizapp/json/";
   private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
   private final String activeUserPath = Paths.get(pathStarter + "activeUser.json").toString();
 
-  public UserService(){
+  /**
+   * UserService constructor.
+   */
+  public UserService() {
     jsonHandler = new JsonHandler(this.jsonPath);
     usernameHandler = new UsernameHandler(this.activeUserPath);
     users = jsonHandler.loadFromFile();
@@ -41,10 +43,6 @@ public class UserService{
     activeUser = jsonHandler.loadActiveUser();
     return activeUser;
   }
-
-  //public void setActiveUser(User activeUser) {
-  //  this.activeUser = activeUser;
-  //}
 
   public void addUser(User user) {
     jsonHandler.addUser(user);

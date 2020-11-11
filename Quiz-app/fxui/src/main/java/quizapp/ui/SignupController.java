@@ -1,17 +1,15 @@
 package quizapp.ui;
 
+import java.net.URI;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.UsernameHandler;
-import java.net.URL;
-import java.net.URI;
-import java.util.List;
-import java.util.ResourceBundle;
 
 public class SignupController extends QuizAppController {
 
@@ -40,7 +38,7 @@ public class SignupController extends QuizAppController {
   @FXML
   public void toMainMenu(ActionEvent event) throws Exception {
     try {
-       remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
       remoteUserAccess = new DirectUserAccess();
     }
@@ -57,8 +55,9 @@ public class SignupController extends QuizAppController {
       return;
     }
     try {
-       remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/new/"));
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/new/"));
     } catch (Exception e) {
+      //ikketodo
     }
     // saves user
     final User newUser = new User();
@@ -67,6 +66,5 @@ public class SignupController extends QuizAppController {
     remoteUserAccess.postUser(newUser);
     this.switchSceneWithNode("MainPage.fxml", loginButton);
   }
-
 
 }

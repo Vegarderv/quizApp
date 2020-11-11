@@ -6,9 +6,9 @@ import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
-public class DirectUserAccess implements UserAccess{
+public class DirectUserAccess implements UserAccess {
 
-  private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private static String pathStarter = "../core/src/main/resources/quizapp/json/";
   private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
   private JsonHandler jsonHandler = new JsonHandler(this.jsonPath);
   private final String activeUserPath = Paths.get(pathStarter + "activeUser.json").toString();

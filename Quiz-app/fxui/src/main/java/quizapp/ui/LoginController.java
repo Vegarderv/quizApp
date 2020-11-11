@@ -1,6 +1,8 @@
 package quizapp.ui;
 
 import java.net.URI;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,8 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import quizapp.core.UsernameCheck;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class LoginController extends QuizAppController {
 
@@ -21,7 +21,7 @@ public class LoginController extends QuizAppController {
   Label errorMessage;
   @FXML
   Button mainPageButton;
-  
+
   private UserAccess remoteUserAccess;
 
   @Override
@@ -43,7 +43,7 @@ public class LoginController extends QuizAppController {
     }
 
     try {
-        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
     } catch (Exception e) {
       remoteUserAccess = new DirectUserAccess();
     }
