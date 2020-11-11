@@ -24,6 +24,13 @@ from /workspace/gr2022/Quiz-app:
 
 This is the standard folder structure for projects built with maven
 
+## Paths
+
+In this app we use paths to access several different objects, but mostly json objects used to save data.
+
+To access these objects we have used realtive paths, such that the project is compatible with other programs if cloned.
+
+
 ## UI-layer
 
 Currently, the UI layer conatins the following: Signin page, signup page, main menu, a history quiz and profile page.

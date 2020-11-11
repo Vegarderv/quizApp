@@ -5,9 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import quizapp.json.CryptoUtil;
 import quizapp.core.User;
-
 import java.io.*;
 import java.util.ArrayList;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class JsonHandler {
@@ -87,8 +87,9 @@ public class JsonHandler {
    * Loads user that currently is active.
    */
   public User loadActiveUser() {
-    UsernameHandler usernameHandler = new UsernameHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+    final String pathStarter = "../core/src/main/resources/quizapp/json/";
+    final String ActiveUserPath = Paths.get(pathStarter + "activeUser.json").toString();
+    UsernameHandler usernameHandler = new UsernameHandler(ActiveUserPath);
     return this.loadFromFile().stream()
         .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser()))
         .findFirst().get();

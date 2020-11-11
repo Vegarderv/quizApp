@@ -12,11 +12,14 @@ import quizapp.json.UsernameHandler;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.nio.file.Paths;
+
 public class ProfilePageControllerTest extends FxuiTest {
 
   private Stage stage;
-  private String usernamePath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
-  private String jsonPath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json";
+  private final String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private final String usernamePath = Paths.get(pathStarter + "activeUser.json").toString();
+  private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
 
   @Override
   public void start(final Stage stage) throws Exception {

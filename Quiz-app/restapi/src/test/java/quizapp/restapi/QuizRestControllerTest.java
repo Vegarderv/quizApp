@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,8 +38,9 @@ public class QuizRestControllerTest {
   MockMvc mockMvc;
 
   private final static String TEST_QUIZ_ID = "quiz-id-123";
-  private QuizHandler quizHandler = new QuizHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/quizzes.json");
+    private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private final String quizPath = Paths.get(pathStarter + "quizzes.json").toString();
+  private QuizHandler quizHandler = new QuizHandler(this.quizPath);
 
   private Quiz quiz = new Quiz();
 

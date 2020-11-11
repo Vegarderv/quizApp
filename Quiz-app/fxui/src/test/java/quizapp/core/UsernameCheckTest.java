@@ -3,7 +3,7 @@ package quizapp.core;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import quizapp.json.JsonHandler;
-
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,9 @@ public class UsernameCheckTest {
   // Setting up the tests
   @BeforeAll
   public static void setUp() {
-    handler = new JsonHandler("/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
+    final String pathStarter = "../core/src/main/resources/quizapp/json/";
+    final String jsonTestPath = Paths.get(pathStarter + "JSONHandlerTest.json").toString();
+    handler = new JsonHandler(jsonTestPath);
     User user1 = new User();
     user1.setPassword("gitlab");
     user1.setUsername("gr2022");

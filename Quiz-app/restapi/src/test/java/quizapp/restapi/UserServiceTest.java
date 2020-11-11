@@ -11,6 +11,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,7 +23,8 @@ import java.util.List;
 public class UserServiceTest {
   @Mock
   UserService service = mock(UserService.class);
-  private String jsonPath = "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json";
+   private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
   JsonHandler jsonHandler = new JsonHandler(jsonPath);
   User user1 = new User("Test", "Testville");
     

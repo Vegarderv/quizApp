@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -41,10 +42,13 @@ public class UserControllerTest {
 
   private User user1 = new User("Test", "Testville");
   private User user2 = new User("Post", "User");
+  private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private final String userPath = Paths.get(pathStarter + "JSONHandler.json").toString();
+  private final String usernamePath = Paths.get(pathStarter + "activeUser.json").toString();
   private JsonHandler jsonHandler = new JsonHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+      userPath);
   private UsernameHandler usernameHandler = new UsernameHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+      usernamePath);
 
   // Adds User before each test to ensure independent testing
   @BeforeEach
@@ -106,7 +110,7 @@ public class UserControllerTest {
       fail("could not put username");
     }
     usernameHandler.saveActiveUser("Hallvard",
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+        userPath);
   }
 
   @Test
