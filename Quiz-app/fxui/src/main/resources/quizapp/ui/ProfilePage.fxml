@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quizapp.ui.ProfilePageController">
     <children>
-        <BorderPane prefHeight="491.0" prefWidth="553.0">
+        <BorderPane prefHeight="400.0" prefWidth="600.0">
             <top>
-                <HBox prefHeight="48.0" prefWidth="553.0" BorderPane.alignment="CENTER">
+                <HBox prefHeight="48.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="400.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="600.0">
                             <children>
                                 <ImageView fx:id="mainMenu" fitHeight="55.0" fitWidth="177.0" onMouseClicked="#goToMainMenu" pickOnBounds="true" preserveRatio="true">
                                     <image>
