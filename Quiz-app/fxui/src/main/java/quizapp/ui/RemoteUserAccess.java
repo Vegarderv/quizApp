@@ -16,12 +16,15 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import quizapp.core.User;
+import quizapp.json.CryptoUtil;
 
 public class RemoteUserAccess implements UserAccess {
 
   User user;
 
   private final URI endpointBaseUri;
+  private String secretKey = "ssshhhhhhhhhhh!!!!";
+  private CryptoUtil cryptoUtil = new CryptoUtil();
 
   /**
    * RemoteUserAccess constructor.
@@ -86,7 +89,7 @@ public class RemoteUserAccess implements UserAccess {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
+    this.user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey));
     return this.user;
   }
 
@@ -97,7 +100,9 @@ public class RemoteUserAccess implements UserAccess {
    * @param user the user we want to put
    */
   @SuppressFBWarnings("DLS_DEAD_LOCAL_STORE")
-  public void putUser(User user) {
+  public void putUser(User newUser) {
+    User user = new User(newUser);
+    user.setPassword(cryptoUtil.encrypt(user.getPassword(), secretKey));
     try {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String json = gson.toJson(user);
@@ -148,7 +153,8 @@ public class RemoteUserAccess implements UserAccess {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
+    users.stream()
+        .forEach(user -> user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey)));
     return users;
   }
 
@@ -179,6 +185,7 @@ public class RemoteUserAccess implements UserAccess {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    this.user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey));
     return this.user;
   }
 
@@ -190,7 +197,6 @@ public class RemoteUserAccess implements UserAccess {
    */
   @SuppressFBWarnings("DLS_DEAD_LOCAL_STORE")
   public void putActiveUser(String name) {
-
     try {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String json = gson.toJson(name);
@@ -219,7 +225,9 @@ public class RemoteUserAccess implements UserAccess {
    * @param user the user we want to post
    */
   @SuppressFBWarnings("DLS_DEAD_LOCAL_STORE")
-  public void postUser(User user) {
+  public void postUser(User newUser) {
+  User user = new User(newUser);
+  user.setPassword(cryptoUtil.encrypt(user.getPassword(), secretKey));
 
     try {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();

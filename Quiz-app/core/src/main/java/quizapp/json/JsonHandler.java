@@ -12,13 +12,15 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import quizapp.core.User;
 
 public class JsonHandler {
   private String path;
   private Writer file;
-  private String secretKey = "ssshhhhhhhhhhh!!!!";
 
   public JsonHandler(String path) {
     this.path = path;
@@ -27,15 +29,8 @@ public class JsonHandler {
   /**
    * Function writes a hashmap as a JSON object to a JSON file.
    */
-  public void writeToFile(List<User> users) {
-    CryptoUtil crypto = new CryptoUtil();
-    users.stream().forEach(user -> {
-      try {
-        user.setPassword(crypto.encrypt(user.getPassword(), secretKey));
-      } catch (Exception e1) {
-        e1.printStackTrace();
-      }
-    });
+  public void writeToFile(List<User> userList) {
+    List<User> users = new ArrayList<>(userList);
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String javaObjectString = gson.toJson(users); // converts to json
     try {
@@ -63,18 +58,10 @@ public class JsonHandler {
    */
   public List<User> loadFromFile() {
     try {
-      CryptoUtil cryptoUtil = new CryptoUtil();
       InputStream inputStream = new FileInputStream(path);
       Reader fileReader = new InputStreamReader(inputStream, "UTF-8");
       List<User> users = new Gson().fromJson(fileReader, new TypeToken<List<User>>() {
       }.getType());
-      users.stream().forEach(user -> {
-        try {
-          user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey));
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      });
       return users;
 
     } catch (Exception e) {
@@ -130,8 +117,15 @@ public class JsonHandler {
    * @param user user that should be added
    */
   public void addUser(User user) {
+    User newUser = new User(user);
     List<User> users = loadFromFile();
-    users.add(user);
+    users.add(newUser);
+    writeToFile(users);
+  }
+
+  public void deleteUser(String username) {
+    List<User> users = loadFromFile();
+    users = users.stream().filter(u -> !u.getUsername().equals(username)).collect(Collectors.toList());
     writeToFile(users);
   }
 

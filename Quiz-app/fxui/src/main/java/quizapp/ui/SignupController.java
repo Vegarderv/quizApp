@@ -54,11 +54,6 @@ public class SignupController extends QuizAppController {
       errorMessage.setText("Username and password must at least contain 1 sign");
       return;
     }
-    try {
-      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/new/"));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
     // saves user
     final User newUser = new User();
     newUser.setUsername(this.username.getText());

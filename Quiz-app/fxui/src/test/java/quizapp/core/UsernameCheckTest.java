@@ -2,34 +2,26 @@ package quizapp.core;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import quizapp.json.JsonHandler;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-
+import quizapp.ui.DirectUserAccess;
+import quizapp.ui.UserAccess;
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UsernameCheckTest {
 
   // Declaring variables
-  static JsonHandler handler;
-  static List<User> usernames = new ArrayList<>();
-  List<User> loadedUsernames;
   static UsernameCheck nameCheck;
+  UserAccess userAccess = new DirectUserAccess();
 
   // Setting up the tests
   @BeforeAll
   public static void setUp() {
-    final String pathStarter = "../core/src/main/resources/quizapp/json/";
-    final String jsonTestPath = Paths.get(pathStarter + "JSONHandlerTest.json").toString();
-    handler = new JsonHandler(jsonTestPath);
+    UserAccess userAccess = new DirectUserAccess(true);
     User user1 = new User();
     user1.setPassword("gitlab");
     user1.setUsername("gr2022");
-    usernames.add(user1);
     nameCheck = new UsernameCheck();
-    handler.writeToFile(usernames);
+    userAccess.postUser(user1);
   }
 
   // Testing with wrong username and right password

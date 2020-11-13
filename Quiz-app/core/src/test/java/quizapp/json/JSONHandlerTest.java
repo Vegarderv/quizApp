@@ -1,5 +1,7 @@
 package quizapp.json;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import quizapp.core.User;
@@ -61,6 +63,13 @@ public class JSONHandlerTest {
     // Checks if correct quiz is loaded
     loadedUsernames = handler.loadFromFile();
     assertTrue(loadedUsernames.get(0).quizTaken("testquiz123"));
+  }
+
+  @AfterAll
+  public static void after() {
+    //empties testdoc
+    JsonHandler jsonHandler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
+    jsonHandler.writeToFile(new ArrayList<User>());
   }
 
 }

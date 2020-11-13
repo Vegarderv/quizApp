@@ -12,6 +12,8 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import quizapp.core.Quiz;
 
 public class QuizHandler {
@@ -86,7 +88,13 @@ public class QuizHandler {
    */
   public void addQuiz(Quiz quiz) {
     List<Quiz> quizzes = loadFromFile();
-    quizzes.add(quiz);
+    quizzes.add(new Quiz(quiz));
+    writeToFile(quizzes);
+  }
+
+  public void deleteQuiz(String quizId) {
+    List<Quiz> quizzes = loadFromFile();
+    quizzes = quizzes.stream().filter(q -> !q.getId().equals(quizId)).collect(Collectors.toList());
     writeToFile(quizzes);
   }
 

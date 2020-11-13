@@ -9,9 +9,24 @@ public class Quiz {
   private String name;
   private String id;
 
-  
+  /**
+   * Quiz Constructor.
+   * 
+   */
   public Quiz() {
 
+  }
+
+  /**
+   * Quiz Constructor.
+   * 
+
+   * @param other copies this quiz
+   */
+  public Quiz(Quiz other) {
+    this.questions = other.questions;
+    this.name = other.name;
+    setId();
   }
 
   /**

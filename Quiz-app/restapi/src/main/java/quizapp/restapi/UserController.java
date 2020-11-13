@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 import quizapp.core.User;
 
 @RestController
@@ -40,7 +40,7 @@ public class UserController {
 
 
 
-  @PostMapping("/new/{name}")
+  @PostMapping("/{name}")
   public void newUser(@PathVariable("name") String name, @RequestBody User user) {
     userService.addUser(user);
   }

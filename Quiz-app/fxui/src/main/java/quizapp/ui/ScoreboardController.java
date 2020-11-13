@@ -21,8 +21,8 @@ import quizapp.core.Quiz;
 import quizapp.core.User;
 
 public class ScoreboardController extends QuizAppController {
-
-  // mvn javafx:run -f fxui/pom.xml
+  
+  //mvn javafx:run -f fxui/pom.xml
 
   @FXML
   MenuBar menuBar;

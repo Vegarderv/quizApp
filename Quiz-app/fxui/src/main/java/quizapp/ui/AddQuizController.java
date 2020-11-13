@@ -19,13 +19,23 @@ import quizapp.core.Quiz;
 public class AddQuizController extends QuizAppController {
 
   @FXML
+  RadioButton q0a0;
+  @FXML
+  RadioButton q0a1;
+  @FXML
+  RadioButton q0a2;
+  @FXML
+  RadioButton q0a3;
+  @FXML
+  RadioButton q1a0;
+  @FXML
   RadioButton q1a1;
   @FXML
   RadioButton q1a2;
   @FXML
   RadioButton q1a3;
   @FXML
-  RadioButton q1a4;
+  RadioButton q2a0;
   @FXML
   RadioButton q2a1;
   @FXML
@@ -33,15 +43,15 @@ public class AddQuizController extends QuizAppController {
   @FXML
   RadioButton q2a3;
   @FXML
-  RadioButton q2a4;
+  TextField q0an0;
   @FXML
-  RadioButton q3a1;
+  TextField q0an1;
   @FXML
-  RadioButton q3a2;
+  TextField q0an2;
   @FXML
-  RadioButton q3a3;
+  TextField q0an3;
   @FXML
-  RadioButton q3a4;
+  TextField q1an0;
   @FXML
   TextField q1an1;
   @FXML
@@ -49,7 +59,7 @@ public class AddQuizController extends QuizAppController {
   @FXML
   TextField q1an3;
   @FXML
-  TextField q1an4;
+  TextField q2an0;
   @FXML
   TextField q2an1;
   @FXML
@@ -57,23 +67,13 @@ public class AddQuizController extends QuizAppController {
   @FXML
   TextField q2an3;
   @FXML
-  TextField q2an4;
-  @FXML
-  TextField q3an1;
-  @FXML
-  TextField q3an2;
-  @FXML
-  TextField q3an3;
-  @FXML
-  TextField q3an4;
-  @FXML
   TextField title;
+  @FXML
+  TextField q0;
   @FXML
   TextField q1;
   @FXML
   TextField q2;
-  @FXML
-  TextField q3;
   @FXML
   Label score;
   @FXML
@@ -82,15 +82,15 @@ public class AddQuizController extends QuizAppController {
   ScrollPane scroll;
 
   private UserAccess remoteUserAccess;
-  private RemoteQuizAccess remoteQuizAccess;
+  private QuizAccess remoteQuizAccess;
 
+  private List<RadioButton> radioButtonGroup0 = new ArrayList<>();
   private List<RadioButton> radioButtonGroup1 = new ArrayList<>();
   private List<RadioButton> radioButtonGroup2 = new ArrayList<>();
-  private List<RadioButton> radioButtonGroup3 = new ArrayList<>();
   private List<List<RadioButton>> radioButtons = new ArrayList<>();
+  private List<TextField> textFieldGroup0 = new ArrayList<>();
   private List<TextField> textFieldGroup1 = new ArrayList<>();
   private List<TextField> textFieldGroup2 = new ArrayList<>();
-  private List<TextField> textFieldGroup3 = new ArrayList<>();
   private List<TextField> textFieldOther = new ArrayList<>();
   private List<List<TextField>> textFields = new ArrayList<>();
 
@@ -102,8 +102,14 @@ public class AddQuizController extends QuizAppController {
     } catch (Exception e) {
       remoteUserAccess = new DirectUserAccess();
     }
-    userMenu.setText(remoteUserAccess.getActiveUser().getUsername());
-
+    try {
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
+    } catch (Exception e) {
+      remoteQuizAccess = new DirectQuizAccess();
+    }
+    userMenu
+        .setText(remoteUserAccess.getActiveUser().getUsername());
+    
   }
 
   @FXML
@@ -137,9 +143,9 @@ public class AddQuizController extends QuizAppController {
       return;
     }
     try {
-      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/new/"));
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
     } catch (Exception e) {
-      e.printStackTrace();
+      remoteQuizAccess = new DirectQuizAccess();
     }
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.stream().anyMatch(q -> q.getName().equals(title.getText()))) {
@@ -150,58 +156,64 @@ public class AddQuizController extends QuizAppController {
       return;
     }
 
-    Question question1 = new Question(q1.getText(), q1an1.getText(), 
-        q1an2.getText(), q1an3.getText(), q1an4.getText(),
+    try {
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/new/"));
+    } catch (Exception e) {
+      remoteQuizAccess = new DirectQuizAccess();
+    }
+
+    Question question0 = new Question(q0.getText(), q0an0.getText(), 
+        q0an1.getText(), q0an2.getText(), q0an3.getText(),
+        radioButtonGroup0.indexOf(radioButtonGroup0.stream()
+        .filter(p -> p.isSelected()).findAny().get()));
+    Question question1 = new Question(q1.getText(), q1an0.getText(), 
+        q1an1.getText(), q1an2.getText(), q1an3.getText(),
         radioButtonGroup1.indexOf(radioButtonGroup1.stream()
         .filter(p -> p.isSelected()).findAny().get()));
-    Question question2 = new Question(q2.getText(), 
-        q2an1.getText(), q2an2.getText(), q2an3.getText(), q2an4.getText(),
+    Question question2 = new Question(q2.getText(), q2an0.getText(), 
+        q2an1.getText(), q2an2.getText(), q2an3.getText(),
         radioButtonGroup2.indexOf(radioButtonGroup2.stream()
         .filter(p -> p.isSelected()).findAny().get()));
-    Question question3 = new Question(q3.getText(), q3an1.getText(), 
-        q3an2.getText(), q3an3.getText(), q3an4.getText(),
-        radioButtonGroup3.indexOf(radioButtonGroup3.stream()
-        .filter(p -> p.isSelected()).findAny().get()));
-    Quiz quiz = new Quiz(title.getText(), question1, question2, question3);
+    Quiz quiz = new Quiz(title.getText(), question0, question1, question2);
     remoteQuizAccess.postQuiz(quiz);
     switchSceneWithNode("MainPage.fxml", title);
   }
 
   private void addElemsToLists() {
+    radioButtonGroup0.add(q0a0);
+    radioButtonGroup0.add(q0a1);
+    radioButtonGroup0.add(q0a2);
+    radioButtonGroup0.add(q0a3);
+    radioButtonGroup1.add(q1a0);
     radioButtonGroup1.add(q1a1);
     radioButtonGroup1.add(q1a2);
     radioButtonGroup1.add(q1a3);
-    radioButtonGroup1.add(q1a4);
+    radioButtonGroup2.add(q2a0);
     radioButtonGroup2.add(q2a1);
     radioButtonGroup2.add(q2a2);
     radioButtonGroup2.add(q2a3);
-    radioButtonGroup2.add(q2a4);
-    radioButtonGroup3.add(q3a1);
-    radioButtonGroup3.add(q3a2);
-    radioButtonGroup3.add(q3a3);
-    radioButtonGroup3.add(q3a4);
+    radioButtons.add(radioButtonGroup0);
     radioButtons.add(radioButtonGroup1);
-    radioButtons.add(radioButtonGroup2);
-    radioButtons.add(radioButtonGroup3);
+    radioButtons.add(radioButtonGroup1);
+    textFieldGroup0.add(q0an0);
+    textFieldGroup0.add(q0an1);
+    textFieldGroup0.add(q0an2);
+    textFieldGroup0.add(q0an3);
+    textFieldGroup1.add(q1an0);
     textFieldGroup1.add(q1an1);
     textFieldGroup1.add(q1an2);
     textFieldGroup1.add(q1an3);
-    textFieldGroup1.add(q1an4);
+    textFieldGroup2.add(q2an0);
     textFieldGroup2.add(q2an1);
     textFieldGroup2.add(q2an2);
     textFieldGroup2.add(q2an3);
-    textFieldGroup2.add(q2an4);
-    textFieldGroup3.add(q3an1);
-    textFieldGroup3.add(q3an2);
-    textFieldGroup3.add(q3an3);
-    textFieldGroup3.add(q3an4);
+    textFieldOther.add(q0);
     textFieldOther.add(q1);
     textFieldOther.add(q2);
-    textFieldOther.add(q3);
     textFieldOther.add(title);
+    textFields.add(textFieldGroup0);
     textFields.add(textFieldGroup1);
     textFields.add(textFieldGroup2);
-    textFields.add(textFieldGroup3);
     textFields.add(textFieldOther);
   }
 

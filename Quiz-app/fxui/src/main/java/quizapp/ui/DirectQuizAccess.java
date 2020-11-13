@@ -22,4 +22,8 @@ public class DirectQuizAccess implements QuizAccess {
   public void postQuiz(Quiz quiz) {
     quizHandler.addQuiz(quiz);
   }
+
+  public void deleteQuiz(String quizId) {
+    quizHandler.deleteQuiz(quizId);
+  }
 }

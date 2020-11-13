@@ -87,12 +87,12 @@ public class ProfilePageController extends QuizAppController {
         try {
           scene.getStylesheets().remove("lightmode.css");
         } catch (Exception e) {
-          e.printStackTrace();
+          System.out.println("Couldn't change css style");
         }
         try {
           scene.getStylesheets().remove("darkmode.css");
         } catch (Exception e) {
-          e.printStackTrace();
+          System.out.println("Couldn't change css style");
         }
         scene.getStylesheets().add(getClass().getResource("darkmode.css").toExternalForm());
 
