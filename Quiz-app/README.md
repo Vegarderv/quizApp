@@ -108,16 +108,19 @@ Class diagram:
 This class diagram illustrates the classes that in our opinions is the most important.
 All the classes in the core is in the diagram. The diagram focuses on giving the person 
 looking at it information about the core functionality.
+
 ![Image of class diagram](../Images/ClassDiagram.png)
 
 Sequence diagram:
 The sequence diagram illustrates an important scenario in this app. It shows when a user
 takes a quiz, and the important calls that happen within the app at this moment. Both
 frontend and backend is illustrated.
+
 ![Image of sequence diagram](../Images/SequenceDiagram.png)
 
 Package diagram:
 This diagram shows the packages within the app.
+
 ![Image of package diagram](../Images/PackageDiagram.png)
 
 ## other
