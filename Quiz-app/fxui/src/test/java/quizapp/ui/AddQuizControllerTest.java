@@ -33,21 +33,15 @@ public class AddQuizControllerTest extends FxuiTest {
     stage.setScene(new Scene(root));
     stage.show();
     this.stage = stage;
-    setUp();
-  }
-
-  public void setUp() throws AWTException {
-    fillInQuiz();
   }
 
   @Test
-  //@Order(1)
   public void MakeAQuizTest() throws AWTException {
     //Deletes quiz if it already exist
     if (directQuizAccess.getQuiz("Color-quiz") != null) {
     directQuizAccess.deleteQuiz("Color-quiz");
     }
-    fillInQuiz();
+    fillInQuiz("Color quiz");
     Quiz quiz = directQuizAccess.getQuiz("Color-quiz");
     assertNotNull(quiz);
     assertEquals("Color quiz", quiz.getName());
@@ -61,7 +55,6 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
   @Test
-  //@Order(2)
   public void submitUncompleteQuizTest() throws AWTException {
     Robot r = new Robot();
     findTextField("#title").setText("Test quiz");
@@ -86,18 +79,15 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
   @Test
-  //@Order(3)
   public void makeQuizWithInvalidName() throws AWTException {
-    fillInQuizWithSameName();
+    fillInQuiz("History quiz");
     String text = ((Label) stage.getScene().lookup("#scoreLabel")).getText();
-    assertEquals("Invalid Quizname. The title must be unique, there is already a quiz named Color quiz", text);
-    directQuizAccess.deleteQuiz("Color-quiz");
+    assertEquals("Invalid Quizname. The title must be unique, there is already a quiz named History quiz", text);
   }
 
 
 
-  @Test
-  //@Order(4)    
+  @Test    
   public void goToMainMenuTest() {
     // Checks that we on add quiz page
     assertNotNull(stage.getScene().lookup("#mainMenu"));
@@ -110,8 +100,7 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
 
-  @Test
-  //@Order(5)    
+  @Test   
   public void checkCorrectUserDisplayed() {
     // Checks active user and makes sure it matches username displayed on menu button
     String activeUser = ((MenuButton)stage.getScene().lookup("#userMenu")).getText();
@@ -122,11 +111,11 @@ public class AddQuizControllerTest extends FxuiTest {
     return (TextField) stage.getScene().lookup(node);
   }
 
-  private void fillInQuiz() throws AWTException {
+  private void fillInQuiz(String title) throws AWTException {
     ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
     // Fills in everything needed to make a quiz
     scroll.setVvalue(0.0);
-    findTextField("#title").setText("Color quiz");
+    findTextField("#title").setText(title);
     findTextField("#q0").setText("What color do you get if you mix blue and yellow?");
     findTextField("#q0an0").setText("Blue");
     findTextField("#q0an1").setText("Green");
@@ -167,53 +156,4 @@ public class AddQuizControllerTest extends FxuiTest {
     }
     clickOnButton("#submit");
   }
-
-  private void fillInQuizWithSameName() throws AWTException {
-    ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
-    // Fills in everything needed to make a quiz
-    scroll.setVvalue(0.01);
-    findTextField("#title").setText("Color quiz");
-    findTextField("#q0").setText("What color do you get if you mix red and yellow?");
-    findTextField("#q0an0").setText("Blue");
-    findTextField("#q0an1").setText("Orange");
-    findTextField("#q0an2").setText("Purple");
-    findTextField("#q0an3").setText("Red");
-    clickOnButton("#q0a1");
-    try {
-      Thread.sleep(100);
-    } catch (InterruptedException e) {
-    }
-    scroll.setVvalue(0.5);
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
-    findTextField("#q1").setText("What color do you get if you mix red and blue?");
-    findTextField("#q1an0").setText("Green");
-    findTextField("#q1an1").setText("Yellow");
-    findTextField("#q1an2").setText("Blue");
-    findTextField("#q1an3").setText("Purple");
-    clickOnButton("#q1a3");
-    // Scrolls to bottom of screen
-    // Slows down the code to give the robot time to scroll
-    scroll.setVvalue(1);
-     try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-    }
-    findTextField("#q2").setText("What color do you get if you mix green and green?");
-    findTextField("#q2an0").setText("Black");
-    findTextField("#q2an1").setText("White");
-    findTextField("#q2an2").setText("Purple");
-    findTextField("#q2an3").setText("Green");
-    clickOnButton("#q2a3");
-    try {
-      Thread.sleep(100);
-    } catch (InterruptedException e) {
-    }
-    clickOnButton("#submit");
-  }
-
-
-  
 }
