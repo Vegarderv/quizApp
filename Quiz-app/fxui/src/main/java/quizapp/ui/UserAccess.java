@@ -17,34 +17,32 @@ public interface UserAccess {
   /**
    * Method for updating existing user. Must be used after userdata is changed.
    *   
-   * @param user updated user
 
+   * @param user updated user
    */
   public void putUser(User user);
 
   /**
    * Method for returning all users in database. 
    * 
-   * @return a list of all users in database
 
+   * @return a list of all users in database
    */
   public List<User> getUsers();
 
   /**
    * Method for getting user which is currently active.
    * 
-   * @return active User
 
+   * @return active User
    */
   public User getActiveUser();
 
   /**
    * Method for updating active user.
    * 
-   
-   * 
+
    * @param name Username of active user
-   * 
    */
   public void putActiveUser(String name);
 

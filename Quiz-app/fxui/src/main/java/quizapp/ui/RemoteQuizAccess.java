@@ -26,7 +26,7 @@ public class RemoteQuizAccess implements QuizAccess {
   /**
    * Checks if server is running.
    * 
-   * 
+
    * @param endpointBaseUri takes this parameter
    * @throws IOException throws exception if necessary
    */
