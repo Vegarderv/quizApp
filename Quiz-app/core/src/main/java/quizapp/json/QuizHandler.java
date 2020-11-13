@@ -3,25 +3,29 @@ package quizapp.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import quizapp.core.Quiz;
-import java.util.stream.Collectors;
-
-
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.List;
+import java.util.stream.Collectors;
+import quizapp.core.Quiz;
 
 public class QuizHandler {
   private String path;
   private Writer file;
-
 
   public QuizHandler(String path) {
     this.path = path;
   }
 
   /**
-  * Function writes a hashmap as a JSON object to a JSON file.
-  */
+   * Function writes a hashmap as a JSON object to a JSON file.
+   */
   public void writeToFile(List<Quiz> quizzes) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String javaObjectString = gson.toJson(quizzes); // converts to json
@@ -30,7 +34,6 @@ public class QuizHandler {
       FileOutputStream fileStream = new FileOutputStream(path);
       file = new OutputStreamWriter(fileStream, "UTF-8");
       file.write(javaObjectString);
-
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -46,8 +49,8 @@ public class QuizHandler {
   }
 
   /**
-  * Function reads a JSON file and returns a list of quizzes.
-  */
+   * Function reads a JSON file and returns a list of quizzes.
+   */
   public List<Quiz> loadFromFile() {
     try {
       InputStream inputStream = new FileInputStream(path);
@@ -65,6 +68,7 @@ public class QuizHandler {
 
   /**
    * Method for getting Quiz by id.
+   * 
 
    * @param id id of the quiz you want
    * @return returns Quiz with id
@@ -75,18 +79,28 @@ public class QuizHandler {
     return quizzes.stream().filter(q -> q.getName().equals(name)).findFirst().orElse(null);
   }
 
+  /**
+   * Adds quiz to file.
+   * 
 
+   * @param quiz the quiz object
+   */
   public void addQuiz(Quiz quiz) {
     List<Quiz> quizzes = loadFromFile();
     quizzes.add(new Quiz(quiz));
     writeToFile(quizzes);
   }
 
+  /**
+   * Deletes quiz from file.
+   * 
+
+   * @param quizId quiz we want to delete
+   */
   public void deleteQuiz(String quizId) {
     List<Quiz> quizzes = loadFromFile();
     quizzes = quizzes.stream().filter(q -> !q.getId().equals(quizId)).collect(Collectors.toList());
     writeToFile(quizzes);
   }
-
 
 }

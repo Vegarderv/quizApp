@@ -12,22 +12,32 @@ public class Quiz {
   /**
    * Quiz Constructor.
    * 
-
-   * @param name name of the quiz
-   * @param question0 First Question
-   * @param question1 Second Question
-   * @param question2 Third Question
    */
   public Quiz() {
 
   }
 
+  /**
+   * Quiz Constructor.
+   * 
+
+   * @param other copies this quiz
+   */
   public Quiz(Quiz other) {
     this.questions = other.questions;
     this.name = other.name;
     setId();
   }
 
+  /**
+   * Quiz Constructor.
+   * 
+
+   * @param name name of the quiz
+   * @param question0 First Question
+   * @param question1 Second Question
+   * @param question2 Third Question
+   */
   public Quiz(String name, Question question0, Question question1, Question question2) {
     this.name = name;
     setId();
@@ -66,9 +76,10 @@ public class Quiz {
     this.name = name;
   }
 
-  public List<Question> getQuestions(){
+  public List<Question> getQuestions() {
     return this.questions;
   }
+  
   public void setQuestions(List<Question> questions) {
     this.questions = questions;
   }
@@ -85,7 +96,7 @@ public class Quiz {
     this.id = getName().replace(" ", "-");
   }
 
-  public String toString(){
+  public String toString() {
     return this.getName();
   }
 
