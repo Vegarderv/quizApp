@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+import javafx.scene.control.MenuButton;
+
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -17,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class MainPageControllerTest extends FxuiTest {
 
   private Stage stage;
+  private UserAccess directUserAccess;
 
   @Override
   public void start(final Stage stage) throws Exception {
@@ -25,8 +28,18 @@ public class MainPageControllerTest extends FxuiTest {
     stage.setScene(new Scene(root));
     stage.show();
     this.stage = stage;
+    directUserAccess = new DirectUserAccess();
   }
 
+
+  @Test
+  public void checkCorrectUserDisplayed() {
+    // Checks active user and makes sure it matches username displayed on menu button
+    String activeUser = ((MenuButton)stage.getScene().lookup("#menuButton")).getText();
+    assertEquals(directUserAccess.getActiveUser().getUsername(), activeUser);
+  }
+  
+  
   @Test
   public void logOutTest() {
     // Checks that we are in the main page scene

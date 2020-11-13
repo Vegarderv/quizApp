@@ -6,7 +6,7 @@ import quizapp.core.User;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
-public class DirectUserAccess implements UserAccess{
+public class DirectUserAccess implements UserAccess {
 
   private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
   private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
@@ -14,7 +14,18 @@ public class DirectUserAccess implements UserAccess{
   private final String activeUserPath = Paths.get(pathStarter + "activeUser.json").toString();
   private UsernameHandler userHandler = new UsernameHandler(this.activeUserPath);
 
+  public DirectUserAccess() {
 
+  }
+
+  public DirectUserAccess(Boolean test) {
+    if (test) {
+      jsonHandler = new JsonHandler(
+          "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
+      userHandler = new UsernameHandler(
+          "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUserTest.json");
+    }
+  }
 
   @Override
   public User getUser(String name) {
@@ -44,5 +55,9 @@ public class DirectUserAccess implements UserAccess{
   @Override
   public void postUser(User user) {
     jsonHandler.addUser(user);
+  }
+
+  public void deleteUser(String username) {
+    jsonHandler.deleteUser(username);
   }
 }

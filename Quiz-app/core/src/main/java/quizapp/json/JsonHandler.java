@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JsonHandler {
   private String path;
@@ -121,6 +122,12 @@ public class JsonHandler {
     User newUser = new User(user);
     List<User> users = loadFromFile();
     users.add(newUser);
+    writeToFile(users);
+  }
+
+  public void deleteUser(String username) {
+    List<User> users = loadFromFile();
+    users = users.stream().filter(u -> !u.getUsername().equals(username)).collect(Collectors.toList());
     writeToFile(users);
   }
 

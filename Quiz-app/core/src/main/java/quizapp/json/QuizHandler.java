@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import quizapp.core.Quiz;
+import java.util.stream.Collectors;
+
 
 import java.io.*;
 import java.util.List;
@@ -77,6 +79,12 @@ public class QuizHandler {
   public void addQuiz(Quiz quiz) {
     List<Quiz> quizzes = loadFromFile();
     quizzes.add(new Quiz(quiz));
+    writeToFile(quizzes);
+  }
+
+  public void deleteQuiz(String quizId) {
+    List<Quiz> quizzes = loadFromFile();
+    quizzes = quizzes.stream().filter(q -> !q.getId().equals(quizId)).collect(Collectors.toList());
     writeToFile(quizzes);
   }
 
