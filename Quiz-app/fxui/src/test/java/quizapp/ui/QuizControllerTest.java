@@ -1,21 +1,18 @@
 package quizapp.ui;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import org.junit.jupiter.api.Test;
+import org.testfx.api.FxAssert;
+import java.awt.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.stage.Stage;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import quizapp.core.User;
 import quizapp.core.Quiz;
-import org.testfx.api.FxAssert;
-import java.awt.*;
-import java.beans.Transient;
-
-import org.junit.jupiter.api.Test;
+import quizapp.core.User;
 
 public class QuizControllerTest extends FxuiTest {
 
