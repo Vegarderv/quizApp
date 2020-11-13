@@ -61,7 +61,7 @@ public class AddQuizControllerTest extends FxuiTest {
   @Test
   @Order(2)
   public void submitUncompleteQuizTest() throws AWTException {
-    Robot r = new Robot();
+    ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
     findTextField("#title").setText("Test quiz");
     findTextField("#q0").setText("Is this a test?");
     findTextField("#q0an0").setText("Yes");
@@ -69,7 +69,7 @@ public class AddQuizControllerTest extends FxuiTest {
     findTextField("#q0an2").setText("Purple");
     findTextField("#q0an3").setText("Red");
     clickOnButton("#q0a0");
-    r.mouseWheel(35);
+    scroll.setVvalue(1.0);
     try {
       Thread.sleep(100);
     } catch (InterruptedException e) {
