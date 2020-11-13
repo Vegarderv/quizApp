@@ -3,9 +3,11 @@ package quizapp.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import quizapp.json.CryptoUtil;
 import quizapp.core.User;
-
 import java.io.*;
+import java.util.ArrayList;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +23,8 @@ public class JsonHandler {
   /**
    * Function writes a hashmap as a JSON object to a JSON file.
    */
-  public void writeToFile(List<User> users) {
+  public void writeToFile(List<User> userList) {
+    List<User> users = new ArrayList<>(userList);
     CryptoUtil crypto = new CryptoUtil();
     users.stream().forEach(user -> {
       try {
@@ -85,8 +88,9 @@ public class JsonHandler {
    * Loads user that currently is active.
    */
   public User loadActiveUser() {
-    UsernameHandler usernameHandler = new UsernameHandler(
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+    final String pathStarter = "../core/src/main/resources/quizapp/json/";
+    final String ActiveUserPath = Paths.get(pathStarter + "activeUser.json").toString();
+    UsernameHandler usernameHandler = new UsernameHandler(ActiveUserPath);
     return this.loadFromFile().stream()
         .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser()))
         .findFirst().get();
@@ -115,8 +119,9 @@ public class JsonHandler {
 
   }
   public void addUser(User user) {
+    User newUser = new User(user);
     List<User> users = loadFromFile();
-    users.add(user);
+    users.add(newUser);
     writeToFile(users);
   }
 

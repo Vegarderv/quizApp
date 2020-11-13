@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -185,11 +200,12 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="400.0">
                      <children>
-                        <Button fx:id="mainMenu" mnemonicParsing="false" onAction="#goToMainMenu" text="Main Menu" />
+                        <ImageView fx:id="mainMenu" fitHeight="55.0" fitWidth="177.0" onMouseClicked="#goToMainMenu" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/QuizLogo.png" />
+                           </image>
+                        </ImageView>
                      </children>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="400.0" spacing="20.0">
                      <HBox.margin>
@@ -199,7 +215,7 @@
                         <MenuButton fx:id="userMenu" mnemonicParsing="false" text="#User#">
                           <items>
                             <MenuItem fx:id="menuProfilePage" mnemonicParsing="false" onAction="#goToProfile" text="Profile page" />
-                            <MenuItem mnemonicParsing="false" fx:id="scoreboardButton" onAction="#goToScoreboard" text="Scoreboard" />
+                            <MenuItem fx:id="scoreboardButton" mnemonicParsing="false" onAction="#goToScoreboard" text="Scoreboard" />
                             <MenuItem fx:id="menuSignOut" mnemonicParsing="false" onAction="#goToLogIn" text="Log out" />
                           </items>
                         </MenuButton>

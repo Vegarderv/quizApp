@@ -1,7 +1,6 @@
 package quizapp.ui;
 
 import java.net.URI;
-import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,11 +15,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.UsernameHandler;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class ProfilePageController extends QuizAppController {
 
@@ -53,12 +47,13 @@ public class ProfilePageController extends QuizAppController {
     }
     currentUser = remoteUserAccess.getActiveUser();
     double percentage = currentUser.meanScore() * 100;
-    String score = String.valueOf(Math.round((percentage))) + "  %";
+    scoreId.setText(String.valueOf(Math.round(percentage) + "  %"));
     //Boolean DM = this.getActiveUser().getDarkMode();
     nameId.setText(currentUser.getUsername());
     userMenuProfilePage.setText(currentUser.getUsername());
     DarkmodeLabel.setText(initDarkMode());
-    scoreId.setText(score);
+     scoreId.setText(String.valueOf(Math.round((currentUser.meanScore()*100)) + "  %"));
+    
   }
 
   public String initDarkMode() {

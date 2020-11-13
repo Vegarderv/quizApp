@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import quizapp.core.Quiz;
 import quizapp.core.User;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,32 +68,38 @@ public class QuizController extends QuizAppController {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
+
     try {
-        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
       remoteUserAccess = new DirectUserAccess();
     }
+
     currentUser = remoteUserAccess.getActiveUser();
     currentQuiz = currentUser.getCurrentQuiz();
+
     List<RadioButton> q0buttons = new ArrayList<>();
+    List<RadioButton> q1buttons = new ArrayList<>();
+    List<RadioButton> q2buttons = new ArrayList<>();
+
     q0buttons.add(q0a0);
     q0buttons.add(q0a1);
     q0buttons.add(q0a2);
     q0buttons.add(q0a3);
-    List<RadioButton> q1buttons = new ArrayList<>();
+
     q1buttons.add(q1a0);
     q1buttons.add(q1a1);
     q1buttons.add(q1a2);
     q1buttons.add(q1a3);
-    List<RadioButton> q2buttons = new ArrayList<>();
+
     q2buttons.add(q2a0);
     q2buttons.add(q2a1);
     q2buttons.add(q2a2);
     q2buttons.add(q2a3);
-    buttons.add(q0buttons);
-    buttons.add(q1buttons);
-    buttons.add(q2buttons);
-    //userName = userHandler.loadActiveUser();
+
+    this.buttons = List.of(q0buttons, q1buttons, q2buttons);
+
+    // userName = userHandler.loadActiveUser();
     userMenu.setText(currentUser.getUsername());
     quiz_name.setText(currentQuiz.getName());
     question0.setText(currentQuiz.getQuestion(0).getQuestion());
@@ -127,12 +132,9 @@ public class QuizController extends QuizAppController {
     submit.setDisable(true);
     scroll.setVvalue(0.01);
     score.setText("You got this Score: " + Integer.toString(Math.round(((float) sum / (float) 3) * 100)) + "%");
-    //scoreCard.scoreQuiz(sum, 3, currentQuiz.getName());
     currentUser.addQuiz(currentQuiz.getName(), (sum * 1.0) / (3 * 1.0));
     remoteUserAccess.putUser(currentUser);
   }
-
-
 
   @FXML
   void goToProfile(ActionEvent event) {

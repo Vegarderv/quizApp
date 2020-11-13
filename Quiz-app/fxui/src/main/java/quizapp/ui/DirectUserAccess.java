@@ -1,5 +1,6 @@
 package quizapp.ui;
 
+import java.nio.file.Paths;
 import java.util.List;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
@@ -7,10 +8,11 @@ import quizapp.json.UsernameHandler;
 
 public class DirectUserAccess implements UserAccess {
 
-  private JsonHandler jsonHandler = new JsonHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-  private UsernameHandler userHandler = new UsernameHandler(
-      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
+  private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
+  private JsonHandler jsonHandler = new JsonHandler(this.jsonPath);
+  private final String activeUserPath = Paths.get(pathStarter + "activeUser.json").toString();
+  private UsernameHandler userHandler = new UsernameHandler(this.activeUserPath);
 
   public DirectUserAccess() {
 
@@ -47,8 +49,7 @@ public class DirectUserAccess implements UserAccess {
 
   @Override
   public void putActiveUser(String name) {
-    userHandler.saveActiveUser(name,
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
+    userHandler.saveActiveUser(name, this.jsonPath);
   }
 
   @Override

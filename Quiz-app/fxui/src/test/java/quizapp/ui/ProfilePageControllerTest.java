@@ -10,6 +10,7 @@ import quizapp.core.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class ProfilePageControllerTest extends FxuiTest {
 
   private Stage stage;
@@ -64,11 +65,7 @@ public class ProfilePageControllerTest extends FxuiTest {
   @Test
   public void checkUserScore() {
     // Checks active user and makes sure it matches score
-    //UsernameHandler userHandler = new UsernameHandler(usernamePath);
     Label label = (Label) stage.getScene().lookup("#scoreId");
-    //JsonHandler jsonHandler = new JsonHandler(jsonPath);
-    //User user = jsonHandler.loadFromFile().stream()
-    //    .filter(u -> u.getUsername().equals(userHandler.loadActiveUser())).findFirst().get();
     assertEquals(String.valueOf(Math.round((activeUser.meanScore()*100))) + "  %", label.getText());
   }
   

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import quizapp.core.Question;
 import quizapp.core.Quiz;
 import javafx.scene.control.ScrollPane;
@@ -76,7 +77,7 @@ public class AddQuizController extends QuizAppController {
   }
 
   @FXML
-  void goToMainMenu(ActionEvent event) {
+  void goToMainMenu(MouseEvent event) {
     this.switchSceneWithNode("MainPage.fxml", title);
   }
 
@@ -86,7 +87,6 @@ public class AddQuizController extends QuizAppController {
       scroll.setVvalue(0.01);
       return;
     }
-
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.stream().anyMatch(q -> q.getName().equals(title.getText()))) {
       score.setText("Invalid Quizname. The title must be unique, there is already a quiz named " + title.getText());
