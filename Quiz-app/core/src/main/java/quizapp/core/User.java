@@ -19,6 +19,12 @@ public class User {
   public User() {
   }
 
+  /**
+   * Constructor for User.
+   * 
+
+   * @param user user we want to copy
+   */
   public User(User user) {
     this.username = user.username;
     this.password = user.password;
@@ -55,7 +61,7 @@ public class User {
   /**
    * Adds the quiz to quizzesTaken with the score they got most recently.
 
-   * @param quiz name of the quiz taken
+   * @param quiz  name of the quiz taken
    * @param score score the user got when taking the quiz
    */
   public void addQuiz(String quiz, double score) {
@@ -69,12 +75,16 @@ public class User {
     }
   }
 
+  /**
+   * Returns mean score of all quizzes taken.
+
+   * @return
+   */
   public double meanScore() {
-    //Returns mean score of all quizzes taken
     if (quizzesTaken.size() == 0) {
       return 0;
     }
-    return quizzesTaken.values().stream().mapToDouble(d->d).sum() / quizzesTaken.size();
+    return quizzesTaken.values().stream().mapToDouble(d -> d).sum() / quizzesTaken.size();
   }
 
   public Double getScore(String quiz) {
@@ -117,8 +127,8 @@ public class User {
 
   @Override
   public int hashCode() {
-  assert false : "hashCode not designed";
-  return 42; // any arbitrary constant will do
+    assert false : "hashCode not designed";
+    return 42; // any arbitrary constant will do
   }
 
   @Override
@@ -130,6 +140,7 @@ public class User {
       return false;
     }
     User user = (User) o;
-    return this.getUsername().equals(user.getUsername()) && this.getPassword().equals(user.getPassword());
+    return this.getUsername().equals(user.getUsername()) 
+        && this.getPassword().equals(user.getPassword());
   }
 }

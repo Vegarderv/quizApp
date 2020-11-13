@@ -35,7 +35,7 @@ public class QuizRestController {
   }
 
 
-  @PostMapping("/new/{id}")
+  @PostMapping("/{id}")
   public void newUser(@PathVariable("id") String id, @RequestBody Quiz quiz) {
     quizService.addQuiz(quiz);
   }

@@ -14,6 +14,9 @@ public class DirectUserAccess implements UserAccess {
   private JsonHandler jsonHandler = new JsonHandler(this.jsonPath);
   private final String activeUserPath = Paths.get(pathStarter + "activeUser.json").toString();
   private UsernameHandler userHandler = new UsernameHandler(this.activeUserPath);
+  private final String jsonTestPath = Paths.get(pathStarter + "JSONHandlerTest.json").toString();
+  private final String activeUserTestPath = Paths
+      .get(pathStarter + "activeUserTest.json").toString();
   private String secretKey = "ssshhhhhhhhhhh!!!!";
   private CryptoUtil cryptoUtil = new CryptoUtil();
 
@@ -21,12 +24,16 @@ public class DirectUserAccess implements UserAccess {
 
   }
 
+  /**
+   * Constructor for DirecUserAccess.
+   * 
+
+   * @param test checks if we are running tests or not
+   */
   public DirectUserAccess(Boolean test) {
     if (test) {
-      jsonHandler = new JsonHandler(
-          "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
-      userHandler = new UsernameHandler(
-          "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUserTest.json");
+      jsonHandler = new JsonHandler(this.jsonTestPath);
+      userHandler = new UsernameHandler(this.activeUserTestPath);
     }
   }
 

@@ -15,7 +15,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import quizapp.core.User;
 
 public class JsonHandler {
@@ -123,9 +122,16 @@ public class JsonHandler {
     writeToFile(users);
   }
 
+  /**
+   * Deletes user from file.
+   * 
+
+   * @param username username of user we want to delete
+   */
   public void deleteUser(String username) {
     List<User> users = loadFromFile();
-    users = users.stream().filter(u -> !u.getUsername().equals(username)).collect(Collectors.toList());
+    users = users.stream().filter(u -> !u.getUsername()
+        .equals(username)).collect(Collectors.toList());
     writeToFile(users);
   }
 

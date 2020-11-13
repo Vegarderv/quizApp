@@ -14,6 +14,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import quizapp.core.User;
 import quizapp.json.CryptoUtil;
@@ -70,10 +71,8 @@ public class RemoteUserAccess implements UserAccess {
   public User getUser(String name) {
     try {
       if (user == null) {
-        HttpRequest request = HttpRequest
-            .newBuilder(userUri(name))
-            .header("Accept", "application/json")
-            .GET().build();
+        HttpRequest request = HttpRequest.newBuilder(userUri(name))
+            .header("Accept", "application/json").GET().build();
         System.out.println(request);
         try {
           final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
@@ -94,10 +93,10 @@ public class RemoteUserAccess implements UserAccess {
   }
 
   /**
-   * puts user.
+   * Puts user.
    * 
 
-   * @param user the user we want to put
+   * @param newUser the user we want to put
    */
   @SuppressFBWarnings("DLS_DEAD_LOCAL_STORE")
   public void putUser(User newUser) {
@@ -108,14 +107,12 @@ public class RemoteUserAccess implements UserAccess {
       String json = gson.toJson(user);
       System.out.println(json);
       System.out.println(user.getUsername());
-      HttpRequest request = HttpRequest
-          .newBuilder(userUri(user.getUsername()))
-          .header("Accept", "application/json")
-          .header("Content-Type", "application/json")
-          .PUT(BodyPublishers.ofString(json)).build();
+      HttpRequest request = HttpRequest.newBuilder(
+          userUri(user.getUsername())).header("Accept", "application/json")
+          .header("Content-Type", "application/json").PUT(BodyPublishers
+          .ofString(json)).build();
       System.out.println(request);
-      final HttpResponse<String> response = 
-          HttpClient.newBuilder().build().send(request,
+      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
 
       String responseString = response.body();
@@ -129,18 +126,16 @@ public class RemoteUserAccess implements UserAccess {
    * Returns a list of the users.
    */
   public List<User> getUsers() {
-    List<User> users = null;
+    List<User> users = new ArrayList<>();
     try {
       if (user == null) {
         HttpRequest request = HttpRequest
             .newBuilder(userUri("users"))
-            .header("Accept", "application/json")
-            .GET()
+            .header("Accept", "application/json").GET()
             .build();
         System.out.println(request);
         try {
-          final HttpResponse<String> response = 
-              HttpClient.newBuilder().build().send(request,
+          final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
               HttpResponse.BodyHandlers.ofString());
           final String responseString = response.body();
           users = new Gson().fromJson(responseString, new TypeToken<List<User>>() {
@@ -153,8 +148,8 @@ public class RemoteUserAccess implements UserAccess {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    users.stream()
-        .forEach(user -> user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey)));
+    users.stream().forEach(user -> user.setPassword(
+        cryptoUtil.decrypt(user.getPassword(), secretKey)));
     return users;
   }
 
@@ -164,15 +159,12 @@ public class RemoteUserAccess implements UserAccess {
   public User getActiveUser() {
     try {
       if (user == null) {
-        HttpRequest request = HttpRequest
-            .newBuilder(userUri("active"))
-            .header("Accept", "application/json")
-            .GET()
-            .build();
+        HttpRequest request = HttpRequest.newBuilder(
+            userUri("active")).header("Accept", "application/json")
+            .GET().build();
         System.out.println(request);
         try {
-          final HttpResponse<String> response = 
-              HttpClient.newBuilder().build().send(request,
+          final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
               HttpResponse.BodyHandlers.ofString());
           final String responseString = response.body();
           this.user = new Gson().fromJson(responseString, new TypeToken<User>() {
@@ -207,8 +199,7 @@ public class RemoteUserAccess implements UserAccess {
           .header("Content-Type", "application/json")
           .PUT(BodyPublishers.ofString(json)).build();
       System.out.println(request);
-      final HttpResponse<String> response = 
-          HttpClient.newBuilder().build().send(request,
+      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
 
       String responseString = response.body();
@@ -222,26 +213,24 @@ public class RemoteUserAccess implements UserAccess {
    * Post user.
    * 
 
-   * @param user the user we want to post
+   * @param newUser the user we want to post
    */
   @SuppressFBWarnings("DLS_DEAD_LOCAL_STORE")
   public void postUser(User newUser) {
-  User user = new User(newUser);
-  user.setPassword(cryptoUtil.encrypt(user.getPassword(), secretKey));
+    User user = new User(newUser);
+    user.setPassword(cryptoUtil.encrypt(user.getPassword(), secretKey));
 
     try {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String json = gson.toJson(user);
       System.out.println(json);
       System.out.println(user.getUsername());
-      HttpRequest request = HttpRequest
-          .newBuilder(userUri(user.getUsername()))
-          .header("Accept", "application/json")
+      HttpRequest request = HttpRequest.newBuilder(
+          userUri(user.getUsername())).header("Accept", "application/json")
           .header("Content-Type", "application/json")
           .POST(BodyPublishers.ofString(json)).build();
       System.out.println(request);
-      final HttpResponse<String> response = 
-          HttpClient.newBuilder().build().send(request,
+      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
 
       String responseString = response.body();

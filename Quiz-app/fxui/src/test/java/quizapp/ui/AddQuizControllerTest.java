@@ -122,7 +122,7 @@ public class AddQuizControllerTest extends FxuiTest {
   private void fillInQuiz() throws AWTException {
     ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
     // Fills in everything needed to make a quiz
-    Robot r = new Robot();
+    scroll.setVvalue(0.0);
     findTextField("#title").setText("Color quiz");
     findTextField("#q0").setText("What color do you get if you mix blue and yellow?");
     findTextField("#q0an0").setText("Blue");
