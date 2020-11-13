@@ -123,7 +123,7 @@ public class SignupControllerTest extends FxuiTest {
      try {
       Thread.sleep(1000); //Gives restAPI time to work
     } catch (Exception e) {
-      //TODO: handle exception
+      e.printStackTrace();
     }
     // expects now the scene to change to main page
     assertNull(stage.getScene().lookup("#signupButton"));

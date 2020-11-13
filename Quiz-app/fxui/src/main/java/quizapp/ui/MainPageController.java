@@ -75,7 +75,7 @@ public class MainPageController extends QuizAppController {
     try {
       remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/update"));
     } catch (Exception e) {
-      //ikketodo
+      e.printStackTrace();
     }
     remoteUserAccess.putUser(currentUser);
     this.switchSceneWithNode("Quiz.fxml", historyQuizButton);

@@ -57,7 +57,7 @@ public class SignupController extends QuizAppController {
     try {
       remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/new/"));
     } catch (Exception e) {
-      //ikketodo
+      e.printStackTrace();
     }
     // saves user
     final User newUser = new User();
