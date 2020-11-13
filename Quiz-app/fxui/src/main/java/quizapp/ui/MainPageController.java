@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import quizapp.core.Quiz;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
@@ -17,6 +18,8 @@ import quizapp.json.QuizHandler;
 import quizapp.json.UsernameHandler;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -103,9 +106,14 @@ public class MainPageController extends QuizAppController {
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.size() > 5) {
       ObservableList<Node> children = hBox.getChildren();
-      for (int i = 3; i < quizzes.size(); i++) {
-        Button button = new Button(quizzes.get(i).getName());
-        button.setPrefSize(436.0, 180.0);
+      List<String> colors= Arrays.asList("#EB4034", "#FFC0CB", "#FFAC20","#7EB593", "#73c1df");
+      for (int i = 5; i < quizzes.size(); i++) {
+        Button button = new Button(quizzes.get(i).getName().toUpperCase());
+        Font font = new Font(40); //Button font's size should increase to 40
+        button.setFont(font);
+        int chosenColor= (int)(Math.random() * colors.size());
+        button. setStyle("-fx-background-color:"+colors.get(chosenColor));
+        button.setPrefSize(436.0, 230.0);
         button.setMinWidth(436.0);
         button.setId(quizzes.get(i).getId());
         button.setOnAction(new EventHandler<ActionEvent>(){
