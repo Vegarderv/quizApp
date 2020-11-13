@@ -7,9 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import quizapp.core.Quiz;
 import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.UsernameHandler;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

@@ -12,9 +12,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import quizapp.core.Quiz;
 import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.QuizHandler;
-import quizapp.json.UsernameHandler;
 
 import java.net.URL;
 import java.util.List;

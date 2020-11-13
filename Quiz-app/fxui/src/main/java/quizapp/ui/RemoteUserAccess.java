@@ -9,7 +9,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.URISyntaxException;
-import java.net.ConnectException;
 import java.nio.charset.StandardCharsets;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

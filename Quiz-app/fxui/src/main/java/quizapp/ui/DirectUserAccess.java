@@ -41,7 +41,7 @@ public class DirectUserAccess implements UserAccess {
   public void putUser(User user) {
     User newUser = new User(user);
     newUser.setPassword(cryptoUtil.encrypt(newUser.getPassword(), secretKey));
-    jsonHandler.updateUser(user);
+    jsonHandler.updateUser(newUser);
   }
 
   @Override

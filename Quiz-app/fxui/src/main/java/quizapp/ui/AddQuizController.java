@@ -90,7 +90,7 @@ public class AddQuizController extends QuizAppController {
     try {
       remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
     } catch (Exception e) {
-      //TODO: handle exception
+      remoteQuizAccess = new DirectQuizAccess();
     }
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.stream().anyMatch(q -> q.getName().equals(title.getText()))) {

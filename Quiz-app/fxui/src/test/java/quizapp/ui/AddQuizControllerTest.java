@@ -11,6 +11,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import quizapp.core.Quiz;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.ScrollPane;
 
 import java.awt.*;
 import javafx.scene.control.TextField;
@@ -25,8 +26,8 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 public class AddQuizControllerTest extends FxuiTest {
 
   private Stage stage;
-  private DirectQuizAccess directQuizAccess;
-  private UserAccess directUserAccess;
+  private DirectQuizAccess directQuizAccess = new DirectQuizAccess();
+  private UserAccess directUserAccess = new DirectUserAccess();
 
 
   @Override
@@ -68,14 +69,14 @@ public class AddQuizControllerTest extends FxuiTest {
     findTextField("#q0an2").setText("Purple");
     findTextField("#q0an3").setText("Red");
     clickOnButton("#q0a0");
-    r.mouseWheel(25);
+    r.mouseWheel(35);
     try {
-      Thread.sleep(1000);
+      Thread.sleep(100);
     } catch (InterruptedException e) {
     }
     clickOnButton("#submit");
     try {
-      Thread.sleep(1000);
+      Thread.sleep(100);
     } catch (InterruptedException e) {
     }
     String text = ((Label) stage.getScene().lookup("#scoreLabel")).getText();
@@ -119,6 +120,7 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
   private void fillInQuiz() throws AWTException {
+    ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
     // Fills in everything needed to make a quiz
     Robot r = new Robot();
     findTextField("#title").setText("Color quiz");
@@ -129,10 +131,10 @@ public class AddQuizControllerTest extends FxuiTest {
     findTextField("#q0an3").setText("Red");
     clickOnButton("#q0a1");
     try {
-      Thread.sleep(1000);
+      Thread.sleep(100);
     } catch (InterruptedException e) {
     }
-    r.mouseWheel(15);
+    scroll.setVvalue(0.5);
     try {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
@@ -145,11 +147,11 @@ public class AddQuizControllerTest extends FxuiTest {
     clickOnButton("#q1a3");
     // Scrolls to bottom of screen
     // Slows down the code to give the robot time to scroll
-    try {
+    scroll.setVvalue(1);
+     try {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
     }
-    r.mouseWheel(15);
     findTextField("#q2").setText("What color do you get if you mix blue and red?");
     findTextField("#q2an0").setText("Black");
     findTextField("#q2an1").setText("White");
@@ -157,7 +159,7 @@ public class AddQuizControllerTest extends FxuiTest {
     findTextField("#q2an3").setText("Green");
     clickOnButton("#q2a2");
     try {
-      Thread.sleep(1000);
+      Thread.sleep(100);
     } catch (InterruptedException e) {
     }
     clickOnButton("#submit");

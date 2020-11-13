@@ -71,7 +71,6 @@ public class JsonHandler {
     final String pathStarter = "../core/src/main/resources/quizapp/json/";
     final String ActiveUserPath = Paths.get(pathStarter + "activeUser.json").toString();
     UsernameHandler usernameHandler = new UsernameHandler(ActiveUserPath);
-    System.out.println(usernameHandler.loadActiveUser());
     return this.loadFromFile().stream()
         .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser()))
         .findFirst().get();
