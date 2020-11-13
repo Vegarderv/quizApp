@@ -1,6 +1,8 @@
 package quizapp.core;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,25 +14,41 @@ public class QuizTest {
 
   @BeforeEach
   public void setQuiz() {
-    quiz = new Quiz("Test quiz", new Question("Test question", "test1", "test2", "test3", "test4", 0),
-     new Question(), new Question());
+    Question q1 = new Question("question1", "q1a1", "q1a2", "q1a3", "q1a4", 1);
+    Question q2 = new Question("question2", "q2a1", "q2a2", "q2a3", "q2a4", 2);
+    Question q3 = new Question("question3", "q3a1", "q3a2", "q3a3", "q3a4", 3);
+    quiz = new Quiz("test quiz", q1, q2, q3);
+  }
+  @Test
+  public void equalsTest() {
+    assertTrue(quiz.equals(quiz));
+    Question q1 = new Question("question1", "q1a1", "q1a2", "q1a3", "q1a4", 1);
+    Question q2 = new Question("question2", "q2a1", "q2a2", "q2a3", "q2a4", 2);
+    Question q3 = new Question("question3", "q3a1", "q3a2", "q3a3", "q3a4", 3);
+    Quiz newQuiz = new Quiz("test quiz", q1, q2, q3);  
+    assertTrue(quiz.equals(newQuiz));
+    Question q4 = new Question("question4", "q3a1", "q3a2", "q3a3", "q3a4", 3);
+    Quiz secondQuiz = new Quiz("test quiz", q1, q2, q4);  
+    assertFalse(quiz.equals(secondQuiz));
+    Question question = new Question();
+    assertFalse(quiz.equals(question));
   }
 
   @Test
   public void correctNameTest() {
-    assertEquals("Test quiz", quiz.getName());
-    quiz.setName("Test quiz2");
-    assertEquals("Test quiz2", quiz.getName());
+    assertEquals("test quiz", quiz.getName());
+    quiz.setName("test quiz2");
+    assertEquals("test quiz2", quiz.getName());
   }
 
   @Test
   public void correctId() {
-    assertEquals("Test-quiz", quiz.getId());
+    assertEquals("test-quiz", quiz.getId());
   }
 
   @Test
   public void getQuestionsTest() {
-    assertEquals("Test question", quiz.getQuestion(0).getQuestion());
+    assertEquals("question1", quiz.getQuestion(0).getQuestion());
     try {
       quiz.getQuestion(4);
       fail();
@@ -42,8 +60,7 @@ public class QuizTest {
   @Test
   public void makeQuizFromQuizTest() {
     Quiz newQuiz = new Quiz(quiz);
-    assertEquals("Test quiz", newQuiz.getName());
-    assertEquals("Test question", newQuiz.getQuestion(0).getQuestion());
+    assertTrue(quiz.equals(newQuiz));
   }
 
 

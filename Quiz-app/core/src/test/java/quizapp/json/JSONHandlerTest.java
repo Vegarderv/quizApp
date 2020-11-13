@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JSONHandlerTest {
 
-  static JsonHandler handler;
-  static List<User> usernames = new ArrayList<>();
-  List<User> loadedUsernames;
+  private static JsonHandler handler;
+  private static List<User> usernames = new ArrayList<>();
+  private List<User> loadedUsernames;
 
   // Sets up usernames, Users and quizzes
   @BeforeAll

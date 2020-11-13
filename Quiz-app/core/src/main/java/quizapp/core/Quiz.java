@@ -89,5 +89,29 @@ public class Quiz {
     return this.getName();
   }
 
+  @Override
+  public int hashCode() {
+  assert false : "hashCode not designed";
+  return 42; // any arbitrary constant will do
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) {
+      return true;
+    }
+    if (!(o instanceof Quiz)) {
+      return false;
+    }
+    Quiz quiz = (Quiz) o;
+    return this.getName().equals(quiz.getName()) &&
+      this.getId().equals(quiz.getId()) &&
+      this.getQuestion(0).equals(quiz.getQuestion(0)) &&
+      this.getQuestion(1).equals(quiz.getQuestion(1)) &&
+      this.getQuestion(2).equals(quiz.getQuestion(2));
+  }
+  
+
+
   
 }

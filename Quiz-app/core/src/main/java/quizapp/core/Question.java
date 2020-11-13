@@ -69,4 +69,26 @@ public class Question {
     this.question = question;
   }
 
+  @Override
+  public int hashCode() {
+    assert false : "hashCode not designed";
+    return 42; // any arbitrary constant will do
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) {
+      return true;
+    }
+    if (!(o instanceof Question)) {
+      return false;
+    }
+    Question question = (Question) o;
+    return this.getQuestion().equals(question.getQuestion()) 
+      && this.getAlternative(0).equals(question.getAlternative(0))
+      && this.getAlternative(1).equals(question.getAlternative(1))
+      && this.getAlternative(2).equals(question.getAlternative(2))
+      && this.getCorrectAlternative() == (this.getCorrectAlternative());
+  }
+
 }
