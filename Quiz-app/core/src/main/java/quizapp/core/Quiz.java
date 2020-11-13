@@ -24,7 +24,9 @@ public class Quiz {
    * @param other copies this quiz
    */
   public Quiz(Quiz other) {
-    this.questions = other.questions;
+    if (other.questions != null) {
+      this.questions = new ArrayList<Question>(other.questions);
+    }
     this.name = other.name;
     setId();
   }
@@ -33,7 +35,7 @@ public class Quiz {
    * Quiz Constructor.
    * 
 
-   * @param name name of the quiz
+   * @param name      name of the quiz
    * @param question0 First Question
    * @param question1 Second Question
    * @param question2 Third Question
@@ -65,7 +67,7 @@ public class Quiz {
 
   /**
    * Returns the name of the name of this quiz.
-
+ 
    * @return the name
    */
   public String getName() {
@@ -77,11 +79,11 @@ public class Quiz {
   }
 
   public List<Question> getQuestions() {
-    return this.questions;
+    return new ArrayList<Question>(this.questions);
   }
-  
+
   public void setQuestions(List<Question> questions) {
-    this.questions = questions;
+    this.questions = new ArrayList<Question>(questions);
   }
 
   public String getId() {
@@ -100,5 +102,4 @@ public class Quiz {
     return this.getName();
   }
 
-  
 }

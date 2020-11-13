@@ -55,11 +55,11 @@ public class Question {
   }
 
   public List<String> getAlternatives() {
-    return alternatives;
+    return new ArrayList<String>(alternatives);
   }
 
   public void setAlternatives(List<String> alternatives) {
-    this.alternatives = alternatives;
+    this.alternatives = new ArrayList<String>(alternatives);
   }
 
   public void setCorrectAlternative(int correctAlternative) {

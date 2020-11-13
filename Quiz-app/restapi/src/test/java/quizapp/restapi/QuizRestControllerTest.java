@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import quizapp.core.Question;
 import quizapp.core.Quiz;
 import quizapp.core.User;
 import quizapp.json.QuizHandler;
@@ -25,6 +26,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,7 +41,7 @@ public class QuizRestControllerTest {
   MockMvc mockMvc;
 
   private final static String TEST_QUIZ_ID = "quiz-id-123";
-    private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
   private final String quizPath = Paths.get(pathStarter + "quizzes.json").toString();
   private QuizHandler quizHandler = new QuizHandler(this.quizPath);
 
@@ -48,7 +51,16 @@ public class QuizRestControllerTest {
   public void setUp() {
     quiz.setId("Test-Quiz");
     quiz.setName("Test Quiz");
+    Question q1 = new Question("q1", "a1", "a2", "a3", "a4", 3);
+    Question q2 = new Question("q2", "a1", "a2", "a3", "a4", 3);
+    Question q3 = new Question("q3", "a1", "a2", "a3", "a4", 3);
+    List<Question> questions = new ArrayList<>();
+    questions.add(q1);
+    questions.add(q2);
+    questions.add(q3);
+    quiz.setQuestions(questions);
     quizHandler.addQuiz(quiz);
+    
   }
 
   @Test
