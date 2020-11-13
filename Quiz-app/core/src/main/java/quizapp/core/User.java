@@ -70,7 +70,7 @@ public class User {
     if (quizzesTaken.size() == 0) {
       return 0;
     }
-    return quizzesTaken.values().stream().reduce(0.0, (a, b) -> a + b) / quizzesTaken.size();
+    return quizzesTaken.values().stream().mapToDouble(d->d).sum() / quizzesTaken.size();
   }
 
   public Double getScore(String quiz) {
