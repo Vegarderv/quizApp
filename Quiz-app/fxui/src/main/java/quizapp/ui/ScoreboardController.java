@@ -1,10 +1,8 @@
 package quizapp.ui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,26 +10,18 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.MenuItem;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import quizapp.core.Quiz;
 import quizapp.core.User;
 import javafx.scene.text.Font;
 
-import javafx.scene.paint.Color;
-
-public class ScoreboardController extends QuizAppController implements Initializable {
+public class ScoreboardController extends QuizAppController {
   
   //mvn javafx:run -f fxui/pom.xml
 

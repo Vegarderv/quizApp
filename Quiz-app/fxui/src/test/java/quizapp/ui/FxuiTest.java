@@ -14,15 +14,15 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class FxuiTest extends ApplicationTest {
 
   protected void clickOnButton(String butttonId) {
-    try {
-      WaitForAsyncUtils.waitFor(500, TimeUnit.MILLISECONDS, () -> {
+    //try {
+      //WaitForAsyncUtils.waitFor(500, TimeUnit.MILLISECONDS, () -> {
         clickOn(butttonId);
-        Thread.sleep(10);
-        return true;
-      });
-    } catch (TimeoutException e) {
-      fail("No appropriate node available");
-    }
+        //Thread.sleep(10);
+        //return true;
+      //});
+    //} catch (TimeoutException e) {
+    //  fail("No appropriate node available");
+    //}
   }
 
   protected void clickOnMenuItem(String menuButtonId, String menuItemId) {

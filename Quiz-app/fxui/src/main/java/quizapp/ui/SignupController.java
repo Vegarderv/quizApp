@@ -6,8 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.UsernameHandler;
 import java.net.URL;
 import java.net.URI;
 import java.util.List;
