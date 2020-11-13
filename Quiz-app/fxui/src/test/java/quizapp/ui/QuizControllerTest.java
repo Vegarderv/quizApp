@@ -99,6 +99,7 @@ public class QuizControllerTest extends FxuiTest {
     clickOnButton("#submit");
     FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 100%"));
     assertEquals((double) directUserAccess.getUser("Test1").getScore("Chemistry quiz"), 1.0, 0);
+    directUserAccess.deleteUser("Test1");
   }
 
   @Test
@@ -124,7 +125,10 @@ public class QuizControllerTest extends FxuiTest {
     clickOnButton("#submit");
     FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 0%"));
     assertEquals((double) directUserAccess.getUser("Test1").getScore("Chemistry quiz"), 0, 0);
+  
   }
+  
+
 
 
 

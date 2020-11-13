@@ -104,6 +104,8 @@ public class AddQuizControllerTest extends FxuiTest {
     // Checks that we are on the Main page scene
     assertNull(stage.getScene().lookup("#mainMenu"));
     assertNotNull(stage.getScene().lookup("#menuButton"));
+    directQuizAccess.deleteQuiz("Color-quiz");
+
   }
 
 
@@ -163,8 +165,8 @@ public class AddQuizControllerTest extends FxuiTest {
     } catch (InterruptedException e) {
     }
     clickOnButton("#submit");
+    
   }
-
 
   
 }
