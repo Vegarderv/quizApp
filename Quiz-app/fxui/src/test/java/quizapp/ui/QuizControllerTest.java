@@ -10,7 +10,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import quizapp.core.User;
+import quizapp.core.DirectQuizAccess;
+import quizapp.core.DirectUserAccess;
 import quizapp.core.Quiz;
+import quizapp.core.QuizAccess;
+
 import org.testfx.api.FxAssert;
 import java.awt.*;
 import java.beans.Transient;

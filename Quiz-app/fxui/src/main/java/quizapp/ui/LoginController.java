@@ -9,6 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import quizapp.core.DirectUserAccess;
+import quizapp.core.RemoteUserAccess;
+import quizapp.core.UserAccess;
 import quizapp.core.UsernameCheck;
 
 public class LoginController extends QuizAppController {

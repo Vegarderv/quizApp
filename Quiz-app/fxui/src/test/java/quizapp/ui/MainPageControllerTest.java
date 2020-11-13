@@ -9,6 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import quizapp.core.DirectUserAccess;
+import quizapp.core.UserAccess;
+
 import org.junit.jupiter.api.Test;
 import javafx.scene.control.MenuButton;
 

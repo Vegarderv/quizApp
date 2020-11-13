@@ -13,8 +13,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
+import quizapp.core.DirectQuizAccess;
+import quizapp.core.DirectUserAccess;
 import quizapp.core.Quiz;
+import quizapp.core.QuizAccess;
+import quizapp.core.RemoteQuizAccess;
+import quizapp.core.RemoteUserAccess;
 import quizapp.core.User;
+import quizapp.core.UserAccess;
 
 public class MainPageController extends QuizAppController {
 

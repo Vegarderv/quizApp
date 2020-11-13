@@ -2,9 +2,6 @@ package quizapp.core;
 
 import java.net.URI;
 import java.util.List;
-import quizapp.ui.DirectUserAccess;
-import quizapp.ui.RemoteUserAccess;
-import quizapp.ui.UserAccess;
 
 public class UsernameCheck {
 

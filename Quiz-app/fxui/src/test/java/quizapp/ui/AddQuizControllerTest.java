@@ -9,7 +9,11 @@ import javafx.stage.Stage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+
+import quizapp.core.DirectQuizAccess;
+import quizapp.core.DirectUserAccess;
 import quizapp.core.Quiz;
+import quizapp.core.UserAccess;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 

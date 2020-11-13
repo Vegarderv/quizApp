@@ -1,4 +1,4 @@
-package quizapp.ui;
+package quizapp.core;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,7 +16,6 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import quizapp.core.User;
 import quizapp.json.CryptoUtil;
 
 public class RemoteUserAccess implements UserAccess {

@@ -1,7 +1,13 @@
 # Core
 
-These are the follwoing files
+## User
 
-User.java: JavaObject used to store users as objects
-UsernameCheck: Logic class that checks if username and password matches any in database
-Score.java: Logic class used to score and send quizdata to .json files
+This is the User class used throughout the project. Other than basic User functionality, it also has the method meanScore(), which returns the mean score of all the quizzes the user has taken
+
+## Quiz 
+
+This is the Quiz object used to load the quizzes on the main page
+
+## Question
+
+This class is nested in the Quiz class
