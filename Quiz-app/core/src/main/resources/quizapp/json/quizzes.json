@@ -178,41 +178,5 @@
     ],
     "name": "Malin quiz",
     "id": "Malin-quiz"
-  },
-  {
-    "questions": [
-      {
-        "question": "What color do you get if you mix blue and yellow?",
-        "correctAlternative": 1,
-        "alternatives": [
-          "Blue",
-          "Green",
-          "Purple",
-          "Red"
-        ]
-      },
-      {
-        "question": "What color do you get if you mix red and yellow?",
-        "correctAlternative": 3,
-        "alternatives": [
-          "Green",
-          "Yellow",
-          "Blue",
-          "Orange"
-        ]
-      },
-      {
-        "question": "What color do you get if you mix blue and red?",
-        "correctAlternative": 2,
-        "alternatives": [
-          "Black",
-          "White",
-          "Purple",
-          "Green"
-        ]
-      }
-    ],
-    "name": "Color quiz",
-    "id": "Color-quiz"
   }
 ]
