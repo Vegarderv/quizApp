@@ -41,7 +41,6 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
   @Test
-  //@Order(1)
   public void MakeAQuizTest() throws AWTException {
     //Deletes quiz if it already exist
     if (directQuizAccess.getQuiz("Color-quiz") != null) {
@@ -61,7 +60,6 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
   @Test
-  //@Order(2)
   public void submitUncompleteQuizTest() throws AWTException {
     Robot r = new Robot();
     findTextField("#title").setText("Test quiz");
@@ -86,7 +84,6 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
   @Test
-  //@Order(3)
   public void makeQuizWithInvalidName() throws AWTException {
     fillInQuizWithSameName();
     String text = ((Label) stage.getScene().lookup("#scoreLabel")).getText();
@@ -96,8 +93,7 @@ public class AddQuizControllerTest extends FxuiTest {
 
 
 
-  @Test
-  //@Order(4)    
+  @Test    
   public void goToMainMenuTest() {
     // Checks that we on add quiz page
     assertNotNull(stage.getScene().lookup("#mainMenu"));
@@ -110,8 +106,7 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
 
-  @Test
-  //@Order(5)    
+  @Test   
   public void checkCorrectUserDisplayed() {
     // Checks active user and makes sure it matches username displayed on menu button
     String activeUser = ((MenuButton)stage.getScene().lookup("#userMenu")).getText();
