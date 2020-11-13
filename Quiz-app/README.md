@@ -49,7 +49,7 @@ In the presistance-layer, all classes and logic connected to saving and reading 
 
 **Diagram describing the file saving:**
 
-![Image of JSON diagram](Images/JSONdiagram.png)
+![Image of JSON diagram](../Images/JSONdiagram.png)
 
 ## Core
 This layer contains the logic and the user class. 
@@ -59,7 +59,7 @@ This layer contains the logic and the user class.
 
 **Illustrative plan:**
 
-![Image of illustrative plan](Images/UserPlan.png)
+![Image of illustrative plan](../Images/UserPlan.png)
 
 
 This illustrative plan is meant to represent the functunality of our app at its current stage. The colored arrows show how different stages occur as a result of interactions with the visual representations. As an example, with the correct password and username, the user can access the main page via the login button. 
@@ -67,6 +67,25 @@ This illustrative plan is meant to represent the functunality of our app at its 
 
 **User stories:**
 https://docs.google.com/document/d/1onM4Twf8udwkJ4Me4JwiqlhbbePsnBw3_q8_uEFCKUw/edit?ts=5f58a80c
+
+
+### Diagrams
+
+Class diagram:
+This class diagram illustrates the classes that in our opinions is the most important.
+All the classes in the core is in the diagram. The diagram focuses on giving the person 
+looking at it information about the core functionality.
+![Image of class diagram](../Images/ClassDiagram.png)
+
+Sequence diagram:
+The sequence diagram illustrates an important scenario in this app. It shows when a user
+takes a quiz, and the important calls that happen within the app at this moment. Both
+frontend and backend is illustrated.
+![Image of sequence diagram](../Images/SequenceDiagram.png)
+
+Package diagram:
+This diagram shows the packages within the app.
+![Image of package diagram](../Images/PackageDiagram.png)
 
 
 ### This project is built with maven
