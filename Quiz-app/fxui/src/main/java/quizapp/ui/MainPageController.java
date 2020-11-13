@@ -1,6 +1,10 @@
 package quizapp.ui;
 
 import java.net.URI;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,12 +17,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import quizapp.core.Quiz;
 import quizapp.core.User;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
 
 public class MainPageController extends QuizAppController {
 
@@ -37,28 +35,26 @@ public class MainPageController extends QuizAppController {
   @FXML
   Button geographyQuizButton;
   @FXML
-  HBox hBox;
+  HBox hbox;
 
   private User currentUser;
   private UserAccess remoteUserAccess;
   private QuizAccess remoteQuizAccess;
 
-
-
   @FXML
   public void goToNewQuiz() {
     this.switchSceneWithNode("AddQuiz.fxml", menuButton);
   }
-  
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     try {
-        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
-        remoteUserAccess = new DirectUserAccess();
+      remoteUserAccess = new DirectUserAccess();
     }
     try {
-        remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
     } catch (Exception e) {
       remoteQuizAccess = new DirectQuizAccess();
     }
@@ -67,15 +63,21 @@ public class MainPageController extends QuizAppController {
     addButtons();
   }
 
+  /**
+   * Switches scene to a quiz.
+   * 
+
+   * @param event the catalyzing event
+   */
   @FXML
   public void goToQuiz(ActionEvent event) {
     System.out.println((((Button) event.getSource()).getId()));
-    
     Quiz quiz = remoteQuizAccess.getQuiz((((Button) event.getSource()).getId()));
     currentUser.setCurrentQuiz(quiz);
     try {
       remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/update"));
     } catch (Exception e) {
+      remoteUserAccess = new DirectUserAccess();
     }
     remoteUserAccess.putUser(currentUser);
     this.switchSceneWithNode("Quiz.fxml", historyQuizButton);
@@ -97,12 +99,12 @@ public class MainPageController extends QuizAppController {
   }
 
   /**
-   * Method for adding buttons for extra quizzes created
+   * Method for adding buttons for extra quizzes created.
    */
   private void addButtons() {
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.size() > 5) {
-      ObservableList<Node> children = hBox.getChildren();
+      ObservableList<Node> children = hbox.getChildren();
       List<String> colors= Arrays.asList("#EB4034", "#FFC0CB", "#FFAC20","#7EB593", "#73c1df");
       for (int i = 5; i < quizzes.size(); i++) {
         Button button = new Button(quizzes.get(i).getName().toUpperCase());
@@ -113,8 +115,8 @@ public class MainPageController extends QuizAppController {
         button.setPrefSize(436.0, 230.0);
         button.setMinWidth(436.0);
         button.setId(quizzes.get(i).getId());
-        button.setOnAction(new EventHandler<ActionEvent>(){
-        
+        button.setOnAction(new EventHandler<ActionEvent>() {
+
           @Override
           public void handle(ActionEvent event) {
             goToQuiz(event);

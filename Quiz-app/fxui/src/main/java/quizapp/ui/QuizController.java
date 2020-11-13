@@ -1,16 +1,21 @@
 package quizapp.ui;
 
 import java.net.URI;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import quizapp.core.Quiz;
-import quizapp.core.User;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
+import quizapp.core.Quiz;
+import quizapp.core.User;
 
 public class QuizController extends QuizAppController {
 
@@ -51,7 +56,7 @@ public class QuizController extends QuizAppController {
   @FXML
   MenuItem menuSignOut;
   @FXML
-  Label quiz_name;
+  Label quizName;
   @FXML
   Label question0;
   @FXML
@@ -79,19 +84,18 @@ public class QuizController extends QuizAppController {
     currentQuiz = currentUser.getCurrentQuiz();
 
     List<RadioButton> q0buttons = new ArrayList<>();
-    List<RadioButton> q1buttons = new ArrayList<>();
-    List<RadioButton> q2buttons = new ArrayList<>();
-
     q0buttons.add(q0a0);
     q0buttons.add(q0a1);
     q0buttons.add(q0a2);
     q0buttons.add(q0a3);
 
+    List<RadioButton> q1buttons = new ArrayList<>();
     q1buttons.add(q1a0);
     q1buttons.add(q1a1);
     q1buttons.add(q1a2);
     q1buttons.add(q1a3);
 
+    List<RadioButton> q2buttons = new ArrayList<>();
     q2buttons.add(q2a0);
     q2buttons.add(q2a1);
     q2buttons.add(q2a2);
@@ -99,15 +103,16 @@ public class QuizController extends QuizAppController {
 
     this.buttons = List.of(q0buttons, q1buttons, q2buttons);
 
-    // userName = userHandler.loadActiveUser();
     userMenu.setText(currentUser.getUsername());
-    quiz_name.setText(currentQuiz.getName());
+    quizName.setText(currentQuiz.getName());
     question0.setText(currentQuiz.getQuestion(0).getQuestion());
     question1.setText(currentQuiz.getQuestion(1).getQuestion());
     question2.setText(currentQuiz.getQuestion(2).getQuestion());
     for (List<RadioButton> list : buttons) {
       for (RadioButton radioButton : list) {
-        radioButton.setText(currentQuiz.getQuestion(buttons.indexOf(list)).getAlternative(list.indexOf(radioButton)));
+        radioButton.setText(currentQuiz
+            .getQuestion(buttons.indexOf(list))
+            .getAlternative(list.indexOf(radioButton)));
       }
     }
   }
@@ -131,7 +136,8 @@ public class QuizController extends QuizAppController {
     buttons.stream().forEach(l -> l.stream().forEach(a -> a.setDisable(true)));
     submit.setDisable(true);
     scroll.setVvalue(0.01);
-    score.setText("You got this Score: " + Integer.toString(Math.round(((float) sum / (float) 3) * 100)) + "%");
+    score.setText("You got this Score: " + Integer
+        .toString(Math.round(((float) sum / (float) 3) * 100)) + "%");
     currentUser.addQuiz(currentQuiz.getName(), (sum * 1.0) / (3 * 1.0));
     remoteUserAccess.putUser(currentUser);
   }
@@ -157,7 +163,7 @@ public class QuizController extends QuizAppController {
   }
 
   public String getName() {
-    return quiz_name.getText();
+    return quizName.getText();
   }
 
 }

@@ -1,7 +1,7 @@
 package quizapp.ui;
 
-import java.net.URI;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -25,37 +25,45 @@ public class ProfilePageController extends QuizAppController {
   MenuItem menuSignOut;
 
   @FXML
-  Button DMButton;
+  Button dmButton;
 
   @FXML
   MenuItem scoreboardButton;
 
   @FXML
-  Label nameId, scoreId, DarkmodeLabel;
+  Label nameId;
+
+  @FXML
+  Label scoreId;
+
+  @FXML
+  Label darkmodeLabel;
 
   private UserAccess remoteUserAccess;
   private User currentUser;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    //UsernameHandler userHandler = new UsernameHandler(
-    //    "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
     try {
-        remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/"));
     } catch (Exception e) {
-        remoteUserAccess = new DirectUserAccess();
+      remoteUserAccess = new DirectUserAccess();
     }
     currentUser = remoteUserAccess.getActiveUser();
     double percentage = currentUser.meanScore() * 100;
     scoreId.setText(String.valueOf(Math.round(percentage) + "  %"));
-    //Boolean DM = this.getActiveUser().getDarkMode();
     nameId.setText(currentUser.getUsername());
     userMenuProfilePage.setText(currentUser.getUsername());
-    DarkmodeLabel.setText(initDarkMode());
-     scoreId.setText(String.valueOf(Math.round((currentUser.meanScore()*100)) + "  %"));
-    
+    darkmodeLabel.setText(initDarkMode());
+    scoreId.setText(String.valueOf(Math.round((currentUser.meanScore() * 100)) + "  %"));
   }
 
+  /**
+   * Makes sure that the user sees the page as darmode or not.
+   * 
+
+   * @return
+   */
   public String initDarkMode() {
     Boolean check = currentUser.getDarkMode();
     if (check) {
@@ -64,6 +72,12 @@ public class ProfilePageController extends QuizAppController {
     return ("OFF");
   }
 
+  /**
+   * This method takes care of thefunctionality of the darkmode button.
+   * 
+
+   * @return
+   */
   public String typeDarkMode() {
     try {
       Boolean check = currentUser.getDarkMode();
@@ -81,7 +95,7 @@ public class ProfilePageController extends QuizAppController {
           System.out.println("Couldn't change css style");
         }
         scene.getStylesheets().add(getClass().getResource("darkmode.css").toExternalForm());
-        
+
         return ("ON");
       }
       scene.getStylesheets().add(getClass().getResource("lightmode.css").toExternalForm());
@@ -90,22 +104,20 @@ public class ProfilePageController extends QuizAppController {
       e.printStackTrace();
       return null;
     }
-
   }
 
+  /**
+   * Saves darkmode in user.
+   * 
+   */
   public void changeDarkMode() {
-    //User user = getActiveUser();
-    //JsonHandler jsonHandler = new JsonHandler(
-    //    "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
     currentUser.setDarkMode(!currentUser.getDarkMode());
-    //jsonHandler.updateUser(user);
     remoteUserAccess.putUser(currentUser);
     this.switchSceneWithNode("ProfilePage.fxml", userMenuProfilePage);
   }
 
   @FXML
   public void goToMainMenu(MouseEvent event) {
-
     this.switchSceneWithNode("MainPage.fxml", userMenuProfilePage);
   }
 
@@ -122,16 +134,6 @@ public class ProfilePageController extends QuizAppController {
   @FXML
   public void changeTextDarkMode(ActionEvent event) {
     changeDarkMode();
-    DarkmodeLabel.setText(typeDarkMode());
+    darkmodeLabel.setText(typeDarkMode());
   }
-
-  //private User getActiveUser() {
-  //  JsonHandler jsonHandler = new JsonHandler(
-  //      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
-  //  UsernameHandler usernameHandler = new UsernameHandler(
-  //      "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json");
-  //  return jsonHandler.loadFromFile().stream()
-  //      .filter(user -> user.getUsername().equals(usernameHandler.loadActiveUser())).findFirst().get();
-  //}
-
 }
