@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 import static org.junit.Assert.assertEquals;
@@ -82,11 +83,13 @@ public class QuizControllerTest extends FxuiTest {
   @Test
   public void runQuizwithEverythingCorrect() throws AWTException {
     // Runs through the quiz
-    Robot r = new Robot();
+    //Robot r = new Robot();
+    ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
     clickOn("#q0a2");
+    scroll.setVvalue(0.5);
     clickOn("#q1a3");
     // Scrolls to bottom of screen
-    r.mouseWheel(15);
+    scroll.setVvalue(1.0);
     // Slows down the code to give the robot time to scroll
     try {
       Thread.sleep(100);
@@ -106,11 +109,12 @@ public class QuizControllerTest extends FxuiTest {
     System.out.println(user);
     directUserAccess.putUser(user);
     //Takes quiz again
-    Robot r = new Robot();
+    //Robot r = new Robot();
+    ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
     clickOn("#q0a0"); //Clicks wrong alternative
     clickOn("#q1a0"); //Clicks wrong alternative
     // Scrolls to bottom of screen
-    r.mouseWheel(15);
+    scroll.setVvalue(1.0);
     // Slows down the code to give the robot time to scroll
     try {
       Thread.sleep(100);
