@@ -16,6 +16,7 @@ import org.testfx.api.FxAssert;
 import java.awt.*;
 import java.beans.Transient;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 public class QuizControllerTest extends FxuiTest {
@@ -99,7 +100,7 @@ public class QuizControllerTest extends FxuiTest {
     clickOnButton("#submit");
     FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 100%"));
     assertEquals((double) directUserAccess.getUser("Test1").getScore("Chemistry quiz"), 1.0, 0);
-    directUserAccess.deleteUser("Test1");
+    
   }
 
   @Test
@@ -125,12 +126,9 @@ public class QuizControllerTest extends FxuiTest {
     clickOnButton("#submit");
     FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 0%"));
     assertEquals((double) directUserAccess.getUser("Test1").getScore("Chemistry quiz"), 0, 0);
-  
+    
+    
+    
   }
-  
 
-
-
-
-  
 }

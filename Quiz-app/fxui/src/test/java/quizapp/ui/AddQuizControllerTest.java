@@ -165,7 +165,7 @@ public class AddQuizControllerTest extends FxuiTest {
     } catch (InterruptedException e) {
     }
     clickOnButton("#submit");
-    
+    directQuizAccess.deleteQuiz("Color-Quiz");
   }
 
   
