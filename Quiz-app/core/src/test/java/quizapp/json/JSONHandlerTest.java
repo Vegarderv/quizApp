@@ -15,17 +15,15 @@ public class JSONHandlerTest {
   private static JsonHandler handler;
   private static List<User> usernames = new ArrayList<>();
   private List<User> loadedUsernames;
+  private static User user1;
+  private static User user2;
 
   // Sets up usernames, Users and quizzes
   @BeforeAll
   public static void setUp() {
     handler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
-    User user1 = new User();
-    User user2 = new User();
-    user1.setUsername("Hallvard");
-    user1.setPassword("Trætteberg");
-    user2.setUsername("George");
-    user2.setPassword("Stoica");
+    user1 = new User("Hallvard", "Trætteberg");
+    user2 = new User("George", "Stoica");
     usernames.add(user1);
     usernames.add(user2);
     user1.addQuiz("testquiz123", 0.69);
@@ -62,5 +60,19 @@ public class JSONHandlerTest {
     loadedUsernames = handler.loadFromFile();
     assertTrue(loadedUsernames.get(0).quizTaken("testquiz123"));
   }
+
+  @Test
+  public void activeUserTest() {
+    UsernameHandler usernameHandler = new UsernameHandler("src/main/resources/quizapp/json/activeUserTest.json");
+    usernameHandler.saveActiveUser("Hallvard", "src/main/resources/quizapp/json/JSONHandlerTest.json");
+    assertEquals("Hallvard", handler.loadActiveUser().getUsername());
+  }
+
+  /*@Test
+  public void loadUserByNameTest() {
+    assertEquals(user1, handler.loadUserFromString("Hallvard"));
+  }*/
+
+
 
 }
