@@ -12,8 +12,6 @@ public class UserTest {
 
   @BeforeEach
   public void setUser() {
-    // Using private method instead of @BeforeAll to avoid static method
-
     user.setUsername("Hallvard");
     user.setPassword("Trætteberg");
     user.addQuiz("quiz1", 1);
