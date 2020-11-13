@@ -11,7 +11,6 @@ import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 import quizapp.json.Score;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +66,7 @@ public class QuizController extends QuizAppController {
   MenuItem scoreboardButton;
 
   private List<List<RadioButton>> buttons = new ArrayList<>();
+<<<<<<< HEAD
   // private String userName;
   // private String usernamePath =
   // "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUser.json";
@@ -75,6 +75,8 @@ public class QuizController extends QuizAppController {
   // private JsonHandler jsonHandler = new JsonHandler(jsonPath);
   // Score scoreCard = new Score(jsonPath, usernamePath);
   // UsernameHandler userHandler = new UsernameHandler(usernamePath);
+=======
+>>>>>>> origin/issue-61-tests
   private Quiz currentQuiz;
   private User currentUser;
   private UserAccess remoteUserAccess;

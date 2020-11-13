@@ -65,9 +65,12 @@ public class User {
     }
   }
 
-  public Double meanScore() {
+  public double meanScore() {
     //Returns mean score of all quizzes taken
-    return quizzesTaken.values().stream().mapToDouble(d->d).sum() / quizzesTaken.size();
+    if (quizzesTaken.size() == 0) {
+      return 0;
+    }
+    return quizzesTaken.values().stream().reduce(0.0, (a, b) -> a + b) / quizzesTaken.size();
   }
 
   public Double getScore(String quiz) {

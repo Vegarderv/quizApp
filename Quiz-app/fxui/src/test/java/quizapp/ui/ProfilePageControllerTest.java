@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.UsernameHandler;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,12 +15,14 @@ import java.nio.file.Paths;
 public class ProfilePageControllerTest extends FxuiTest {
 
   private Stage stage;
-  private final String pathStarter = "../core/src/main/resources/quizapp/json/";
-  private final String usernamePath = Paths.get(pathStarter + "activeUser.json").toString();
-  private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
+  private UserAccess directUserAcces;
+  private User activeUser;
+
 
   @Override
   public void start(final Stage stage) throws Exception {
+    directUserAcces = new DirectUserAccess();
+    activeUser = directUserAcces.getActiveUser();
     // Sets Up Stage
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfilePage.fxml"));
     final Parent root = loader.load();
@@ -58,20 +58,20 @@ public class ProfilePageControllerTest extends FxuiTest {
   @Test
   public void checkUserText() {
     // Checks active user and makes sure it matches username displayed in the top
-    UsernameHandler userHandler = new UsernameHandler(usernamePath);
+    //UsernameHandler userHandler = new UsernameHandler(usernamePath);
     Label label = (Label) stage.getScene().lookup("#nameId");
-    assertEquals(userHandler.loadActiveUser(), label.getText());
+    assertEquals(activeUser.getUsername(), label.getText());
   }
 
   @Test
   public void checkUserScore() {
     // Checks active user and makes sure it matches score
-    UsernameHandler userHandler = new UsernameHandler(usernamePath);
+    //UsernameHandler userHandler = new UsernameHandler(usernamePath);
     Label label = (Label) stage.getScene().lookup("#scoreId");
-    JsonHandler jsonHandler = new JsonHandler(jsonPath);
-    User user = jsonHandler.loadFromFile().stream()
-        .filter(u -> u.getUsername().equals(userHandler.loadActiveUser())).findFirst().get();
-    assertEquals(String.valueOf(Math.round((user.meanScore()*100))) + "  %", label.getText());
+    //JsonHandler jsonHandler = new JsonHandler(jsonPath);
+    //User user = jsonHandler.loadFromFile().stream()
+    //    .filter(u -> u.getUsername().equals(userHandler.loadActiveUser())).findFirst().get();
+    assertEquals(String.valueOf(Math.round((activeUser.meanScore()*100))) + "  %", label.getText());
   }
   
 }

@@ -10,7 +10,7 @@ public class App extends Application {
 
   @Override
   public void start(final Stage primaryStage) throws Exception {
-    final Parent parent = FXMLLoader.load(getClass().getResource("Login.fxml"));
+    final Parent parent = FXMLLoader.load(getClass().getResource("AddQuiz.fxml"));
     Scene scene = new Scene(parent);
     scene.getStylesheets().add(App.class.getResource("lightmode.css")
             .toExternalForm());
