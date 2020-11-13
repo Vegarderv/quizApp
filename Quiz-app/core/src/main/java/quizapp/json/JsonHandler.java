@@ -29,7 +29,7 @@ public class JsonHandler {
    * Function writes a hashmap as a JSON object to a JSON file.
    */
   public void writeToFile(List<User> userList) {
-    List<User> users = new ArrayList<>(userList);
+    List<User> users = new ArrayList<User>(userList);
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String javaObjectString = gson.toJson(users); // converts to json
     try {
@@ -105,7 +105,7 @@ public class JsonHandler {
         .filter(u -> u.getUsername().equals(user.getUsername()))
         .findAny().get();
     users.remove(user2);
-    users.add(user);
+    users.add(new User(user));
     writeToFile(users);
   }
 
