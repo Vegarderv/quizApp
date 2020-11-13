@@ -2,8 +2,6 @@ package quizapp.core;
 
 import java.util.HashMap;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 public class User {
   /*
    * This class is used for easier access and saving of user data. Also much
@@ -22,16 +20,16 @@ public class User {
   }
 
   public User(User user) {
-    this.username = user.username;
-    this.password = user.password;
-    this.darkMode = user.darkMode;
-    this.currentQuiz = user.currentQuiz;
-    this.quizzesTaken = user.quizzesTaken;
+    setUsername(user.getUsername());
+    setPassword(user.getPassword());
+    setDarkMode(user.getDarkMode());
+    setCurrentQuiz(user.getCurrentQuiz());
+    setQuizzesTaken(user.getQuizzesTaken());
   }
 
   public User(String username, String password) {
-    this.username = username;
-    this.password = password;
+    setUsername(username);
+    setPassword(password);
   }
 
   public boolean quizTaken(String quiz) {
@@ -55,7 +53,6 @@ public class User {
   }
 
   public void addQuiz(String quiz, double score) {
-
     // Add quiz to user when finished with said quiz, or updates score to latest
     // result
     if (quizzesTaken.containsKey(quiz)) {

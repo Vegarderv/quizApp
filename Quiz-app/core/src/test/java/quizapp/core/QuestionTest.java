@@ -2,6 +2,7 @@ package quizapp.core;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,12 @@ public class QuestionTest {
   @Test
   public void getAlternativeTest() {
     assertEquals("Sometimes", question.getAlternative(2));
+    try {
+      question.getAlternative(4);
+      fail();
+    } catch (IllegalArgumentException e) {
+      //Illegal argument exceptionshould be caused as index is out of bound
+    }
   }
 
   @Test
@@ -41,5 +48,6 @@ public class QuestionTest {
     List<String> alternatives = new ArrayList<>(List.of("No", "Yes", "Sometimes", "What is coding?"));
     assertTrue(alternatives.stream().allMatch(a -> question.getAlternatives().contains(a)));
   }
+
   
 }

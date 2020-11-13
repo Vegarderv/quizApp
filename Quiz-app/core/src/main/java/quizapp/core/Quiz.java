@@ -23,9 +23,8 @@ public class Quiz {
   }
 
   public Quiz(Quiz other) {
-    this.questions = other.questions;
-    this.name = other.name;
-    setId();
+    setQuestions(other.getQuestions());
+    setName(other.getName());
   }
 
   public Quiz(String name, Question question0, Question question1, Question question2) {
@@ -64,6 +63,7 @@ public class Quiz {
 
   public void setName(String name) {
     this.name = name;
+    setId();
   }
 
   public List<Question> getQuestions(){

@@ -18,12 +18,7 @@ public class Question {
       String alternative4, int correctAlternative) {
     this.question = question;
     alternatives = Arrays.asList(alternative1, alternative2, alternative3, alternative4);
-    if (correctAlternative <= 3 && correctAlternative >= 0) {
-      this.correctAlternative = correctAlternative;
-    } else {
-      throw new IllegalArgumentException(
-          "The correct alternative must be a number between 0 and 3.");
-    }
+    setCorrectAlternative(correctAlternative);
   }
 
   public Question() {
@@ -62,7 +57,12 @@ public class Question {
   }
 
   public void setCorrectAlternative(int correctAlternative) {
-    this.correctAlternative = correctAlternative;
+    if (correctAlternative <= 3 && correctAlternative >= 0) {
+      this.correctAlternative = correctAlternative;
+    } else {
+      throw new IllegalArgumentException(
+          "The correct alternative must be a number between 0 and 3.");
+    }
   }
 
   public void setQuestion(String question) {
