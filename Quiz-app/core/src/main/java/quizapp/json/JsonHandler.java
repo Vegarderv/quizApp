@@ -3,7 +3,6 @@ package quizapp.json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import quizapp.json.CryptoUtil;
 import quizapp.core.User;
 import java.io.*;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.List;
 public class JsonHandler {
   private String path;
   private Writer file;
-  private String secretKey = "ssshhhhhhhhhhh!!!!";
 
   public JsonHandler(String path) {
     this.path = path;
@@ -24,14 +22,6 @@ public class JsonHandler {
    */
   public void writeToFile(List<User> userList) {
     List<User> users = new ArrayList<>(userList);
-    CryptoUtil crypto = new CryptoUtil();
-    users.stream().forEach(user -> {
-      try {
-        user.setPassword(crypto.encrypt(user.getPassword(), secretKey));
-      } catch (Exception e1) {
-        e1.printStackTrace();
-      }
-    });
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String javaObjectString = gson.toJson(users); // converts to json
     try {
@@ -60,20 +50,10 @@ public class JsonHandler {
   */
   public List<User> loadFromFile() {
     try {
-      CryptoUtil cryptoUtil = new CryptoUtil();
       InputStream inputStream = new FileInputStream(path);
       Reader fileReader = new InputStreamReader(inputStream, "UTF-8");
       List<User> users = new Gson().fromJson(fileReader, new TypeToken<List<User>>() {
       }.getType());
-      users 
-          .stream()
-          .forEach(user -> {
-            try {
-              user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey));
-            } catch (Exception e) {
-              e.printStackTrace();
-            } 
-          });
       return users;
 
     } catch (Exception e) {
