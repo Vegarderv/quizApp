@@ -87,6 +87,11 @@ public class AddQuizController extends QuizAppController {
       scroll.setVvalue(0.01);
       return;
     }
+    try {
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
+    } catch (Exception e) {
+      remoteQuizAccess = new DirectQuizAccess();
+    }
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.stream().anyMatch(q -> q.getName().equals(title.getText()))) {
       score.setText("Invalid Quizname. The title must be unique, there is already a quiz named " + title.getText());
