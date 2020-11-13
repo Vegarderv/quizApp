@@ -32,7 +32,6 @@ public class AddQuizControllerTest extends FxuiTest {
   @Override
   public void start(final Stage stage) throws Exception {
     directQuizAccess = new DirectQuizAccess();
-    directUserAccess = new DirectUserAccess();
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("AddQuiz.fxml"));
     final Parent root = loader.load();
     stage.setScene(new Scene(root));

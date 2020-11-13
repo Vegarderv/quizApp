@@ -35,6 +35,7 @@ public class QuizControllerTest extends FxuiTest {
     user.setUsername("Test1");
     user.setPassword("password");
     user.setCurrentQuiz(quiz);
+    System.out.println(user);
     directUserAccess.postUser(user);
     directUserAccess.putActiveUser("Test1");
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
@@ -102,6 +103,7 @@ public class QuizControllerTest extends FxuiTest {
     // Sets up user so it has taken the quiz before
     User user = directUserAccess.getUser("Test1");
     user.addQuiz("Chemistry quiz", (2 * 1.0) / (3 * 1.0));
+    System.out.println(user);
     directUserAccess.putUser(user);
     //Takes quiz again
     Robot r = new Robot();

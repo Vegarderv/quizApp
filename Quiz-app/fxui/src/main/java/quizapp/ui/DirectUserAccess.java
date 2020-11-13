@@ -61,12 +61,7 @@ public class DirectUserAccess implements UserAccess {
 
   @Override
   public void putActiveUser(String name) {
-<<<<<<< HEAD
     userHandler.saveActiveUser(name, this.jsonPath);
-=======
-    userHandler.saveActiveUser(name,
-        "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandler.json");
->>>>>>> origin/issue-61-tests
   }
 
   @Override
