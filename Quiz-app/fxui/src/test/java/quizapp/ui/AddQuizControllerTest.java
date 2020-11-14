@@ -40,7 +40,6 @@ public class AddQuizControllerTest extends FxuiTest {
   public void MakeAQuizTest() throws AWTException {
     // Deletes quiz if it already exists
     directQuizAccess.deleteQuiz("Color-quiz");
-    }
     fillInQuiz("Color quiz");
     Quiz quiz = directQuizAccess.getQuiz("Color-quiz");
     assertNotNull(quiz);
