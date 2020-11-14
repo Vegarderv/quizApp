@@ -67,7 +67,7 @@ public class Quiz {
 
   /**
    * Returns the name of the name of this quiz.
-  
+
    * @return the name
    */
   public String getName() {

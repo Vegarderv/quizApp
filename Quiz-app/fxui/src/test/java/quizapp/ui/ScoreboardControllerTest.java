@@ -1,34 +1,19 @@
 package quizapp.ui;
 
 import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
-import javafx.scene.text.Text;
-import java.util.Map;
-import quizapp.json.QuizHandler;
-import quizapp.json.UsernameHandler;
 import java.util.List;
-import quizapp.core.Quiz;
-import java.util.HashMap;
-import javafx.scene.text.TextFlow;
-import javafx.scene.Node;
-import javafx.scene.text.Font;
-import java.util.ArrayList;
-import java.beans.Transient;
-import java.util.Objects;
-
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.QuizHandler;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import quizapp.core.DirectQuizAccess;
+import quizapp.core.Quiz;
 
 public class ScoreboardControllerTest extends FxuiTest {
 
