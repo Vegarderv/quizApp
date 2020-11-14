@@ -51,7 +51,6 @@ public class LoginController extends QuizAppController {
       remoteUserAccess = new DirectUserAccess();
     }
     remoteUserAccess.putActiveUser(username.getText());
-    System.out.println(username.getText());
     // Gets the stage information and sets the scene
     switchSceneWithNode("MainPage.fxml", mainPageButton);
   }
