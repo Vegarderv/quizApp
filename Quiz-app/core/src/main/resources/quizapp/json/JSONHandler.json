@@ -3,7 +3,12 @@
     "username": "George",
     "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
     "darkMode": false,
-    "quizzesTaken": {}
+    "quizzesTaken": {
+      "Geography quiz": 1.0,
+      "Malin Quiz": 1.0,
+      "HistoryQuiz": 1.0,
+      "Chemistry quiz": 1.0
+    }
   },
   {
     "username": "Gløs",
@@ -103,10 +108,10 @@
       "name": "Malin Quiz"
     },
     "quizzesTaken": {
-      "Geography quiz": 0.3333333333333333,
+      "Geography quiz": 1.0,
       "Malin Quiz": 1.0,
       "HistoryQuiz": 1.0,
-      "Chemistry quiz": 0.0
+      "Chemistry quiz": 1.0
     }
   }
 ]
