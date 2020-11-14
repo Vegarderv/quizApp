@@ -16,7 +16,6 @@ import javafx.scene.control.ScrollPane;
 import java.awt.*;
 import javafx.scene.control.TextField;
 
-
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -29,8 +28,7 @@ public class AddQuizControllerTest extends FxuiTest {
   private DirectQuizAccess directQuizAccess = new DirectQuizAccess();
   private UserAccess directUserAccess = new DirectUserAccess();
 
-
-  @Override 
+  @Override
   public void start(final Stage stage) throws Exception {
     directQuizAccess = new DirectQuizAccess();
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("AddQuiz.fxml"));
@@ -40,11 +38,10 @@ public class AddQuizControllerTest extends FxuiTest {
     this.stage = stage;
   }
 
-
   @Test
   @Order(1)
   public void MakeAQuizTest() throws AWTException {
-    //Deletes quiz if it already exists
+    // Deletes quiz if it already exists
     directQuizAccess.deleteQuiz("Color-quiz");
     fillInQuiz();
     Quiz quiz = directQuizAccess.getQuiz("Color-quiz");
@@ -91,10 +88,8 @@ public class AddQuizControllerTest extends FxuiTest {
     assertEquals("Invalid Quizname. The title must be unique, there is already a quiz named Color quiz", text);
   }
 
-
-
   @Test
-  @Order(4)    
+  @Order(4)
   public void goToMainMenuTest() {
     // Checks that we on add quiz page
     assertNotNull(stage.getScene().lookup("#mainMenu"));
@@ -108,15 +103,15 @@ public class AddQuizControllerTest extends FxuiTest {
 
   }
 
-
   @Test
-  @Order(5)    
+  @Order(5)
   public void checkCorrectUserDisplayed() {
-    // Checks active user and makes sure it matches username displayed on menu button
-    String activeUser = ((MenuButton)stage.getScene().lookup("#userMenu")).getText();
+    // Checks active user and makes sure it matches username displayed on menu
+    // button
+    String activeUser = ((MenuButton) stage.getScene().lookup("#userMenu")).getText();
     assertEquals(directUserAccess.getActiveUser().getUsername(), activeUser);
   }
-    
+
   private TextField findTextField(String node) {
     return (TextField) stage.getScene().lookup(node);
   }
@@ -150,7 +145,7 @@ public class AddQuizControllerTest extends FxuiTest {
     // Scrolls to bottom of screen
     // Slows down the code to give the robot time to scroll
     scroll.setVvalue(1);
-     try {
+    try {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
     }
@@ -168,5 +163,4 @@ public class AddQuizControllerTest extends FxuiTest {
     directQuizAccess.deleteQuiz("Color-Quiz");
   }
 
-  
 }
