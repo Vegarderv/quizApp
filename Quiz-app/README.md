@@ -8,7 +8,7 @@ This repo also contains testing for each layer, and is built with **maven**.
 
 ## To run this app:
 from /workspace/gr2022/Quiz-app:
->mvn install
+>mvn install (this does not always work, try a few more times)
 
 >mvn spring-boot:run -f restapi/pom.xml
 

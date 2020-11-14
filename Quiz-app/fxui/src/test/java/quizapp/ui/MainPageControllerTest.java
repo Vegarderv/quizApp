@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import quizapp.core.DirectUserAccess;
 import quizapp.core.UserAccess;
 
+
+
 public class MainPageControllerTest extends FxuiTest {
 
   private Stage stage;

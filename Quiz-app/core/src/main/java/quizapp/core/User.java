@@ -26,16 +26,16 @@ public class User {
    * @param user user we want to copy
    */
   public User(User user) {
-    this.username = user.username;
-    this.password = user.password;
-    this.darkMode = user.darkMode;
-    this.currentQuiz = user.currentQuiz;
-    this.quizzesTaken = user.quizzesTaken;
+    setUsername(user.getUsername());
+    setPassword(user.getPassword());
+    setDarkMode(user.getDarkMode());
+    setCurrentQuiz(user.getCurrentQuiz());
+    setQuizzesTaken(user.getQuizzesTaken());
   }
 
   public User(String username, String password) {
-    this.username = username;
-    this.password = password;
+    setUsername(username);
+    setPassword(password);
   }
 
   public boolean quizTaken(String quiz) {
@@ -65,7 +65,6 @@ public class User {
    * @param score score the user got when taking the quiz
    */
   public void addQuiz(String quiz, double score) {
-
     // Add quiz to user when finished with said quiz, or updates score to latest
     // result
     if (quizzesTaken.containsKey(quiz)) {
