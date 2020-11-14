@@ -15,8 +15,14 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import quizapp.core.DirectQuizAccess;
+import quizapp.core.DirectUserAccess;
 import quizapp.core.Quiz;
+import quizapp.core.QuizAccess;
+import quizapp.core.RemoteQuizAccess;
+import quizapp.core.RemoteUserAccess;
 import quizapp.core.User;
+import quizapp.core.UserAccess;
 
 public class MainPageController extends QuizAppController {
 
@@ -71,7 +77,6 @@ public class MainPageController extends QuizAppController {
    */
   @FXML
   public void goToQuiz(ActionEvent event) {
-    System.out.println((((Button) event.getSource()).getId()));
     Quiz quiz = remoteQuizAccess.getQuiz((((Button) event.getSource()).getId()));
     currentUser.setCurrentQuiz(quiz);
     try {

@@ -10,7 +10,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import quizapp.core.DirectUserAccess;
+import quizapp.core.RemoteUserAccess;
 import quizapp.core.User;
+import quizapp.core.UserAccess;
 
 public class QuizAppController implements Initializable {
 

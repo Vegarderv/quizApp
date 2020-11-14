@@ -9,6 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import quizapp.core.DirectUserAccess;
+import quizapp.core.RemoteUserAccess;
+import quizapp.core.UserAccess;
 import quizapp.core.UsernameCheck;
 
 public class LoginController extends QuizAppController {
@@ -48,7 +51,6 @@ public class LoginController extends QuizAppController {
       remoteUserAccess = new DirectUserAccess();
     }
     remoteUserAccess.putActiveUser(username.getText());
-    System.out.println(username.getText());
     // Gets the stage information and sets the scene
     switchSceneWithNode("MainPage.fxml", mainPageButton);
   }

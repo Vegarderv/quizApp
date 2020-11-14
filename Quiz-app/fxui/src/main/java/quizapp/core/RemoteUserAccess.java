@@ -1,4 +1,4 @@
-package quizapp.ui;
+package quizapp.core;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,7 +16,6 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import quizapp.core.User;
 import quizapp.json.CryptoUtil;
 
 public class RemoteUserAccess implements UserAccess {
@@ -105,8 +104,6 @@ public class RemoteUserAccess implements UserAccess {
     try {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String json = gson.toJson(user);
-      System.out.println(json);
-      System.out.println(user.getUsername());
       HttpRequest request = HttpRequest.newBuilder(
           userUri(user.getUsername())).header("Accept", "application/json")
           .header("Content-Type", "application/json").PUT(BodyPublishers
@@ -192,7 +189,6 @@ public class RemoteUserAccess implements UserAccess {
     try {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String json = gson.toJson(name);
-      System.out.println(json);
       HttpRequest request = HttpRequest
           .newBuilder(userUri(name))
           .header("Accept", "application/json")
@@ -223,7 +219,6 @@ public class RemoteUserAccess implements UserAccess {
     try {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String json = gson.toJson(user);
-      System.out.println(json);
       System.out.println(user.getUsername());
       HttpRequest request = HttpRequest.newBuilder(
           userUri(user.getUsername())).header("Accept", "application/json")

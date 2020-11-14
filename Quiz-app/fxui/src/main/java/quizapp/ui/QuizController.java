@@ -14,8 +14,11 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import quizapp.core.DirectUserAccess;
 import quizapp.core.Quiz;
+import quizapp.core.RemoteUserAccess;
 import quizapp.core.User;
+import quizapp.core.UserAccess;
 
 public class QuizController extends QuizAppController {
 

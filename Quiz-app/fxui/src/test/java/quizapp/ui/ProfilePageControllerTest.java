@@ -7,7 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+
+import quizapp.core.DirectUserAccess;
 import quizapp.core.User;
+import quizapp.core.UserAccess;
 
 import static org.junit.jupiter.api.Assertions.*;
 

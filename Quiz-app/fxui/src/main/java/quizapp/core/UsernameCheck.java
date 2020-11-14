@@ -2,9 +2,6 @@ package quizapp.core;
 
 import java.net.URI;
 import java.util.List;
-import quizapp.ui.DirectUserAccess;
-import quizapp.ui.RemoteUserAccess;
-import quizapp.ui.UserAccess;
 
 public class UsernameCheck {
 
@@ -21,7 +18,6 @@ public class UsernameCheck {
     }
     List<User> userPasswords = remoteUserAccess.getUsers();
     if (!userPasswords.stream().anyMatch(a -> a.getUsername().equals(username))) {
-      System.out.println("Can't find user");
       return false;
     } else if (!userPasswords.stream()
         .filter(p -> p.getUsername().equals(username))

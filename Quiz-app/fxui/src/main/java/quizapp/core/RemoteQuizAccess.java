@@ -1,4 +1,4 @@
-package quizapp.ui;
+package quizapp.core;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,7 +15,6 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import quizapp.core.Quiz;
 
 public class RemoteQuizAccess implements QuizAccess {
 

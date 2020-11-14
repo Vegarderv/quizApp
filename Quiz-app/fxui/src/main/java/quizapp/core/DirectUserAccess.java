@@ -1,8 +1,7 @@
-package quizapp.ui;
+package quizapp.core;
 
 import java.nio.file.Paths;
 import java.util.List;
-import quizapp.core.User;
 import quizapp.json.CryptoUtil;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;

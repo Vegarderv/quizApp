@@ -1,7 +1,6 @@
-package quizapp.ui;
+package quizapp.core;
 
 import java.util.List;
-import quizapp.core.User;
 
 public interface UserAccess {
 

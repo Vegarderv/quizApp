@@ -17,8 +17,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import quizapp.core.DirectQuizAccess;
+import quizapp.core.DirectUserAccess;
 import quizapp.core.Quiz;
+import quizapp.core.QuizAccess;
+import quizapp.core.RemoteQuizAccess;
+import quizapp.core.RemoteUserAccess;
 import quizapp.core.User;
+import quizapp.core.UserAccess;
 
 public class ScoreboardController extends QuizAppController {
   
@@ -59,7 +65,6 @@ public class ScoreboardController extends QuizAppController {
     quizzes = remoteQuizAccess.getQuizzes();
     userMenu.setText(username);
     Map<String, ArrayList<User>> scoreMap = getBoardInfo();
-    System.out.println(scoreMap);
     for (Map.Entry<String, ArrayList<User>> quizname : scoreMap.entrySet()) {
       Text text = new Text(quizname.getKey());
       text.setFont(new Font(34.0));
@@ -124,7 +129,6 @@ public class ScoreboardController extends QuizAppController {
       for (Quiz quiz : this.quizzes) {
         ArrayList<User> topScorers = new ArrayList<>();
         String name = quiz.getName();
-        System.out.println(name);
         for (User userHey : this.users) {
           if (userHey.quizTaken(name)) {
             topScorers = mergeUser(userHey, topScorers, name);
@@ -134,7 +138,6 @@ public class ScoreboardController extends QuizAppController {
       }
       return scoreMap;
     } catch (Exception e) {
-      System.out.println(this.quizzes);
       e.printStackTrace();
       return null;
     }

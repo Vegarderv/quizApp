@@ -1,6 +1,5 @@
 package quizapp.ui;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -13,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import quizapp.core.DirectUserAccess;
 import quizapp.core.User;
 import quizapp.core.UsernameCheck;
 

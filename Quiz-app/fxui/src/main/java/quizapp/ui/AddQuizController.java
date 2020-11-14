@@ -13,8 +13,14 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import quizapp.core.DirectQuizAccess;
+import quizapp.core.DirectUserAccess;
 import quizapp.core.Question;
 import quizapp.core.Quiz;
+import quizapp.core.QuizAccess;
+import quizapp.core.RemoteQuizAccess;
+import quizapp.core.RemoteUserAccess;
+import quizapp.core.UserAccess;
 
 public class AddQuizController extends QuizAppController {
 

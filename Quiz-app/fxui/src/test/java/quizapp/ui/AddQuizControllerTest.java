@@ -8,15 +8,17 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import java.awt.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import quizapp.core.DirectQuizAccess;
+import quizapp.core.DirectUserAccess;
 import quizapp.core.Quiz;
-import org.junit.jupiter.api.Order;
+import quizapp.core.UserAccess;
 
 
 @TestMethodOrder(OrderAnnotation.class)

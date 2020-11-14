@@ -10,6 +10,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import quizapp.core.DirectUserAccess;
+import quizapp.core.UserAccess;
 
 
 

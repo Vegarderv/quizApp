@@ -1,8 +1,7 @@
-package quizapp.ui;
+package quizapp.core;
 
 import java.nio.file.Paths;
 import java.util.List;
-import quizapp.core.Quiz;
 import quizapp.json.QuizHandler;
 
 public class DirectQuizAccess implements QuizAccess {
