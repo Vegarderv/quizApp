@@ -27,8 +27,7 @@ public class Quiz {
     if (other.questions != null) {
       this.questions = new ArrayList<Question>(other.questions);
     }
-    this.name = other.name;
-    setId();
+    setName(other.name);
   }
 
   /**
@@ -67,7 +66,7 @@ public class Quiz {
 
   /**
    * Returns the name of the name of this quiz.
-  
+
    * @return the name
    */
   public String getName() {
@@ -76,6 +75,7 @@ public class Quiz {
 
   public void setName(String name) {
     this.name = name;
+    setId();
   }
 
   public List<Question> getQuestions() {
@@ -102,4 +102,29 @@ public class Quiz {
     return this.getName();
   }
 
+  @Override
+  public int hashCode() {
+    assert false : "hashCode not designed";
+    return 42; // any arbitrary constant will do
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) {
+      return true;
+    }
+    if (!(o instanceof Quiz)) {
+      return false;
+    }
+    Quiz quiz = (Quiz) o;
+    return this.getName().equals(quiz.getName()) 
+      && this.getId().equals(quiz.getId())
+      && this.getQuestion(0).equals(quiz.getQuestion(0))
+      && this.getQuestion(1).equals(quiz.getQuestion(1))
+      && this.getQuestion(2).equals(quiz.getQuestion(2));
+  }
+  
+
+
+  
 }

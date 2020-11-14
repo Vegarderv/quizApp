@@ -18,12 +18,7 @@ public class Question {
       String alternative4, int correctAlternative) {
     this.question = question;
     alternatives = Arrays.asList(alternative1, alternative2, alternative3, alternative4);
-    if (correctAlternative <= 3 && correctAlternative >= 0) {
-      this.correctAlternative = correctAlternative;
-    } else {
-      throw new IllegalArgumentException(
-          "The correct alternative must be a number between 0 and 3.");
-    }
+    setCorrectAlternative(correctAlternative);
   }
 
   public Question() {
@@ -62,12 +57,45 @@ public class Question {
     this.alternatives = new ArrayList<String>(alternatives);
   }
 
+  
+  /**
+   * Sets the correct alternative.
+
+   * @param correctAlternative correct alternative
+   */
   public void setCorrectAlternative(int correctAlternative) {
-    this.correctAlternative = correctAlternative;
+    if (correctAlternative <= 3 && correctAlternative >= 0) {
+      this.correctAlternative = correctAlternative;
+    } else {
+      throw new IllegalArgumentException(
+          "The correct alternative must be a number between 0 and 3.");
+    }
   }
 
   public void setQuestion(String question) {
     this.question = question;
+  }
+
+  @Override
+  public int hashCode() {
+    assert false : "hashCode not designed";
+    return 42; // any arbitrary constant will do
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) {
+      return true;
+    }
+    if (!(o instanceof Question)) {
+      return false;
+    }
+    Question question = (Question) o;
+    return this.getQuestion().equals(question.getQuestion()) 
+      && this.getAlternative(0).equals(question.getAlternative(0))
+      && this.getAlternative(1).equals(question.getAlternative(1))
+      && this.getAlternative(2).equals(question.getAlternative(2))
+      && this.getCorrectAlternative() == (this.getCorrectAlternative());
   }
 
 }

@@ -3,6 +3,7 @@ package quizapp.ui;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
 import java.awt.*;
@@ -14,7 +15,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 import quizapp.core.Quiz;
 import quizapp.core.User;
-import org.junit.jupiter.api.AfterAll;
 
 public class QuizControllerTest extends FxuiTest {
 

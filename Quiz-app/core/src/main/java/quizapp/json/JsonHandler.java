@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import quizapp.core.User;
 
+
 public class JsonHandler {
   private String path;
   private Writer file;
