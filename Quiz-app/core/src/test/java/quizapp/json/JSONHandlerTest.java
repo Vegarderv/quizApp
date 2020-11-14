@@ -2,6 +2,7 @@ package quizapp.json;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import quizapp.core.User;
 
@@ -9,19 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JSONHandlerTest {
 
   private static JsonHandler handler;
-  private static List<User> usernames = new ArrayList<>();
-  private List<User> loadedUsernames;
-  private static User user1;
-  private static User user2;
+  private User user1;
+  private User user2;
+  private User user3;
 
   // Sets up usernames, Users and quizzes
-  @BeforeAll
-  public static void setUp() {
+  @BeforeEach
+  public void setUp() {
+    List<User> usernames = new ArrayList<>();
     handler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
     user1 = new User("Hallvard", "Trætteberg");
     user2 = new User("George", "Stoica");
@@ -29,38 +31,20 @@ public class JSONHandlerTest {
     usernames.add(user2);
     user1.addQuiz("testquiz123", 0.69);
     handler.writeToFile(usernames);
+    user3 = new User("test", "person");
+    System.out.println("i set up");
+    System.out.println(handler.loadFromFile());
   }
 
   @Test
-  public void firstUsername() {
-    loadedUsernames = handler.loadFromFile();
-    assertEquals("Hallvard", loadedUsernames.get(0).getUsername());
+  public void loadFromFileTest() {
+    List<User> loadedUsers = handler.loadFromFile();
+    assertEquals(2, loadedUsers.size());
+    assertTrue(loadedUsers.contains(user1));
+    assertTrue(loadedUsers.contains(user2));
+    assertFalse(loadedUsers.contains(user3));
   }
 
-  @Test
-  public void firstPassword() {
-    loadedUsernames = handler.loadFromFile();
-    assertEquals("Trætteberg", loadedUsernames.get(0).getPassword());
-  }
-
-  @Test
-  public void secondUsername() {
-    loadedUsernames = handler.loadFromFile();
-    assertEquals("George", loadedUsernames.get(1).getUsername());
-  }
-
-  @Test
-  public void secondPassword() {
-    loadedUsernames = handler.loadFromFile();
-    assertEquals("Stoica", loadedUsernames.get(1).getPassword());
-  }
-
-  @Test
-  public void correctQuiz() {
-    // Checks if correct quiz is loaded
-    loadedUsernames = handler.loadFromFile();
-    assertTrue(loadedUsernames.get(0).quizTaken("testquiz123"));
-  }
 
   @Test
   public void activeUserTest() {
@@ -69,12 +53,38 @@ public class JSONHandlerTest {
     assertEquals("Hallvard", handler.loadActiveUser().getUsername());
   }
 
-  /*@Test
+  @Test
   public void loadUserByNameTest() {
     assertEquals(user1, handler.loadUserFromString("Hallvard"));
-  }*/
+  }
 
+  @Test
+  public void updateUserTest() {
+    assertFalse(user1.getDarkMode());
+    user1.setDarkMode(true);
+    handler.updateUser(user1);
+    assertTrue(user1.getDarkMode());
+  }
 
+  @Test
+  public void deleteUser() {
+    handler.deleteUser(user1.getUsername());
+    List<User> loadedUsers = handler.loadFromFile();
+    System.out.println(loadedUsers);
+    assertEquals(1, loadedUsers.size());
+    assertFalse(loadedUsers.contains(user1));
+    assertTrue(loadedUsers.contains(user2));
+  }
+
+  @Test
+  public void addUser() {
+    handler.addUser(user3);
+    List<User> loadedUsers = handler.loadFromFile();
+    assertEquals(3, loadedUsers.size());
+    assertTrue(loadedUsers.contains(user1));
+    assertTrue(loadedUsers.contains(user2));
+    assertTrue(loadedUsers.contains(user3));
+  }
 
   @AfterAll
   public static void after() {
