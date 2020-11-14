@@ -1,25 +1,23 @@
 package quizapp.ui;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import java.awt.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import quizapp.core.Quiz;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
-
-import java.awt.*;
 import javafx.scene.control.TextField;
-
+import quizapp.core.Quiz;
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+
 
 @TestMethodOrder(OrderAnnotation.class)
 public class AddQuizControllerTest extends FxuiTest {
@@ -39,11 +37,10 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
   @Test
-  @Order(1)
   public void MakeAQuizTest() throws AWTException {
     // Deletes quiz if it already exists
     directQuizAccess.deleteQuiz("Color-quiz");
-    fillInQuiz();
+    fillInQuiz("Color quiz");
     Quiz quiz = directQuizAccess.getQuiz("Color-quiz");
     assertNotNull(quiz);
     assertEquals("Color quiz", quiz.getName());
@@ -53,10 +50,10 @@ public class AddQuizControllerTest extends FxuiTest {
     // Checks that the scene has changed to main menu
     assertNull(stage.getScene().lookup("#mainMenu"));
     assertNotNull(stage.getScene().lookup("#menuButton"));
+    directQuizAccess.deleteQuiz("Color-quiz");
   }
 
   @Test
-  @Order(2)
   public void submitUncompleteQuizTest() throws AWTException {
     ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
     findTextField("#title").setText("Test quiz");
@@ -81,15 +78,15 @@ public class AddQuizControllerTest extends FxuiTest {
   }
 
   @Test
-  @Order(3)
   public void makeQuizWithInvalidName() throws AWTException {
-    fillInQuiz();
+    fillInQuiz("History quiz");
     String text = ((Label) stage.getScene().lookup("#scoreLabel")).getText();
-    assertEquals("Invalid Quizname. The title must be unique, there is already a quiz named Color quiz", text);
+    assertEquals("Invalid Quizname. The title must be unique, there is already a quiz named History quiz", text);
   }
 
-  @Test
-  @Order(4)
+
+
+  @Test    
   public void goToMainMenuTest() {
     // Checks that we on add quiz page
     assertNotNull(stage.getScene().lookup("#mainMenu"));
@@ -103,8 +100,7 @@ public class AddQuizControllerTest extends FxuiTest {
 
   }
 
-  @Test
-  @Order(5)
+  @Test   
   public void checkCorrectUserDisplayed() {
     // Checks active user and makes sure it matches username displayed on menu
     // button
@@ -116,11 +112,11 @@ public class AddQuizControllerTest extends FxuiTest {
     return (TextField) stage.getScene().lookup(node);
   }
 
-  private void fillInQuiz() throws AWTException {
+  private void fillInQuiz(String title) throws AWTException {
     ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
     // Fills in everything needed to make a quiz
     scroll.setVvalue(0.0);
-    findTextField("#title").setText("Color quiz");
+    findTextField("#title").setText(title);
     findTextField("#q0").setText("What color do you get if you mix blue and yellow?");
     findTextField("#q0an0").setText("Blue");
     findTextField("#q0an1").setText("Green");
@@ -162,5 +158,4 @@ public class AddQuizControllerTest extends FxuiTest {
     clickOnButton("#submit");
     directQuizAccess.deleteQuiz("Color-Quiz");
   }
-
 }

@@ -87,7 +87,7 @@ public class ScoreboardController extends QuizAppController {
    * @param quiz the quiz 
    * @return
    */
-  public ArrayList<User> mergeUser(User user, ArrayList<User> topScorers, String quiz) {
+  private ArrayList<User> mergeUser(User user, ArrayList<User> topScorers, String quiz) {
     // this function checks if a new user should be in the top three users in the
     // relevant quiz
     if (topScorers.isEmpty()) {
@@ -117,7 +117,7 @@ public class ScoreboardController extends QuizAppController {
 
    * @return
    */
-  public Map<String, ArrayList<User>> getBoardInfo() {
+  private Map<String, ArrayList<User>> getBoardInfo() {
     try {
       // makes the score map that is used in the scoreboard
       Map<String, ArrayList<User>> scoreMap = new HashMap<>();
@@ -152,7 +152,7 @@ public class ScoreboardController extends QuizAppController {
   }
 
   @FXML
-  void goToMainMenu(MouseEvent event) {
+  public void goToMainMenu(MouseEvent event) {
     this.switchSceneWithNode("MainPage.fxml", userMenu);
   }
 
