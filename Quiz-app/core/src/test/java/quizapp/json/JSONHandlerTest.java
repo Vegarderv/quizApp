@@ -1,5 +1,6 @@
 package quizapp.json;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import quizapp.core.User;
@@ -74,5 +75,12 @@ public class JSONHandlerTest {
   }*/
 
 
+
+  @AfterAll
+  public static void after() {
+    //empties testdoc
+    JsonHandler jsonHandler = new JsonHandler("src/main/resources/quizapp/json/JSONHandlerTest.json");
+    jsonHandler.writeToFile(new ArrayList<User>());
+  }
 
 }

@@ -1,24 +1,20 @@
 package quizapp.ui;
 
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.jupiter.api.Test;
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.Test;
 import quizapp.core.User;
 import quizapp.core.UsernameCheck;
-
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class SignupControllerTest extends FxuiTest {
 
@@ -117,6 +113,7 @@ public class SignupControllerTest extends FxuiTest {
     try {
       Thread.sleep(1500);
     } catch (Exception e) {
+      e.printStackTrace();
     }
     // expects now the scene to change to main page
     assertNull(stage.getScene().lookup("#signupButton"));

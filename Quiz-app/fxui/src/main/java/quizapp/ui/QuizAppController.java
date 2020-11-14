@@ -1,6 +1,9 @@
 package quizapp.ui;
 
+import java.io.IOException;
 import java.net.URI;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -8,12 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import quizapp.core.User;
-import quizapp.json.JsonHandler;
-import quizapp.json.UsernameHandler;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class QuizAppController implements Initializable {
 
@@ -26,7 +23,7 @@ public class QuizAppController implements Initializable {
 
   protected void switchSceneWithNode(String fxmlFile, Node node) {
     try {
-      Stage stage = (Stage) node.getScene().getWindow();
+      final Stage stage = (Stage) node.getScene().getWindow();
       Parent parent = FXMLLoader.load(QuizAppController.class.getResource(fxmlFile));
       Scene scene = new Scene(parent);
       try {

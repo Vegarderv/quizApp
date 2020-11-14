@@ -1,28 +1,79 @@
 package quizapp.ui;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import quizapp.core.Question;
-import quizapp.core.Quiz;
-import javafx.scene.control.ScrollPane;
-
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import quizapp.core.Question;
+import quizapp.core.Quiz;
 
 public class AddQuizController extends QuizAppController {
 
   @FXML
-  RadioButton q0a0, q0a1, q0a2, q0a3, q1a0, q1a1, q1a2, q1a3, q2a0, q2a1, q2a2, q2a3;
+  RadioButton q0a0;
   @FXML
-  TextField q0an0, q0an1, q0an2, q0an3, q1an0, q1an1, q1an2, q1an3, q2an0, q2an1, q2an2, q2an3, title, q0, q1, q2;
+  RadioButton q0a1;
+  @FXML
+  RadioButton q0a2;
+  @FXML
+  RadioButton q0a3;
+  @FXML
+  RadioButton q1a0;
+  @FXML
+  RadioButton q1a1;
+  @FXML
+  RadioButton q1a2;
+  @FXML
+  RadioButton q1a3;
+  @FXML
+  RadioButton q2a0;
+  @FXML
+  RadioButton q2a1;
+  @FXML
+  RadioButton q2a2;
+  @FXML
+  RadioButton q2a3;
+  @FXML
+  TextField q0an0;
+  @FXML
+  TextField q0an1;
+  @FXML
+  TextField q0an2;
+  @FXML
+  TextField q0an3;
+  @FXML
+  TextField q1an0;
+  @FXML
+  TextField q1an1;
+  @FXML
+  TextField q1an2;
+  @FXML
+  TextField q1an3;
+  @FXML
+  TextField q2an0;
+  @FXML
+  TextField q2an1;
+  @FXML
+  TextField q2an2;
+  @FXML
+  TextField q2an3;
+  @FXML
+  TextField title;
+  @FXML
+  TextField q0;
+  @FXML
+  TextField q1;
+  @FXML
+  TextField q2;
   @FXML
   Label score;
   @FXML
@@ -81,31 +132,48 @@ public class AddQuizController extends QuizAppController {
     this.switchSceneWithNode("MainPage.fxml", title);
   }
 
+  /**
+   * Submits the new quiz.
+   */
   public void submitQuiz() {
     if (!checkIfQuizIsFilled()) {
-      score.setText("Invalid Quiz. Check that all fields are filled and correct answers are chosen");
+      score.setText("Invalid Quiz. Check that all fields are" 
+          + " filled and correct answers are chosen");
       scroll.setVvalue(0.01);
       return;
     }
+    try {
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
+    } catch (Exception e) {
+      remoteQuizAccess = new DirectQuizAccess();
+    }
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.stream().anyMatch(q -> q.getName().equals(title.getText()))) {
-      score.setText("Invalid Quizname. The title must be unique, there is already a quiz named " + title.getText());
+      score
+          .setText("Invalid Quizname. The title must be unique, " 
+          + "there is already a quiz named " + title.getText());
       scroll.setVvalue(0.01);
       return;
     }
 
     try {
-      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/new/"));
+      remoteQuizAccess = new RemoteQuizAccess(new URI("http://localhost:8080/api/quiz/"));
     } catch (Exception e) {
       remoteQuizAccess = new DirectQuizAccess();
     }
 
-    Question question0 = new Question(q0.getText(), q0an0.getText(), q0an1.getText(), q0an2.getText(), q0an3.getText(),
-        radioButtonGroup0.indexOf(radioButtonGroup0.stream().filter(p -> p.isSelected()).findAny().get()));
-    Question question1 = new Question(q1.getText(), q1an0.getText(), q1an1.getText(), q1an2.getText(), q1an3.getText(),
-        radioButtonGroup1.indexOf(radioButtonGroup1.stream().filter(p -> p.isSelected()).findAny().get()));
-    Question question2 = new Question(q2.getText(), q2an0.getText(), q2an1.getText(), q2an2.getText(), q2an3.getText(),
-        radioButtonGroup2.indexOf(radioButtonGroup2.stream().filter(p -> p.isSelected()).findAny().get()));
+    Question question0 = new Question(q0.getText(), q0an0.getText(), 
+        q0an1.getText(), q0an2.getText(), q0an3.getText(),
+        radioButtonGroup0.indexOf(radioButtonGroup0.stream()
+        .filter(p -> p.isSelected()).findAny().get()));
+    Question question1 = new Question(q1.getText(), q1an0.getText(), 
+        q1an1.getText(), q1an2.getText(), q1an3.getText(),
+        radioButtonGroup1.indexOf(radioButtonGroup1.stream()
+        .filter(p -> p.isSelected()).findAny().get()));
+    Question question2 = new Question(q2.getText(), q2an0.getText(), 
+        q2an1.getText(), q2an2.getText(), q2an3.getText(),
+        radioButtonGroup2.indexOf(radioButtonGroup2.stream()
+        .filter(p -> p.isSelected()).findAny().get()));
     Quiz quiz = new Quiz(title.getText(), question0, question1, question2);
     remoteQuizAccess.postQuiz(quiz);
     switchSceneWithNode("MainPage.fxml", title);
@@ -150,9 +218,11 @@ public class AddQuizController extends QuizAppController {
   }
 
   private boolean checkIfQuizIsFilled() {
-    boolean correctAnswer = radioButtons.stream().allMatch(p -> p.stream().anyMatch(q -> q.isSelected()));
+    boolean correctAnswer = radioButtons.stream()
+        .allMatch(p -> p.stream().anyMatch(q -> q.isSelected()));
     boolean allFieldsAreFilled = textFields.stream()
-        .allMatch(text -> text.stream().allMatch(field -> !field.getText().equals("")));
+        .allMatch(text -> text.stream()
+        .allMatch(field -> !field.getText().equals("")));
     return correctAnswer && allFieldsAreFilled;
 
   }

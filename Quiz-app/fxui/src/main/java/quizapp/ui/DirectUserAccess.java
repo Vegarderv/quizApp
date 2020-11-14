@@ -3,48 +3,67 @@ package quizapp.ui;
 import java.nio.file.Paths;
 import java.util.List;
 import quizapp.core.User;
+import quizapp.json.CryptoUtil;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
 
 public class DirectUserAccess implements UserAccess {
 
-  private final static String pathStarter = "../core/src/main/resources/quizapp/json/";
+  private static String pathStarter = "../core/src/main/resources/quizapp/json/";
   private final String jsonPath = Paths.get(pathStarter + "JSONHandler.json").toString();
   private JsonHandler jsonHandler = new JsonHandler(this.jsonPath);
   private final String activeUserPath = Paths.get(pathStarter + "activeUser.json").toString();
   private UsernameHandler userHandler = new UsernameHandler(this.activeUserPath);
+  private final String jsonTestPath = Paths.get(pathStarter + "JSONHandlerTest.json").toString();
+  private final String activeUserTestPath = Paths
+      .get(pathStarter + "activeUserTest.json").toString();
+  private String secretKey = "ssshhhhhhhhhhh!!!!";
+  private CryptoUtil cryptoUtil = new CryptoUtil();
 
   public DirectUserAccess() {
 
   }
 
+  /**
+   * Constructor for DirecUserAccess.
+   * 
+
+   * @param test checks if we are running tests or not
+   */
   public DirectUserAccess(Boolean test) {
     if (test) {
-      jsonHandler = new JsonHandler(
-          "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/JSONHandlerTest.json");
-      userHandler = new UsernameHandler(
-          "/workspace/gr2022/Quiz-app/core/src/main/resources/quizapp/json/activeUserTest.json");
+      jsonHandler = new JsonHandler(this.jsonTestPath);
+      userHandler = new UsernameHandler(this.activeUserTestPath);
     }
   }
 
   @Override
   public User getUser(String name) {
-    return jsonHandler.loadUserFromString(name);
+    User user = jsonHandler.loadUserFromString(name);
+    user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey));
+    return user;
   }
 
   @Override
   public void putUser(User user) {
-    jsonHandler.updateUser(user);
+    User newUser = new User(user);
+    newUser.setPassword(cryptoUtil.encrypt(newUser.getPassword(), secretKey));
+    jsonHandler.updateUser(newUser);
   }
 
   @Override
   public List<User> getUsers() {
-    return jsonHandler.loadFromFile();
+    List<User> users =  jsonHandler.loadFromFile();
+    users.stream()
+        .forEach(user -> user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey)));
+    return users;
   }
 
   @Override
   public User getActiveUser() {
-    return jsonHandler.loadActiveUser();
+    User user = jsonHandler.loadActiveUser();
+    user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey));
+    return user;
   }
 
   @Override
@@ -54,7 +73,9 @@ public class DirectUserAccess implements UserAccess {
 
   @Override
   public void postUser(User user) {
-    jsonHandler.addUser(user);
+    User newUser = new User(user);
+    newUser.setPassword(cryptoUtil.encrypt(newUser.getPassword(), secretKey));
+    jsonHandler.addUser(newUser);
   }
 
   public void deleteUser(String username) {
