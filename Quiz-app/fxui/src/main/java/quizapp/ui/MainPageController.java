@@ -98,20 +98,18 @@ public class MainPageController extends QuizAppController {
     this.switchSceneWithNode("Scoreboard.fxml", menuButton);
   }
 
-  /**
-   * Method for adding buttons for extra quizzes created.
-   */
+  // Method for adding buttons for extra quizzes created.
   private void addButtons() {
     List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.size() > 5) {
       ObservableList<Node> children = hbox.getChildren();
-      List<String> colors= Arrays.asList("#EB4034", "#FFC0CB", "#FFAC20","#7EB593", "#73c1df");
+      List<String> colors = Arrays.asList("#EB4034", "#FFC0CB", "#FFAC20", "#7EB593", "#73c1df");
       for (int i = 5; i < quizzes.size(); i++) {
         Button button = new Button(quizzes.get(i).getName().toUpperCase());
-        Font font = new Font(40); //Button font's size should increase to 40
+        Font font = new Font(40); // Button font's size should increase to 40
         button.setFont(font);
-        int chosenColor= (int)(Math.random() * colors.size());
-        button. setStyle("-fx-background-color:"+colors.get(chosenColor));
+        int chosenColor = (int) (Math.random() * colors.size());
+        button.setStyle("-fx-background-color:" + colors.get(chosenColor));
         button.setPrefSize(436.0, 230.0);
         button.setMinWidth(436.0);
         button.setId(quizzes.get(i).getId());
