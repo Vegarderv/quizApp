@@ -1,182 +1,182 @@
 [
-    {
-        "questions": [
-            {
-                "question": "When did the viking age start?",
-                "correctAlternative": 0,
-                "alternatives": [
-                    "793 AD",
-                    "815 AD",
-                    "902 AD",
-                    "767 AD"
-                ]
-            },
-            {
-                "question": "How many people died in World War 2?",
-                "correctAlternative": 3,
-                "alternatives": [
-                    "50 million",
-                    "60 million",
-                    "75 million",
-                    "85 million"
-                ]
-            },
-            {
-                "question": "Who was the first president of the United States?",
-                "correctAlternative": 2,
-                "alternatives": [
-                    "Abraham Lincoln",
-                    "Thomas Jefferson",
-                    "George Washington",
-                    "Barack Obama"
-                ]
-            }
-        ],
-        "name": "History quiz",
-        "id": "History-quiz"
-    },
-    {
-        "questions": [
-            {
-                "question": "If you fill a glass to the brim with ice water and the  ice melts, what will happen?",
-                "correctAlternative": 2,
-                "alternatives": [
-                    "The glass will over flow as the ice turns to water.",
-                    "The level of water in the glass will remain unchanged as the ice melts.",
-                    "The water level will drop slightly as the ice melts",
-                    "I\u0027ll never find out because I\u0027ll drink the water or walk away before anything happens."
-                ]
-            },
-            {
-                "question": "You can\u0027t live without iron. Where in the body is most of the iron located?",
-                "correctAlternative": 3,
-                "alternatives": [
-                    "Your brain",
-                    "Your skin",
-                    "Your bones",
-                    "Your blood"
-                ]
-            },
-            {
-                "question": "What do you call an atom that has more protons than electrons?",
-                "correctAlternative": 1,
-                "alternatives": [
-                    "A molecule",
-                    "A cation",
-                    "An anion",
-                    "An isotope"
-                ]
-            }
-        ],
-        "name": "Chemistry quiz",
-        "id": "Chemistry-quiz"
-    },
-    {
-        "questions": [
-            {
-                "question": "What country has the longest coastline in the world?",
-                "correctAlternative": 0,
-                "alternatives": [
-                    "Canada",
-                    "Norway",
-                    "Indonesia",
-                    "Greenland"
-                ]
-            },
-            {
-                "question": "What country is the newest in the world to be recognised by the UN?",
-                "correctAlternative": 2,
-                "alternatives": [
-                    "Kosovo",
-                    "Serbia",
-                    "South Sudan",
-                    "Timor-Leste"
-                ]
-            },
-            {
-                "question": "What African country has the largest population?",
-                "correctAlternative": 1,
-                "alternatives": [
-                    "Eqypt",
-                    "Nigeria",
-                    "South Africa",
-                    "The Democratic Republic of Congo"
-                ]
-            }
-        ],
-        "name": "Geography quiz",
-        "id": "Geography-quiz"
-    },
-    {
-        "questions": [
-            {
-                "question": "What are you supposed to do when you find yourself under the mistletoe?",
-                "correctAlternative": 0,
-                "alternatives": [
-                    "Kiss",
-                    "Fart",
-                    "Clap",
-                    "Take your socks off"
-                ]
-            },
-            {
-                "question": "Where was baby Jesus born?",
-                "correctAlternative": 2,
-                "alternatives": [
-                    "Bamble",
-                    "Los Angeles",
-                    "Bethlehem",
-                    "Granca"
-                ]
-            },
-            {
-                "question": "What did the other reindeer not let Rudolph do because of his shiny red nose?",
-                "correctAlternative": 1,
-                "alternatives": [
-                    "Eat dinner with santa",
-                    "Join in any reindeer games",
-                    "Join a snowball fight",
-                    "Lead the sleigh"
-                ]
-            }
-        ],
-        "name": "Christmas quiz",
-        "id": "Christmas-quiz"
-    },
-    {
-        "questions": [
-            {
-                "question": "Malin",
-                "correctAlternative": 0,
-                "alternatives": [
-                    "Ja",
-                    "Nei",
-                    "Finnes hun",
-                    "Nei"
-                ]
-            },
-            {
-                "question": "Havregrøt?",
-                "correctAlternative": 0,
-                "alternatives": [
-                    "Absolutt",
-                    "Kanskje",
-                    "aldri",
-                    "hvorfor"
-                ]
-            },
-            {
-                "question": "Beste spill",
-                "correctAlternative": 3,
-                "alternatives": [
-                    "Zelda",
-                    "Mario",
-                    "Smash",
-                    "Quiz-app"
-                ]
-            }
-        ],
-        "name": "Malin quiz",
-        "id": "Malin-quiz"
-    }
+  {
+    "questions": [
+      {
+        "question": "When did the viking age start?",
+        "correctAlternative": 0,
+        "alternatives": [
+          "793 AD",
+          "815 AD",
+          "902 AD",
+          "767 AD"
+        ]
+      },
+      {
+        "question": "How many people died in World War 2?",
+        "correctAlternative": 3,
+        "alternatives": [
+          "50 million",
+          "60 million",
+          "75 million",
+          "85 million"
+        ]
+      },
+      {
+        "question": "Who was the first president of the United States?",
+        "correctAlternative": 2,
+        "alternatives": [
+          "Abraham Lincoln",
+          "Thomas Jefferson",
+          "George Washington",
+          "Barack Obama"
+        ]
+      }
+    ],
+    "name": "History quiz",
+    "id": "History-quiz"
+  },
+  {
+    "questions": [
+      {
+        "question": "If you fill a glass to the brim with ice water and the  ice melts, what will happen?",
+        "correctAlternative": 2,
+        "alternatives": [
+          "The glass will over flow as the ice turns to water.",
+          "The level of water in the glass will remain unchanged as the ice melts.",
+          "The water level will drop slightly as the ice melts",
+          "I\u0027ll never find out because I\u0027ll drink the water or walk away before anything happens."
+        ]
+      },
+      {
+        "question": "You can\u0027t live without iron. Where in the body is most of the iron located?",
+        "correctAlternative": 3,
+        "alternatives": [
+          "Your brain",
+          "Your skin",
+          "Your bones",
+          "Your blood"
+        ]
+      },
+      {
+        "question": "What do you call an atom that has more protons than electrons?",
+        "correctAlternative": 1,
+        "alternatives": [
+          "A molecule",
+          "A cation",
+          "An anion",
+          "An isotope"
+        ]
+      }
+    ],
+    "name": "Chemistry quiz",
+    "id": "Chemistry-quiz"
+  },
+  {
+    "questions": [
+      {
+        "question": "What country has the longest coastline in the world?",
+        "correctAlternative": 0,
+        "alternatives": [
+          "Canada",
+          "Norway",
+          "Indonesia",
+          "Greenland"
+        ]
+      },
+      {
+        "question": "What country is the newest in the world to be recognised by the UN?",
+        "correctAlternative": 2,
+        "alternatives": [
+          "Kosovo",
+          "Serbia",
+          "South Sudan",
+          "Timor-Leste"
+        ]
+      },
+      {
+        "question": "What African country has the largest population?",
+        "correctAlternative": 1,
+        "alternatives": [
+          "Eqypt",
+          "Nigeria",
+          "South Africa",
+          "The Democratic Republic of Congo"
+        ]
+      }
+    ],
+    "name": "Geography quiz",
+    "id": "Geography-quiz"
+  },
+  {
+    "questions": [
+      {
+        "question": "What are you supposed to do when you find yourself under the mistletoe?",
+        "correctAlternative": 0,
+        "alternatives": [
+          "Kiss",
+          "Fart",
+          "Clap",
+          "Take your socks off"
+        ]
+      },
+      {
+        "question": "Where was baby Jesus born?",
+        "correctAlternative": 2,
+        "alternatives": [
+          "Bamble",
+          "Los Angeles",
+          "Bethlehem",
+          "Granca"
+        ]
+      },
+      {
+        "question": "What did the other reindeer not let Rudolph do because of his shiny red nose?",
+        "correctAlternative": 1,
+        "alternatives": [
+          "Eat dinner with santa",
+          "Join in any reindeer games",
+          "Join a snowball fight",
+          "Lead the sleigh"
+        ]
+      }
+    ],
+    "name": "Christmas quiz",
+    "id": "Christmas-quiz"
+  },
+  {
+    "questions": [
+      {
+        "question": "Malin",
+        "correctAlternative": 0,
+        "alternatives": [
+          "Yes",
+          "No",
+          "Does she exist?",
+          "Always"
+        ]
+      },
+      {
+        "question": "Oats?",
+        "correctAlternative": 0,
+        "alternatives": [
+          "Absolutely",
+          "Maybe",
+          "Never",
+          "Why"
+        ]
+      },
+      {
+        "question": "Worlds best game?",
+        "correctAlternative": 3,
+        "alternatives": [
+          "Zelda",
+          "Mario",
+          "Smash",
+          "Quiz-app"
+        ]
+      }
+    ],
+    "name": "Malin quiz",
+    "id": "Malin-quiz"
+  }
 ]

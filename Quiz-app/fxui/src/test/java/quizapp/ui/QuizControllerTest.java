@@ -1,38 +1,35 @@
 package quizapp.ui;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
+import org.testfx.api.FxAssert;
+import java.awt.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import quizapp.core.User;
 import quizapp.core.DirectQuizAccess;
 import quizapp.core.DirectUserAccess;
 import quizapp.core.Quiz;
 import quizapp.core.QuizAccess;
 
-import org.testfx.api.FxAssert;
-import java.awt.*;
-import java.beans.Transient;
-
-import org.junit.jupiter.api.Test;
-
 public class QuizControllerTest extends FxuiTest {
 
   private Stage stage;
-  private DirectUserAccess directUserAccess;
+  private static DirectUserAccess directUserAccess;
   private QuizAccess directQuizAccess;
-
 
   @Override
   public void start(final Stage stage) throws Exception {
     directUserAccess = new DirectUserAccess();
     directQuizAccess = new DirectQuizAccess();
-    //deletes user if it exists from previous tests
+    // deletes user if it exists from previous tests
     directUserAccess.deleteUser("Test1");
     Quiz quiz = directQuizAccess.getQuiz("Chemistry-quiz");
     User user = new User();
@@ -62,8 +59,9 @@ public class QuizControllerTest extends FxuiTest {
 
   @Test
   public void checkCorrectUserDisplayed() {
-    // Checks active user and makes sure it matches username displayed on menu button
-    String activeUser = ((MenuButton)stage.getScene().lookup("#userMenu")).getText();
+    // Checks active user and makes sure it matches username displayed on menu
+    // button
+    String activeUser = ((MenuButton) stage.getScene().lookup("#userMenu")).getText();
     assertEquals(directUserAccess.getActiveUser().getUsername(), activeUser);
   }
 
@@ -79,17 +77,15 @@ public class QuizControllerTest extends FxuiTest {
     assertNotNull(stage.getScene().lookup("#mainPageButton"));
   }
 
-
-  
-
   @Test
   public void runQuizwithEverythingCorrect() throws AWTException {
     // Runs through the quiz
-    Robot r = new Robot();
+    ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
     clickOn("#q0a2");
+    scroll.setVvalue(0.5);
     clickOn("#q1a3");
     // Scrolls to bottom of screen
-    r.mouseWheel(15);
+    scroll.setVvalue(1.0);
     // Slows down the code to give the robot time to scroll
     try {
       Thread.sleep(100);
@@ -99,6 +95,7 @@ public class QuizControllerTest extends FxuiTest {
     clickOnButton("#submit");
     FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 100%"));
     assertEquals((double) directUserAccess.getUser("Test1").getScore("Chemistry quiz"), 1.0, 0);
+
   }
 
   @Test
@@ -107,24 +104,29 @@ public class QuizControllerTest extends FxuiTest {
     User user = directUserAccess.getUser("Test1");
     user.addQuiz("Chemistry quiz", (2 * 1.0) / (3 * 1.0));
     directUserAccess.putUser(user);
-    //Takes quiz again
-    Robot r = new Robot();
-    clickOn("#q0a0"); //Clicks wrong alternative
-    clickOn("#q1a0"); //Clicks wrong alternative
+    // Takes quiz again
+
+    ScrollPane scroll = (ScrollPane) stage.getScene().lookup("#scroll");
+    clickOn("#q0a0"); // Clicks wrong alternative
+    clickOn("#q1a0"); // Clicks wrong alternative
     // Scrolls to bottom of screen
-    r.mouseWheel(15);
+    scroll.setVvalue(1.0);
     // Slows down the code to give the robot time to scroll
     try {
       Thread.sleep(100);
     } catch (InterruptedException e) {
     }
-    clickOn("#q2a0"); //Clicks wrong alternative
+    clickOn("#q2a0"); // Clicks wrong alternative
     clickOnButton("#submit");
     FxAssert.verifyThat("#score", org.testfx.matcher.control.LabeledMatchers.hasText("You got this Score: 0%"));
     assertEquals((double) directUserAccess.getUser("Test1").getScore("Chemistry quiz"), 0, 0);
+
   }
 
+  @AfterAll
+  static void reset() {
+    directUserAccess.deleteUser("Test1");
+    directUserAccess.putActiveUser("gr2022");
+  }
 
-
-  
 }
