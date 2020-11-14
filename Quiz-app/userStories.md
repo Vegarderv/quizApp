@@ -1,40 +1,39 @@
 # User stories
 
-This app has five user stories, with some general demands towars the app. It describes the most important
-functions and usages we wantes to implement. Every modifications we have done has been about making these
+This app has five user stories, with some general demands towards the app. It describes the most important
+functions and usages we wantes to implement. Every modifications we have implemented in order to make these
 scenarios run as smooth as possible.
 
 ## As a user I want to be able to take quizzes so I can use the main function of the app (us-1)
 
 The main idea behind this app is that you can take quizzes. Quiz is a popular game around the world, and
-we wanted to provide quizzes for users to take. The user has the opportunity to choose between a number 
-of quizzes. Each quiz contains three questions, and four answer alternatives per question. Ater the user
+we wanted to provide quizzes that users can take. The user has the opportunity to choose between a number 
+of quizzes. Each quiz contains three questions, and four answer alternatives per question. After the user
 takes a quiz, they get a score. Also to keep the app interesting, the users can also make their own quizzes, 
 that will pop up as a choice for all the users.
 
-**Important visuability**
+**Important visibility**
 
-- See all the quizzes the user can take
-- The questions and alternatives the user can choose
-- The score the user got after submitting answers
+- See all the quizzes that the user can take.
+- The questions and alternatives the user can choose from.
+- The mean score that the user attained after submitting answers.
 
 **Important functionality**
 
-- Choosing quizzes the user want to take
-- Button for submitting answers
-- Button for choosing what to answer
+- The user can choose whichever quiz they want to take.
+- There exists a button for submitting answers.
+- There exists a radiobutton for choosing an answer.
 
 
 ## As a user I want to log in so I can save my results (us-2)
 
-To save results and scores gotten in the quizzes, the users should be able to log in. The log in function
-does also come in handy when several users want to compare scores. This function allows the app to create 
-a list of highscorers. The usernames should be unique, and everybody needs passwords.
+To save results and scores obtained in the quizzes, the users should be able to log in. The log in function also come in handy when several users want to compare scores. This function allows the app to create 
+a list of highscorers on the scoreboard page. The usernames should be unique, and all users need a password.
 
-**Important visuability**
+**Important visibility**
 
-- A page dedicated to log in
-- Which profile is active when the user is logged in (some users might have several profiles)
+- A page dedicated to log in.
+- A menubutton displaying the active user. A user can have several profiles,    this function allows the user to check if they are logged into the correct one. 
 
 **Important functionality**
 
