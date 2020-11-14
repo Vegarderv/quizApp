@@ -75,10 +75,6 @@ Passord **gitlab**
 In the presistance-layer, all classes and logic connected to saving and reading from files are located.
 
 
-**Diagram describing the file saving:**
-
-![Image of JSON diagram](../Images/JSONdiagram.png)
-
 This layer also contains CryptoUtil. This is an encryption class used to ensure safe use of the restAPI. AES encryption is used
 
 ## Core
@@ -96,10 +92,6 @@ In the restapi part of the repo, all files connected to saving and Spring-boot a
 
 
 This illustrative plan is meant to represent the functunality of our app at its current stage. The colored arrows show how different stages occur as a result of interactions with the visual representations. As an example, with the correct password and username, the user can access the main page via the login button. 
-
-
-**User stories:**
-https://docs.google.com/document/d/1onM4Twf8udwkJ4Me4JwiqlhbbePsnBw3_q8_uEFCKUw/edit?ts=5f58a80c
 
 
 ### Diagrams
