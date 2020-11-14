@@ -31,8 +31,6 @@ public class JSONHandlerTest {
     user1.addQuiz("testquiz123", 0.69);
     handler.writeToFile(usernames);
     user3 = new User("test", "person");
-    System.out.println("i set up");
-    System.out.println(handler.loadFromFile());
   }
 
   @Test
@@ -47,7 +45,7 @@ public class JSONHandlerTest {
 
   @Test
   public void activeUserTest() {
-    UsernameHandler usernameHandler = new UsernameHandler("src/main/resources/quizapp/json/activeUserTest.json");
+    UsernameHandler usernameHandler = new UsernameHandler("src/main/resources/quizapp/json/activeUser.json");
     usernameHandler.saveActiveUser("Hallvard", "src/main/resources/quizapp/json/JSONHandlerTest.json");
     assertEquals("Hallvard", handler.loadActiveUser().getUsername());
   }

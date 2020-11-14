@@ -57,6 +57,12 @@ public class Question {
     this.alternatives = new ArrayList<String>(alternatives);
   }
 
+  
+  /**
+   * Sets the correct alternative.
+
+   * @param correctAlternative correct alternative
+   */
   public void setCorrectAlternative(int correctAlternative) {
     if (correctAlternative <= 3 && correctAlternative >= 0) {
       this.correctAlternative = correctAlternative;

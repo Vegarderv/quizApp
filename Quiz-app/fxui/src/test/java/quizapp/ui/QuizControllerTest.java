@@ -13,7 +13,6 @@ import quizapp.core.User;
 import quizapp.core.Quiz;
 import org.testfx.api.FxAssert;
 import java.awt.*;
-import java.beans.Transient;
 
 import org.junit.jupiter.api.Test;
 
