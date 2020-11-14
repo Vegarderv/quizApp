@@ -60,11 +60,10 @@ public class ProfilePageController extends QuizAppController {
 
   /**
    * Makes sure that the user sees the page as darmode or not.
-   * 
 
    * @return
    */
-  public String initDarkMode() {
+  private String initDarkMode() {
     Boolean check = currentUser.getDarkMode();
     if (check) {
       return ("ON");

@@ -3,6 +3,7 @@ package quizapp.ui;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -67,6 +68,15 @@ public class ProfilePageControllerTest extends FxuiTest {
     // Checks active user and makes sure it matches score
     Label label = (Label) stage.getScene().lookup("#scoreId");
     assertEquals(String.valueOf(Math.round((activeUser.meanScore()*100))) + "  %", label.getText());
+  }
+
+  @Test 
+  public void testDarkMode() {
+    DirectUserAccess direct = new DirectUserAccess();
+    boolean darkmode = direct.getActiveUser().getDarkMode();
+    Button button = (Button) stage.getScene().lookup("#dmButton");
+    clickOn(button);
+    assertEquals(!darkmode, direct.getActiveUser().getDarkMode());
   }
   
 }
