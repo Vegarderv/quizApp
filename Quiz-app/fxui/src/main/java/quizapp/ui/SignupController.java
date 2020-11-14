@@ -62,9 +62,15 @@ public class SignupController extends QuizAppController {
     newUser.setUsername(this.username.getText());
     newUser.setPassword(this.password.getText());
     remoteUserAccess.postUser(newUser);
-    this.switchSceneWithNode("MainPage.fxml", loginButton);
     // Updates active user
+    try {
+      remoteUserAccess = new RemoteUserAccess(new URI("http://localhost:8080/api/user/updateActive/"));
+    } catch (Exception e) {
+      remoteUserAccess = new DirectUserAccess();
+    }
     remoteUserAccess.putActiveUser(newUser.getUsername());
+    this.switchSceneWithNode("MainPage.fxml", loginButton);
+    
   }
 
 }
