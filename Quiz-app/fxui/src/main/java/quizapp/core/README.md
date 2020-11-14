@@ -12,10 +12,13 @@ DirectUserAccess is for testing and installing, and is only used then. It access
 
 RemoteUserAccess is for normal usage fo the app. It accesses the .json file using the restapi
 
+The reason UserAccess is not tested is because #1, it is indirectly tested through the mockRemoteAccess in the integration test in UserController¨
+and #2 we are not excpected to be able to make a functioning test for these kind of classes
+
 ## QuizAccess
 
 Same as UserAccess, only with Quiz instead
 
 ## UsernameCheck
 
-Class for confirming that Username and Password is correctsssssssss
+Class for confirming that Username and Password is correct
