@@ -5,8 +5,8 @@
     "darkMode": false,
     "quizzesTaken": {
       "Geography quiz": 1.0,
-      "Malin Quiz": 1.0,
-      "HistoryQuiz": 1.0,
+      "Malin quiz": 1.0,
+      "History quiz": 1.0,
       "Chemistry quiz": 1.0
     }
   },
@@ -26,44 +26,9 @@
     "username": "gr2022",
     "password": "hi/wc2QsFdbNJK/j6aL+JA\u003d\u003d",
     "darkMode": true,
-    "currentQuiz": {
-      "questions": [
-        {
-          "question": "If you fill a glass to the brim with ice water and the  ice melts, what will happen?",
-          "correctAlternative": 2,
-          "alternatives": [
-            "The glass will over flow as the ice turns to water.",
-            "The level of water in the glass will remain unchanged as the ice melts.",
-            "The water level will drop slightly as the ice melts",
-            "I\u0027ll never find out because I\u0027ll drink the water or walk away before anything happens."
-          ]
-        },
-        {
-          "question": "You can\u0027t live without iron. Where in the body is most of the iron located?",
-          "correctAlternative": 3,
-          "alternatives": [
-            "Your brain",
-            "Your skin",
-            "Your bones",
-            "Your blood"
-          ]
-        },
-        {
-          "question": "What do you call an atom that has more protons than electrons?",
-          "correctAlternative": 1,
-          "alternatives": [
-            "A molecule",
-            "A cation",
-            "An anion",
-            "An isotope"
-          ]
-        }
-      ],
-      "name": "Chemistry quiz"
-    },
     "quizzesTaken": {
       "Geography quiz": 0.3333333333333333,
-      "Malin Quiz": 0.6666666666666666,
+      "Malin quiz": 0.6666666666666666,
       "Chemistry quiz": 0.3333333333333333,
       "History quiz": 0.3333333333333333
     }
@@ -72,45 +37,10 @@
     "username": "Hallvard",
     "password": "2A40BiHAIlYP93jO3uH//g\u003d\u003d",
     "darkMode": false,
-    "currentQuiz": {
-      "questions": [
-        {
-          "question": "Malin",
-          "correctAlternative": 0,
-          "alternatives": [
-            "Ja",
-            "Nei",
-            "Finnes hun",
-            "Nei"
-          ]
-        },
-        {
-          "question": "Havregrøt?",
-          "correctAlternative": 0,
-          "alternatives": [
-            "Absolutt",
-            "Kanskje",
-            "aldri",
-            "hvorfor"
-          ]
-        },
-        {
-          "question": "Beste spill",
-          "correctAlternative": 3,
-          "alternatives": [
-            "Zelda",
-            "Mario",
-            "Smash",
-            "Quiz-app"
-          ]
-        }
-      ],
-      "name": "Malin Quiz"
-    },
     "quizzesTaken": {
       "Geography quiz": 1.0,
-      "Malin Quiz": 1.0,
-      "HistoryQuiz": 1.0,
+      "Malin quiz": 1.0,
+      "History quiz": 1.0,
       "Chemistry quiz": 1.0
     }
   }

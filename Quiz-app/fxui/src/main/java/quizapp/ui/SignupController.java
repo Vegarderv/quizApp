@@ -57,12 +57,14 @@ public class SignupController extends QuizAppController {
       errorMessage.setText("Username and password must at least contain 1 sign");
       return;
     }
-    // saves user
+    // Saves user
     final User newUser = new User();
     newUser.setUsername(this.username.getText());
     newUser.setPassword(this.password.getText());
     remoteUserAccess.postUser(newUser);
     this.switchSceneWithNode("MainPage.fxml", loginButton);
+    // Updates active user
+    remoteUserAccess.putActiveUser(newUser.getUsername());
   }
 
 }
