@@ -9,6 +9,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -38,13 +39,13 @@ public class QuizHandlerTest {
     Question q9 = new Question("question9", "q9a1", "q9a2", "q9a3", "q9a4", 3);
     quiz3 = new Quiz("test quiz3", q7, q8, q9);
 
-    List<Quiz> quizzes = new ArrayList<>(List.of(quiz1, quiz2));
+    Collection<Quiz> quizzes = new ArrayList<>(List.of(quiz1, quiz2));
     handler.writeToFile(quizzes);
   }
 
   @Test
   public void loadFromFileTest() {
-    List<Quiz> loadedQuizzes = handler.loadFromFile();
+    Collection<Quiz> loadedQuizzes = handler.loadFromFile();
     assertTrue(loadedQuizzes.contains(quiz1));
     assertTrue(loadedQuizzes.contains(quiz2));
     assertFalse(loadedQuizzes.contains(quiz3));
@@ -59,7 +60,7 @@ public class QuizHandlerTest {
   @Test
   public void addQuizTest() {
     handler.addQuiz(quiz3);
-    List<Quiz> loadedQuizzes = handler.loadFromFile();
+    Collection<Quiz> loadedQuizzes = handler.loadFromFile();
     assertTrue(loadedQuizzes.contains(quiz1));
     assertTrue(loadedQuizzes.contains(quiz2));
     assertTrue(loadedQuizzes.contains(quiz3));
@@ -68,7 +69,7 @@ public class QuizHandlerTest {
   @Test
   public void deleteQuizTest() {
     handler.deleteQuiz("test-quiz1");
-    List<Quiz> loadedQuizzes = handler.loadFromFile();
+    Collection<Quiz> loadedQuizzes = handler.loadFromFile();
     assertFalse(loadedQuizzes.contains(quiz1));
     assertTrue(loadedQuizzes.contains(quiz2));
     assertFalse(loadedQuizzes.contains(quiz3));

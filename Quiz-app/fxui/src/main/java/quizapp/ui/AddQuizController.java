@@ -3,6 +3,7 @@ package quizapp.ui;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -153,7 +154,7 @@ public class AddQuizController extends QuizAppController {
     } catch (Exception e) {
       remoteQuizAccess = new DirectQuizAccess();
     }
-    List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
+    Collection<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.stream().anyMatch(q -> q.getName().equals(title.getText()))) {
       score
           .setText("Invalid Quizname. The title must be unique, " 

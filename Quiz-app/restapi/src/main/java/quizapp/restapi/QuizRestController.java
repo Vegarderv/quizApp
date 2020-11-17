@@ -1,6 +1,6 @@
 package quizapp.restapi;
 
-import java.util.List;
+import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,13 +18,13 @@ public class QuizRestController {
   private QuizService quizService;
 
   @GetMapping
-  public List<Quiz> getQuizzes() {
+  public Collection<Quiz> getQuizzes() {
     return quizService.getQuizzes();
   }
 
 
   @GetMapping("/quizzes")
-  public List<Quiz> quizzz() {
+  public Collection<Quiz> quizzz() {
     return getQuizzes();
   }
 

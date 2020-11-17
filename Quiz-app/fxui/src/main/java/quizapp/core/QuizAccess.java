@@ -1,6 +1,6 @@
 package quizapp.core;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface QuizAccess {
 
@@ -18,7 +18,7 @@ public interface QuizAccess {
 
    * @return returns all quizzes in database.
    */
-  public List<Quiz> getQuizzes();
+  public Collection<Quiz> getQuizzes();
 
   /**
    * Method for sending new Quiz to database.

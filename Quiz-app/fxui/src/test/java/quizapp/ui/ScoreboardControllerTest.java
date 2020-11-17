@@ -4,7 +4,8 @@ import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
-import java.util.List;
+
+import java.util.Collection;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -57,7 +58,7 @@ public class ScoreboardControllerTest extends FxuiTest {
 
   @Test
   public void checkTextFlow() {
-    List<Quiz> quizzes = new DirectQuizAccess().getQuizzes();
+    Collection<Quiz> quizzes = new DirectQuizAccess().getQuizzes();
     StringBuilder sb = new StringBuilder();
     TextFlow textFlow = (TextFlow) stage.getScene().lookup("#textFlow");
     for (Node node : textFlow.getChildren()) {

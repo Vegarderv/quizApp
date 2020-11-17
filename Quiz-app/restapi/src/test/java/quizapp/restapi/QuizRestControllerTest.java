@@ -27,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -72,7 +73,7 @@ public class QuizRestControllerTest {
     }
 
     //removes quiz
-    List<Quiz> quizzes = quizHandler.loadFromFile();
+    Collection<Quiz> quizzes = quizHandler.loadFromFile();
     quizzes.remove(quizzes.stream().filter(quiz -> quiz.getId().equals(this.quiz.getId())).findAny().orElse(null));
     quizHandler.writeToFile(quizzes);
   }
@@ -101,7 +102,7 @@ public class QuizRestControllerTest {
  
   @AfterEach
   public void after() {
-    List<Quiz> quizzes = quizHandler.loadFromFile();
+    Collection<Quiz> quizzes = quizHandler.loadFromFile();
     quizzes.remove(quizzes.stream().filter(quiz -> quiz.getId().equals(this.quiz.getId())).findAny().orElse(null));
     quizHandler.writeToFile(quizzes);
   }

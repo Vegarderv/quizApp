@@ -1,7 +1,7 @@
 package quizapp.restapi;
 
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.Collection;
 import org.springframework.stereotype.Service;
 import quizapp.core.User;
 import quizapp.json.JsonHandler;
@@ -10,7 +10,7 @@ import quizapp.json.UsernameHandler;
 @Service
 public class UserService {
 
-  private List<User> users;
+  private Collection<User> users;
   private User activeUser;
 
   private JsonHandler jsonHandler;
@@ -30,7 +30,7 @@ public class UserService {
   }
 
 
-  public List<User> getUsers() {
+  public Collection<User> getUsers() {
     users = jsonHandler.loadFromFile();
     return users;
   }

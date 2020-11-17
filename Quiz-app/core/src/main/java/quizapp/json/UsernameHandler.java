@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
-import java.util.List;
+import java.util.Collection;
 import java.util.stream.Collectors;
 import quizapp.core.User;
 
@@ -29,7 +29,7 @@ public class UsernameHandler {
    */
   public void saveActiveUser(String username, String databasePath) throws IllegalArgumentException {
     JsonHandler jsonHandler = new JsonHandler(databasePath);
-    List<User> users = jsonHandler.loadFromFile();
+    Collection<User> users = jsonHandler.loadFromFile();
     if (!users.stream().map(User::getUsername).collect(Collectors.toList()).contains(username)) {
       throw new IllegalArgumentException("username not in database");
     }

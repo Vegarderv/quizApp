@@ -1,7 +1,7 @@
 package quizapp.core;
 
 import java.net.URI;
-import java.util.List;
+import java.util.Collection;
 
 public class UsernameCheck {
 
@@ -16,7 +16,7 @@ public class UsernameCheck {
     } catch (Exception e) {
       remoteUserAccess = new DirectUserAccess();
     }
-    List<User> userPasswords = remoteUserAccess.getUsers();
+    Collection<User> userPasswords = remoteUserAccess.getUsers();
     if (!userPasswords.stream().anyMatch(a -> a.getUsername().equals(username))) {
       return false;
     } else if (!userPasswords.stream()

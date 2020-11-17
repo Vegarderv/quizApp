@@ -2,7 +2,7 @@ package quizapp.ui;
 
 import java.net.URI;
 import java.net.URL;
-import java.util.List;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +45,7 @@ public class SignupController extends QuizAppController {
     } catch (Exception e) {
       remoteUserAccess = new DirectUserAccess();
     }
-    final List<User> users = remoteUserAccess.getUsers();
+    final Collection<User> users = remoteUserAccess.getUsers();
     if (users.stream().anyMatch(a -> a.getUsername().equals(username.getText()))) {
       username.clear();
       password.clear();
