@@ -144,8 +144,7 @@ public class AddQuizController extends QuizAppController {
    */
   public void submitQuiz() {
     if (!checkIfQuizIsFilled()) {
-      score.setText("Invalid Quiz. Check that all fields are" 
-          + " filled and correct answers are chosen");
+      score.setText("Invalid Quiz. All fields must be filled.");
       scroll.setVvalue(0.01);
       return;
     }
@@ -157,8 +156,7 @@ public class AddQuizController extends QuizAppController {
     Collection<Quiz> quizzes = remoteQuizAccess.getQuizzes();
     if (quizzes.stream().anyMatch(q -> q.getName().equals(title.getText()))) {
       score
-          .setText("Invalid Quizname. The title must be unique, " 
-          + "there is already a quiz named " + title.getText());
+          .setText("This quiz name is already taken.");
       scroll.setVvalue(0.01);
       return;
     }
