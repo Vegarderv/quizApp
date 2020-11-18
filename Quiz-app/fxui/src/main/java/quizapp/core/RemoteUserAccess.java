@@ -42,7 +42,7 @@ public class RemoteUserAccess implements UserAccess {
           HttpResponse.BodyHandlers.ofString());
       final String responseString = response.body();
       System.out.println(responseString);
-    } catch ( IOException | InterruptedException e) {
+    } catch (IOException | InterruptedException e) {
       System.out.println(e);
       throw new IOException("Server Not Running");
     }
