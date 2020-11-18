@@ -2,6 +2,7 @@ package quizapp.ui;
 
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -106,12 +107,14 @@ public class MainPageController extends QuizAppController {
 
   // Method for adding buttons for extra quizzes created.
   private void addButtons() {
-    Collection<Quiz> quizzes = remoteQuizAccess.getQuizzes();
+    Collection<Quiz> quizzes = new ArrayList<>(remoteQuizAccess.getQuizzes());
     if (quizzes.size() > 5) {
       ObservableList<Node> children = hbox.getChildren();
       List<String> colors = Arrays.asList("#EB4034", "#FFC0CB", "#FFAC20", "#7EB593", "#73c1df");
       for (int i = 5; i < quizzes.size(); i++) {
-        Quiz quiz = quizzes.stream().findFirst().get();
+        Collection<String> ids = List.of("History-quiz", "Chemistry-quiz", "Geography-quiz", "Christmas-quiz", "Malin-quiz");
+        Quiz quiz = quizzes.stream().filter(q -> !ids.contains(q.getId()))
+            .findFirst().get();
         Button button = new Button(quiz.getName().toUpperCase());
         Font font = new Font(40); // Button font's size should increase to 40
         button.setFont(font);
