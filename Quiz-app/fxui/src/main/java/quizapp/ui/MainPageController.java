@@ -113,7 +113,9 @@ public class MainPageController extends QuizAppController {
       List<String> colors = Arrays.asList("#EB4034", "#FFC0CB", "#FFAC20", "#7EB593", "#73c1df");
       int size = quizzes.size();
       for (int i = 5; i < size; i++) {
-        Collection<String> ids = List.of("History-quiz", "Chemistry-quiz", "Geography-quiz", "Christmas-quiz", "Malin-quiz");
+        Collection<String> ids = List.of(
+            "History-quiz", "Chemistry-quiz", "Geography-quiz", 
+            "Christmas-quiz", "Malin-quiz");
         Quiz quiz = quizzes.stream().filter(q -> !ids.contains(q.getId()))
             .findFirst().get();
         Button button = new Button(quiz.getName().toUpperCase());
