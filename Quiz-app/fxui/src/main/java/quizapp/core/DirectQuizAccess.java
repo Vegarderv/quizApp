@@ -1,7 +1,7 @@
 package quizapp.core;
 
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.Collection;
 import quizapp.json.QuizHandler;
 
 public class DirectQuizAccess implements QuizAccess {
@@ -14,7 +14,7 @@ public class DirectQuizAccess implements QuizAccess {
     return quizHandler.getQuizById(id);
   }
 
-  public List<Quiz> getQuizzes() {
+  public Collection<Quiz> getQuizzes() {
     return quizHandler.loadFromFile();
   }
 

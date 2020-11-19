@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.Collection;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -68,7 +68,7 @@ public class UserControllerTest {
     }
 
     // Removing the user
-    List<User> users = jsonHandler.loadFromFile();
+    Collection<User> users = jsonHandler.loadFromFile();
     users.remove(users.stream().filter(user -> user.equals(user2)).findAny().orElse(null));
     jsonHandler.writeToFile(users);
 
@@ -128,7 +128,7 @@ public class UserControllerTest {
   // Removes user created before each test
   @AfterEach
   public void deleteTestUser() {
-    List<User> users = jsonHandler.loadFromFile();
+    Collection<User> users = jsonHandler.loadFromFile();
     users.remove(users.stream().filter(user -> user.getUsername().equals(user1.getUsername())).findAny().orElse(null));
     jsonHandler.writeToFile(users);
   }
@@ -161,7 +161,7 @@ public class UserControllerTest {
     }.getType()));
   }
 
-  private List<User> testGetUsers() throws Exception {
+  private Collection<User> testGetUsers() throws Exception {
     Gson gson = new Gson();
     MvcResult result = mockMvc
         .perform(MockMvcRequestBuilders.get("/api/user/users").with(user(TEST_USER_ID)).with(csrf()).content("users")
@@ -171,7 +171,7 @@ public class UserControllerTest {
     byte[] resultUserByte = result.getResponse().getContentAsByteArray();
     String resultUser = new String(resultUserByte, StandardCharsets.UTF_8);
     assertNotNull(resultUser);
-    return gson.fromJson(resultUser, new TypeToken<List<User>>() {
+    return gson.fromJson(resultUser, new TypeToken<Collection<User>>() {
     }.getType());
   }
 

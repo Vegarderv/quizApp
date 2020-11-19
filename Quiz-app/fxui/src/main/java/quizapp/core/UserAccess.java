@@ -1,6 +1,6 @@
 package quizapp.core;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface UserAccess {
 
@@ -27,7 +27,7 @@ public interface UserAccess {
 
    * @return a list of all users in database
    */
-  public List<User> getUsers();
+  public Collection<User> getUsers();
 
   /**
    * Method for getting user which is currently active.

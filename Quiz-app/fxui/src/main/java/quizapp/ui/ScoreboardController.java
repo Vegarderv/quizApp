@@ -3,8 +3,8 @@ package quizapp.ui;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -44,9 +44,9 @@ public class ScoreboardController extends QuizAppController {
   ScrollPane scroll;
   private UserAccess remoteUserAccess;
   private QuizAccess remoteQuizAccess;
-  private List<User> users;
+  private Collection<User> users;
   private String username;
-  private List<Quiz> quizzes;
+  private Collection<Quiz> quizzes;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {

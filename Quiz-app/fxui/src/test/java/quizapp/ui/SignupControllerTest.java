@@ -119,6 +119,7 @@ public class SignupControllerTest extends FxuiTest {
     assertNull(stage.getScene().lookup("#signupButton"));
     assertNotNull(stage.getScene().lookup("#menuButton"));
     directUserAccess.deleteUser("Dragvoll");
+    directUserAccess.putActiveUser("Hallvard");
   }
 
 }

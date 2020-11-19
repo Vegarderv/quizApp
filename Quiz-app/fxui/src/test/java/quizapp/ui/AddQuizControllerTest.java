@@ -76,14 +76,14 @@ public class AddQuizControllerTest extends FxuiTest {
     } catch (InterruptedException e) {
     }
     String text = ((Label) stage.getScene().lookup("#scoreLabel")).getText();
-    assertEquals("Invalid Quiz. Check that all fields are filled and correct answers are chosen", text);
+    assertEquals("Invalid Quiz. All fields must be filled.", text);
   }
 
   @Test
   public void makeQuizWithInvalidName() throws AWTException {
     fillInQuiz("History quiz");
     String text = ((Label) stage.getScene().lookup("#scoreLabel")).getText();
-    assertEquals("Invalid Quizname. The title must be unique, there is already a quiz named History quiz", text);
+    assertEquals("This quiz name is already taken.", text);
   }
 
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import quizapp.core.User;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -33,7 +34,7 @@ public class JSONHandlerTest {
 
   @Test
   public void loadFromFileTest() {
-    List<User> loadedUsers = handler.loadFromFile();
+    Collection<User> loadedUsers = handler.loadFromFile();
     assertEquals(2, loadedUsers.size());
     assertTrue(loadedUsers.contains(user1));
     assertTrue(loadedUsers.contains(user2));
@@ -64,7 +65,7 @@ public class JSONHandlerTest {
   @Test
   public void deleteUser() {
     handler.deleteUser(user1.getUsername());
-    List<User> loadedUsers = handler.loadFromFile();
+    Collection<User> loadedUsers = handler.loadFromFile();
     System.out.println(loadedUsers);
     assertEquals(1, loadedUsers.size());
     assertFalse(loadedUsers.contains(user1));
@@ -74,7 +75,7 @@ public class JSONHandlerTest {
   @Test
   public void addUser() {
     handler.addUser(user3);
-    List<User> loadedUsers = handler.loadFromFile();
+    Collection<User> loadedUsers = handler.loadFromFile();
     assertEquals(3, loadedUsers.size());
     assertTrue(loadedUsers.contains(user1));
     assertTrue(loadedUsers.contains(user2));

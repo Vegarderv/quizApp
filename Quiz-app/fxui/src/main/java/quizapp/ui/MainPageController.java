@@ -2,7 +2,9 @@ package quizapp.ui;
 
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -105,19 +107,26 @@ public class MainPageController extends QuizAppController {
 
   // Method for adding buttons for extra quizzes created.
   private void addButtons() {
-    List<Quiz> quizzes = remoteQuizAccess.getQuizzes();
+    Collection<Quiz> quizzes = new ArrayList<>(remoteQuizAccess.getQuizzes());
     if (quizzes.size() > 5) {
       ObservableList<Node> children = hbox.getChildren();
       List<String> colors = Arrays.asList("#EB4034", "#FFC0CB", "#FFAC20", "#7EB593", "#73c1df");
-      for (int i = 5; i < quizzes.size(); i++) {
-        Button button = new Button(quizzes.get(i).getName().toUpperCase());
+      int size = quizzes.size();
+      for (int i = 5; i < size; i++) {
+        Collection<String> ids = List.of(
+            "History-quiz", "Chemistry-quiz", "Geography-quiz", 
+            "Christmas-quiz", "Malin-quiz");
+        Quiz quiz = quizzes.stream().filter(q -> !ids.contains(q.getId()))
+            .findFirst().get();
+        Button button = new Button(quiz.getName().toUpperCase());
         Font font = new Font(40); // Button font's size should increase to 40
         button.setFont(font);
         int chosenColor = (int) (Math.random() * colors.size());
         button.setStyle("-fx-background-color:" + colors.get(chosenColor));
         button.setPrefSize(436.0, 230.0);
         button.setMinWidth(436.0);
-        button.setId(quizzes.get(i).getId());
+        button.setId(quiz.getId());
+        quizzes.remove(quiz);
         button.setOnAction(new EventHandler<ActionEvent>() {
 
           @Override

@@ -1,7 +1,7 @@
 package quizapp.core;
 
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.Collection;
 import quizapp.json.CryptoUtil;
 import quizapp.json.JsonHandler;
 import quizapp.json.UsernameHandler;
@@ -51,8 +51,8 @@ public class DirectUserAccess implements UserAccess {
   }
 
   @Override
-  public List<User> getUsers() {
-    List<User> users =  jsonHandler.loadFromFile();
+  public Collection<User> getUsers() {
+    Collection<User> users =  jsonHandler.loadFromFile();
     users.stream()
         .forEach(user -> user.setPassword(cryptoUtil.decrypt(user.getPassword(), secretKey)));
     return users;

@@ -7,7 +7,6 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.lang.InterruptedException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -15,7 +14,7 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import quizapp.json.CryptoUtil;
 
 public class RemoteUserAccess implements UserAccess {
@@ -35,17 +34,15 @@ public class RemoteUserAccess implements UserAccess {
    */
   public RemoteUserAccess(URI endpointBaseUri) throws IOException {
     // Checks if server is running
+
     try {
-      HttpRequest request = HttpRequest.newBuilder(new URI("http://localhost:8080").resolve(""))
+      HttpRequest request = HttpRequest.newBuilder(endpointBaseUri)
           .header("Accept", "application/json").GET().build();
-      System.out.println(request);
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       final String responseString = response.body();
-      if (!responseString.equals("OK")) {
-        throw new IOException("Server Not Running");
-      }
-    } catch (URISyntaxException | IOException | InterruptedException e) {
+      System.out.println(responseString);
+    } catch (IOException | InterruptedException e) {
       System.out.println(e);
       throw new IOException("Server Not Running");
     }
@@ -122,8 +119,8 @@ public class RemoteUserAccess implements UserAccess {
   /**
    * Returns a list of the users.
    */
-  public List<User> getUsers() {
-    List<User> users = new ArrayList<>();
+  public Collection<User> getUsers() {
+    Collection<User> users = new ArrayList<>();
     try {
       if (user == null) {
         HttpRequest request = HttpRequest
@@ -135,7 +132,8 @@ public class RemoteUserAccess implements UserAccess {
           final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
               HttpResponse.BodyHandlers.ofString());
           final String responseString = response.body();
-          users = new Gson().fromJson(responseString, new TypeToken<List<User>>() {
+          System.out.println(responseString);
+          users = new Gson().fromJson(responseString, new TypeToken<Collection<User>>() {
           }.getType());
           System.out.println("Users: " + users);
         } catch (IOException | InterruptedException e) {

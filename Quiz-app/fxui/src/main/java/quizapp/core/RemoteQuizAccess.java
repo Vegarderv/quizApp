@@ -14,6 +14,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 import java.util.List;
 
 public class RemoteQuizAccess implements QuizAccess {
@@ -94,8 +95,8 @@ public class RemoteQuizAccess implements QuizAccess {
   /**
    * Returns a list of quizzes.
    */
-  public List<Quiz> getQuizzes() {
-    List<Quiz> quizzes = null;
+  public Collection<Quiz> getQuizzes() {
+    Collection<Quiz> quizzes = null;
     try {
       if (quiz == null) {
         HttpRequest request = HttpRequest

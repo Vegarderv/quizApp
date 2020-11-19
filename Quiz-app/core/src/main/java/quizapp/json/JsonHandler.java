@@ -13,7 +13,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.stream.Collectors;
 import quizapp.core.User;
 
@@ -29,8 +29,8 @@ public class JsonHandler {
   /**
    * Function writes a hashmap as a JSON object to a JSON file.
    */
-  public void writeToFile(List<User> userList) {
-    List<User> users = new ArrayList<User>(userList);
+  public void writeToFile(Collection<User> userList) {
+    Collection<User> users = new ArrayList<User>(userList);
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String javaObjectString = gson.toJson(users); // converts to json
     try {
@@ -56,11 +56,11 @@ public class JsonHandler {
   /**
    * Function reads a JSON file and returns a list of users.
    */
-  public List<User> loadFromFile() {
+  public Collection<User> loadFromFile() {
     try {
       InputStream inputStream = new FileInputStream(path);
       Reader fileReader = new InputStreamReader(inputStream, "UTF-8");
-      List<User> users = new Gson().fromJson(fileReader, new TypeToken<List<User>>() {
+      Collection<User> users = new Gson().fromJson(fileReader, new TypeToken<Collection<User>>() {
       }.getType());
       return users;
 
@@ -101,7 +101,7 @@ public class JsonHandler {
    * Adds User to database.
    */
   public void updateUser(User user) {
-    List<User> users = loadFromFile();
+    Collection<User> users = loadFromFile();
     User user2 = users.stream()
         .filter(u -> u.getUsername().equals(user.getUsername()))
         .findAny().get();
@@ -118,7 +118,7 @@ public class JsonHandler {
    */
   public void addUser(User user) {
     User newUser = new User(user);
-    List<User> users = loadFromFile();
+    Collection<User> users = loadFromFile();
     users.add(newUser);
     writeToFile(users);
   }
@@ -130,7 +130,7 @@ public class JsonHandler {
    * @param username username of user we want to delete
    */
   public void deleteUser(String username) {
-    List<User> users = loadFromFile();
+    Collection<User> users = loadFromFile();
     users = users.stream().filter(u -> !u.getUsername()
         .equals(username)).collect(Collectors.toList());
     writeToFile(users);

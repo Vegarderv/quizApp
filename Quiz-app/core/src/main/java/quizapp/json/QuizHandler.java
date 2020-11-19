@@ -12,7 +12,7 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.stream.Collectors;
 import quizapp.core.Quiz;
 
@@ -27,8 +27,8 @@ public class QuizHandler {
   /**
    * Function writes a hashmap as a JSON object to a JSON file.
    */
-  public void writeToFile(List<Quiz> quizList) {
-    List<Quiz> quizzes = new ArrayList<Quiz>(quizList);
+  public void writeToFile(Collection<Quiz> quizList) {
+    Collection<Quiz> quizzes = new ArrayList<Quiz>(quizList);
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     String javaObjectString = gson.toJson(quizzes); // converts to json
     try {
@@ -53,11 +53,11 @@ public class QuizHandler {
   /**
    * Function reads a JSON file and returns a list of quizzes.
    */
-  public List<Quiz> loadFromFile() {
+  public Collection<Quiz> loadFromFile() {
     try {
       InputStream inputStream = new FileInputStream(path);
       Reader fileReader = new InputStreamReader(inputStream, "UTF-8");
-      List<Quiz> quizzes = new Gson().fromJson(fileReader, new TypeToken<List<Quiz>>() {
+      Collection<Quiz> quizzes = new Gson().fromJson(fileReader, new TypeToken<Collection<Quiz>>() {
       }.getType());
       return quizzes;
 
@@ -77,7 +77,7 @@ public class QuizHandler {
    */
   public Quiz getQuizById(String id) {
     String name = id.replace("-", " ");
-    List<Quiz> quizzes = this.loadFromFile();
+    Collection<Quiz> quizzes = this.loadFromFile();
     return quizzes.stream().filter(q -> q.getName().equals(name)).findFirst().orElse(null);
   }
 
@@ -88,7 +88,7 @@ public class QuizHandler {
    * @param quiz the quiz object
    */
   public void addQuiz(Quiz quiz) {
-    List<Quiz> quizzes = loadFromFile();
+    Collection<Quiz> quizzes = loadFromFile();
     quizzes.add(new Quiz(quiz));
     writeToFile(quizzes);
   }
@@ -100,7 +100,7 @@ public class QuizHandler {
    * @param quizId quiz we want to delete
    */
   public void deleteQuiz(String quizId) {
-    List<Quiz> quizzes = loadFromFile();
+    Collection<Quiz> quizzes = loadFromFile();
     quizzes = quizzes.stream().filter(q -> !q.getId().equals(quizId)).collect(Collectors.toList());
     writeToFile(quizzes);
   }
